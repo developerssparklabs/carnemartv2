@@ -253,3 +253,41 @@ if (!class_exists('SyncLocationsJson')) {
 		wp_clear_scheduled_hook('sync_locations_json_event');
 	});
 }
+
+// Al activar el plugin, solo dejamos un "pendiente".
+register_activation_hook(__FILE__, 'cm_queue_states_stores_build');
+
+function cm_queue_states_stores_build(): void
+{
+	update_option('cm_build_states_stores_pending', 1, false);
+}
+
+// En la siguiente carga del admin, ejecutamos al final del ciclo.
+add_action('wp_loaded', 'cm_run_states_stores_build_if_needed', PHP_INT_MAX);
+
+function cm_run_states_stores_build_if_needed(): void
+{
+	// Solo en admin y evitando AJAX/CRON
+	if (!is_admin() || wp_doing_ajax() || wp_doing_cron()) {
+		return;
+	}
+
+	// ¿Hay tareas pendientes?
+	if (!get_option('cm_build_states_stores_pending')) {
+		return;
+	}
+
+	// (Opcional) pequeño guard-rail: asegúrate de que la clase existe.
+	if (!class_exists('Wcmlim_Product_Taxonomy')) {
+		return; // o require_once tu clase si procede
+	}
+
+	// Ejecuta las tareas ya con todo cargado.
+	$wc = new Wcmlim_Product_Taxonomy();
+	$wc->wcmlim_save_location_groups_json();
+	$wc->wcmlim_resync_locator_meta_from_groups();
+	$wc->wcmlim_generate_store_shards();
+
+	// Borra el flag para que corra solo una vez.
+	delete_option('cm_build_states_stores_pending');
+}
