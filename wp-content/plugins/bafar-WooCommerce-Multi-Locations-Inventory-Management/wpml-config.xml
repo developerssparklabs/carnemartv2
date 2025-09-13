@@ -1,0 +1,45 @@
+<wpml-config>
+  <taxonomies>
+    <taxonomy translate="1">locations</taxonomy>
+  </taxonomies>
+  <custom-fields>  
+    <custom-type translate="1">product</custom-type>
+    <custom-field action="copy">_wpml_word_count</custom-field>
+    <custom-field action="copy">_manage_stock</custom-field>
+    <custom-field action="copy">_stock</custom-field>
+    <custom-field action="copy">_regular_price</custom-field>
+    <custom-field action="copy">_sale_price</custom-field>
+  
+  <![CDATA[
+      <?php 
+      $args = ['taxonomy' => 'locations', 'hide_empty' => false, 'parent' => 0];
+      $all_locations = get_terms($args);
+      foreach ((array) $all_locations as $location) {
+        echo '<custom-field action="copy">wcmlim_stock_at_'.$location->term_id.'</custom-field>';
+        echo '<custom-field action="copy">wcmlim_sale_price_at_'.$location->term_id.'</custom-field>';
+        echo '<custom-field action="copy">wcmlim_regular_price_at_'.$location->term_id.'</custom-field>';
+      }
+           ?>
+   ]]>
+  </custom-fields>
+  <admin-texts>
+    <key name="wcmlim_default_map_color"/>
+    <key name="wcmlim_license"/>
+    <key name="wcmlim_notice_bar_active_time"/>
+    <key name="wcmlim_notice_bar_dismiss"/>
+    <key name="wcmlim_sh_design_mode"/>
+    <key name="wcmlim_txt_inline_location"/>
+    <key name="wcmlim_widget_select_mode"/>
+  </admin-texts>
+  <shortcodes>
+    <shortcode>
+      <tag>wcmlim_location_finder</tag>
+    </shortcode>
+    <shortcode>
+      <tag>wcmlim_location_finder_list_view</tag>
+    </shortcode>
+    <shortcode>
+      <tag>wcmlim_locations_switch</tag>
+    </shortcode>
+  </shortcodes>
+</wpml-config>

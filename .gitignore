@@ -1,0 +1,72 @@
+# =========================================================
+# WordPress – .gitignore
+# =========================================================
+# Objetivo:
+# - No versionar el core de WP ni archivos de entorno
+# - Versionar SOLO tu código (temas/plug-ins propios/mu-plugins)
+# - Ignorar uploads, idiomas, logs y artefactos de build
+# =========================================================
+
+# --- Core de WordPress (no versionar) --------------------
+/wp-admin/
+/wp-includes/
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
+/wp-*.php
+/local-xdebuginfo.php
+
+# Configuración/servidor local (no versionar)
+# Si necesitas versionar .htaccess, quita esta línea
+/.htaccess
+/wp-config.php
+
+# --- Contenido gestionado por WP -------------------------
+/wp-content/languages/
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/backups/
+/wp-content/ai1wm-backups/
+/wp-content/backup-*/
+# Multisite legacy
+/wp-content/blogs.dir/
+/wp-content/wflogs/
+
+# Mantén archivos de relleno y marcadores
+!/wp-content/**/index.php
+!/wp-content/**/.gitkeep
+
+# --- Dependencias y artefactos dentro de tu código -------
+/wp-content/**/dist/
+/wp-content/**/build/
+/wp-content/**/.cache/
+/wp-content/**/.next/
+/wp-content/**/.vite/
+# Archivos de lock de JS (si prefieres versionarlos, elimínalos de aquí)
+/wp-content/**/package-lock.json
+/wp-content/**/pnpm-lock.yaml
+/wp-content/**/yarn.lock
+
+# --- Logs / temporales / SO / IDE ------------------------
+*.log
+/wp-content/debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+.sass-cache/
+.tmp/
+
+# --- Entornos (.env) -------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- IDE -------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.code-workspace

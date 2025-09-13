@@ -1,0 +1,362 @@
+#block-7.widget.widget_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.Wcmlim_container.wcmlim_product {
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.Wcmlim_container.wcmlim_product,
+.wcmlim_product .loc_dd.Wcmlim_prefloc_sel {
+    overflow: hidden;
+    display: block;
+}
+
+.wcmlim_product .postcode-checker-div input[type="text"] {
+    flex: 70%;
+    margin-right: 8px;
+    background-color: #f2f2f2;
+    color: #43454b;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    font-weight: 400;
+    padding: 10px !important;
+}
+
+.wcmlim_product .Wcmlim_loc_label,
+.wcmlim_product .Wcmlim_messageerror {
+    display: flex;
+    flex-direction: row;
+}
+
+.wcmlim_product .Wcmlim_locadd,
+.wcmlim_product .Wcmlim_nextlocadd {
+    flex: 70%;
+    margin-right: 10px;
+}
+
+.wcmlim_product .Wcmlim_locstock {
+    flex: 30%;
+}
+
+.wcmlim_product .next_closest_location_detail {
+    font-size: 18px;
+    color: #000;
+    line-height: 1.4;
+}
+
+.wcmlim_product .next_closest_location_detail .next_km {
+    font-weight: 400;
+}
+
+.wcmlim_product .Wcmlim_nextloc_label {
+    display: flex;
+    margin-top: 10px;
+}
+
+.Wcmlim_box_header {
+    padding-bottom: 15px;
+}
+
+h3.Wcmlim_box_title {
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.wcmlim_product .Wcmlim_sloc_label {
+    font-weight: 600;
+    margin: 0 5px 10px;
+    font-size: 16px;
+    display: block;
+}
+
+.wcmlim_product .Wcmlim_sel_loc {
+    width: 90%;
+}
+
+.Wcmlim_have_stock,
+.Wcmlim_over_stock {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 12px;
+}
+
+.Wcmlim_have_stock {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.Wcmlim_over_stock {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.loc_dd {
+    background: #fff;
+    margin: 0 0 10px;
+}
+
+#globMsg,
+#losm {
+    margin: 0;
+    padding: 0 0 5px;
+}
+
+#globMsg {
+    color: #0f834d;
+}
+
+#losm {
+    color: #e2401c;
+}
+
+.loc_dd i,
+.selected_location_name i {
+    color: #ff7a00;
+}
+
+#submit_postcode_product,
+.wcmlim_product #submit_postcode_global {
+    text-decoration: none;
+    flex: 30%;
+}
+
+#submit_postcode_global {
+    /* height: 45px; */
+    /* border-radius: 4px;
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    margin: 2px; */
+}
+
+.Wcmlim_box_content.select_location-wrapper i {
+    margin-right: 5px;
+}
+
+.postcode-checker-title,
+.postcode-location-distance,
+.selected_location_detail {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+}
+
+#load,
+.Wcmlim_accept_btn,
+.Wcmlim_locstock #showMe {
+    color: #fff;
+    text-align: center;
+}
+
+.Wcmlim_locstock #showMe {
+    background: #cd2653;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.0333em;
+    text-transform: uppercase;
+    width: 50%;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.Wcmlim_accept_btn {
+    flex: 30%;
+    border-radius: 3px;
+    background-color: #28a745;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#load {
+    display: flex;
+    width: 100%;
+    font-size: larger;
+}
+
+.loc_dd.Wcmlim_prefloc_sel .Wcmlim_sel_loc,
+.loc_dd.Wcmlim_prefloc_sel i,
+.postcode-checker-change-show {
+    display: inline-block;
+}
+
+.postcode-checker-title {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.postcode-checker-change {
+    margin-left: 10px;
+    width: 30px;
+    padding: 0 5px;
+    text-decoration: none;
+}
+
+.postcode-checker-change-hide,
+.postcode-checker-div-hide {
+    display: none;
+}
+
+.postcode-checker-div-show {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.postcode-checker-response p {
+    margin: 0;
+}
+
+.postcode-checker-response hr {
+    margin: 8px 0;
+    background-color: #eee;
+}
+
+.postcode-location-distance,
+.selected_location_detail {
+    line-height: 1.3;
+}
+
+.postcode-location-distance {
+    margin-left: 3px;
+}
+
+.Wcmlim_noStore {
+    flex: 100%;
+}
+
+.inline_wcmlim_lc .wcmlim_form_box {
+    width: 100%;
+    justify-content: center;
+    background-color: inherit;
+    /* padding: 5px 20px; */
+
+}
+
+.search_rep .postcode-checker-response {
+    width: 100% !important;
+}
+
+.postcode-checker-response>.wcmlim-chase-wrapper {
+    width: 40px !important;
+    position: absolute;
+}
+
+.inline_wcmlim_lc .wcmlim_form_box {
+    font-size: inherit;
+}
+
+.inline_wcmlim_lc .wcmlim_form_box,
+.inline_wcmlim_lc .wcmlim_form_box .postcode-checker,
+.inline_wcmlim_lc .wcmlim_form_box .postcode_wcmliminput,
+.inline_wcmlim_lc .wcmlim_form_box .search_rep,
+.inline_wcmlim_lc .wcmlim_form_box .wcmlim_sel_location {
+    display: inline-flex;
+    border-radius: 3px;
+    /* margin: auto; */
+    align-items: center;
+}
+
+.wcmlim_change_lc_to p {
+    padding-top: 7px;
+}
+
+.inline_wcmlim_lc .wcmlim_form_box .search_rep {
+    line-height: 1;
+    background: #fff;
+    /* padding: 20px 0; */
+    padding: 0;
+}
+
+.inline_wcmlim_lc .postcode-checker-response,
+.inline_wcmlim_lc .wcmlim_form_box .postcode-checker-div {
+    width: 30vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inline_wcmlim_lc .wcmlim_form_box .postcode-checker {
+    padding: 0 5px;
+}
+
+.inline_wcmlim_lc .wcmlim_form_box .fa.fa-search {
+    padding: 0 10px;
+}
+
+.inline_wcmlim_lc.wcmlim_form_box .postcode-checker,
+.inline_wcmlim_lc.wcmlim_form_box .wcmlim_sel_location {
+    margin-right: 10px;
+}
+
+.inline_wcmlim_lc .wcmlim_form_box .wcmlim_change_lc_to,
+.inline_wcmlim_lc .wcmlim_form_box .wcmlim_change_sl_to {
+    /* font-weight: 500!important; */
+    /* font-size: 16px; */
+    font-size: inherit;
+    font-family: inherit;
+    /* margin: 5px;    
+    padding-right:8px !important; */
+
+}
+
+p#wcmlim_store_label_popup {
+    padding-left: 10% !important;
+    font-weight: bold !important;
+}
+
+p.wcmlim_change_sl_to {
+    font-weight: bold !important;
+}
+
+.inline_wcmlim_lc #elementIdGlobal,
+.inline_wcmlim_lc #wcmlim-change-lc-select,
+.inline_wcmlim_lc #wcmlim-change-sl-select {
+    height: auto !important;
+    margin-bottom: 0em !important;
+    border-color: transparent;
+    background-color: transparent;
+    color: inherit;
+
+}
+
+input#submit_postcode_global[value="Apply"] {
+    width: 150px;
+}
+
+.inline_wcmlim_lc #elementIdGlobal:focus-visible,
+.inline_wcmlim_lc #wcmlim-change-lc-select:focus-visible,
+.inline_wcmlim_lc #wcmlim-change-sl-select:focus-visible {
+    outline: none !important;
+}
+
+#elementIdGlobal {
+    background-color: #fff;
+    box-shadow: none;
+}
+
+#lc-switch-form .postcode-location-distance {
+    margin-left: 0;
+}
+
+.inline_wcmlim_lc {
+    padding: 10px 0;
+}
+
+.inline_wcmlim_lc .postcode-checker-change {
+    padding: 0;
+}
+
+p#locations_time {
+    font-weight: 800;
+    margin: 1rem;
+}

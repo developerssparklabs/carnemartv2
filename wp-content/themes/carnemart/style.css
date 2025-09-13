@@ -1,0 +1,38 @@
+/*
+	Theme Name: Carnemart Gutenberg Theme
+	Theme URI:
+	Description:  Theme Carnemart Gutenberg
+	Version: 2.1
+	Author: Team SPARKLABS / AOG
+	Author URI:
+	Tags: Blank, HTML5, CSS3
+
+	License: MIT
+	License URI: http://opensource.org/licenses/mit-license.php
+*/
+
+*,
+*:after,
+*:before {
+  /* -moz-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-font-smoothing:antialiased;
+	font-smoothing:antialiased;
+	text-rendering:optimizeLegibility; */
+}
+
+::selection {
+  background: #ffe76b;
+  color: #330e9c;
+  text-shadow: none;
+}
+::-webkit-selection {
+  background: #ffe76b;
+  color: #330e9c;
+  text-shadow: none;
+}
+::-moz-selection {
+  background: #ffe76b;
+  color: #330e9c;
+  text-shadow: none;
+}

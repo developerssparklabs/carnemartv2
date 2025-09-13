@@ -1,0 +1,576 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-10 07:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Loco https://localise.biz/"
+
+# wpml-name: f4471f1f671914776893f6efab2660d7
+#: includes/class-wcmlim-widget.php:46
+msgid " - Select - "
+msgstr ""
+
+#: admin/partials/wcmlim-admin-display.php:125
+msgid " Enter Purchase Code"
+msgstr ""
+
+#: admin/partials/wcmlim-custom-inventory-fields.php:611 
+#: admin/partials/wcmlim-custom-inventory-fields.php:627 
+#: admin/partials/wcmlim-custom-inventory-fields.php:898 
+#: admin/partials/wcmlim-custom-inventory-fields.php:914 
+#: admin/partials/wcmlim-custom-inventory-fields.php:933
+msgid ")"
+msgstr ""
+
+# wpml-name: ace1d1328a8388275888c449789c409c
+#: admin/partials/wcmlim-display-settings.php:213
+msgid "11.0 km away"
+msgstr ""
+
+# wpml-name: 60354d8555b7115462d70ea34d957f3e
+#: admin/partials/wcmlim-display-settings.php:224
+msgid "181.0 km away"
+msgstr ""
+
+#: admin/partials/wcmlim-backend-only-mode.php:735 
+#: admin/partials/wcmlim-backend-only-mode.php:760
+msgid "</b> from your cart!"
+msgstr ""
+
+#: admin/partials/wcmlim-addon-settings.php:28
+msgid "Addon Plugins"
+msgstr ""
+
+# wpml-name: b80efe6b56fe895b92b7509fab5be2e6
+#: admin/partials/wcmlim-custom-inventory-fields.php:96 
+#: admin/partials/wcmlim-custom-inventory-fields.php:541 
+#: admin/partials/wcmlim-custom-inventory-fields.php:873
+msgid "All Locations"
+msgstr ""
+
+# wpml-name: 57d056ed0984166336b7879c2af3657f
+#: includes/views/taxonomy-fields-new.php:39 
+#: includes/views/taxonomy-fields-edit.php:76
+msgid "City"
+msgstr ""
+
+# wpml-name: 4d6ebd33935689dd1ec24b18426941f9
+#: public/partials/locationwisePaymentMethod.php:79
+msgid ""
+"Common payment methods for selected items in the cart are not available "
+"please place an order for each location separately"
+msgstr ""
+
+# wpml-name: 59716c97497eb9694541f7c3d37b1a4d
+#: includes/views/taxonomy-fields-new.php:51 
+#: includes/views/taxonomy-fields-edit.php:100
+msgid "Country"
+msgstr ""
+
+# wpml-name: 9326d97b8740ea738fe8031754d989cf
+#: admin/partials/wcmlim-display-settings.php:44
+msgid "Design Preview"
+msgstr ""
+
+# wpml-name: 02674a4ef33e11c879283629996c8ff8
+#: public/partials/shortcodes/locationFinderMapShortcode.php:296
+msgid "Direction"
+msgstr ""
+
+# wpml-name: 9d255a3dc18d92c019ac6a69d8e3db93
+#: includes/class-wcmlim-widget.php:16
+msgid "Display a list of locations to filter products in your store."
+msgstr ""
+
+# wpml-name: 3d23e1e11c824540fb5ae59cadefd5d5
+#: admin/partials/wcmlim-display-settings.php:28
+msgid "Display Settings"
+msgstr ""
+
+# wpml-name: 8d8cbf301d93b5e9e5a68f4b7235670f
+#: public/partials/shortcodes/locationFinderMapShortcode.php:235
+msgid "Distance Range"
+msgstr ""
+
+# wpml-name: ce8ae9da5b7cd6c3df2929543a9af92d
+#: includes/views/taxonomy-fields-new.php:55 
+#: includes/views/taxonomy-fields-edit.php:169
+msgid "Email"
+msgstr ""
+
+#: includes/views/taxonomy-fields-edit.php:451
+msgid "Enable Pickup For Location"
+msgstr ""
+
+# wpml-name: 32c4e9483403d60115b21519178e5384
+#: includes/views/taxonomy-fields-new.php:27
+msgid "Enter Address"
+msgstr ""
+
+# wpml-name: f67baeacbe8774fe786706de1218e37b
+#: admin/partials/wcmlim-custom-inventory-fields.php:572 
+#: admin/partials/wcmlim-custom-inventory-fields.php:596
+msgid "Enter the Stock amount for this location"
+msgstr ""
+
+# wpml-name: 20eaf739f7ee58350241c62c88cee486
+#: admin/partials/wcmlim-custom-inventory-fields.php:126 
+#: admin/partials/wcmlim-custom-inventory-fields.php:149
+msgid "Enter the stock amount for this location."
+msgstr ""
+
+#: admin/partials/wcmlim-admin-display.php:119
+msgid "Enter Your Username / Email"
+msgstr ""
+
+# wpml-name: 0db377921f4ce762c62526131097968f
+#: admin/partials/wcmlim-admin-display.php:149
+msgid "General"
+msgstr ""
+
+#: public/partials/email-template.php:42
+msgid "Hi"
+msgstr ""
+
+# wpml-name: f4ec9c0ec2e92912426160ee09a5b6f0
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "http://www.techspawn.com"
+msgstr ""
+
+# wpml-name: 8289b7ec22f39ace395a246dec26e79f
+#: admin/partials/wcmlim-display-settings.php:184 
+#: admin/partials/wcmlim-display-settings.php:185
+msgid "in stock"
+msgstr ""
+
+#: admin/partials/wcmlim-custom-inventory-fields.php:937
+msgid "Input COGS price for location"
+msgstr ""
+
+# wpml-name: b3db5ce78d0f0891b9e8d83f397c33ed
+#: admin/partials/wcmlim-custom-inventory-fields.php:615 
+#: admin/partials/wcmlim-custom-inventory-fields.php:902
+msgid "Input regular price for location"
+msgstr ""
+
+# wpml-name: 93babd66f8a0633dd2828c5618123d88
+#: admin/partials/wcmlim-custom-inventory-fields.php:631 
+#: admin/partials/wcmlim-custom-inventory-fields.php:918
+msgid "Input Sale price for location"
+msgstr ""
+
+# wpml-name: 0a1dea758fe7ed199ceb36e342ba8e4d
+#: admin/partials/wcmlim-custom-inventory-fields.php:125 
+#: admin/partials/wcmlim-custom-inventory-fields.php:148 
+#: admin/partials/wcmlim-custom-inventory-fields.php:567 
+#: admin/partials/wcmlim-custom-inventory-fields.php:591
+msgid "Input stock"
+msgstr ""
+
+#: admin/partials/wcmlim-product-central.php:23
+#, php-format
+msgid "Items deleted: %d"
+msgstr ""
+
+#: public/partials/email-template.php:43
+msgid "Just to let you know — we have received your order "
+msgstr ""
+
+# wpml-name: 78b2ffdeaab5caea3c7f7a34813431d7
+#: admin/partials/wcmlim-display-settings.php:222
+msgid "loaction 1"
+msgstr ""
+
+# wpml-name: f72ee7d47842fe4dead913abe6886514
+#: admin/partials/wcmlim-display-settings.php:211
+msgid "loaction 2"
+msgstr ""
+
+# wpml-name: ce5bf551379459c1c61d2a204061c455
+#: admin/partials/wcmlim-admin-display.php:145
+msgid "Location"
+msgstr ""
+
+# wpml-name: 1e5d13603d56068a8e03c9c7ee0a575b
+#: admin/partials/wcmlim-display-settings.php:179
+msgid "location 1 - In Stock"
+msgstr ""
+
+# wpml-name: be8729327bde27a2de06f25a42378b4a
+#: admin/partials/wcmlim-display-settings.php:181
+msgid "location 2 - Out Of Stock"
+msgstr ""
+
+#: admin/partials/wcmlim-nearby-instock-location.php:113 
+#: admin/partials/wcmlim-backend-only-mode.php:1443
+msgid "Location :"
+msgstr ""
+
+# wpml-name: 5a006627fe7992d72269c3b321b43436
+#: admin/partials/wcmlim-map-settings.php:33
+msgid "Location Finder On Map"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:6 
+#: includes/views/taxonomy-fields-edit.php:9
+msgid "Location Group"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:64
+msgid "Location Lat"
+msgstr ""
+
+#: includes/views/taxonomy-fields-edit.php:431
+msgid "Location Lat/Lng"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:68
+msgid "Location Lng"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:77
+msgid "Location Measurement Unit"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:99 
+#: includes/views/taxonomy-fields-edit.php:202
+msgid "Location Priority"
+msgstr ""
+
+#: includes/views/lgroup-taxonomy-fields-edit.php:7 
+#: includes/views/lgroup-taxonomy-fields-new.php:4
+msgid "Location Regional Manager"
+msgstr ""
+
+# wpml-name: 9b56f192e74dcb916bcc6750ec4ee5cd
+#: includes/views/taxonomy-fields-new.php:113 
+#: includes/views/taxonomy-fields-edit.php:214
+msgid "Location Shop Manager"
+msgstr ""
+
+#: admin/partials/wcmlim-backend-only-mode.php:413
+msgid "Location:"
+msgstr ""
+
+# wpml-name: 4b75c480bcac57bbee5c041bcedfe688
+#: admin/partials/wcmlim-display-settings.php:232
+msgid "No Store Found"
+msgstr ""
+
+#: admin/partials/wcmlim-cron-update.php:107
+msgid "nothing to update"
+msgstr ""
+
+#: admin/partials/wcmlim-admin-display.php:161
+msgid "Notice Messages"
+msgstr ""
+
+#: public/partials/email-template.php:48
+msgid "Payment Method"
+msgstr ""
+
+# wpml-name: bcc254b55c4a1babdf1dcb82c207506b
+#: includes/views/taxonomy-fields-new.php:59 
+#: includes/views/taxonomy-fields-edit.php:177
+msgid "Phone"
+msgstr ""
+
+#: admin/partials/wcmlim-local-pickup-shipping-method.php:19 
+#: admin/partials/wcmlim-local-pickup-shipping-method.php:68 
+#: admin/partials/wcmlim-local-pickup-shipping-method.php:71
+msgid "Pickup Location"
+msgstr ""
+
+#: public/partials/email-template.php:46
+msgid "Price"
+msgstr ""
+
+#: public/partials/email-template.php:44
+msgid "Product"
+msgstr ""
+
+#: admin/partials/wcmlim-product-central.php:29
+msgid "Product Central"
+msgstr ""
+
+#: admin/partials/wcmlim-cron-update.php:158
+msgid "product update stock Location"
+msgstr ""
+
+#: admin/partials/wcmlim-product-central.php:36
+msgid "Products Editor"
+msgstr ""
+
+#: public/partials/email-template.php:45
+msgid "Quantity"
+msgstr ""
+
+# wpml-name: 9405c3aff9112c3c60d03b94792877dc
+#: includes/views/taxonomy-fields-new.php:35 
+#: includes/views/taxonomy-fields-edit.php:68
+msgid "Route"
+msgstr ""
+
+# wpml-name: 13348442cc6a27032d2b4aa28b75a5d3
+#: public/partials/shortcodes/locationFinderMapShortcode.php:192 
+#: public/partials/shortcodes/locationFinderMapShortcode.php:220
+msgid "Search"
+msgstr ""
+
+#: includes/views/taxonomy-fields-edit.php:48
+msgid "Search Address"
+msgstr ""
+
+# wpml-name: 24812b4a0763096f056b8d57ac0d5e8f
+#: public/partials/shortcodes/locationFinderMapShortcode.php:171
+msgid "Search By Category"
+msgstr ""
+
+# wpml-name: 18d804b317661a05a43c00ad5053bf12
+#: public/partials/shortcodes/locationFinderMapShortcode.php:167 
+#: public/partials/shortcodes/locationFinderMapShortcode.php:198 
+#: public/partials/shortcodes/locationFinderMapListShortcode.php:151
+msgid "Search By Product"
+msgstr ""
+
+# wpml-name: 3b60dad509a848519009ed833fe993c3
+#: public/partials/shortcodes/locationFinderMapShortcode.php:166 
+#: public/partials/shortcodes/locationFinderMapListShortcode.php:150
+msgid "Search By Product Category"
+msgstr ""
+
+# wpml-name: b77d5be0e865073c411c2555f5029ef8
+#: public/partials/shortcodes/locationFinderMapShortcode.php:228
+msgid "Search Location"
+msgstr ""
+
+#: public/partials/shortcodes/wcmlim-location-popup.php:61
+msgid "Select Location"
+msgstr ""
+
+#: admin/partials/wcmlim-custom-inventory-fields.php:79 
+#: admin/partials/wcmlim-custom-inventory-fields.php:526 
+#: admin/partials/wcmlim-backend-only-mode.php:416
+msgid "Select location"
+msgstr ""
+
+#: includes/views/taxonomy-fields-edit.php:367
+msgid "Select Measurement Unit"
+msgstr ""
+
+# wpml-name: b16aadf17b92473718aa086336472b20
+#: includes/views/taxonomy-fields-new.php:154
+msgid "Select OpenPOS Outlet"
+msgstr ""
+
+# wpml-name: e430e1217aa7e61732d7cf10bb09fb2c
+#: includes/views/taxonomy-fields-edit.php:271
+msgid "Select OpenPOS Outlets"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:183
+msgid "Select outlet"
+msgstr ""
+
+# wpml-name: b80596afdfc72f1e5945a5642ce993a6
+#: includes/views/taxonomy-fields-new.php:132 
+#: includes/views/taxonomy-fields-edit.php:239
+msgid "Select Payment Methods"
+msgstr ""
+
+# wpml-name: ae689ab52c39d37ab51c94db017f7182
+#: includes/views/taxonomy-fields-edit.php:381
+msgid "Select Shipping Methods"
+msgstr ""
+
+# wpml-name: de0e7f0a2e6bd0f11854b1b92f4e8110
+#: includes/views/taxonomy-fields-edit.php:111
+msgid "Select Shipping Zones"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:181
+msgid "Select WC Point Of Sale Outlet"
+msgstr ""
+
+#: includes/views/taxonomy-fields-edit.php:306
+msgid "Select WC point of sale Outlets"
+msgstr ""
+
+#: includes/views/taxonomy-fields-edit.php:146
+msgid "Select WC Tax"
+msgstr ""
+
+#: includes/views/taxonomy-fields-new.php:201 
+#: includes/views/taxonomy-fields-edit.php:467
+msgid "Service Radius"
+msgstr ""
+
+# wpml-name: f0ebc1e59fc272cfefc108083554d48a
+#: includes/views/taxonomy-fields-new.php:104 
+#: includes/views/taxonomy-fields-edit.php:421
+msgid "Set your location time"
+msgstr ""
+
+# wpml-name: f4f70727dc34561dfde1a3c529b6205c
+#: admin/partials/wcmlim-product-central.php:37
+msgid "Settings"
+msgstr ""
+
+#: public/partials/email-template.php:50
+msgid "Shipping address"
+msgstr ""
+
+# wpml-name: 2283e9f8406bff87ea184a8b77fbc4ca
+#: admin/partials/wcmlim-admin-display.php:157
+msgid "Shipping and Payment Method"
+msgstr ""
+
+# wpml-name: 0a18f0aa51f30f1107495bf639caf16c
+#: public/partials/shortcodes/locationFinderMapShortcode.php:298
+msgid "Shop Now"
+msgstr ""
+
+# wpml-name: 883d3aef8c07d324e760c5c137e08c12
+#: admin/partials/wcmlim-admin-display.php:153
+msgid "Shop Page"
+msgstr ""
+
+#: admin/partials/wcmlim-admin-display.php:165
+msgid "Shortcodes & Documentation "
+msgstr ""
+
+# wpml-name: 46a2a41cc6e552044816a2d04634545d
+#: includes/views/taxonomy-fields-new.php:43 
+#: includes/views/taxonomy-fields-edit.php:84
+msgid "State"
+msgstr ""
+
+# wpml-name: ab0b263a4a804750b4a9c1881b55298a
+#: admin/partials/wcmlim-custom-inventory-fields.php:124 
+#: admin/partials/wcmlim-custom-inventory-fields.php:147 
+#: admin/partials/wcmlim-custom-inventory-fields.php:566 
+#: admin/partials/wcmlim-custom-inventory-fields.php:590
+msgid "Stock quantity"
+msgstr ""
+
+# wpml-name: 669a90ec9aac95cd93556470ddaebf44
+#: includes/views/taxonomy-fields-new.php:31 
+#: includes/views/taxonomy-fields-edit.php:60
+msgid "Street address"
+msgstr ""
+
+# wpml-name: f13fb9147dde1759ca6af06e0ad157ae
+#. Author of the plugin
+msgid "Techspawn Solutions"
+msgstr ""
+
+#: public/partials/email-template.php:47
+msgid "Thanks for using"
+msgstr ""
+
+# wpml-name: 8fd7fa7eb644111e4067d622bc469114
+#: admin/partials/wcmlim-custom-inventory-fields.php:617 
+#: admin/partials/wcmlim-custom-inventory-fields.php:633 
+#: admin/partials/wcmlim-custom-inventory-fields.php:904
+msgid "The amount of credits for this product in currency format."
+msgstr ""
+
+# wpml-name: 4b05df934fc9637eb0e039f7f9bb23a6
+#: admin/partials/wcmlim-custom-inventory-fields.php:920 
+#: admin/partials/wcmlim-custom-inventory-fields.php:939
+msgid "The amount of credits for this proroduct in currency format."
+msgstr ""
+
+# wpml-name: a25f0051615f90565b326b7fb9957333
+#. Description of the plugin
+msgid ""
+"This plugin will help you manage WooCommerce Products stocks through "
+"locations."
+msgstr ""
+
+# wpml-name: b78a3223503896721cca1303f776159b
+#: includes/class-wcmlim-widget.php:100
+msgid "Title"
+msgstr ""
+
+# wpml-name: 4b0826a4dc5f1ea81d13002bc358220f
+#: admin/partials/wcmlim-map-settings.php:49
+msgid "To display Location finder List View - use"
+msgstr ""
+
+# wpml-name: 038f44c2dabe19ce4d7f76ae846f3a0a
+#: admin/partials/wcmlim-map-settings.php:49
+msgid "To display Location finder on map - use"
+msgstr ""
+
+# wpml-name: 7c4520381670dd3625f8159c2206064d
+#: admin/partials/wcmlim-map-settings.php:49
+msgid "To display Location info - use"
+msgstr ""
+
+#: public/partials/email-template.php:49
+msgid "Total Payment"
+msgstr ""
+
+#: admin/partials/wcmlim-cron-update.php:54
+msgid "Update All products"
+msgstr ""
+
+#: admin/partials/wcmlim-admin-display.php:132
+msgid "Verify"
+msgstr ""
+
+#: public/partials/email-template.php:41
+msgid "Warehouse Received Order"
+msgstr ""
+
+# wpml-name: 7ba12122f8773d2a941f46c728850cf2
+#: includes/class-wcmlim-widget.php:13
+msgid "WCMLIM - Filter Products By Locations"
+msgstr ""
+
+#: wcmlim.php:111
+msgid ""
+"WooCommerce has not yet been installed or activated. WooCommerce Multi "
+"Locations Inventory Management is a WooCommerce Extension that will only "
+"function if WooCommerce is installed. Please first install and activate the "
+"WooCommerce Plugin."
+msgstr ""
+
+# wpml-name: 1b73fc369eb3aba3dca692d20cf39897
+#. Name of the plugin
+#: admin/partials/wcmlim-admin-display.php:16 
+#: admin/partials/wcmlim-display-settings.php:25 
+#: admin/partials/wcmlim-map-settings.php:30 
+#: admin/partials/wcmlim-addon-settings.php:25
+msgid "WooCommerce Multi Locations Inventory Management"
+msgstr ""
+
+# wpml-name: 190a5428fa226ca46b48d64d951fb92d
+#: includes/class-wcmlim-widget.php:92
+msgid "WooCommerce Products Filter"
+msgstr ""
+
+#: public/partials/email-template.php:51
+msgid "You have received location order"
+msgstr ""
+
+# wpml-name: 642d3ba5db8b57e006584b544e490ec7
+#: includes/views/taxonomy-fields-new.php:47 
+#: includes/views/taxonomy-fields-edit.php:92
+msgid "Zip code"
+msgstr ""

@@ -1,0 +1,304 @@
+:root{
+  --color-primario: #ffffff;
+  --color-secundario: #021B6D;
+  --color-terciario: #021B6D;
+
+}
+
+input[type=checkbox]:focus, input[type=color]:focus,
+input[type=date]:focus, input[type=datetime-local]:focus,
+input[type=datetime]:focus, input[type=email]:focus,
+input[type=month]:focus, input[type=number]:focus,
+input[type=password]:focus, input[type=radio]:focus,
+input[type=search]:focus, input[type=tel]:focus,
+input[type=text]:focus, input[type=time]:focus,
+input[type=url]:focus, input[type=week]:focus, select:focus, textarea:focus {
+  border-color: var(--color-primario)!important;
+  box-shadow: none!important;
+  outline: 2px solid transparent;
+}
+
+
+body.login #loginform{
+  border-radius: 10px!important;
+  background-color: #3da739!important;
+color:#021B6D;
+}
+
+body.login {
+  background-color: var(--color-secundario);
+}
+
+h3.login-bienvenido{
+  font-size: 25px;
+  margin-bottom: 20px!important;
+  font-weight: 700;
+}
+
+
+/* Cajas */
+
+div#login {
+   display: table;
+   padding: 0;
+   margin: 0;
+   width: 100%;
+   height: 100vh;
+   border: none!important;
+   background-color: var(--color-terciario);
+   position: relative;
+   z-index: 0;
+}
+
+div#login .box-logo {
+    display: table-cell;
+    width: 55%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    margin: 0;
+    background-image: url('../img/bg-intro.png');
+    background-size: cover;
+    background-position: right bottom;
+    border: none!important;
+    vertical-align: middle;
+    text-align: center;
+    /* background-color: var(--color-terciario); */
+}
+
+/* Logo */
+body.login div#login h1{
+  text-align: center;
+  padding: 0 40px;
+}
+
+div#login .box-login {
+  display: table-cell;
+  width: 45%;
+  height: 100%;
+  margin: 0;
+  border: none!important;
+  vertical-align: middle;
+  background-color: var(--color-terciario);
+  box-sizing: border-box;
+  padding: 30px;
+  text-align: center;
+}
+
+body.login div#login h1 a {
+   width: 280px;
+   height: 90px;
+   /*  width: 200px;
+    height: 70px; */
+   pointer-events: none;
+   background-image: url('../img/logo-lateral.png');
+   background-size: contain;
+   background-position: left center;
+   display: inline-block;
+   margin: 0 auto;
+}
+
+/* Caja de login */
+
+body.login div#login form#loginform,
+body.login div#login form#lostpasswordform{
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 45px 25px;
+  text-align: left;
+  border-radius: 0;
+  border: none;
+  -webkit-box-shadow: 0px 27px 65px -5px rgba(0,0,0,0.11);
+  -moz-box-shadow: 0px 27px 65px -5px rgba(0,0,0,0.11);
+  box-shadow: 0px 27px 65px -5px rgba(0,0,0,0.11);
+}
+
+
+/* Formularios */
+
+body.login label{
+  font-size: 13px;
+  color: var(--color-secundario);
+}
+
+body.login div#login form#loginform input#user_login {
+  border-top: none!important;
+  border-right: none!important;
+  border-left: none!important;
+  border-bottom: solid 2px var(--color-primario);
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 16px!important;
+  color:#ffffff!important;
+}
+
+body.login div#login form#loginform input#user_pass {
+  border-top: none!important;
+  border-right: none!important;
+  border-left: none!important;
+  border-bottom: solid 2px var(--color-primario);
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 16px!important;
+	color:#ffffff!important;
+}
+
+body.login div#login form#lostpasswordform input#user_login {
+  border-top: none!important;
+  border-right: none!important;
+  border-left: none!important;
+  border-bottom: solid 2px var(--color-primario);
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 16px!important;
+	color:#ffffff!important;
+}
+
+
+body.login div#login form#loginform input {
+  font-size: 12px;
+}
+
+body.login div#login form#loginform input:focus {
+  border-left:solid 1px red!important;
+}
+
+
+body.login div#login form#loginform p.forgetmenot {
+  display: block;
+  width: 100%;
+}
+
+
+body.login div#login form#loginform p.submit {
+  display: block;
+  width: 100%;
+}
+
+body.login div#login form#loginform p.submit input#wp-submit,
+body.login div#login form#lostpasswordform p.submit input#wp-submit {
+  margin: 20px 0;
+  width: 100%;
+  padding: 5px;
+  color: #000000!important;
+  background-color: var(--color-primario);
+  border: none;
+}
+
+
+/* Enlaces flotantes */
+
+body.login div#login p#nav {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  z-index: 3;
+}
+
+body.login div#login p#nav a {
+    color: var(--color-secundario));
+}
+
+body.login div#login p#backtoblog {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  z-index: 3;
+}
+
+body.login div#login p#backtoblog a {
+  color: #ffffff!important;
+}
+
+a.wp-login-lost-password{
+  color: #ffffff!important;
+}
+
+body.login .wp-core-ui .button, .wp-core-ui .button-secondary{
+  color: var(--color-primario);
+}
+
+/* Mensajes  */
+body.login #login_error{
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  max-width: 600px;
+  font-size: 12px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  z-index: 5;
+}
+
+body.login .message{
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  max-width: 600px;
+  font-size: 12px;
+  background-color: #ffffff;
+  color: #0b963f;
+  width: auto;
+  padding: 15px;
+  position: absolute;
+  left: 15px;
+  top: 75px;
+  z-index: 5;
+}
+
+
+.placa-wp-sp{
+  display: inline-block;
+  z-index: 2;
+  width: 350px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: url('../img/placa-sparklabs-wp.svg');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width:680px) {
+  div#login{
+    display: block;
+  }
+  div#login .box-logo{
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 60px 20px 10px 20px;
+  }
+  div#login .box-login{
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 30px 20px 90px 20px;
+  }
+  body.login div#login h1 a {
+    width: 100%;
+    height: 60px;
+  }
+  body.login div#login p#backtoblog{
+    padding: 0;
+    margin: 0;
+  }
+  .login #nav{
+    margin: 0;
+    padding: 0;
+    bottom: 5px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+  }
+  body.login .message{
+    font-size: 10px;
+    max-width: 100%;
+    left: 0;
+    margin: 15px;
+    top: 40px;
+  }
+}

@@ -1,0 +1,22 @@
+.geolocation-marker {
+    padding: 1px;
+    height: auto;
+    border-style: solid;
+    border-radius: 2px;
+    color: #187dc7 !important;
+    background-color: #f2f2f2 !important;
+    border-color: white !important;
+    box-shadow: none;
+    transition: all 0.2s linear;
+    margin-top: 0px;
+    position: absolute;
+    height: 38px;
+    margin-left: 0px;
+    width: 30px;
+}
+
+.wcmlim-map-widgets .distance-bar {
+    display: inline-block;
+    width: 11%;
+    margin-left: 50px;
+}
