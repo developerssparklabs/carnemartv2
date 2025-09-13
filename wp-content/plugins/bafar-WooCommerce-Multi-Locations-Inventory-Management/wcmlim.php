@@ -226,34 +226,6 @@ if (preg_match('#^/tiendas/?(\?.*)?$#', parse_url($_SERVER['REQUEST_URI'], PHP_U
 	require_once plugin_dir_path(__FILE__) . 'includes/searchStore/index.php';
 }
 
-/*
- * Schedule Cron Job for Sync Locations JSON
- */
-if (!class_exists('SyncLocationsJson')) {
-	require_once plugin_dir_path(__FILE__) . 'cron/SyncLocationsJson.php';
-
-	// Si no está programado aún, crear el evento cron
-	if (!wp_next_scheduled('sync_locations_json_event')) {
-		wp_schedule_event(time() + 30, 'daily', 'sync_locations_json_event');
-		error_log("🛠️ Evento del cron registrado manualmente.");
-	}
-
-	// Registrar el hook del cron
-	add_action('sync_locations_json_event', ['SyncLocationsJson', 'run']);
-
-	// Registrar evento al activar plugin
-	register_activation_hook(__FILE__, function () {
-		if (!wp_next_scheduled('sync_locations_json_event')) {
-			wp_schedule_event(time() + 300, 'daily', 'sync_locations_json_event'); // 5 minutos
-		}
-	});
-
-	// Limpiar cron al desactivar
-	register_deactivation_hook(__FILE__, function () {
-		wp_clear_scheduled_hook('sync_locations_json_event');
-	});
-}
-
 // Al activar el plugin, solo dejamos un "pendiente".
 register_activation_hook(__FILE__, 'cm_queue_states_stores_build');
 
@@ -264,7 +236,6 @@ function cm_queue_states_stores_build(): void
 
 // En la siguiente carga del admin, ejecutamos al final del ciclo.
 add_action('wp_loaded', 'cm_run_states_stores_build_if_needed', PHP_INT_MAX);
-
 function cm_run_states_stores_build_if_needed(): void
 {
 	// Solo en admin y evitando AJAX/CRON
