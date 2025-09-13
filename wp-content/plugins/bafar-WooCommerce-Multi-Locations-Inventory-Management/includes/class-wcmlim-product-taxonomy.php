@@ -37,6 +37,7 @@ class Wcmlim_Product_Taxonomy
       add_action('location_group_add_form_fields', array($this, 'formFields_location_group'), 10, 2);
       add_action('edited_location_group', array($this, 'formSave_location_group'), 10, 2);
       add_action('created_location_group', array($this, 'formSave_location_group'), 10, 2);
+      add_action('delete_location_group', array($this, 'execute_on_delete_location_group'), 10, 4);
     }
   }
 
@@ -103,10 +104,6 @@ class Wcmlim_Product_Taxonomy
         'meta_box_cb' => false
       );
     }
-
-
-
-
 
     register_taxonomy('locations', 'product', $args);
 
@@ -226,6 +223,11 @@ class Wcmlim_Product_Taxonomy
    */
   public function execute_on_delete_locations($term, $tt_id, $deleted_term, $object_ids)
   {
+    $this->deleteFileUploads('wcmlim/states.json');
+    $this->deleteFolderStores();
+    $this->wcmlim_save_location_groups_json();
+    $this->wcmlim_generate_store_shards();
+
     //You can write code here to be executed when this action occurs in WordPress. Use the parameters received in the function arguments & implement the required additional custom functionality according to your website requirements.
     $args = array(
       'post_type' => 'product',
@@ -243,9 +245,54 @@ class Wcmlim_Product_Taxonomy
       if (intval($total) > 0) {
         update_post_meta($product_id, '_stock', $total);
       }
-
     }
   }
+
+  public function execute_on_delete_location_group($term, $tt_id, $deleted_term, $object_ids)
+  {
+    $this->wcmlim_save_location_groups_json();
+    $this->wcmlim_generate_store_shards();
+
+    $idState = $term;
+
+    // buscamos en /uploads/wcmlim/stores/state-$idState.json
+    if (file_exists(WP_CONTENT_DIR . '/uploads/wcmlim/stores/state-' . $idState . '.json')) {
+      unlink(WP_CONTENT_DIR . '/uploads/wcmlim/stores/state-' . $idState . '.json');
+    }
+  }
+
+  /**
+   * Eliminamos el folder de stores, donde se encuentra todos los archivos .json
+   * @return void
+   */
+  public function deleteFolderStores()
+  {
+    // verificamos si existe el folder /uploads/wcmlim/stores
+    $dir = WP_CONTENT_DIR . '/uploads/wcmlim/stores/';
+    if (file_exists($dir)) {
+      // eliminamos todos los archivos y luego el directorio
+      $files = glob($dir . '*'); // get all file names
+      foreach ($files as $file) {
+        if (is_file($file)) {
+          unlink($file);
+        }
+      }
+      rmdir($dir);
+    }
+  }
+
+  /**
+   * Eliminamos un archivo en base a la ruta
+   * @param string $path
+   * @return void
+   */
+  public function deleteFileUploads(string $path)
+  {
+    if (file_exists(WP_CONTENT_DIR . '/uploads/' . $path)) {
+      unlink(WP_CONTENT_DIR . '/uploads/' . $path);
+    }
+  }
+
   /**
    * Form fields
    *
@@ -607,8 +654,6 @@ class Wcmlim_Product_Taxonomy
    */
   public function formSave($term_id)
   {
-
-    $autofill = get_option('wcmlim_enable_autocomplete_address');
     if ($_POST) {
       $shippingZone = isset($_POST['wcmlim_shipping_zone']) ? (array) $_POST['wcmlim_shipping_zone'] : array();
       $shippingZone = array_map('esc_attr', $shippingZone);
@@ -706,8 +751,6 @@ class Wcmlim_Product_Taxonomy
     $wcmlim_tax_locations[] = get_term_meta($term_id, 'wcmlim_tax_locations', true);
     $wcmlim_shop_manager = get_term_meta($term_id, 'wcmlim_shop_manager', true);
     $wcmlim_shipping_method[] = get_term_meta($term_id, 'wcmlim_shipping_method', true);
-
-
 
     if ($_POST) {
 
@@ -815,16 +858,19 @@ class Wcmlim_Product_Taxonomy
       // Save the option array.
       update_option("taxonomy_$term_id", $term_meta);
     }
+
+    // Regenerar JSON de locations group
+    $this->wcmlim_save_location_groups_json();
+
     // Regenerar JSON de locations
     $this->wcmlim_generate_store_shards();
   }
 
   /**
-   * =========================================================
    * Genera shards por estado y un índice:
    *   /uploads/wcmlim/stores/state-<ID>.json
    *   /uploads/wcmlim/stores/index.json
-   * =========================================================
+   * 
    * - Ignora tiendas sin 'wcmlim_locator' válido o estado inexistente.
    * - No retorna datos para el front; solo escribe archivos.
    * - Errores se registran en error_log/debug.log.
