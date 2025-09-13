@@ -512,51 +512,54 @@ class Wcmlim_Product_Taxonomy
 
   /**
    * =========================================================
-   * Exportar Location Groups a /uploads/wcmlim/states.json
+   * Exporta Location Groups a /uploads/wcmlim/states.json
    * =========================================================
+   * - No retorna datos para el front; solo escribe el archivo.
+   * - Cualquier fallo se registra en error_log/debug.log.
    *
-   * Usa wcmlim_get_all_location_groups() y guarda el resultado
-   * en un JSON “bonito” con UTF-8.
-   *
-   * @param array  $args       (opcional) mismos filtros de get_terms().
-   * @param string $filename   (opcional) nombre del archivo destino. Default: 'states.json'.
-   * @param bool   $skip_empty (opcional) si TRUE, omite grupos sin tiendas. Default: TRUE.
-   * @return string|WP_Error   Ruta escrita o WP_Error en fallo.
+   * @param array  $args       Filtros para get_terms().
+   * @param string $filename   Nombre del archivo destino.
+   * @param bool   $skip_empty Si TRUE, omite grupos sin tiendas.
    */
-  public function wcmlim_save_location_groups_json(array $args = [], string $filename = 'states.json', bool $skip_empty = true): string|WP_Error
-  {
-    // 1) Obtener datos
+  public function wcmlim_save_location_groups_json(
+    array $args = [],
+    string $filename = 'states.json',
+    bool $skip_empty = true
+  ): void {
+    // Obtener datos ya armados
     $groups = $this->wcmlim_get_all_location_groups($args, $skip_empty);
 
-    // 2) Codificar JSON
+    // Codificar JSON
     $json = wp_json_encode(
       $groups,
       JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
     );
     if ($json === false) {
-      return new WP_Error('wcmlim_json_encode_failed', 'No se pudo codificar el JSON de location groups.');
+      error_log('[wcmlim] JSON encode failed for states.json');
+      return;
     }
 
-    // 3) Path destino
+    // Paths destino
     $uploads = wp_upload_dir();
     if (!empty($uploads['error'])) {
-      return new WP_Error('wcmlim_upload_dir_error', $uploads['error']);
+      error_log('[wcmlim] Upload dir error: ' . $uploads['error']);
+      return;
     }
 
     $dir = trailingslashit($uploads['basedir']) . 'wcmlim/';
-    $file = $dir . $filename;
+    $path = $dir . $filename;
 
     if (!wp_mkdir_p($dir)) {
-      return new WP_Error('wcmlim_mkdir_failed', 'No se pudo crear el directorio: ' . $dir);
+      error_log('[wcmlim] mkdir failed: ' . $dir);
+      return;
     }
 
-    // 4) Escribir archivo
-    $bytes = @file_put_contents($file, $json);
+    // Escribir (LOCK_EX para evitar lecturas parciales)
+    $bytes = @file_put_contents($path, $json, LOCK_EX);
     if ($bytes === false) {
-      return new WP_Error('wcmlim_write_failed', 'No se pudo escribir el archivo JSON: ' . $file);
+      error_log('[wcmlim] write failed: ' . $path);
+      return;
     }
-
-    return $file;
   }
 
   /**
@@ -817,33 +820,28 @@ class Wcmlim_Product_Taxonomy
   }
 
   /**
-   * ============================
-   * Store shards por estado
-   * ============================
-   *
-   * Genera JSONs por estado a partir de la taxonomía 'locations'.
-   * Ignora TIENDAS SIN ESTADO (meta wcmlim_locator vacío/incorrecto).
-   *
-   * Crea archivos:
-   *   /uploads/wcmlim/stores/index.json          -> { <state_id>: { count, url }, ... }
-   *   /uploads/wcmlim/stores/state-<ID>.json     -> lista de tiendas de ese estado
-   *
-   * Cada tienda (term de 'locations') debe guardar el ID de estado en:
-   *   meta key: 'wcmlim_locator'  (es un term_id de la taxonomía 'location_group')
+   * =========================================================
+   * Genera shards por estado y un índice:
+   *   /uploads/wcmlim/stores/state-<ID>.json
+   *   /uploads/wcmlim/stores/index.json
+   * =========================================================
+   * - Ignora tiendas sin 'wcmlim_locator' válido o estado inexistente.
+   * - No retorna datos para el front; solo escribe archivos.
+   * - Errores se registran en error_log/debug.log.
    */
-  public function wcmlim_generate_store_shards(): array
+  public function wcmlim_generate_store_shards(): void
   {
-    // 1) Cargar todas las tiendas (taxonomy: locations)
+    // Traer todas las tiendas
     $terms = get_terms([
       'taxonomy' => 'locations',
       'hide_empty' => false,
     ]);
-
     if (is_wp_error($terms)) {
-      return ['error' => $terms->get_error_message()];
+      error_log('[wcmlim] get_terms error: ' . $terms->get_error_message());
+      return;
     }
 
-    // 2) Metacampos que enviamos al front (whitelist)
+    // Metakeys permitidos para el payload
     $allow = [
       'wcmlim_street_number',
       'wcmlim_route',
@@ -851,48 +849,46 @@ class Wcmlim_Product_Taxonomy
       'wcmlim_postal_code',
       'wcmlim_lat',
       'wcmlim_lng',
-      'wcmlim_locator', // <- debe contener el term_id del estado (location_group)
+      'wcmlim_locator', // term_id del estado (location_group)
     ];
 
-    // 3) Preparar paths destino
+    // Paths destino
     $uploads = wp_upload_dir();
     if (!empty($uploads['error'])) {
-      return ['error' => $uploads['error']];
+      error_log('[wcmlim] Upload dir error: ' . $uploads['error']);
+      return;
     }
 
     $base_dir = trailingslashit($uploads['basedir']) . 'wcmlim/stores/';
     $base_url = trailingslashit($uploads['baseurl']) . 'wcmlim/stores/';
 
     if (!wp_mkdir_p($base_dir)) {
-      return ['error' => 'Could not create directory: ' . $base_dir];
+      error_log('[wcmlim] mkdir failed: ' . $base_dir);
+      return;
     }
 
-    // state_id => [stores...]
-    $by_state = [];
-
-    // 4) Recorrer cada tienda
+    // Agrupar tiendas por estado
+    $by_state = []; // state_id => [stores...]
     foreach ($terms as $t) {
-      $raw_meta = get_term_meta($t->term_id);
+      $raw = get_term_meta($t->term_id);
 
-      // Extraer solo metakeys permitidas (si hay array -> tomar primer valor)
+      // whitelist meta
       $meta = [];
       foreach ($allow as $k) {
-        $val = isset($raw_meta[$k]) ? maybe_unserialize(reset($raw_meta[$k])) : '';
+        $val = isset($raw[$k]) ? maybe_unserialize(reset($raw[$k])) : '';
         $meta[$k] = is_scalar($val) ? $val : '';
       }
 
-      // Estado asociado (term_id en location_group)
+      // estado válido
       $state_id = isset($meta['wcmlim_locator']) && is_numeric($meta['wcmlim_locator'])
         ? (int) $meta['wcmlim_locator']
         : 0;
 
-      // **Regla importante**: ignorar tiendas sin estado o con estado inexistente
       if ($state_id <= 0 || !term_exists($state_id, 'location_group')) {
-        continue; // ← NO se agrega a ningún bucket.
+        continue; // ignorar tiendas sin estado válido
       }
 
-      // Conformar payload para la tienda
-      $store = [
+      $by_state[$state_id][] = [
         'id' => (int) $t->term_id,
         'name' => $t->name,
         'slug' => $t->slug,
@@ -905,32 +901,43 @@ class Wcmlim_Product_Taxonomy
           'wcmlim_lng' => (string) ($meta['wcmlim_lng'] ?? ''),
         ],
       ];
-
-      $by_state[$state_id][] = $store;
     }
 
-    // 5) Escribir shards por estado (minificado para ahorrar KB)
+    // Escribir shards e index (sin ?v en paths; el ?v lo harás al consumir)
     $index = []; // state_id => ['count'=>N, 'url'=>...]
     foreach ($by_state as $state_id => $stores) {
+      $state_path = $base_dir . "state-{$state_id}.json";
       $json = wp_json_encode($stores, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-      file_put_contents($base_dir . "state-{$state_id}.json", $json);
 
+      if ($json === false) {
+        error_log("[wcmlim] JSON encode failed for state {$state_id}");
+        continue;
+      }
+
+      if (@file_put_contents($state_path, $json, LOCK_EX) === false) {
+        error_log('[wcmlim] write failed: ' . $state_path);
+        continue;
+      }
+
+      // Guarda URL base en el índice (sin ?v). El ?v se añade en el front.
       $index[$state_id] = [
         'count' => count($stores),
         'url' => $base_url . "state-{$state_id}.json",
       ];
     }
 
-    // 6) Escribir índice (aunque esté vacío si no hubo tiendas válidas)
-    file_put_contents(
-      $base_dir . 'index.json',
-      wp_json_encode($index, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
-    );
+    // Escribir índice
+    $index_path = $base_dir . 'index.json';
+    $index_json = wp_json_encode($index, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-    return [
-      'dir' => $base_dir,
-      'index' => $base_url . 'index.json',
-      'states' => array_keys($index),
-    ];
+    if ($index_json === false) {
+      error_log('[wcmlim] JSON encode failed for index.json');
+      return;
+    }
+
+    if (@file_put_contents($index_path, $index_json, LOCK_EX) === false) {
+      error_log('[wcmlim] write failed: ' . $index_path);
+      return;
+    }
   }
 }
