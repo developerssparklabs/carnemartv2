@@ -965,10 +965,15 @@ class Wcmlim_Product_Taxonomy
         continue;
       }
 
+      // ⚠️ Asegura que el mtime sea el del archivo recién escrito
+      clearstatcache(true, $state_path);
+      $v = file_exists($state_path) ? filemtime($state_path) : time();
+
       // Guarda URL base en el índice (sin ?v). El ?v se añade en el front.
       $index[$state_id] = [
         'count' => count($stores),
         'url' => $base_url . "state-{$state_id}.json",
+        'v' => $v,
       ];
     }
 
