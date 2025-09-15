@@ -98,7 +98,7 @@
             fade: true,
             asNavFor: ".slider-nav-muro",
           });
-          
+
           jQuery(".slider-nav-muro").slick({
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -131,124 +131,124 @@
             ],
           });
 
-          
-
-// Marcar la PRIMERA imagen del slider como LCP (eager + alta prioridad)
-(function ($) {
-  var $slider = $('.slider-banner-completo');
-
-  // 1) Antes de inicializar slick: marca la primera imagen
-  //    (soporta <img> en el hijo directo o anidado)
-  var $allImgs   = $slider.find('img');
-  var $firstImg  = $allImgs.first();
-
-  $firstImg.attr({
-    loading: 'eager',
-    fetchpriority: 'high',
-    decoding: 'async'
-  });
-
-  // El resto siguen en lazy
-  $allImgs.not($firstImg).attr({
-    loading: 'lazy',
-    fetchpriority: 'low'
-  });
-
-  // 2) Por seguridad, tras el init (por si Slick clona slides),
-  //    vuelve a marcar la imagen del slide actual como prioritaria.
-  $slider.on('init', function (e, slick) {
-    var $currentImg = $(slick.$slides[slick.currentSlide]).find('img').first();
-    $currentImg.attr({ loading: 'eager', fetchpriority: 'high' });
-  });
-
-})(jQuery);
-
-(function ($) {
-  if (typeof $.fn.slick !== 'function') return; // por si Slick no está cargado
-
-  var SEL = '.slider-banner-completo';
-  var $sliders = $(SEL);
-
-  // ——— Helpers ————————————————————————————————
-  function fixDotsA11y(slick) {
-    var $dots = $(slick.$dots);
-    if (!$dots || !$dots.length) return;
-
-    // ul como lista (no "tablist")
-    $dots.attr('role', 'list').removeAttr('aria-label');
-
-    // li decorativos
-    $dots.children('li').attr('role', 'none');
-
-    // botones con etiqueta clara
-    var total = slick.slideCount || 0;
-    $dots.find('button').each(function (i) {
-      $(this)
-        .attr({ type: 'button', 'aria-label': 'Ir al slide ' + (i + 1) + ' de ' + total })
-        .removeAttr('role aria-selected aria-controls');
-    });
-  }
-
-  function markSlides($wrap, slick) {
-    $wrap.find('.slick-slide').each(function (i) {
-      $(this)
-        .attr('role', 'group')
-        .attr('aria-roledescription', 'slide')
-        .attr('aria-label', 'Slide ' + (i + 1) + ' de ' + slick.slideCount);
-    });
-  }
-
-  // ——— Bind de eventos para corregir después de cada render ———
-  $sliders.on('init reInit setPosition breakpoint afterChange', function (e, slick) {
-    var $wrap = $(this);
-    setTimeout(function () {
-      fixDotsA11y(slick);
-      markSlides($wrap, slick);
-    }, 0);
-  });
-
-  // ——— Inicializa (si aún no lo está) ————————————————
-  $sliders.each(function () {
-    var $el = $(this);
-    if (!$el.hasClass('slick-initialized')) {
-      $el.slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        infinite: true,
-        autoplay: true,
-        autoplaySpeed: 12000,
-        dots: true,
-        lazyLoad: 'progressive',
-        accessibility: true, // OK; arriba neutralizamos el patrón de tabs
-        prevArrow:
-          '<button class="custom-arrow-square-muro cas-prev" type="button" aria-label="Anterior"></button>',
-        nextArrow:
-          '<button class="custom-arrow-square-muro cas-next" type="button" aria-label="Siguiente"></button>',
-        // IMPORTANTE: devolvemos el BOTÓN completo (no spans sueltos)
-        customPaging: function (slider, i) {
-          var n = i + 1;
-          var total = slider.slideCount || (slider.$slides ? slider.$slides.length : 0);
-          return (
-            '<button type="button" class="slick-dot-btn" aria-label="Ir al slide ' + n + ' de ' + total + '">' +
-              '<span aria-hidden="true">' + (n < 10 ? '0' + n : n) + '</span>' +
-              '<span class="sr-only">Ir al slide ' + n + '</span>' +
-            '</button>'
-          );
-        }
-      });
-    } else {
-      // Si ya estaba montado, corrige ahora mismo
-      var inst = $el.slick('getSlick');
-      fixDotsA11y(inst);
-      markSlides($el, inst);
-    }
-  });
-})(jQuery);
 
 
+          // Marcar la PRIMERA imagen del slider como LCP (eager + alta prioridad)
+          (function ($) {
+            var $slider = $('.slider-banner-completo');
+
+            // 1) Antes de inicializar slick: marca la primera imagen
+            //    (soporta <img> en el hijo directo o anidado)
+            var $allImgs = $slider.find('img');
+            var $firstImg = $allImgs.first();
+
+            $firstImg.attr({
+              loading: 'eager',
+              fetchpriority: 'high',
+              decoding: 'async'
+            });
+
+            // El resto siguen en lazy
+            $allImgs.not($firstImg).attr({
+              loading: 'lazy',
+              fetchpriority: 'low'
+            });
+
+            // 2) Por seguridad, tras el init (por si Slick clona slides),
+            //    vuelve a marcar la imagen del slide actual como prioritaria.
+            $slider.on('init', function (e, slick) {
+              var $currentImg = $(slick.$slides[slick.currentSlide]).find('img').first();
+              $currentImg.attr({ loading: 'eager', fetchpriority: 'high' });
+            });
+
+          })(jQuery);
+
+          (function ($) {
+            if (typeof $.fn.slick !== 'function') return; // por si Slick no está cargado
+
+            var SEL = '.slider-banner-completo';
+            var $sliders = $(SEL);
+
+            // ——— Helpers ————————————————————————————————
+            function fixDotsA11y(slick) {
+              var $dots = $(slick.$dots);
+              if (!$dots || !$dots.length) return;
+
+              // ul como lista (no "tablist")
+              $dots.attr('role', 'list').removeAttr('aria-label');
+
+              // li decorativos
+              $dots.children('li').attr('role', 'none');
+
+              // botones con etiqueta clara
+              var total = slick.slideCount || 0;
+              $dots.find('button').each(function (i) {
+                $(this)
+                  .attr({ type: 'button', 'aria-label': 'Ir al slide ' + (i + 1) + ' de ' + total })
+                  .removeAttr('role aria-selected aria-controls');
+              });
+            }
+
+            function markSlides($wrap, slick) {
+              $wrap.find('.slick-slide').each(function (i) {
+                $(this)
+                  .attr('role', 'group')
+                  .attr('aria-roledescription', 'slide')
+                  .attr('aria-label', 'Slide ' + (i + 1) + ' de ' + slick.slideCount);
+              });
+            }
+
+            // ——— Bind de eventos para corregir después de cada render ———
+            $sliders.on('init reInit setPosition breakpoint afterChange', function (e, slick) {
+              var $wrap = $(this);
+              setTimeout(function () {
+                fixDotsA11y(slick);
+                markSlides($wrap, slick);
+              }, 0);
+            });
+
+            // ——— Inicializa (si aún no lo está) ————————————————
+            $sliders.each(function () {
+              var $el = $(this);
+              if (!$el.hasClass('slick-initialized')) {
+                $el.slick({
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  autoplay: true,
+                  autoplaySpeed: 12000,
+                  dots: true,
+                  lazyLoad: 'progressive',
+                  accessibility: true, // OK; arriba neutralizamos el patrón de tabs
+                  prevArrow:
+                    '<button class="custom-arrow-square-muro cas-prev" type="button" aria-label="Anterior"></button>',
+                  nextArrow:
+                    '<button class="custom-arrow-square-muro cas-next" type="button" aria-label="Siguiente"></button>',
+                  // IMPORTANTE: devolvemos el BOTÓN completo (no spans sueltos)
+                  customPaging: function (slider, i) {
+                    var n = i + 1;
+                    var total = slider.slideCount || (slider.$slides ? slider.$slides.length : 0);
+                    return (
+                      '<button type="button" class="slick-dot-btn" aria-label="Ir al slide ' + n + ' de ' + total + '">' +
+                      '<span aria-hidden="true">' + (n < 10 ? '0' + n : n) + '</span>' +
+                      '<span class="sr-only">Ir al slide ' + n + '</span>' +
+                      '</button>'
+                    );
+                  }
+                });
+              } else {
+                // Si ya estaba montado, corrige ahora mismo
+                var inst = $el.slick('getSlick');
+                fixDotsA11y(inst);
+                markSlides($el, inst);
+              }
+            });
+          })(jQuery);
 
 
-          
+
+
+
 
           // Slider Informacion de servicios
           jQuery(".slider-informacion").slick({
@@ -404,201 +404,180 @@
           });
 
 
-          jQuery(".btnOpenMegaMenuProductos").click(function(){
+          jQuery(".btnOpenMegaMenuProductos").click(function () {
             jQuery('.box-megamenu-productos').addClass("box-active");
           });
 
-          jQuery(".btnCloseMegaMenuProductos").click(function(){
+          jQuery(".btnCloseMegaMenuProductos").click(function () {
             jQuery('.box-megamenu-productos').removeClass("box-active");
           });
 
-          
-          jQuery(".btnOpenMenuGiros").click(function(){
-            jQuery('.box-megamenu-giros').toggleClass("box-active");  
+
+          jQuery(".btnOpenMenuGiros").click(function () {
+            jQuery('.box-megamenu-giros').toggleClass("box-active");
           });
 
-          jQuery(".btnCloseMegaMenuGiros").click(function(){
-            jQuery('.box-megamenu-giros').removeClass("box-active");  
+          jQuery(".btnCloseMegaMenuGiros").click(function () {
+            jQuery('.box-megamenu-giros').removeClass("box-active");
           });
 
-//AOG Mensajes con alerta y boton de cierre
-//
-//
-jQuery(".woocommerce-notices-wrapper").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
-	jQuery( ".msgWooClose" ).on( "click", function() {
-		jQuery(this).parent( ".woocommerce-notices-wrapper" ).fadeOut();
-	});
-	
-	jQuery(".woocommerce-message").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
-	jQuery( ".msgWooClose" ).on( "click", function() {
-		jQuery(this).parent( ".woocommerce-message" ).fadeOut();
-	});
-	
-	
-		jQuery(".woocommerce-error").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
-	jQuery( ".msgWooClose" ).on( "click", function() {
-		jQuery(this).parent( ".woocommerce-error" ).fadeOut();
-	});
-	
-//AOG 28 de enero 
-	jQuery(document).on('ajaxComplete', function() {
-		// Agregar el botón de cierre dinámicamente cuando el mensaje de error se genera
-		jQuery(".woocommerce-error").each(function() {
-			// Verifica si el botón ya existe para no duplicarlo
-			if (!jQuery(this).find('.msgWooClose').length) {
-				jQuery(this).prepend("<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>");
-			}
-		});
-	});
+          //AOG Mensajes con alerta y boton de cierre
+          //
+          //
+          jQuery(".woocommerce-notices-wrapper").prepend("<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>");
+          jQuery(".msgWooClose").on("click", function () {
+            jQuery(this).parent(".woocommerce-notices-wrapper").fadeOut();
+          });
 
-	// Delegar el evento de clic al botón de cierre
-	jQuery(document).on("click", ".msgWooClose", function() {
-		jQuery(this).parent(".woocommerce-error").fadeOut();
-	});			
-			
-  //AOG Mensajes con alerta y boton de cierre        
+          jQuery(".woocommerce-message").prepend("<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>");
+          jQuery(".msgWooClose").on("click", function () {
+            jQuery(this).parent(".woocommerce-message").fadeOut();
+          });
 
-          
-          jQuery(function($){
-            $('#btnBuscadorTienda').on('click', function(e){
-              e.preventDefault();
-              
-              $('.buscador-contenido').slideToggle(300);
 
-              $('.icon-down').toggleClass('giro');
+          jQuery(".woocommerce-error").prepend("<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>");
+          jQuery(".msgWooClose").on("click", function () {
+            jQuery(this).parent(".woocommerce-error").fadeOut();
+          });
+
+          //AOG 28 de enero 
+          jQuery(document).on('ajaxComplete', function () {
+            // Agregar el botón de cierre dinámicamente cuando el mensaje de error se genera
+            jQuery(".woocommerce-error").each(function () {
+              // Verifica si el botón ya existe para no duplicarlo
+              if (!jQuery(this).find('.msgWooClose').length) {
+                jQuery(this).prepend("<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>");
+              }
             });
           });
 
+          // Delegar el evento de clic al botón de cierre
+          jQuery(document).on("click", ".msgWooClose", function () {
+            jQuery(this).parent(".woocommerce-error").fadeOut();
+          });
 
           // Animacion tipo tooltip
           // --- Desktop (hover real) ---
-          $("#showInfoPeso").on("mouseenter", function() {
+          $("#showInfoPeso").on("mouseenter", function () {
             $(".cm-peso-tooltip").addClass("isActive");
           });
-          $("#showInfoPeso").on("mouseleave", function() {
+          $("#showInfoPeso").on("mouseleave", function () {
             $(".cm-peso-tooltip").removeClass("isActive");
           });
 
           // --- Mobile (tap toggle) ---
-          $("#showInfoPeso").on("touchstart click", function(e) {
+          $("#showInfoPeso").on("touchstart click", function (e) {
             // evita que se dispare doble en algunos navegadores
             e.preventDefault();
             $(".cm-peso-tooltip").toggleClass("isActive");
           });
 
-
-          
-
-
-
-
-
           // Funcionalidad de las FAQS
-        jQuery(function () {
-          var $wrapper = jQuery('.wrapper-faqs');
-          if (!$wrapper.length) return;
+          jQuery(function () {
+            var $wrapper = jQuery('.wrapper-faqs');
+            if (!$wrapper.length) return;
 
-          var $items = $wrapper.find('.faq-item');
+            var $items = $wrapper.find('.faq-item');
 
-          var abrirPrimero = ($wrapper.data('abrir') === 1 || $wrapper.data('abrir') === '1');
+            var abrirPrimero = ($wrapper.data('abrir') === 1 || $wrapper.data('abrir') === '1');
 
-          $items.each(function (i) {
-            var $item   = jQuery(this);
-            var $btn    = $item.find('.faq-btn').first();
-            var $panel  = $item.find('.faq-contenido').first();
+            $items.each(function (i) {
+              var $item = jQuery(this);
+              var $btn = $item.find('.faq-btn').first();
+              var $panel = $item.find('.faq-contenido').first();
 
-            var btnId   = 'faq-btn-' + i;
-            var panelId = 'faq-panel-' + i;
+              var btnId = 'faq-btn-' + i;
+              var panelId = 'faq-panel-' + i;
 
-            $btn.attr({
-              id: btnId,
-              'aria-controls': panelId,
-              'aria-expanded': 'false'
-            });
-
-            $panel
-              .attr({
-                id: panelId,
-                role: 'region',
-                'aria-labelledby': btnId
-              })
-              .hide(); // todos cerrados al inicio
-          });
-
-          // Si se configuró abrirPrimero = true
-          if (abrirPrimero && $items.length) {
-            var $first = $items.first();
-            $first.addClass('is-open');
-            $first.find('.faq-btn').attr('aria-expanded', 'true');
-            $first.find('.faq-contenido').show();
-          }
-
-          
-          $wrapper.on('click', '.faq-btn', function (e) {
-            e.preventDefault();
-
-            var $btn   = jQuery(this);
-            var $item  = $btn.closest('.faq-item');
-            var $panel = $item.find('.faq-contenido');
-
-            if ($item.hasClass('is-open')) {
-              // Cerrar el mismo
-              $item.removeClass('is-open');
-              $btn.attr('aria-expanded', 'false');
-              $panel.stop(true, true).slideUp(220);
-            } else {
-              // Cerrar cualquier otro abierto
-              $items.filter('.is-open').each(function () {
-                var $openItem = jQuery(this);
-                $openItem.removeClass('is-open');
-                $openItem.find('.faq-btn').attr('aria-expanded', 'false');
-                $openItem.find('.faq-contenido').stop(true, true).slideUp(220);
+              $btn.attr({
+                id: btnId,
+                'aria-controls': panelId,
+                'aria-expanded': 'false'
               });
 
-              // Abrir el actual
-              $item.addClass('is-open');
-              $btn.attr('aria-expanded', 'true');
-              $panel.stop(true, true).slideDown(220);
-            }
-          });
+              $panel
+                .attr({
+                  id: panelId,
+                  role: 'region',
+                  'aria-labelledby': btnId
+                })
+                .hide(); // todos cerrados al inicio
+            });
 
-          // Accesibilidad: activar con Enter o Space
-          $wrapper.on('keydown', '.faq-btn', function (e) {
-            if (e.key === ' ' || e.key === 'Enter') {
+            // Si se configuró abrirPrimero = true
+            if (abrirPrimero && $items.length) {
+              var $first = $items.first();
+              $first.addClass('is-open');
+              $first.find('.faq-btn').attr('aria-expanded', 'true');
+              $first.find('.faq-contenido').show();
+            }
+
+
+            $wrapper.on('click', '.faq-btn', function (e) {
               e.preventDefault();
-              jQuery(this).trigger('click');
-            }
+
+              var $btn = jQuery(this);
+              var $item = $btn.closest('.faq-item');
+              var $panel = $item.find('.faq-contenido');
+
+              if ($item.hasClass('is-open')) {
+                // Cerrar el mismo
+                $item.removeClass('is-open');
+                $btn.attr('aria-expanded', 'false');
+                $panel.stop(true, true).slideUp(220);
+              } else {
+                // Cerrar cualquier otro abierto
+                $items.filter('.is-open').each(function () {
+                  var $openItem = jQuery(this);
+                  $openItem.removeClass('is-open');
+                  $openItem.find('.faq-btn').attr('aria-expanded', 'false');
+                  $openItem.find('.faq-contenido').stop(true, true).slideUp(220);
+                });
+
+                // Abrir el actual
+                $item.addClass('is-open');
+                $btn.attr('aria-expanded', 'true');
+                $panel.stop(true, true).slideDown(220);
+              }
+            });
+
+            // Accesibilidad: activar con Enter o Space
+            $wrapper.on('keydown', '.faq-btn', function (e) {
+              if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                jQuery(this).trigger('click');
+              }
+            });
           });
-        });
 
 
-}); //ON ready
+        }); //ON ready
 
-        jQuery(function($){
+        jQuery(function ($) {
 
           // cuando abres el mega menú
-          jQuery('.btnOpenMenuGiros').on('click', function(e){
+          jQuery('.btnOpenMenuGiros').on('click', function (e) {
             e.preventDefault();
 
             // si el body ya tiene la clase de scroll
-            if( jQuery('body').hasClass('isMenuScroll-activo') ){
+            if (jQuery('body').hasClass('isMenuScroll-activo')) {
               jQuery('.box-megamenu-giros').addClass('ajustarScroll');
             } else {
               jQuery('.box-megamenu-giros').removeClass('ajustarScroll');
-            }           
+            }
           });
 
         });
 
 
-        
+
 
         // On Page Load...
 
         var width = jQuery(window).width();
 
         if (width >= 1199) {
-          jQuery(document).ready(function () {});
+          jQuery(document).ready(function () { });
         } else {
         }
 
