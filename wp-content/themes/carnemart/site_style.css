@@ -1620,7 +1620,7 @@ header.site__header {
   width: 100%;
   background-color: var(--color-claro);
   padding-bottom: 0;
-  border-bottom: solid 4px var(--color-principal);
+  /* border-bottom: solid 4px var(--color-principal); */
   transition: all ease 0.45s;
 }
 
@@ -1722,15 +1722,17 @@ header.site__header.isMenuScroll .site__logo {
 }
 
 .icon-down {
-  transition: all ease 0.15s;
   transform: rotate(0deg);
   transform-origin: center;
+  transition: transform .18s cubic-bezier(.22, .61, .36, 1);
+  will-change: transform;
+  /* hint para GPU */
+  backface-visibility: hidden;
+  /* evita parpadeos en algunos navegadores */
+}
 
-  &.giro {
-    transition: all ease 0.15s;
-    transform: rotate(180deg);
-    transform-origin: center;
-  }
+.icon-down.giro {
+  transform: rotate(180deg);
 }
 
 .buscador-contenido {
