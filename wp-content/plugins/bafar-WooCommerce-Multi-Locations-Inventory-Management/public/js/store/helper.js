@@ -118,7 +118,7 @@
         } catch (_) { }
     }
 
-    const DEBOUNCE_MS = 200;
+    const DEBOUNCE_MS = 250;
     let inFlight = false;
     let lastTryTs = 0;
 
