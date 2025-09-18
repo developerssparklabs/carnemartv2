@@ -9420,6 +9420,19 @@ h1.area-encabezado-single__titulo {
   }
 }
 
+/* Estilos generales */
+.eti-pointer {
+  cursor: pointer;
+}
+
+.invalid {
+  border: 1px solid #dc2626 !important;
+}
+
+.field {
+  position: relative;
+}
+
 .bi::before,
 [class^="bi-"]::before,
 [class*=" bi-"]::before {
