@@ -12,3 +12,11 @@ require_once $public_dir . 'controller/store/stores-controler.php';
 add_action('rest_api_init', static function (): void {
     (new Store_Controller())->register_routes();
 });
+
+// incluimos el producto controller
+require_once $public_dir . 'controller/store/product/product-controller.php';
+
+// Registramos las rutas en rest_api_init
+add_action('rest_api_init', static function (): void {
+    (new Product_Controller())->register_routes();
+});

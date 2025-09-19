@@ -1,6 +1,5 @@
 (function ($, window) {
     'use strict';
-
     /** ======================================================================
      *  CONSTANTES / SELECTORES (solo referencias, nada de lógica aquí)
      *  ==================================================================== */
@@ -49,6 +48,12 @@
 
     // Contenedor de resultados (lista de tiendas)
     const $storesWrap = $('#content-search-stores');
+
+    // Contenedor de productos (best sellers)
+    const $prodContainer = $('#slb_best_sellers_shortcode');
+
+    // URL BASE
+    const urlPage = window.location;
 
     // UI timings
     const DEBOUNCE_MS = 600;
@@ -281,8 +286,8 @@
         if (Helper.tryOpenSelect) Helper.tryOpenSelect($store);
 
         $store.off('change' + NS).on('change' + NS, function () {
-            const val = this.value;
-            if (!val || isNaN(+val)) return;
+            const term_id = this.value;
+            if (!term_id || isNaN(+term_id)) return;
 
             const $sel = $(this).find('option:selected');
             const storeData = {
@@ -295,11 +300,13 @@
                 lng: $sel.data('lng') || ''
             };
 
-            if (DEBUG) console.log('ST → seleccionar tienda term_id=', val);
-            if (DEBUG) console.table(storeData);
+            if (DEBUG) {
+                console.log('ST → seleccionar tienda term_id=', val);
+                console.table(storeData);
+            }
 
             Helper.setCookie?.('wcmlim_selected_location_json', JSON.stringify(storeData), 30);
-            Helper.setCookie?.('wcmlim_selected_location_termid', val, 30);
+            Helper.setCookie?.('wcmlim_selected_location_termid', term_id, 30);
             Helper.setCookie?.('wcmlim_selected_location_group_termid', $state.val(), 30);
             // Refresca UI
             detailsStoreRender();
@@ -310,6 +317,13 @@
             $storesWrap.removeClass('stores-list');
             // Oculta input CP si estaba visible
             $inputCP.hide();
+
+            //  Llamamos a obtener los productos best seller
+            if (Helper?.getProductsBestSeller && Helper?.isHomePage(urlPage)) {
+                Helper.getProductsBestSeller(term_id).then((data) => {
+                    Helper.renderProductsList($prodContainer, data.products);
+                });
+            }
         });
     }
 
@@ -495,6 +509,13 @@
             (bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl)).hide();
             $storesWrap.empty().removeClass('stores-list');
             $inputCP.hide();
+
+            // Cargamos los productos best seller
+            if (Helper?.getProductsBestSeller && Helper?.isHomePage(urlPage)) {
+                Helper.getProductsBestSeller(term_id).then((data) => {
+                    Helper.renderProductsList($prodContainer, data.products);
+                });
+            }
         });
     }
 
@@ -638,7 +659,6 @@
                 console.log('CP → seleccionar tienda term_id=', termId, 'state_id=', stateId);
                 console.table(storeData);
             }
-
             // Persistir selección
             Helper.setCookie?.('wcmlim_selected_location_json', JSON.stringify(storeData), 30);
             Helper.setCookie?.('wcmlim_selected_location_termid', termId, 30);
@@ -653,6 +673,13 @@
             // Limpiar listado, ocultar input de CP
             $storesWrap.empty().removeClass('stores-list');
             $inputCP.hide().removeClass('invalid');
+
+            //  Llamamos a obtener los productos best seller
+            if (Helper?.getProductsBestSeller && Helper?.isHomePage(urlPage)) {
+                Helper.getProductsBestSeller(termId).then((data) => {
+                    Helper.renderProductsList($prodContainer, data.products);
+                });
+            }
         });
     }
 
@@ -789,7 +816,6 @@
         GEO_bind();
         CP_bind();
     }
-
     // DOM ready
     $(init);
 })(jQuery, window);

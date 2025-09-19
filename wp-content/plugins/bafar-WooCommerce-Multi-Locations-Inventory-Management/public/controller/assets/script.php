@@ -131,6 +131,30 @@
 //     wp_enqueue_script($this->plugin_name . '_list_view_pro', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-advanced-list-view.js', array(), $this->version . rand(), 'all');
 // }
 
+/**
+ * Product scripts
+ */
+$productHelper = $this->plugin_name . '-product-helper';
+$productApp = $this->plugin_name . '-product-app';
+
+$dataProduct = ['api' => ['namespace' => 'wcmlim/v1', 'endpoint' => rest_url('wcmlim/v1/products')]];
+
+// helper
+wp_register_script($productHelper, WCMLIM_URL_PATH . 'public/js/product/helper.js', [], filemtime(WCMLIM_DIR_PATH . 'public/js/product/helper.js'), true);
+wp_localize_script($productHelper, 'multi_inventory_product', $dataProduct);
+wp_enqueue_script($productHelper);
+
+// App depende de helper
+wp_register_script($productApp, WCMLIM_URL_PATH . 'public/js/product/app.js', [$productHelper], filemtime(WCMLIM_DIR_PATH . 'public/js/product/app.js'), true);
+wp_enqueue_script($productApp);
+
+wp_script_add_data($productHelper, 'strategy', 'defer');
+wp_script_add_data($productApp, 'strategy', 'defer');
+
+
+/**
+ * Store scripts
+ */
 $up = wp_upload_dir();
 $statesFile = trailingslashit($up['basedir']) . 'wcmlim/states.json';
 $indexFile = trailingslashit($up['basedir']) . 'wcmlim/stores/index.json';
@@ -146,7 +170,7 @@ $hApp = $this->plugin_name . '-store-app';
 
 // helper
 wp_register_script($hHelper, WCMLIM_URL_PATH . 'public/js/store/helper.js', [], filemtime(WCMLIM_DIR_PATH . 'public/js/store/helper.js'), true);
-wp_localize_script($hHelper, 'multi_inventory', $data); // tus URLs + v
+wp_localize_script($hHelper, 'multi_inventory_store', $data);
 wp_enqueue_script($hHelper);
 
 // app depende de helper
