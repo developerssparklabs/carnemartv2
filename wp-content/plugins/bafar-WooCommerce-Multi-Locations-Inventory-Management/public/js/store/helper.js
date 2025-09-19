@@ -1,7 +1,7 @@
 (function (window, $) {
     'use strict';
 
-    var L = window.multi_inventory || {};
+    const L = window.multi_inventory_store || {};
     function q(url, v) { return v ? url + '?v=' + encodeURIComponent(v) : url; }
 
     // Devuelve un jqXHR (Promise-like)
