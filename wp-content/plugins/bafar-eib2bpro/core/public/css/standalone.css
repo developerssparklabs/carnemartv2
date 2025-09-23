@@ -1,0 +1,124 @@
+/* ============================================ */
+/* standalone.css                               */
+/*                                              */
+/* Styles for B2B Pro without E+ panel          */
+/*                                              */
+/* ============================================ */
+
+#adminmenumain,
+#wpadminbar {
+    display: block !important;
+}
+
+#adminmenu {
+    margin: 44px 0;
+}
+
+#wpcontent {
+    margin-left: 160px !important;
+}
+
+.folded #wpcontent,
+.folded #wpfooter {
+    margin-left: 36px !important;
+}
+
+body.eib2bpro-action-edit #wpcontent {
+    margin-left: 0px !important;
+}
+
+#eib2bpro-header {
+    display: none !important;
+}
+
+#wpbody {
+    margin: 0 auto 0 0px;
+}
+
+#trig2 {
+    display: none !important;
+}
+
+body.eib2bpro-engine #wpbody {
+    padding-top: 31px;
+}
+
+.eib2bpro-header-top-container {
+    display: none;
+}
+
+.eib2bpro-menu-2 {
+    position: relative;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .folded #wpcontent,
+    .folded #wpfooter {
+        margin-left: 0px !important;
+    }
+
+    #wpcontent {
+        margin-left: 0px !important;
+    }
+
+    #wpbody {
+        padding-top: 88px !important;
+    }
+
+    .eib2bpro-menu-2-right-border {
+        min-height: auto;
+    }
+
+    #inbrowser--loading,
+    #inbrowser--loading2 {
+        margin-top: 0px;
+        height: 100vh !important;
+        padding-top: 0%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+    .auto-fold #wpcontent,
+    .auto-fold #wpfooter {
+        margin-left: 36px !important;
+    }
+
+    #wpcontent {
+        margin-left: 160px !important;
+    }
+
+    #wpbody {
+        margin: 0 auto;
+        padding-top: 95px !important;
+    }
+
+    #inbrowser--loading,
+    #inbrowser--loading2 {
+        margin-top: 0px;
+        height: 100vh !important;
+        padding-top: 0%;
+    }
+
+    .eib2bpro-GP,
+    .eib2bpro-gp {
+        width: 96%;
+    }
+
+
+    .folded #wpcontent,
+    .folded #wpfooter {
+        margin-left: 36px !important;
+    }
+
+    .eib2bpro-title {
+        margin-top: -131px !important;
+    }
+
+    .eib2bpro-menu-2-right-border {
+        min-height: auto;
+    }
+}

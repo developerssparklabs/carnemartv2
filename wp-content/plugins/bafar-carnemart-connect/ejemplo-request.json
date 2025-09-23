@@ -1,0 +1,109 @@
+[
+   {
+      "datos_generales": {
+         "ID": "4000001521",
+         "BuyerID": "1965",
+         "FechaHoraCreacion": "2024-04-21 09:05:08",
+         "SalesOrganisationID": 3200,
+         "DistributionChannelCode": "10",
+         "InternalID": "M018",
+         "CurrencyCode": "MXN",
+         "PriceDate": "2024-04-21",
+         "MetodoPago": "02",
+         "MetodoEntrega": "02",
+         "CanalVenta": "01",
+         "FechaCobro": "2024-04-21",
+         "RequestedDate": "10",
+         "HorarioEntregaI": "10:00:00",
+         "HorarioEntregaF": "12:00:00",
+         "IdPromocionH": "",
+         "IdIDBBYH": "",
+         "IdStatus": "010",
+         "PuntosAcumulados": "",
+         "PuntosReservados": "",
+         "TotalBruto": "888.80",
+         "TotalDescuento": "0.00",
+         "TotalImpuestos": "0.00",
+         "TotalNeto": "935.52",
+         "CostoEnvio": "46.72",
+         "ValorDinero": 0,
+         "TotalPagar": "935.52",
+         "PorcDescDinero": 0
+      },
+      "cupones": {
+         "NumeroCupon": [
+            null
+         ]
+      },
+      "personas_implicadas": {
+         "brPersonasImplicadas": {
+            "RoleCode": "1001",
+            "InternalID": "4532366",
+            "FirstNameLine": "Denisse Villarreal Gonzalez",
+            "RFC": "",
+            "OrderReasonCode": "",
+            "CountryCode": "MX",
+            "RegionCode": "",
+            "StreetPostalCode": "31137",
+            "StreetName": "Calle Puerta labrada y av de los arcos",
+            "HouseID": "17100",
+            "NumeroInterior": "Local 3",
+            "Colonia": "Los Portales",
+            "Municipio": "Chihuahua",
+            "Telefono": "6145993154",
+            "TelefonoMovil": "6145993154",
+            "Email": "denny.fenny@gmail.com"
+         }
+      },
+      "productos": [
+         {
+            "IDITem": 10,
+            "InternalID": "4035",
+            "RequestQuantity": "10.0000",
+            "QuantityUnitCode": "KGM",
+            "PrecioUnitario": "62.90",
+            "Descuentonitario": 0,
+            "PrecioLinea": 629,
+            "DescuentoLinea": 0,
+            "TotalLinea": "629.00",
+            "IdDBBYI": "",
+            "IdPromocionI": "",
+            "IdCuponPI": null,
+            "IdProcesoI": "000",
+            "TextContent": ""
+         },
+         {
+            "IDITem": 20,
+            "InternalID": "303261",
+            "RequestQuantity": "2.0000",
+            "QuantityUnitCode": "EA",
+            "PrecioUnitario": "129.90",
+            "Descuentonitario": 0,
+            "PrecioLinea": 259.8,
+            "DescuentoLinea": 0,
+            "TotalLinea": "259.80",
+            "IdDBBYI": "",
+            "IdPromocionI": "",
+            "IdCuponPI": null,
+            "IdProcesoI": "000",
+            "TextContent": ""
+         },
+         {
+            "IDITem": 30,
+            "InternalID": 897,
+            "RequestQuantity": 1,
+            "QuantityUnitCode": "Pza",
+            "PrecioUnitario": "46.72",
+            "Descuentonitario": 0,
+            "PrecioLinea": "46.72",
+            "DescuentoLinea": 0,
+            "TotalLinea": "46.72",
+            "IdDBBYI": "",
+            "IdPromocionI": "",
+            "IdCuponPI": "",
+            "IdProcesoI": "",
+            "TextContent": "Env\u00edo a trav\u00e9s de Uber - Uber"
+         }
+      ]
+   }
+]

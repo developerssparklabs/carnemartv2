@@ -1,0 +1,446 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Min Max Quantity & Step Control for WooCommerce (PRO)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-03 14:30+0000\n"
+"PO-Revision-Date: 2023-01-04 09:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.3; wp-6.1.1\n"
+"X-Domain: wcmmq_pro"
+
+#: admin/license/template/license-view.php:33
+msgid " License Key"
+msgstr ""
+
+#: admin/license/init.php:97
+msgid " license to get automatic updates."
+msgstr ""
+
+#: wcmmq.php:276
+#, php-format
+msgid ""
+"\"%1$s\" requires \"%2$s\" to be upgraded to the latest version or greater "
+"than 2.0"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:26
+#: modules/module/cart-page-condition.php:37
+#: modules/module/cart-page-condition.php:41
+msgid "(Optional)"
+msgstr ""
+
+#: admin/license/template/license-view.php:39
+msgid "Activate"
+msgstr ""
+
+#: admin/license/init.php:95
+msgid "Activate License"
+msgstr ""
+
+#: admin/license/license.php:51 admin/license/license.php:104
+msgid "An error occurred, please try again."
+msgstr ""
+
+#: admin/functions.php:127
+msgid "Available shortcode: [cart_max_quantity]"
+msgstr ""
+
+#: admin/functions.php:113
+msgid "Available shortcode: [cart_min_price]"
+msgstr ""
+
+#: admin/functions.php:118 admin/functions.php:122
+msgid "Available shortcode: [cart_min_quantity]"
+msgstr ""
+
+#: admin/functions.php:139
+msgid "Available shortcode: [vari_count_total], [product_name]"
+msgstr ""
+
+#: admin/functions.php:131
+msgid "Available shortcode: [vari_total_max_qty], [product_name]"
+msgstr ""
+
+#: admin/functions.php:135
+msgid "Available shortcode: [vari_total_min_qty], [product_name]"
+msgstr ""
+
+#: admin/functions.php:117
+msgid "Cart Maximum Price Validation Message"
+msgstr ""
+
+#: admin/functions.php:126
+msgid "Cart Maximum Quantity Validation Message"
+msgstr ""
+
+#: admin/functions.php:112
+msgid "Cart Minimum Price Validation Message"
+msgstr ""
+
+#: admin/functions.php:121
+msgid "Cart Minimum Quantity Validation Message"
+msgstr ""
+
+#: modules/controller.php:12
+msgid "Cart Page Condition"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:20
+msgid "Cart Page Conditions"
+msgstr ""
+
+#: admin/includes/terms_condition.php:6
+msgid "Choose a"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:42
+msgid "Choose Category"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:131
+msgid "Click Here to change."
+msgstr ""
+
+#. Author of the plugin
+msgid "CodeAstrology"
+msgstr ""
+
+#: admin/license/template/license-view.php:57
+#, php-format
+msgid "Congratulations! Your product is activated for %s."
+msgstr ""
+
+#: modules/controller.php:28
+msgid "Control enable/disable for Variable product variation."
+msgstr ""
+
+#: admin/functions.php:77
+msgid "Customized Dropdown"
+msgstr ""
+
+#: admin/includes/terms_condition.php:84
+#: modules/module/variation-options.php:27
+msgid "Default Quantity"
+msgstr ""
+
+#: admin/includes/terms_condition.php:49
+msgid "Delete"
+msgstr ""
+
+#: modules/module/variation-options.php:44
+msgid "Enter Maximum Quantity for this Variation"
+msgstr ""
+
+#: modules/module/variation-options.php:19
+msgid "Enter Minimum Quantity for this Variation"
+msgstr ""
+
+#: modules/module/variation-options.php:56
+msgid "Enter quantity for this Variation"
+msgstr ""
+
+#: modules/module/variation-qty-count.php:105
+msgid ""
+"Enter the maximum limitation number, if you a limitation of variation "
+"quantity total."
+msgstr ""
+
+#: modules/module/variation-qty-count.php:85
+msgid ""
+"Enter the maximum quantity number. Customer can buy maximum this amount of "
+"products."
+msgstr ""
+
+#: modules/module/variation-qty-count.php:95
+msgid ""
+"Enter the minimum quantity number. Customer has to buy this amount of "
+"products."
+msgstr ""
+
+#: admin/license/template/license-view.php:31
+msgid "Enter your license key here, to get auto updates."
+msgstr ""
+
+#: modules/controller.php:13
+msgid ""
+"Extra control on cart page. Such: total price amout, total product count "
+"amount etc."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://codeastrology.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://min-max-quantity.codeastrology.com/"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:62
+msgid ""
+"If you choose any category here then, this global setting will only be "
+"applied to the chosen categories. ( For Multiple selections, Press Ctrl + "
+"your Category. )"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:47
+#: modules/module/cart-page-condition.php:54
+msgid "Input product Ids"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:55
+msgid ""
+"Insert Products IDs. Use a comma as a separator. (Example: 45,84,5).  Cart "
+"conditions will apply only those products"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:48
+msgid ""
+"Insert Products IDs. Use a comma as a separator. (Example: 45,84,5).  Cart "
+"conditions will not apply to those products"
+msgstr ""
+
+#: admin/license/license.php:86
+msgid "Invalid license."
+msgstr ""
+
+#: modules/module/variation-options.php:31
+msgid ""
+"It is an optional Number, If do not set, Product default quantity will come "
+"from Minimum Quantity"
+msgstr ""
+
+#: admin/functions.php:43
+msgid ""
+"Mainly for dropdown quantity box. It will show as first item of dropdown."
+msgstr ""
+
+#: modules/controller.php:20
+msgid ""
+"Mainly for Variation Product and control count of variation and total of "
+"variation cart items."
+msgstr ""
+
+#: modules/module/cart-page-condition.php:29
+#: modules/module/cart-page-condition.php:40
+msgid "Max"
+msgstr ""
+
+#: modules/module/variation-options.php:40
+msgid "Max Quantity"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:30
+msgid "Maximum Price"
+msgstr ""
+
+#: admin/includes/terms_condition.php:64
+#: modules/module/cart-page-condition.php:41
+msgid "Maximum Quantity"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:25
+#: modules/module/cart-page-condition.php:36
+msgid "Min"
+msgstr ""
+
+#: modules/controller.php:27
+msgid "Min Max Control for Variation"
+msgstr ""
+
+#: admin/license/init.php:25
+msgid "Min Max License"
+msgstr ""
+
+#: wcmmq.php:278 admin/license/init.php:12
+msgid "Min Max Quantity & Step Control for WooCommerce"
+msgstr ""
+
+#. Name of the plugin
+#: wcmmq.php:277
+msgid "Min Max Quantity & Step Control for WooCommerce (PRO)"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Min Max Quantity & Step Control plugin offers to display specific products "
+"with minimum, maximum quantity. As well as by this plugin you will be able "
+"to set the increment or decrement step as much as you want. In a word: "
+"Minimum Quantity, Maximum Quantity and Step can be controlled."
+msgstr ""
+
+#: modules/module/variation-options.php:15
+msgid "Min Quantity"
+msgstr ""
+
+#: admin/functions.php:81
+msgid ""
+"Min,max compolsury. separat with(|). You have to set a limit for min and Max."
+msgstr ""
+
+#: modules/module/cart-page-condition.php:26
+msgid "Minimum Price"
+msgstr ""
+
+#: admin/includes/terms_condition.php:54
+#: modules/module/cart-page-condition.php:37
+msgid "Minimum Quantity"
+msgstr ""
+
+#: includes/functions.php:435
+msgid "Multiply Price By Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:127 includes/functions.php:443
+msgid "OFF"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:127 includes/functions.php:443
+msgid "ON"
+msgstr ""
+
+#: admin/functions.php:59 admin/functions.php:70
+msgid "Only for Dropdown first option"
+msgstr ""
+
+#: admin/license/init.php:97
+msgid "Please activate "
+msgstr ""
+
+#: admin/set_menu_and_fac.php:137
+msgid "Prefix of Quantity"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:23
+msgid "Price Limit"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:45
+msgid "Product Exclude"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:52
+msgid "Product Include"
+msgstr ""
+
+#: includes/functions.php:446
+msgid ""
+"Product price will multiply by the quantity before being displayed on a "
+"single product page and will Increase or decrease in accordance with the "
+"quantity."
+msgstr ""
+
+#: template/global/quantity-input.php:55
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr ""
+
+#: template/global/quantity-input.php:46
+msgid "Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:117
+msgid "Quantity Button"
+msgstr ""
+
+#: admin/functions.php:55
+msgid "Quantity Label (Optional)"
+msgstr ""
+
+#: modules/module/cart-page-condition.php:34
+msgid "Quantity Limit"
+msgstr ""
+
+#: admin/functions.php:66
+msgid "Quantity Option Suffix (Optional)"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:114
+msgid "Quantity Prefix/Suffix"
+msgstr ""
+
+#: modules/module/variation-options.php:52
+msgid "Quantity Step"
+msgstr ""
+
+#: admin/license/template/license-view.php:63
+msgid "Revoke License"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:168 modules/module/cart-page-condition.php:60
+msgid "Save All"
+msgstr ""
+
+#: admin/includes/terms_condition.php:74
+msgid "Step Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:152
+msgid "Suffix of Quantity"
+msgstr ""
+
+#. the plugin name
+#: admin/license/license.php:96
+#, php-format
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: admin/functions.php:39
+msgid "Type (Optional)"
+msgstr ""
+
+#: modules/module/variation-qty-count.php:101
+msgid "Variation count limit(Optional)"
+msgstr ""
+
+#: modules/module/variation-qty-count.php:91
+msgid "Variation minimum quantity total (Optional)"
+msgstr ""
+
+#: modules/controller.php:19
+msgid "Variation Quanity and Count Control"
+msgstr ""
+
+#: modules/module/variation-qty-count.php:81
+msgid "Variation quantity total limit(Optional)"
+msgstr ""
+
+#: admin/functions.php:138
+msgid "Variation Total Count Message"
+msgstr ""
+
+#: admin/functions.php:130
+msgid "Variation Total Maximum Quantity Message"
+msgstr ""
+
+#: admin/functions.php:134
+msgid "Variation Total Minimum Quantity Message"
+msgstr ""
+
+#: modules/module/variation-qty-count.php:109
+msgid "Variations quanity total and Variation count total"
+msgstr ""
+
+#: admin/license/license.php:91
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#. the license key expiration date
+#: admin/license/license.php:75
+#, php-format
+msgid "Your license key expired on %s."
+msgstr ""
+
+#: admin/license/license.php:82
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: admin/license/license.php:100
+msgid "Your license key has reached its activation limit."
+msgstr ""

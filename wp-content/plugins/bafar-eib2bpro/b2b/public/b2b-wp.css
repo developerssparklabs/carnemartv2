@@ -1,0 +1,541 @@
+/* ============================================ */
+/* b2b-wp.css                                   */
+/*                                              */
+/* Styles for WP Admin without EIB2BPRO panel         */
+/*                                              */
+/*  Contents:                                   */
+/*                                              */
+/*  GLOBAL                                      */
+/*  REGISTRATION                                */
+/*  PRODUCT                                     */
+/*  BOOTSTRAP                                   */
+/*                                              */
+/* ============================================ */
+
+
+/* GENERAL */
+
+.eib2bpro-hidden {
+    display: none;
+}
+
+.eib2bpro-no-engine .eib2bpro-shadow {
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 5%) !important;
+}
+
+.eib2bpro-postbox {
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.eib2bpro-postbox-header {
+    border-bottom: 1px solid #dfdfdf;
+    border-top: 1px solid #dfdfdf;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 20px;
+    background: #fafafa;
+}
+
+.eib2bpro-postbox-header:first-child {
+    border-top: 0px solid #dfdfdf;
+}
+
+.eib2bpro-postbox-content {
+    padding: 20px;
+}
+
+.rtl .selectize-control.plugin-remove_button .remove-single {
+    right: inherit;
+    left: 37px;
+}
+
+/* REGISTRATION */
+
+.eib2bpro_customfield_label {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.eib2bpro_customfield_label:first-child {
+    margin-top: 0px;
+}
+
+.eib2bpro_customfield_value>* {
+    width: 80%;
+    max-width: 25rem;
+    padding: 10px;
+    height: 30px;
+}
+
+.eib2bpro_customfield_value input {
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+}
+
+.eib2bpro_user_approve_button {
+    background-color: green;
+    padding: 10px 15px;
+    border: 0px;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.eib2bpro_user_reject_button {
+    background-color: red;
+}
+
+/* PRODUCT */
+
+.eib2bpro-app-user-select-div {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.eib2bpro-app-user-select-group {
+    float: right;
+    color: #aaa;
+}
+
+.woocommerce_options_panel .eib2bpro_product_data_panel_qty,
+.woocommerce_options_panel .eib2bpro_product_data_panel {
+    padding-left: 25px;
+}
+
+.woocommerce_options_panel .eib2bpro_product_data_panel p.form-field {
+    padding-left: 0px !important;
+}
+
+.eib2bpro_product_data_panel {
+    border-top: 1px solid #eee;
+    width: 90%;
+}
+
+.eib2bpro_product_data_panel_tiers {
+    margin-bottom: 200px;
+}
+
+.eib2bpro_product_visibility_manual_settings {
+    padding-top: 10px;
+    width: 100%;
+    clear: both;
+}
+
+.eib2bpro_product_visibility_manual_settings body:not(.eib2bpro-engine) body:not(.eib2bpro-engine) .mb-4 {
+    margin-top: 5px;
+}
+
+.eib2bpro_price_tiers {
+    padding-top: 0px !important;
+    margin-bottom: 15px !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.eib2bpro_price_tiers_container {
+    width: 50%;
+    display: block;
+}
+
+.options_group.eib2bpro_product_data_panel_qty p.form-field {
+    padding-left: 152px !important;
+}
+.eib2bpro_qty_step_input {
+    width: 30% !important;
+    margin-right: 2% !important;
+    padding: 0px;
+}
+
+
+@media only screen and (max-width: 1280px) {
+    .eib2bpro_price_tiers_container {
+        width: 80%;
+        display: block;
+    }
+
+    .variable_pricing .eib2bpro_price_tiers_container {
+        width: 100%;
+    }
+}
+
+
+.eib2bpro_price_tiers_input {
+    width: 48% !important;
+    padding: 0px;
+}
+
+
+.eib2bpro_price_tiers_groups {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+.eib2bpro_price_tiers_groups .inner {
+    padding-top: 0px;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    overflow: hidden;
+    display: none;
+}
+
+.eib2bpro_price_tiers_groups li {
+    margin: 0.5em 0;
+}
+
+.eib2bpro_price_tiers_groups li a.eib2bpro_toggle {
+    width: 100%;
+    display: block;
+    background: rgb(255 255 255);
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 9px;
+    border-top: 1px solid #eee;
+    color: rgb(85, 85, 85);
+    font-size: 14px;
+    text-decoration: unset;
+}
+
+
+.eib2bpro_price_tiers_groups li a.eib2bpro_toggle:focus {
+    box-shadow: none;
+    outline: 0px !important;
+}
+
+.eib2bpro_price_tiers_groups li .eib2bpro_price_range {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.eib2bpro_price_tiers_variation {
+    margin-left: -25px;
+    margin-right: -25px;
+}
+
+.eib2bpro_price_tiers_variation li a.eib2bpro_toggle {
+    padding-left: 30px;
+}
+
+.eib2bpro_price_tiers_variation .inner {
+    padding-left: 30px;
+}
+
+
+/* BOOTSTRAP */
+
+
+body:not(.eib2bpro-engine) .m-0 {
+    margin: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .mt-0,
+body:not(.eib2bpro-engine) .my-0 {
+    margin-top: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .mr-0,
+body:not(.eib2bpro-engine) .mx-0 {
+    margin-right: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .mb-0,
+body:not(.eib2bpro-engine) .my-0 {
+    margin-bottom: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .ml-0,
+body:not(.eib2bpro-engine) .mx-0 {
+    margin-left: 0 !important;
+}
+
+v.m-1 {
+    margin: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .mt-1,
+body:not(.eib2bpro-engine) .my-1 {
+    margin-top: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .mr-1,
+body:not(.eib2bpro-engine) .mx-1 {
+    margin-right: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .mb-1,
+v.my-1 {
+    margin-bottom: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .ml-1,
+body:not(.eib2bpro-engine) .mx-1 {
+    margin-left: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .m-2 {
+    margin: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .mt-2,
+body:not(.eib2bpro-engine) .my-2 {
+    margin-top: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .mr-2,
+body:not(.eib2bpro-engine) .mx-2 {
+    margin-right: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .mb-2,
+body:not(.eib2bpro-engine) .my-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .ml-2,
+body:not(.eib2bpro-engine) .mx-2 {
+    margin-left: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .m-3 {
+    margin: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .mt-3,
+body:not(.eib2bpro-engine) .my-3 {
+    margin-top: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .mr-3,
+body:not(.eib2bpro-engine) .mx-3 {
+    margin-right: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .mb-3,
+body:not(.eib2bpro-engine) .my-3 {
+    margin-bottom: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .ml-3,
+body:not(.eib2bpro-engine) .mx-3 {
+    margin-left: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .m-4 {
+    margin: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .mt-4,
+body:not(.eib2bpro-engine) .my-4 {
+    margin-top: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .mr-4,
+body:not(.eib2bpro-engine) .mx-4 {
+    margin-right: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .mb-4,
+body:not(.eib2bpro-engine) .my-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .ml-4,
+body:not(.eib2bpro-engine) .mx-4 {
+    margin-left: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .m-5 {
+    margin: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .mt-5,
+body:not(.eib2bpro-engine) .my-5 {
+    margin-top: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .mr-5,
+body:not(.eib2bpro-engine) .mx-5 {
+    margin-right: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .mb-5,
+body:not(.eib2bpro-engine) .my-5 {
+    margin-bottom: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .ml-5,
+body:not(.eib2bpro-engine) .mx-5 {
+    margin-left: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .p-0 {
+    padding: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .pt-0,
+body:not(.eib2bpro-engine) .py-0 {
+    padding-top: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .pr-0,
+body:not(.eib2bpro-engine) .px-0 {
+    padding-right: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .pb-0,
+body:not(.eib2bpro-engine) .py-0 {
+    padding-bottom: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .pl-0,
+body:not(.eib2bpro-engine) .px-0 {
+    padding-left: 0 !important;
+}
+
+body:not(.eib2bpro-engine) .p-1 {
+    padding: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .pt-1,
+body:not(.eib2bpro-engine) .py-1 {
+    padding-top: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .pr-1,
+body:not(.eib2bpro-engine) .px-1 {
+    padding-right: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .pb-1,
+body:not(.eib2bpro-engine) .py-1 {
+    padding-bottom: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .pl-1,
+body:not(.eib2bpro-engine) .px-1 {
+    padding-left: 0.25rem !important;
+}
+
+body:not(.eib2bpro-engine) .p-2 {
+    padding: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pt-2,
+body:not(.eib2bpro-engine) .py-2 {
+    padding-top: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pr-2,
+body:not(.eib2bpro-engine) .px-2 {
+    padding-right: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pb-2,
+body:not(.eib2bpro-engine) .py-2 {
+    padding-bottom: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pl-2,
+body:not(.eib2bpro-engine) .px-2 {
+    padding-left: 0.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .p-3 {
+    padding: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .pt-3,
+body:not(.eib2bpro-engine) .py-3 {
+    padding-top: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .pr-3,
+body:not(.eib2bpro-engine) .px-3 {
+    padding-right: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .pb-3,
+body:not(.eib2bpro-engine) .py-3 {
+    padding-bottom: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .pl-3,
+body:not(.eib2bpro-engine) .px-3 {
+    padding-left: 1rem !important;
+}
+
+body:not(.eib2bpro-engine) .p-4 {
+    padding: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pt-4,
+body:not(.eib2bpro-engine) .py-4 {
+    padding-top: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pr-4,
+body:not(.eib2bpro-engine) .px-4 {
+    padding-right: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pb-4,
+body:not(.eib2bpro-engine) .py-4 {
+    padding-bottom: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .pl-4,
+body:not(.eib2bpro-engine) .px-4 {
+    padding-left: 1.5rem !important;
+}
+
+body:not(.eib2bpro-engine) .p-5 {
+    padding: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .pt-5,
+body:not(.eib2bpro-engine) .py-5 {
+    padding-top: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .pr-5,
+body:not(.eib2bpro-engine) .px-5 {
+    padding-right: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .pb-5,
+body:not(.eib2bpro-engine) .py-5 {
+    padding-bottom: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .pl-5,
+body:not(.eib2bpro-engine) .px-5 {
+    padding-left: 3rem !important;
+}
+
+body:not(.eib2bpro-engine) .m-auto {
+    margin: auto !important;
+}
+
+body:not(.eib2bpro-engine) .mt-auto,
+body:not(.eib2bpro-engine) .my-auto {
+    margin-top: auto !important;
+}
+
+body:not(.eib2bpro-engine) .mr-auto,
+body:not(.eib2bpro-engine) .mx-auto {
+    margin-right: auto !important;
+}
+
+body:not(.eib2bpro-engine) .mb-auto,
+body:not(.eib2bpro-engine) .my-auto {
+    margin-bottom: auto !important;
+}
+
+body:not(.eib2bpro-engine) .ml-auto,
+body:not(.eib2bpro-engine) .mx-auto {
+    margin-left: auto !important;
+}

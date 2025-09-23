@@ -1,0 +1,581 @@
+/* ============================================ */
+/* b2b.css                                      */
+/*                                              */
+/* Styles for B2B Pro admin UI                  */
+/*                                              */
+/*  Contents:                                   */
+/*                                              */
+/*  GLOBAL                                      */
+/*  DASHBOARD                                   */
+/*  OFFERS                                      */
+/*  QUOTES                                      */
+/*  GROUPS                                      */
+/*  RESPONSIVE                                  */
+/*                                              */
+/* ============================================ */
+
+/* ============================================ */
+/* GLOBAL                                       */
+/* ============================================ */
+
+.eib2bpro-title {
+    display: none;
+}
+
+.eib2bpro-b2b-page-icon {
+    width: 45px;
+    float: left;
+    margin-right: 16px;
+    fill: #dc3546;
+    padding-top: 3px;
+    display: none;
+}
+
+.eib2bpro-app-settings-sub-title i {
+    margin-right: 15px;
+    border-right: 0px solid #eaeaea;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    font-size: 42px;
+    color: #aaa;
+    float: left;
+}
+
+.eib2bpro-app-settings-sub-title .text-muted {
+    font-size: 13px;
+    padding-top: 6px;
+}
+
+.eib2bpro-app-b2b-settings-registration .eib2bpro-app-save-button-hidden {
+    opacity: 0;
+}
+
+.eib2bpro-app-b2b-registration-fields-edit-form select.eib2bpro-input-select-multi.form-control {
+    font-size: 13px !important;
+    background: transparent !important;
+    padding: 5px;
+    border: 1px solid #ccc !important;
+}
+
+.eib2bpro-b2b-settings-features {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.eib2bpro-b2b-settings-features-card {
+    border-right: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    padding: 60px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.eib2bpro-b2b-settings-features-card:even {
+    border-right: 0px;
+}
+
+.eib2bpro-section-fields ol>li>.btnA,
+.eib2bpro-section-fields .eib2bpro-Item.collapsed {
+    margin-bottom: 0px !important;
+    box-shadow: none !important;
+    margin: 0px !important;
+    border: 0px !important;
+    border-bottom: 1px solid var(--content-btnA) !important;
+}
+
+/* ============================================ */
+/* DASHBOARD                                    */
+/* ============================================ */
+
+.apexcharts-series pathx {
+    clip-path: inset(10px 0px 0px 0px round 18px);
+}
+
+.eib2bpro-b2b-dashboard.eib2bpro-Container {
+    border-radius: 10px;
+}
+
+.eib2bpro-b2b-dashboard .eib2bpro-charts {
+    min-height: 450px;
+    overflow: hidden;
+    border-radius: 20px;
+
+}
+
+.eib2bpro-b2b-dashboard .carousel-groups {
+    background-color: #e2e2e2;
+    height: 30px;
+    border-radius: 30px;
+    margin: 27px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.eib2bpro-b2b-dashboard-overview {
+    border: 1px solid #ececec;
+    border-radius: 20px;
+    margin-top: 40px;
+    box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%) !important;
+}
+
+.eib2bpro-b2b-sales-title {
+    letter-spacing: 3px;
+    font-size: 14px;
+    color: #888;
+    text-transform: uppercase;
+    position: absolute;
+    top: 110px;
+    left: 90px;
+    z-index: 88;
+}
+
+.eib2bpro-b2b-dashboard-revenue {
+    background: #353535;
+    margin-top: 70px;
+    border-radius: 25px;
+}
+
+.eib2bpro-b2b-dashboard-overview {
+    background: #353535;
+}
+
+.eib2bpro-Reports_Table tbody td a,
+.eib2bpro-Reports_Table tbody td,
+.eib2bpro-Reports_Table thead th {
+    color: #888;
+}
+
+.eib2bpro-Button1 {
+    border: 2px solid transparent !important;
+    margin-right: 5px;
+}
+
+/* BULK */
+
+.eib2bpro-action-category.eib2bpro-section-bulk .eib2bpro-GP {
+    width: 93%;
+}
+
+.eib2bpro-b2b-bulk-editor {
+    overflow: hidden;
+}
+
+.eib2bpro-b2b-bulk-editor a {
+    color: #000;
+    font-weight: normal;
+    ;
+}
+
+.eib2bpro-b2b-bulk-editor th span {
+    display: inline-block;
+}
+
+.eib2bpro-b2b-bulk-editor td,
+.eib2bpro-b2b-bulk-editor th {
+    padding: 12px;
+    border-top: 1px solid #e1e1e1;
+    vertical-align: middle;
+    border-left: 1px solid #e1e1e1;
+    position: relative;
+
+}
+
+.eib2bpro-b2b-bulk-editor tbody tr:last-child td {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.eib2bpro-b2b-bulk-editor th {
+    border-bottom: 1px solid #e1e1e1 !important;
+}
+
+.eib2bpro-b2b-bulk-editor.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: rgba(0, 0, 0, .035);
+}
+
+.xeib2bpro-b2b-bulk-editor.table-hover td:hover::before {
+    background-color: rgba(0, 0, 0, .0135);
+    content: '\00a0';
+    height: 100%;
+    left: -5000px;
+    position: absolute;
+    top: 0;
+    width: 10000px;
+    z-index: -1;
+}
+
+.xeib2bpro-b2b-bulk-editor.table-hover td:hover::after {
+    background-color: rgba(0, 0, 0, .035);
+    content: '\00a0';
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+
+.eib2bpro-b2b-bulk-editor thead input {
+    border: 1px solid #e1e1e1;
+
+}
+
+.eib2bpro-b2b-bulk-editor input {
+    width: 40px;
+    height: 15px;
+    border: 0px;
+    background: #f5f5f5;
+    margin: 0px;
+    border: 1px solid #f5f5f5;
+
+}
+
+.eib2bpro-b2b-bulk-editor input:checked {
+    background: #28a745;
+    text-indent: 9999px;
+    border: 1px solid #28a745;
+}
+
+.eib2bpro-b2b-bulk-editor .eib2bpro_group_check {
+    text-align: center;
+}
+
+.eib2bpro-b2b-bulk-editor .eib2bpro_group {
+    width: 70px;
+    text-align: center;
+}
+
+.eib2bpro-b2b-bulk-editor .eib2bpro_group span {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    width: 70px;
+}
+
+.eib2bpro-b2b-bulk-editor tbody tr:not(.eib2bpro-parent-0) {
+    display: none;
+}
+
+.eib2bpro-b2b-bulk-category-sub {
+    width: 20px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+/* ============================================ */
+/* OFFERS                                    */
+/* ============================================ */
+
+.eib2bpro-hidden-row {
+    display: none;
+}
+
+.eib2bpro-b2b-offer-table-head {
+    background: #e4e4e4;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #666;
+}
+
+.eib2bpro-app-product-select {
+    width: 300px !important;
+}
+
+.selectize-input {
+    padding: 10px;
+}
+
+.eib2bpro-b2b-offer-table tr td {
+    background: #f5f5f5;
+}
+
+.eib2bpro-b2b-offer-table-move {
+    width: 30px;
+    padding-left: 20px !important;
+    padding-top: 24px !important;
+}
+
+.eib2bpro-b2b-offer-table-delete {
+    width: 30px;
+    padding-right: 20px !important;
+    padding-top: 24px !important;
+}
+
+.eib2bpro-b2b-offer-table-product {
+    width: 300px;
+}
+
+.eib2bpro-b2b-offer-table-product .selectize-input {
+    line-height: 2.3;
+}
+
+.eib2bpro-b2b-offer-table-subtotal h6 {
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 9px;
+}
+
+.eib2bpro-app-new-item-row .form-control.eib2bpro-input-offer-price,
+.eib2bpro-app-new-item-row .form-control.eib2bpro-input-offer-unit {
+    width: 70px;
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+}
+
+.eib2bpro-b2b-offer-new-row {
+    padding-left: 10px;
+    margin-top: 0px;
+    display: block;
+    text-decoration: underline;
+}
+
+.eib2bpro-offer-total-div {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.eib2bpro-offers-container .eib2bpro-offer-stats-number {
+    font-size: 1.3rem;
+    padding-bottom: 4px;
+}
+
+.eib2bpro-offers-container .eib2bpro-offer-stats-number.text-muted {
+    font-size: 0.6rem;
+    border: 0px;
+    margin-top: 2px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.eib2bpro-offers-container h6.text-uppercase.text-muted {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.eib2bpro-offer-users-column {
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.eib2bpro-offers-container .eib2bpro-offer-stats-box {
+
+    border-left: 1px solid #eaeaea;
+    float: right;
+    width: 6.5rem;
+    overflow: hidden;
+    padding: 30px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.eib2bpro-offer-style {
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-bottom: 20px;
+    padding-top: 0px !important;
+}
+
+
+/* ============================================ */
+/* QUOTES                                    */
+/* ============================================ */
+
+.eib2bpro-b2b-quote-fields-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.eib2bpro-b2b-quote-fields-list li {
+    border-radius: 10px;
+    background-color: #efefef;
+    padding: 7px;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 26px;
+    margin: 0px;
+    margin-right: 9px;
+    margin-bottom: 5px;
+}
+
+.eib2bpro-b2b-quote-fields-list a {
+    color: #000;
+}
+
+.eib2bpro-b2b-quote-fields-list i {
+    font-size: 12px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    padding-right: 4px !important;
+}
+
+.eib2bpro-b2b-quote-fields-list li:hover .eib2bpro-hidden {
+    display: inline-block !important;
+    color: rgb(72, 47, 255);
+    font-size: 12px;
+}
+
+.eib2bpro-b2b-quote-icon {
+    font-size: 40px;
+    color: #ccc;
+}
+
+.eib2bpro-b2b-quote-list .btnA:not(.collapsed) .eib2bpro-Product_Image_Container {
+    opacity: 0;
+}
+
+
+.eib2bpro-List_M1 .eib2bpro-list-container h4,
+.eib2bpro-List_M1 .eib2bpro-b2b-quote-list h4 {
+    font-size: 15px;
+}
+
+.eib2bpro-List_M1 .eib2bpro-list-container .btnA .fiyat,
+.eib2bpro-List_M1 .eib2bpro-b2b-quote-list .btnA .fiyat {
+    font-size: 14px;
+}
+
+.eib2bpro-Product_Image_Container {
+    transition: all 0.2s linear;
+}
+
+.eib2bpro-list-container .eib2bpro-Item_Details {
+    margin-top: 0px !important;
+    border-top: 1px solid #efefef !important;
+}
+
+/* ============================================ */
+/* GROUPS                                    */
+/* ============================================ */
+
+.eib2bpro-b2b-groups-mini-users {
+    background: #efefef;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.eib2bpro-b2b-groups-mini-users:hover {
+    background: #fff6b4;
+}
+
+.eib2bpro-b2b-groups-mini-users a {
+    color: #000;
+    padding-left: 0px !important;
+}
+
+.eib2bpro-b2b-chart-div {
+    float: right;
+    width: 180px;
+    min-height: 106px;
+    position: relative;
+    margin-right: 20px;
+}
+
+.eib2bpro-b2b-chart-div .eib2bpro-charts {
+    position: Absolute;
+    bottom: -16px;
+}
+
+.eib2bpro-section-groups #eib2bpro-customers-1 {
+    padding-bottom: 0px;
+}
+
+
+/* ============================================ */
+/* RESPONSIVE                                    */
+/* ============================================ */
+
+@media (max-width: 820px) {
+
+    .eib2bpro-menu2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+        background: #353535;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+    .eib2bpro-b2b-lists {
+        width: 1500px;
+        margin-top: 3px;
+        margin-bottom: 10px;
+    }
+
+    .eib2bpro-b2b-lists li,
+    .eib2bpro-b2b-lists ul,
+    .eib2bpro-menu-2-group>div {
+        float: left;
+    }
+
+    .eib2bpro-menu-2-group {
+        padding-bottom: 3px !important;
+    }
+
+    .eib2bpro-menu-2-group>div {
+        padding: 5px !important;
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .eib2bpro-menu-2-group>div:after {
+        content: ': ';
+    }
+
+    .eib2bpro-b2b-lists li {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .eib2bpro-menu-2-group:first-child>div {
+        display: none;
+        margin-left: 10px;
+    }
+
+    .eib2bpro-b2b-lists li a {
+        color: var(--title-menu-a);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .eib2bpro-menu-2-item.eib2bpro-Selected a span {
+        color: #fff !important;
+    }
+
+    .eib2bpro-List_M1 {
+        width: 100% !important;
+    }
+
+    .col-md-10.col-sm-12.pl-5 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    /* Dashboard */
+
+    .eib2bpro-b2b-dashboard {
+        margin-top: -40px !important;
+    }
+
+    .eib2bpro-app-settings-sub-title.float-left {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    #eib2bpro-reports {
+        float: none !important;
+    }
+
+    .eib2bpro-Reports_Range {
+        margin-left: inherit !important;
+        width: 100%;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,3658 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-09-12 07:27+0300\n"
+"PO-Revision-Date: 2022-02-07 14:13+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/admin.php:97 admin/admin.php:642 admin/admin.php:658
+msgid "Failed on security check"
+msgstr ""
+
+#: admin/admin.php:105 admin/admin.php:114
+msgid "Restricted Area."
+msgstr ""
+
+#: admin/admin.php:380 b2b/site/main.php:397
+msgid "Please wait"
+msgstr ""
+
+#: admin/admin.php:381 b2b/admin/quote.php:139 helpers/functions.php:565
+msgid "Done"
+msgstr ""
+
+#: admin/admin.php:382 b2b/site/quickorders.php:277 helpers/functions.php:605
+#: products/view/1/list.php:190 products/view/1/list.php:197
+#: reactors/login/view/settings.php:156 reactors/style/view/settings.php:79
+#: settings/view/0/menu/list.php:117
+msgid "Save"
+msgstr ""
+
+#: admin/admin.php:383 reactors/login/view/settings.php:21
+#: reactors/style/view/settings.php:21
+msgid "Saved"
+msgstr ""
+
+#: admin/admin.php:384
+msgid "Saving"
+msgstr ""
+
+#: admin/admin.php:385 b2b/site/main.php:398 b2b/view/admin/dashboard/main.php:99
+#: b2b/view/admin/dashboard/main.php:100 b2b/view/admin/quote/edit-field.php:111
+#: core/shared/index/notifications.php:154 core/shared/index/notifications.php:156
+msgid "Are you sure?"
+msgstr ""
+
+#: admin/controller/data.php:28
+msgid "Permission error"
+msgstr ""
+
+#: admin/controller/data.php:62 admin/controller/data.php:81
+#, php-format
+msgid "%s is required"
+msgstr ""
+
+#: admin/controller/ui.php:345 admin/controller/ui.php:349
+#: reactors/login/view/settings.php:68 reactors/login/view/settings.php:95
+msgid "Remove image"
+msgstr ""
+
+#: admin/controller/ui.php:348
+msgid "Upload image"
+msgstr ""
+
+#: admin/controller/ui.php:382 reactors/login/view/settings.php:71
+#: reactors/login/view/settings.php:83 reactors/login/view/settings.php:98
+msgid "Select image"
+msgstr ""
+
+#: b2b/admin/category.php:48 b2b/admin/product.php:97
+msgid "Visibility"
+msgstr ""
+
+#: b2b/admin/category.php:53 b2b/admin/product.php:105
+#: b2b/view/admin/groups/delete.php:5 b2b/view/admin/groups/edit.php:6
+#: b2b/view/admin/groups/list.php:18 b2b/view/admin/nav.php:38
+#: b2b/view/admin/offers/edit.php:40 b2b/view/admin/offers/list.php:197
+msgid "Groups"
+msgstr ""
+
+#: b2b/admin/category.php:56 b2b/admin/groups.php:152 b2b/admin/product.php:108
+#: b2b/admin/settings.php:147 b2b/view/admin/bulk/category.php:12
+#: b2b/view/admin/groups/list.php:123 b2b/view/admin/quote/edit-field.php:83
+#: b2b/view/admin/registration/edit-field.php:176 b2b/view/admin/settings.php:25
+#: rules/view/0/list.php:358
+msgid "Guests"
+msgstr ""
+
+#: b2b/admin/category.php:60 b2b/view/admin/registration/edit-field.php:177
+msgid "B2C Users"
+msgstr ""
+
+#: b2b/admin/category.php:73 b2b/admin/product.php:124
+#: b2b/view/admin/groups/list.php:70 b2b/view/admin/groups/mini.php:4
+#: b2b/view/admin/nav.php:89 b2b/view/admin/offers/list.php:210
+#: reactors/style/style.php:69 rules/view/0/list.php:354
+msgid "Users"
+msgstr ""
+
+#: b2b/admin/category.php:75 b2b/admin/product.php:126
+msgid "Please type to search users"
+msgstr ""
+
+#: b2b/admin/groups.php:99 b2b/admin/groups.php:217 b2b/admin/groups.php:368
+#: b2b/admin/offers.php:98 b2b/admin/quote.php:83 b2b/admin/registration.php:141
+#: b2b/admin/registration.php:208 b2b/admin/registration.php:304
+#: dashboard/controller/main.php:119 dashboard/controller/main.php:125
+msgid "Error:"
+msgstr ""
+
+#: b2b/admin/groups.php:149 b2b/admin/product.php:112 b2b/admin/product.php:134
+#: b2b/admin/user.php:74 b2b/admin/user.php:330 b2b/admin/user.php:425
+#: b2b/admin/user.php:510 b2b/emails/templates/new-customer.php:38
+#: b2b/view/admin/bulk/category.php:17 b2b/view/admin/dashboard/main.php:85
+#: b2b/view/admin/dashboard/main.php:94 b2b/view/admin/groups/delete.php:24
+#: b2b/view/admin/groups/list.php:106 b2b/view/admin/registration/edit-regtype.php:40
+#: b2b/view/admin/registration/list.php:141 b2b/view/admin/toolbox/main.php:30
+#: core/shared/index/notifications.php:111 customers/view/1/nav-groups.php:21
+msgid "B2C"
+msgstr ""
+
+#: b2b/admin/main.php:21 reactors/controller/main.php:42
+#: reactors/controller/main.php:61 settings/settings.php:33
+msgid "Not allowed"
+msgstr ""
+
+#: b2b/admin/main.php:102 b2b/emails/admin-new-quote-request.php:25
+#: b2b/emails/admin-new-quote-request.php:26 core/controller/notifications.php:394
+msgid "New quote request"
+msgstr ""
+
+#: b2b/admin/main.php:103
+msgid "User needs approval"
+msgstr ""
+
+#: b2b/admin/main.php:104
+msgid "New B2B user"
+msgstr ""
+
+#: b2b/admin/main.php:125 uninstall.php:46
+msgid "B2B Pro Groups"
+msgstr ""
+
+#: b2b/admin/main.php:126 uninstall.php:47
+msgid "B2B Pro Custom Fields"
+msgstr ""
+
+#: b2b/admin/main.php:127
+msgid "B2B Pro Types"
+msgstr ""
+
+#: b2b/admin/main.php:128 uninstall.php:49
+msgid "B2B Pro Offers"
+msgstr ""
+
+#: b2b/admin/main.php:129 uninstall.php:50
+msgid "B2B Pro Quotes"
+msgstr ""
+
+#: b2b/admin/main.php:130 uninstall.php:51
+msgid "B2B Pro Quote Fields"
+msgstr ""
+
+#: b2b/admin/main.php:131 uninstall.php:52
+msgid "B2B Pro Rules"
+msgstr ""
+
+#: b2b/admin/main.php:132 uninstall.php:53
+msgid "B2B Pro Quick Orders"
+msgstr ""
+
+#: b2b/admin/offers.php:210 b2b/emails/templates/admin-new-quote-request.php:32
+#: b2b/view/admin/quote/list.php:59 core/shared/index/notifications.php:217
+#: dashboard/widgets/lastactivity.php:277 dashboard/widgets/lastactivity.php:281
+msgid "Visitor"
+msgstr ""
+
+#: b2b/admin/offers.php:215
+#, php-format
+msgid "Offer for %s"
+msgstr ""
+
+#: b2b/admin/product.php:12 b2b/admin/user.php:323 b2b/controller/settings.php:15
+#: eib2bpro.php:149
+msgid "B2B Pro"
+msgstr ""
+
+#: b2b/admin/product.php:100 b2b/admin/user.php:357 b2b/admin/user.php:377
+#: b2b/view/admin/groups/edit.php:28
+msgid "Default"
+msgstr ""
+
+#: b2b/admin/product.php:101
+msgid "Custom settings"
+msgstr ""
+
+#: b2b/admin/product.php:131 b2b/emails/templates/admin-new-quote-request.php:68
+#: b2b/emails/templates/new-offer.php:24
+#: b2b/emails/templates/plain-quick-orders-reminder.php:22
+#: b2b/emails/templates/quick-orders-reminder.php:22 b2b/site/product.php:245
+#: b2b/site/quote.php:53
+msgid "Quantity"
+msgstr ""
+
+#: b2b/admin/product.php:139 rules/view/0/list.php:9 rules/view/0/list.php:72
+#: rules/view/0/list.php:128
+msgid "Step"
+msgstr ""
+
+#: b2b/admin/product.php:140
+msgid "Min"
+msgstr ""
+
+#: b2b/admin/product.php:141
+msgid "Max"
+msgstr ""
+
+#: b2b/admin/product.php:159 b2b/admin/product.php:216 b2b/admin/product.php:294
+#: b2b/admin/product.php:351
+msgid "Price Tiers"
+msgstr ""
+
+#: b2b/admin/product.php:168 b2b/admin/product.php:174 b2b/admin/product.php:225
+#: b2b/admin/product.php:232 b2b/admin/product.php:303 b2b/admin/product.php:309
+#: b2b/admin/product.php:360 b2b/admin/product.php:367
+msgid "Min. Qty."
+msgstr ""
+
+#: b2b/admin/product.php:169 b2b/admin/product.php:175 b2b/admin/product.php:226
+#: b2b/admin/product.php:233 b2b/admin/product.php:304 b2b/admin/product.php:310
+#: b2b/admin/product.php:361 b2b/admin/product.php:368 b2b/admin/toolbox.php:197
+#: b2b/site/offers.php:368 b2b/site/product.php:248
+#: b2b/view/admin/offers/edit.php:105 products/view/1/list.php:185
+#: products/view/1/nav.php:27 products/view/1/nav.php:48
+msgid "Price"
+msgstr ""
+
+#: b2b/admin/product.php:180 b2b/admin/product.php:238 b2b/admin/product.php:315
+#: b2b/admin/product.php:373
+msgid "Add tier"
+msgstr ""
+
+#: b2b/admin/product.php:206 b2b/admin/product.php:341 b2b/admin/toolbox.php:192
+#: b2b/admin/toolbox.php:214 products/view/1/list.php:188
+msgid "Regular Price"
+msgstr ""
+
+#: b2b/admin/product.php:211 b2b/admin/product.php:346 b2b/admin/toolbox.php:193
+#: b2b/admin/toolbox.php:215 products/view/1/list.php:189
+msgid "Sale Price"
+msgstr ""
+
+#: b2b/admin/settings.php:20
+msgid "How will guests see the site?"
+msgstr ""
+
+#: b2b/admin/settings.php:23
+msgid "Do nothing"
+msgstr ""
+
+#: b2b/admin/settings.php:29
+msgid "Hide prices"
+msgstr ""
+
+#: b2b/admin/settings.php:35
+msgid "Restrict pages"
+msgstr ""
+
+#: b2b/admin/settings.php:49
+msgid "Hide prices: What will appear instead of product price"
+msgstr ""
+
+#: b2b/admin/settings.php:51
+msgid "Only hide"
+msgstr ""
+
+#: b2b/admin/settings.php:52
+msgid "\"Login to view\" text"
+msgstr ""
+
+#: b2b/admin/settings.php:53
+msgid "\"Request a quote\" button"
+msgstr ""
+
+#: b2b/admin/settings.php:54
+msgid "Force product pages to login"
+msgstr ""
+
+#: b2b/admin/settings.php:66
+msgid "Which pages will be restricted"
+msgstr ""
+
+#: b2b/admin/settings.php:68
+msgid "Shop/Product pages"
+msgstr ""
+
+#: b2b/admin/settings.php:69
+msgid "All pages"
+msgstr ""
+
+#: b2b/admin/settings.php:70
+msgid "Lock the site"
+msgstr ""
+
+#: b2b/admin/settings.php:83 b2b/admin/user.php:422
+msgid "Registration"
+msgstr ""
+
+#: b2b/admin/settings.php:93
+msgid "B2C registration approval"
+msgstr ""
+
+#: b2b/admin/settings.php:95
+msgid "Automatic approval"
+msgstr ""
+
+#: b2b/admin/settings.php:96 b2b/view/admin/registration/list.php:150
+msgid "Manual approval"
+msgstr ""
+
+#: b2b/admin/settings.php:110
+msgid "Enable \"Registration Type\" selector at registration form"
+msgstr ""
+
+#: b2b/admin/settings.php:126
+msgid "Product Page - \"Request a quote\" button behaviour"
+msgstr ""
+
+#: b2b/admin/settings.php:129
+msgid "Popup"
+msgstr ""
+
+#: b2b/admin/settings.php:130
+msgid "For a single product"
+msgstr ""
+
+#: b2b/admin/settings.php:135 b2b/site/bulkorder.php:167 b2b/site/offers.php:20
+#: b2b/site/quickorders.php:276 b2b/view/admin/offers/list.php:99
+#: dashboard/view/1/widgets/funnel.php:7 reports/view/1/overview.php:311
+#: reports/view/1/overview.php:454
+msgid "Add to cart"
+msgstr ""
+
+#: b2b/admin/settings.php:136
+msgid "For multiple products at the same time"
+msgstr ""
+
+#: b2b/admin/settings.php:148 b2b/view/admin/quote/edit-field.php:84
+msgid "B2C users"
+msgstr ""
+
+#: b2b/admin/settings.php:157
+msgid "Which groups will see the \"Request a quote\" button in the cart?"
+msgstr ""
+
+#: b2b/admin/settings.php:169
+msgid "Quote fields"
+msgstr ""
+
+#: b2b/admin/settings.php:184
+msgid "Product Price Tiers"
+msgstr ""
+
+#: b2b/admin/settings.php:187
+msgid "Show Product Price Tiers table if available"
+msgstr ""
+
+#: b2b/admin/settings.php:192
+msgid "Show Discount Rate in the table"
+msgstr ""
+
+#: b2b/admin/settings.php:196
+msgid "Show price range instead of current price"
+msgstr ""
+
+#: b2b/admin/settings.php:200
+msgid "Show \"From X\" instead of price range"
+msgstr ""
+
+#: b2b/admin/settings.php:217
+msgid "Endpoints"
+msgstr ""
+
+#: b2b/admin/settings.php:227 b2b/admin/settings.php:349 b2b/site/main.php:686
+#: b2b/view/admin/nav.php:19 b2b/view/admin/offers/edit.php:5
+#: b2b/view/admin/offers/list.php:18 b2b/view/admin/offers/mail.php:5
+#: b2b/view/admin/settings.php:63
+msgid "Offers"
+msgstr ""
+
+#: b2b/admin/settings.php:237 b2b/admin/settings.php:452 b2b/site/main.php:690
+#: b2b/view/admin/settings.php:71
+msgid "Bulk Order"
+msgstr ""
+
+#: b2b/admin/settings.php:247 b2b/site/main.php:694 b2b/view/admin/settings.php:79
+msgid "Quick Orders"
+msgstr ""
+
+#: b2b/admin/settings.php:259
+msgid "Bulk Order Form / Quick Orders List"
+msgstr ""
+
+#: b2b/admin/settings.php:269 b2b/admin/settings.php:359
+msgid "Background"
+msgstr ""
+
+#: b2b/admin/settings.php:285 b2b/admin/settings.php:375
+#: b2b/view/admin/quote/edit-field.php:30
+msgid "Text"
+msgstr ""
+
+#: b2b/admin/settings.php:301
+msgid "Input Bg."
+msgstr ""
+
+#: b2b/admin/settings.php:318
+msgid "Input Text"
+msgstr ""
+
+#: b2b/admin/settings.php:336 b2b/admin/settings.php:426
+msgid "Border Radius"
+msgstr ""
+
+#: b2b/admin/settings.php:391
+msgid "Button Bg."
+msgstr ""
+
+#: b2b/admin/settings.php:408
+msgid "Button Text"
+msgstr ""
+
+#: b2b/admin/settings.php:462
+msgid "Bulk Order Form Layout"
+msgstr ""
+
+#: b2b/admin/settings.php:465
+msgid "Layout 1"
+msgstr ""
+
+#: b2b/admin/settings.php:471
+msgid "Layout 2"
+msgstr ""
+
+#: b2b/admin/settings.php:485
+msgid "Sort products by"
+msgstr ""
+
+#: b2b/admin/settings.php:487 b2b/view/admin/dashboard/main.php:115
+#: b2b/view/admin/quote/edit-field.php:36 b2b/view/admin/quote/list.php:78
+#: b2b/view/admin/registration/edit-field.php:36 products/view/1/nav.php:29
+#: products/view/1/nav.php:50 reports/view/1/overview.php:63
+#: rules/view/0/list.php:525
+msgid "Date"
+msgstr ""
+
+#: b2b/admin/settings.php:488 rules/view/0/list.php:94
+#: settings/view/0/menu/new.php:32
+msgid "Title"
+msgstr ""
+
+#: b2b/admin/settings.php:489 products/view/1/nav.php:30 products/view/1/nav.php:51
+#: reactors/login/view/settings.php:29
+msgid "Position"
+msgstr ""
+
+#: b2b/admin/settings.php:501
+msgid "Products per page"
+msgstr ""
+
+#: b2b/admin/settings.php:508 b2b/view/admin/registration/edit-field.php:98
+#: b2b/view/admin/registration/edit-field.php:198
+#: b2b/view/admin/registration/list.php:79 comments/view/0/nav.php:12
+#: comments/view/1/nav.php:12 customers/view/1/nav-groups.php:13
+#: customers/view/1/nav-roles.php:11 dashboard/view/1/widgets/lastactivity.php:19
+#: products/view/1/list.php:248 rules/view/0/list.php:321
+#: settings/controller/menu.php:49 settings/controller/reactors.php:21
+msgid "All"
+msgstr ""
+
+#: b2b/admin/settings.php:519 b2b/site/shipping.php:51
+#: settings/controller/theme.php:173
+msgid "Others"
+msgstr ""
+
+#: b2b/admin/settings.php:523
+msgid "Show product images"
+msgstr ""
+
+#: b2b/admin/settings.php:528
+msgid "Show subtotals and prices"
+msgstr ""
+
+#: b2b/admin/settings.php:533
+msgid "Show out of stock products"
+msgstr ""
+
+#: b2b/admin/settings.php:538
+msgid "Show to B2C customers"
+msgstr ""
+
+#: b2b/admin/settings.php:576 b2b/view/admin/groups/list.php:95
+#: b2b/view/admin/groups/list.php:116 b2b/view/admin/groups/list.php:133
+#: b2b/view/admin/offers/list.php:246 comments/view/0/list.php:153
+#: comments/view/0/list.php:161 comments/view/1/list.php:153
+#: comments/view/1/list.php:161 coupons/view/1/list.php:98
+#: products/view/0/attributes.php:38
+msgid "Edit"
+msgstr ""
+
+#: b2b/admin/settings.php:584
+msgid "Add new field"
+msgstr ""
+
+#: b2b/admin/toolbox.php:96
+msgid "B2B Customers"
+msgstr ""
+
+#: b2b/admin/toolbox.php:178
+msgid "Error: Please contact us"
+msgstr ""
+
+#: b2b/admin/user.php:117
+msgid "You do not have succifent permission to delete the user"
+msgstr ""
+
+#: b2b/admin/user.php:127
+msgid "Declined"
+msgstr ""
+
+#: b2b/admin/user.php:127 comments/view/0/nav.php:22 comments/view/1/nav.php:22
+#: core/shared/index/notifications.php:152
+msgid "Approved"
+msgstr ""
+
+#: b2b/admin/user.php:327
+msgid "User Group"
+msgstr ""
+
+#: b2b/admin/user.php:342
+msgid "Tax Status"
+msgstr ""
+
+#: b2b/admin/user.php:346 b2b/view/admin/registration/edit-field.php:143
+msgid "VAT Number"
+msgstr ""
+
+#: b2b/admin/user.php:353
+msgid "Tax Exemption"
+msgstr ""
+
+#: b2b/admin/user.php:359 settings/controller/theme.php:116
+msgid "Yes"
+msgstr ""
+
+#: b2b/admin/user.php:361 orders/view/0/list-mini.php:37
+#: settings/controller/theme.php:116
+msgid "No"
+msgstr ""
+
+#: b2b/admin/user.php:365
+msgid "VIES Validated"
+msgstr ""
+
+#: b2b/admin/user.php:373
+msgid "Payment and Shipping Methods"
+msgstr ""
+
+#: b2b/admin/user.php:379
+msgid "Custom"
+msgstr ""
+
+#: b2b/admin/user.php:384 b2b/view/admin/groups/edit.php:38 rules/view/0/list.php:172
+#: rules/view/0/list.php:221
+msgid "Payment Methods"
+msgstr ""
+
+#: b2b/admin/user.php:403 b2b/view/admin/groups/edit.php:59
+msgid "Shipping Methods"
+msgstr ""
+
+#: b2b/admin/user.php:424 b2b/emails/templates/new-customer.php:31
+#: b2b/emails/templates/plain-new-customer.php:18 b2b/site/registration.php:262
+#: b2b/view/admin/dashboard/main.php:60 b2b/view/admin/offers/edit.php:27
+#: b2b/view/admin/quote/edit-field.php:25
+#: b2b/view/admin/registration/edit-field.php:24
+#: core/shared/index/notifications.php:103 rules/view/0/list.php:64
+msgid "Type"
+msgstr ""
+
+#: b2b/admin/user.php:468 b2b/emails/templates/admin-new-quote-request.php:53
+#: b2b/emails/templates/new-customer.php:60 b2b/view/admin/quote/list.php:112
+#: core/shared/index/notifications.php:237
+msgid "View file"
+msgstr ""
+
+#: b2b/admin/user.php:506
+msgid "Assign user to this group"
+msgstr ""
+
+#: b2b/admin/user.php:524 b2b/view/admin/dashboard/main.php:99
+#: comments/view/0/list.php:128 comments/view/0/list.php:159
+#: comments/view/1/list.php:128 comments/view/1/list.php:159
+#: core/shared/index/notifications.php:154
+msgid "Approve"
+msgstr ""
+
+#: b2b/admin/user.php:525 b2b/view/admin/dashboard/main.php:100
+#: core/shared/index/notifications.php:156
+msgid "Decline"
+msgstr ""
+
+#: b2b/controller/settings.php:21 comments/controller/settings.php:25
+#: coupons/controller/settings.php:21 customers/controller/settings.php:21
+#: dashboard/controller/settings.php:21 orders/controller/settings.php:21
+#: products/controller/settings.php:21 reports/controller/settings.php:21
+#: settings/controller/general.php:15 settings/controller/general.php:21
+#: settings/settings.php:67
+msgid "General"
+msgstr ""
+
+#: b2b/controller/settings.php:35 comments/controller/settings.php:47
+#: coupons/controller/settings.php:45 customers/controller/settings.php:46
+#: dashboard/controller/settings.php:34 orders/controller/settings.php:59
+#: products/controller/settings.php:45 reports/controller/settings.php:59
+msgid "About"
+msgstr ""
+
+#: b2b/controller/settings.php:51
+msgid "Please go to B2B Pro > Settings page"
+msgstr ""
+
+#: b2b/controller/settings.php:54
+msgid "Go to settings >"
+msgstr ""
+
+#: b2b/emails/account-approved.php:23 b2b/emails/account-approved.php:26
+#: b2b/emails/account-approved.php:27 b2b/emails/account-approved.php:94
+#: b2b/emails/account-approved.php:95
+#: b2b/emails/templates/plain-account-approved.php:14
+msgid "Your account has been approved"
+msgstr ""
+
+#: b2b/emails/account-approved.php:24
+msgid "Email sent when you approve a customer's account"
+msgstr ""
+
+#: b2b/emails/account-approved.php:48 b2b/emails/admin-new-quote-request.php:47
+#: b2b/emails/new-customer.php:47 b2b/emails/new-offer.php:50
+#: b2b/emails/quick-orders-reminder.php:48
+msgid "Enable/Disable"
+msgstr ""
+
+#: b2b/emails/account-approved.php:50 b2b/emails/admin-new-quote-request.php:49
+#: b2b/emails/new-customer.php:49 b2b/emails/new-offer.php:52
+#: b2b/emails/quick-orders-reminder.php:50
+msgid "Enable this email notification"
+msgstr ""
+
+#: b2b/emails/account-approved.php:62 b2b/emails/admin-new-quote-request.php:67
+#: b2b/emails/new-customer.php:67 b2b/emails/new-offer.php:64
+#: b2b/emails/quick-orders-reminder.php:62
+msgid "Email heading"
+msgstr ""
+
+#: b2b/emails/account-approved.php:69 b2b/emails/admin-new-quote-request.php:74
+#: b2b/emails/new-customer.php:74 b2b/emails/new-offer.php:71
+#: b2b/emails/quick-orders-reminder.php:69
+msgid "Email type"
+msgstr ""
+
+#: b2b/emails/account-approved.php:71 b2b/emails/admin-new-quote-request.php:76
+#: b2b/emails/new-customer.php:76 b2b/emails/new-offer.php:73
+#: b2b/emails/quick-orders-reminder.php:71
+msgid "Choose which format of email to send."
+msgstr ""
+
+#: b2b/emails/admin-new-quote-request.php:22
+msgid "New quote request "
+msgstr ""
+
+#: b2b/emails/admin-new-quote-request.php:23
+msgid "Email to be sent to admin when a new quote request"
+msgstr ""
+
+#: b2b/emails/admin-new-quote-request.php:53 b2b/emails/new-customer.php:53
+msgid "Recipient(s)"
+msgstr ""
+
+#: b2b/emails/admin-new-quote-request.php:55 b2b/emails/new-customer.php:55
+msgid ""
+"If you want to send it to more than one recipient, you can add a comma between them"
+msgstr ""
+
+#: b2b/emails/new-customer.php:22
+msgid "New customer "
+msgstr ""
+
+#: b2b/emails/new-customer.php:23
+msgid "Email to be sent to admin when a new customer registers"
+msgstr ""
+
+#: b2b/emails/new-customer.php:25 b2b/emails/new-customer.php:26
+#: customers/view/1/list.php:13
+msgid "New customer"
+msgstr ""
+
+#: b2b/emails/new-customer.php:98 b2b/emails/new-customer.php:99
+msgid "New customer is waiting for your approval"
+msgstr ""
+
+#: b2b/emails/new-offer.php:22 b2b/view/admin/offers/list.php:22
+msgid "New offer"
+msgstr ""
+
+#: b2b/emails/new-offer.php:23
+msgid "Email to be sent to customer for offers"
+msgstr ""
+
+#: b2b/emails/new-offer.php:25 b2b/emails/new-offer.php:26
+#: b2b/emails/new-offer.php:102 b2b/emails/new-offer.php:103
+msgid "New offer!"
+msgstr ""
+
+#: b2b/emails/quick-orders-reminder.php:22
+msgid "Quick Orders Reminder"
+msgstr ""
+
+#: b2b/emails/quick-orders-reminder.php:23
+msgid "Email to be sent to customer for quick orders reminder"
+msgstr ""
+
+#: b2b/emails/quick-orders-reminder.php:25 b2b/emails/quick-orders-reminder.php:26
+#: b2b/emails/quick-orders-reminder.php:102
+msgid "Reminder"
+msgstr ""
+
+#: b2b/emails/quick-orders-reminder.php:103
+#, php-format
+msgid "Reminder for %s"
+msgstr ""
+
+#: b2b/emails/templates/account-approved.php:11
+msgid "Your account has been approved, thank you."
+msgstr ""
+
+#: b2b/emails/templates/admin-new-quote-request.php:15 b2b/site/offers.php:371
+#: orders/view/0/list-mini.php:40 orders/view/1/list.php:90
+msgid "Details"
+msgstr ""
+
+#: b2b/emails/templates/admin-new-quote-request.php:20 orders/view/0/list-mini.php:39
+#: rules/view/0/list.php:362
+msgid "Customer"
+msgstr ""
+
+#: b2b/emails/templates/admin-new-quote-request.php:63 b2b/view/admin/nav.php:83
+#: b2b/view/admin/settings.php:37 eib2bpro.php:148 orders/view/0/list-mini.php:42
+#: orders/view/1/list.php:96 products/controller/settings.php:15
+#: products/view/1/list.php:10 products/view/1/nav.php:12
+#: products/view/1/search.php:8 reactors/style/style.php:63
+#: reports/controller/settings.php:42 reports/view/1/nav.php:13
+#: rules/view/0/list.php:68 rules/view/0/list.php:405 rules/view/0/list.php:606
+msgid "Products"
+msgstr ""
+
+#: b2b/emails/templates/admin-new-quote-request.php:67
+#: b2b/emails/templates/new-offer.php:23
+#: b2b/emails/templates/plain-quick-orders-reminder.php:21
+#: b2b/emails/templates/quick-orders-reminder.php:21 b2b/site/bulkorder.php:80
+#: b2b/site/bulkorder.php:89 b2b/site/bulkorder.php:134 b2b/site/bulkorder.php:248
+#: b2b/site/quickorders.php:159 b2b/site/quickorders.php:168
+#: b2b/site/quickorders.php:213 b2b/view/admin/offers/edit.php:103
+msgid "Product"
+msgstr ""
+
+#: b2b/emails/templates/admin-new-quote-request.php:120
+msgid "View quote requests"
+msgstr ""
+
+#: b2b/emails/templates/new-customer.php:22
+#: b2b/emails/templates/plain-new-customer.php:16 orders/view/1/list.php:233
+#: orders/view/1/list.php:254
+msgid "E-Mail"
+msgstr ""
+
+#: b2b/emails/templates/new-customer.php:76
+#: b2b/emails/templates/plain-new-customer.php:48
+msgid "To approve or decline the user, please go to admin panel"
+msgstr ""
+
+#: b2b/emails/templates/new-customer.php:77
+msgid "Go to admin panel"
+msgstr ""
+
+#: b2b/emails/templates/new-offer.php:14
+msgid "We have an offer for you!"
+msgstr ""
+
+#: b2b/emails/templates/new-offer.php:18
+msgid "Offer No:"
+msgstr ""
+
+#: b2b/emails/templates/new-offer.php:25 b2b/site/bulkorder.php:83
+#: b2b/site/bulkorder.php:108 b2b/site/bulkorder.php:153 b2b/site/bulkorder.php:250
+#: b2b/site/quickorders.php:162 b2b/site/quickorders.php:187
+#: b2b/site/quickorders.php:232 b2b/view/admin/offers/edit.php:106
+msgid "Subtotal"
+msgstr ""
+
+#: b2b/emails/templates/new-offer.php:75 b2b/site/offers.php:146
+#: b2b/site/offers.php:448 orders/view/0/list-mini.php:43
+msgid "Total"
+msgstr ""
+
+#: b2b/emails/templates/new-offer.php:88
+msgid "* Taxes not included"
+msgstr ""
+
+#: b2b/emails/templates/plain-new-customer.php:33
+#: core/shared/index/notifications.php:132
+msgid "View or download the file"
+msgstr ""
+
+#: b2b/emails/templates/plain-quick-orders-reminder.php:14
+#: b2b/emails/templates/quick-orders-reminder.php:14
+#, php-format
+msgid ""
+"We are sending you this e-mail because you want us to remind you of your quick "
+"order list called \"%s\"."
+msgstr ""
+
+#: b2b/emails/templates/plain-quick-orders-reminder.php:66
+#: b2b/emails/templates/quick-orders-reminder.php:69
+msgid "Order now"
+msgstr ""
+
+#: b2b/emails/templates/plain-quick-orders-reminder.php:72
+#: b2b/emails/templates/quick-orders-reminder.php:75
+msgid ""
+"If you don't want to receive these reminder emails anymore, please disable the "
+"\"Set a reminder\" option in your account."
+msgstr ""
+
+#: b2b/site/bulkorder.php:57
+msgid "All products"
+msgstr ""
+
+#: b2b/site/bulkorder.php:81 b2b/site/bulkorder.php:103 b2b/site/bulkorder.php:147
+#: b2b/site/bulkorder.php:252 b2b/site/offers.php:368 b2b/site/quickorders.php:160
+#: b2b/site/quickorders.php:182 b2b/site/quickorders.php:226
+#: b2b/view/admin/offers/edit.php:104 rules/view/0/list.php:157
+msgid "Qty"
+msgstr ""
+
+#: b2b/site/bulkorder.php:93 b2b/site/quickorders.php:172
+msgid "Type to search"
+msgstr ""
+
+#: b2b/site/bulkorder.php:105 b2b/site/bulkorder.php:149 b2b/site/quickorders.php:184
+#: b2b/site/quickorders.php:228
+msgid "This is the maximum you can add"
+msgstr ""
+
+#: b2b/site/bulkorder.php:137 b2b/site/quickorders.php:216
+msgid "Search a product"
+msgstr ""
+
+#: b2b/site/bulkorder.php:171 b2b/site/quickorders.php:249
+msgid "Total:"
+msgstr ""
+
+#: b2b/site/bulkorder.php:253 rules/view/0/list.php:74 rules/view/0/list.php:520
+msgid "Cart"
+msgstr ""
+
+#: b2b/site/bulkorder.php:274 core/controller/notifications.php:179
+#: core/controller/notifications.php:413 products/controller/ajax.php:123
+#: products/view/1/list.php:80 products/view/1/list.php:138
+#: products/view/1/list.php:144 products/view/1/list.php:201
+#: products/view/1/list.php:254 products/view/1/search.php:31
+#: products/view/1/search.php:37 products/view/1/search.php:45
+msgid "Out of stock"
+msgstr ""
+
+#: b2b/site/bulkorder.php:301 b2b/view/admin/quote/edit-field.php:34
+#: b2b/view/admin/registration/edit-field.php:34
+msgid "Select"
+msgstr ""
+
+#: b2b/site/bulkorder.php:369
+msgid "Can not find any products"
+msgstr ""
+
+#: b2b/site/bulkorder.php:381 b2b/site/offers.php:173
+msgid "Previous"
+msgstr ""
+
+#: b2b/site/bulkorder.php:385 b2b/site/offers.php:177
+msgid "Next"
+msgstr ""
+
+#: b2b/site/bulkorder.php:632
+msgid "SKU: "
+msgstr ""
+
+#: b2b/site/bulkorder.php:636
+msgid "Out of stock "
+msgstr ""
+
+#: b2b/site/guest.php:25
+msgid "Login to view prices"
+msgstr ""
+
+#: b2b/site/guest.php:41 b2b/site/quote.php:13 b2b/site/quote.php:34
+#: rules/controller/site.php:440 rules/controller/site.php:492
+#: rules/controller/site.php:504
+msgid "Request a quote"
+msgstr ""
+
+#: b2b/site/main.php:399
+msgid "Please fill all the fields"
+msgstr ""
+
+#: b2b/site/main.php:400
+msgid "Add"
+msgstr ""
+
+#: b2b/site/main.php:401
+msgid "Please enter a title for this list"
+msgstr ""
+
+#: b2b/site/offers.php:59
+msgid "There are currently no offers"
+msgstr ""
+
+#: b2b/site/offers.php:92
+msgid "SELECT OPTIONS"
+msgstr ""
+
+#: b2b/site/offers.php:148
+msgid "+ TAXES"
+msgstr ""
+
+#: b2b/site/offers.php:201
+msgid "Added"
+msgstr ""
+
+#: b2b/site/offers.php:208
+msgid "Not available for you"
+msgstr ""
+
+#: b2b/site/offers.php:246 b2b/site/offers.php:350 b2b/site/offers.php:360
+msgid "Offer"
+msgstr ""
+
+#: b2b/site/offers.php:401
+msgid "You have added an offer to your cart"
+msgstr ""
+
+#: b2b/site/offers.php:445
+msgid "Remove from cart"
+msgstr ""
+
+#: b2b/site/product.php:253
+msgid "Discount"
+msgstr ""
+
+#: b2b/site/product.php:675
+msgid "From "
+msgstr ""
+
+#: b2b/site/product.php:765
+#, php-format
+msgid "The quantity of product (%s) must be at least %s."
+msgstr ""
+
+#: b2b/site/product.php:776
+#, php-format
+msgid "The quantity of product (%s) can not be more than %s."
+msgstr ""
+
+#: b2b/site/product.php:787
+#, php-format
+msgid "The quantity of product (%s) must be %s and its multiples."
+msgstr ""
+
+#: b2b/site/quickorders.php:77 comments/controller/ajax.php:41
+#: core/controller/note.php:56 core/controller/todo.php:93
+#: coupons/controller/ajax.php:54 coupons/controller/ajax.php:104
+#: coupons/controller/main.php:289 rules/controller/ajax.php:36
+#: rules/controller/main.php:71
+msgid "Error"
+msgstr ""
+
+#: b2b/site/quickorders.php:128
+msgid "Create a new quick order list"
+msgstr ""
+
+#: b2b/site/quickorders.php:267
+msgid "Set a reminder"
+msgstr ""
+
+#: b2b/site/quickorders.php:270
+#, php-format
+msgid "Send me a reminder mail every %s days"
+msgstr ""
+
+#: b2b/site/quickorders.php:272
+msgid "Start reminder on"
+msgstr ""
+
+#: b2b/site/quickorders.php:279 b2b/view/admin/groups/list.php:96
+#: b2b/view/admin/offers/list.php:247 b2b/view/admin/quote/edit-field.php:112
+#: b2b/view/admin/quote/list.php:169 comments/view/0/list.php:155
+#: comments/view/0/list.php:163 comments/view/1/list.php:155
+#: comments/view/1/list.php:163 coupons/view/1/list.php:101
+#: customers/view/1/list.php:84 orders/controller/settings.php:90
+#: orders/view/1/list.php:276 products/view/0/attributes.php:41
+#: products/view/1/list.php:58 products/view/1/list.php:225 rules/view/0/list.php:494
+#: settings/view/0/menu/list.php:97
+msgid "Delete"
+msgstr ""
+
+#: b2b/site/quote.php:63
+msgid "You cannot request a quote while there is an offer in your cart."
+msgstr ""
+
+#: b2b/site/quote.php:110 b2b/site/registration.php:378
+#, php-format
+msgid "(Allowed file types: jpg,png,pdf and max file size is %s)"
+msgstr ""
+
+#: b2b/site/quote.php:151
+msgid "Send quote request"
+msgstr ""
+
+#: b2b/site/quote.php:198 b2b/site/quote.php:215
+#, php-format
+msgid "Please enter %s"
+msgstr ""
+
+#: b2b/site/quote.php:203 b2b/site/registration.php:510
+#, php-format
+msgid "Please upload a file for %s"
+msgstr ""
+
+#: b2b/site/quote.php:209 b2b/site/registration.php:532
+#, php-format
+msgid "%s: Your file type is not valid, supported file types are png, jpg, pdf"
+msgstr ""
+
+#: b2b/site/quote.php:212 b2b/site/registration.php:535
+#, php-format
+msgid "%s: Your file size is too large, maximum size is %s"
+msgstr ""
+
+#: b2b/site/quote.php:223 b2b/site/registration.php:522
+#, php-format
+msgid "Please enter a valid email address (%s)"
+msgstr ""
+
+#: b2b/site/quote.php:263 b2b/site/quote.php:324
+msgid "Quote"
+msgstr ""
+
+#: b2b/site/quote.php:319
+msgid ""
+"Your request for quotation has been received, we will contact you as soon as "
+"possible."
+msgstr ""
+
+#: b2b/site/registration.php:192
+msgid "We will review your registration and get back to you as soon as possible."
+msgstr ""
+
+#: b2b/site/registration.php:214
+msgid "Your account is still pending approval, you cannot log in now."
+msgstr ""
+
+#: b2b/site/registration.php:489 b2b/site/registration.php:495
+#, php-format
+msgid "Please enter a valid VAT number (%s)"
+msgstr ""
+
+#: b2b/site/registration.php:501 b2b/site/registration.php:504
+#: b2b/site/registration.php:513
+#, php-format
+msgid "%s is a required field"
+msgstr ""
+
+#: b2b/site/registration.php:815 b2b/site/registration.php:825
+msgid "VIES validation error"
+msgstr ""
+
+#: b2b/site/registration.php:852
+msgid "You are already logged in."
+msgstr ""
+
+#: b2b/site/registration.php:870
+msgid "Login"
+msgstr ""
+
+#: b2b/site/registration.php:875 b2b/site/registration.php:911
+msgid "Register"
+msgstr ""
+
+#: b2b/site/registration.php:883 reactors/login/login.php:251
+msgid "Username"
+msgstr ""
+
+#: b2b/site/registration.php:890
+msgid "Email address"
+msgstr ""
+
+#: b2b/site/registration.php:897 reactors/login/login.php:252
+msgid "Password"
+msgstr ""
+
+#: b2b/site/registration.php:903
+msgid "A link to set a new password will be sent to your email address."
+msgstr ""
+
+#: b2b/site/registration.php:937 b2b/site/registration.php:953
+msgid "Your account requires approval. We will review it as soon as possible."
+msgstr ""
+
+#: b2b/view/admin/bulk/category.php:8
+msgid "Category Visibility"
+msgstr ""
+
+#: b2b/view/admin/bulk/category.php:102 products/view/0/categories.php:8
+msgid "New category"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:6 b2b/view/admin/groups/list.php:5
+#: b2b/view/admin/groups/list.php:30 b2b/view/admin/nav.php:7
+#: b2b/view/admin/offers/list.php:4 b2b/view/admin/quote/list.php:4
+#: b2b/view/admin/registration/list.php:4 b2b/view/admin/rules/list.php:4
+#: b2b/view/admin/settings.php:4 b2b/view/admin/toolbox/main.php:4
+msgid "B2B"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:17
+msgid "Hi"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:21
+msgid "7 DAYS"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:22
+msgid "30 DAYS"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:31 reports/view/1/overview.php:68
+#: reports/view/1/overview.php:189 reports/view/1/overview.php:334
+msgid "Sales"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:59 b2b/view/admin/groups/edit.php:19
+#: b2b/view/admin/offers/edit.php:19 b2b/view/admin/quote/edit-field.php:18
+#: b2b/view/admin/registration/edit-field.php:17
+#: b2b/view/admin/registration/edit-regtype.php:17 products/view/1/nav.php:26
+#: products/view/1/nav.php:47 rules/view/0/list.php:288
+msgid "Name"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:61
+msgid "Group"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:98 orders/view/0/list-mini.php:138
+#: products/view/0/categories.php:41
+msgid "View"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:116
+msgid "Orders (B2B)"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:117
+msgid "Orders (B2C)"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:118
+msgid "Sales (B2B)"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:119
+msgid "Sales (B2C)"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:120
+msgid "Customers (B2B)"
+msgstr ""
+
+#: b2b/view/admin/dashboard/main.php:121
+msgid "Customers (B2C)"
+msgstr ""
+
+#: b2b/view/admin/groups/delete.php:15
+#, php-format
+msgid "You have %d users in this group"
+msgstr ""
+
+#: b2b/view/admin/groups/edit.php:26
+msgid "Display prices"
+msgstr ""
+
+#: b2b/view/admin/groups/edit.php:30
+msgid "Include Tax"
+msgstr ""
+
+#: b2b/view/admin/groups/edit.php:32
+msgid "Exclude Tax "
+msgstr ""
+
+#: b2b/view/admin/groups/edit.php:80
+msgid "Show a message at product pages (optional)"
+msgstr ""
+
+#: b2b/view/admin/groups/list.php:22
+msgid "New group"
+msgstr ""
+
+#: b2b/view/admin/groups/list.php:35 b2b/view/admin/groups/mini.php:32
+#: b2b/view/admin/offers/list.php:32 b2b/view/admin/quote/list.php:28
+#: b2b/view/admin/registration/list.php:101 b2b/view/admin/registration/list.php:165
+#: comments/view/0/list.php:49 comments/view/1/list.php:49 coupons/view/1/list.php:23
+#: customers/view/1/list.php:36 orders/view/0/list-mini.php:28
+#: orders/view/1/list.php:34 products/view/0/attributes.php:14
+#: products/view/0/categories.php:16 products/view/1/list.php:67
+#: rules/view/0/list.php:25
+msgid "No records found"
+msgstr ""
+
+#: b2b/view/admin/groups/list.php:60
+msgid "of Revenue"
+msgstr ""
+
+#: b2b/view/admin/groups/list.php:65 b2b/view/admin/groups/mini.php:42
+#: core/controller/top.php:52 coupons/view/1/list.php:100 eib2bpro.php:147
+#: orders/controller/settings.php:15 orders/view/0/list-mini.php:10
+#: orders/view/1/list.php:11 orders/view/1/list.php:27 reactors/style/style.php:59
+#: reports/controller/settings.php:41 reports/view/1/nav.php:12
+#: reports/view/1/overview.php:67
+msgid "Orders"
+msgstr ""
+
+#: b2b/view/admin/groups/list.php:90
+msgid "Loading"
+msgstr ""
+
+#: b2b/view/admin/groups/list.php:111
+msgid "Settings for all B2C users"
+msgstr ""
+
+#: b2b/view/admin/groups/list.php:128
+msgid "Settings for Guests"
+msgstr ""
+
+#: b2b/view/admin/groups/mini.php:26
+msgid "Show all"
+msgstr ""
+
+#: b2b/view/admin/nav.php:13 dashboard/controller/main.php:149
+#: dashboard/view/1/dashboard-charts.php:9 dashboard/view/1/dashboard.php:8
+#: reports/controller/settings.php:39 reports/view/1/nav.php:10
+msgid "Overview"
+msgstr ""
+
+#: b2b/view/admin/nav.php:27 b2b/view/admin/settings.php:33
+msgid "Quotes"
+msgstr ""
+
+#: b2b/view/admin/nav.php:46 b2b/view/admin/rules/list.php:17
+msgid "Rules"
+msgstr ""
+
+#: b2b/view/admin/nav.php:54 b2b/view/admin/registration/list.php:17
+msgid "Extend"
+msgstr ""
+
+#: b2b/view/admin/nav.php:62 b2b/view/admin/settings.php:13
+#: core/shared/index/header.php:76 core/shared/me/main.php:13
+#: core/themes/console/shared/index/header.php:73
+#: core/themes/one/shared/index/header.php:72 dashboard/view/1/widget-settings.php:5
+#: settings/settings.php:55 settings/view/0/main.php:5
+#: settings/view/0/menu/list.php:4 settings/view/0/need.php:4
+#: settings/view/0/reactors/list.php:27 settings/view/0/reactors/list.php:35
+msgid "Settings"
+msgstr ""
+
+#: b2b/view/admin/nav.php:72
+msgid "Quick"
+msgstr ""
+
+#: b2b/view/admin/nav.php:77 products/view/0/categories.php:8
+#: products/view/1/nav.php:13 reports/controller/settings.php:43
+#: reports/view/1/nav.php:14
+msgid "Categories"
+msgstr ""
+
+#: b2b/view/admin/nav.php:99 settings/settings.php:63
+msgid "System"
+msgstr ""
+
+#: b2b/view/admin/nav.php:107 b2b/view/admin/toolbox/main.php:14
+msgid "Toolbox"
+msgstr ""
+
+#: b2b/view/admin/nav.php:115 settings/settings.php:91
+msgid "Documentation"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:29
+msgid "Product bundle"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:31
+msgid "Product suggestions"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:33
+msgid "Announcement "
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:50 customers/controller/settings.php:15
+#: customers/view/1/list.php:16 customers/view/1/list.php:30 eib2bpro.php:150
+#: reports/controller/settings.php:48 reports/view/1/nav.php:19
+msgid "Customers"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:70
+msgid "Cart Image"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:79
+msgid "Promotion Image"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:87
+msgid "Promotion Text"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:183
+msgid "Add new item"
+msgstr ""
+
+#: b2b/view/admin/offers/edit.php:185
+msgid "Total: "
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:54
+#, php-format
+msgid " %s  • %d products"
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:83 dashboard/view/1/widgets/funnel.php:7
+#: reports/view/1/overview.php:311 reports/view/1/overview.php:454
+msgid "Buy"
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:114
+msgid "Seen"
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:123
+msgid "Targered"
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:221
+msgid "Created at"
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:229
+msgid "Share"
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:230
+msgid "Send email"
+msgstr ""
+
+#: b2b/view/admin/offers/list.php:234
+#, php-format
+msgid "Sent: %s"
+msgstr ""
+
+#: b2b/view/admin/offers/mail.php:30
+#, php-format
+msgid "This mail will be sent to %d customers, are you sure?"
+msgstr ""
+
+#: b2b/view/admin/offers/mail.php:39
+msgid "Send now"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:5 b2b/view/admin/registration/edit-field.php:5
+msgid "Fields"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:31
+#: b2b/view/admin/registration/edit-field.php:31
+msgid "Textarea"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:32
+#: b2b/view/admin/registration/edit-field.php:32 reactors/login/login.php:253
+msgid "Email"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:33
+#: b2b/view/admin/registration/edit-field.php:33
+msgid "Number"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:35
+#: b2b/view/admin/registration/edit-field.php:35
+msgid "Checkbox"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:37
+#: b2b/view/admin/registration/edit-field.php:37
+msgid "File"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:46
+#: b2b/view/admin/registration/edit-field.php:46
+msgid "Label"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:51
+#: b2b/view/admin/registration/edit-field.php:51
+msgid "Placeholder"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:60
+#: b2b/view/admin/registration/edit-field.php:58 reactors/style/view/settings.php:50
+msgid "Options"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:67
+#: b2b/view/admin/registration/edit-field.php:117
+#: b2b/view/admin/registration/edit-field.php:221
+#: b2b/view/admin/registration/list.php:87
+msgid "Required"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:73
+msgid "Who can see this field"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:76
+msgid "All groups"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:78
+msgid "Selected groups"
+msgstr ""
+
+#: b2b/view/admin/quote/edit-field.php:104
+msgid "Field options"
+msgstr ""
+
+#: b2b/view/admin/quote/list.php:17
+msgid "Quote Requests"
+msgstr ""
+
+#: b2b/view/admin/quote/list.php:85 core/shared/index/notifications.php:18
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: b2b/view/admin/quote/list.php:145
+msgid "Qty: "
+msgstr ""
+
+#: b2b/view/admin/quote/list.php:159 core/shared/index/notifications.php:270
+msgid "Edit the offer"
+msgstr ""
+
+#: b2b/view/admin/quote/list.php:161 core/shared/index/notifications.php:274
+msgid "Make an offer"
+msgstr ""
+
+#: b2b/view/admin/quote/list.php:165
+msgid "Send email to customer"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:30
+msgid "Textbox"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:65
+msgid "Enable this field for"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:72
+msgid "Registration form"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:78
+msgid "Billing form"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:88
+msgid "Registration Form"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:95
+msgid "Which registration types can see"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:100
+msgid "Selected"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:127
+msgid "Billing Form"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:135
+msgid "Where will the data be saved?"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:141
+msgid "None"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:142
+msgid "As a new field"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:144
+msgid "First Name"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:145
+msgid "Last Name"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:146
+msgid "Company"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:147 rules/view/0/list.php:314
+msgid "Country"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:148
+msgid "Country/State"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:149
+msgid "State"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:150
+msgid "Address "
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:151
+msgid "Address 2"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:152
+msgid "City"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:153
+msgid "Post Code"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:154
+msgid "Phone"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:164
+msgid "Show in form"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:171
+msgid "Which groups can see?"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:192
+msgid "For which countries will it be visible?"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:199 rules/view/0/list.php:322
+msgid "All countries"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:225
+msgid "Editable"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:234
+msgid "Show in invoices"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-field.php:242
+msgid "VIES Validation"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-regtype.php:5
+msgid "Registration Type"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-regtype.php:24
+#: b2b/view/admin/registration/list.php:148
+msgid "Auto approval"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-regtype.php:31
+msgid "Show a brief information text (optional)"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-regtype.php:38
+msgid "Add new customers to this group after approval"
+msgstr ""
+
+#: b2b/view/admin/registration/edit-regtype.php:57
+msgid "Registration form shortcode"
+msgstr ""
+
+#: b2b/view/admin/registration/list.php:21
+msgid "New field"
+msgstr ""
+
+#: b2b/view/admin/registration/list.php:24
+msgid "New type"
+msgstr ""
+
+#: b2b/view/admin/registration/list.php:36
+msgid "Custom Fields"
+msgstr ""
+
+#: b2b/view/admin/registration/list.php:39
+msgid "Registration Types"
+msgstr ""
+
+#: b2b/view/admin/rules/list.php:21
+msgid "New Rule"
+msgstr ""
+
+#: b2b/view/admin/settings.php:21
+msgid "Features"
+msgstr ""
+
+#: b2b/view/admin/settings.php:29
+msgid "My Account"
+msgstr ""
+
+#: b2b/view/admin/settings.php:41 rules/view/0/list.php:87
+msgid "Advanced"
+msgstr ""
+
+#: b2b/view/admin/settings.php:45 reactors/login/view/settings.php:107
+#: settings/controller/theme.php:28
+msgid "Colors"
+msgstr ""
+
+#: b2b/view/admin/settings.php:50
+msgid "Panel"
+msgstr ""
+
+#: b2b/view/admin/settings.php:65
+msgid "Allows you to create special offers to your customers"
+msgstr ""
+
+#: b2b/view/admin/settings.php:73
+msgid "Adds wholesale bulk order form to My Account"
+msgstr ""
+
+#: b2b/view/admin/settings.php:81
+msgid "Allows customers to create quick order lists"
+msgstr ""
+
+#: b2b/view/admin/settings.php:88
+msgid "Admin Panel"
+msgstr ""
+
+#: b2b/view/admin/settings.php:90
+msgid "A customized panel to enhance your store management experience"
+msgstr ""
+
+#: b2b/view/admin/settings.php:168
+msgid "Please go to Settings page for the admin panel"
+msgstr ""
+
+#: b2b/view/admin/settings.php:171
+msgid "Go to settings →"
+msgstr ""
+
+#: b2b/view/admin/toolbox/main.php:20
+msgid "Clear all caches"
+msgstr ""
+
+#: b2b/view/admin/toolbox/main.php:21
+msgid "Clear now"
+msgstr ""
+
+#: b2b/view/admin/toolbox/main.php:27
+msgid "Move all users to"
+msgstr ""
+
+#: b2b/view/admin/toolbox/main.php:37
+msgid "Move"
+msgstr ""
+
+#: b2b/view/admin/toolbox/main.php:37
+msgid "Are you sure to move all users to this group?"
+msgstr ""
+
+#: comments/controller/ajax.php:115
+msgid "Comment has been approved"
+msgstr ""
+
+#: comments/controller/ajax.php:121
+msgid "Comment has been unapproved"
+msgstr ""
+
+#: comments/controller/ajax.php:127 comments/controller/ajax.php:139
+#: comments/controller/ajax.php:145
+msgid "Comment has been restored"
+msgstr ""
+
+#: comments/controller/ajax.php:157
+msgid "Comment has been deleted forever"
+msgstr ""
+
+#: comments/controller/ajax.php:162
+msgid "Comment deleted"
+msgstr ""
+
+#: comments/controller/ajax.php:164
+msgid "Comment can not be deleted"
+msgstr ""
+
+#: comments/controller/settings.php:19 comments/view/0/list.php:20
+#: comments/view/1/list.php:20 eib2bpro.php:153 reactors/style/style.php:57
+msgid "Comments"
+msgstr ""
+
+#: comments/controller/settings.php:29 coupons/controller/settings.php:25
+#: customers/controller/settings.php:25 orders/controller/settings.php:25
+#: products/controller/settings.php:25
+msgid "App Mode"
+msgstr ""
+
+#: comments/controller/settings.php:32 coupons/controller/settings.php:28
+#: customers/controller/settings.php:28 products/controller/settings.php:28
+msgid "Standard"
+msgstr ""
+
+#: comments/controller/settings.php:37 customers/controller/settings.php:34
+msgid "Wordpress Native"
+msgstr ""
+
+#: comments/view/0/list.php:17 comments/view/1/list.php:17
+#, php-format
+msgid "You have %1$s average in %2$s reviews"
+msgstr ""
+
+#: comments/view/0/list.php:29 comments/view/1/list.php:29
+msgid "Search in comments..."
+msgstr ""
+
+#: comments/view/0/list.php:38 comments/view/1/list.php:38
+msgid "Restore comments"
+msgstr ""
+
+#: comments/view/0/list.php:38 comments/view/1/list.php:38
+#: orders/view/0/list-mini.php:61 orders/view/1/list.php:44
+#: orders/view/1/list.php:287 products/view/1/list.php:54
+#: products/view/1/list.php:212
+msgid "Delete forever"
+msgstr ""
+
+#: comments/view/0/list.php:40 comments/view/1/list.php:40
+msgid "Approve selected comments"
+msgstr ""
+
+#: comments/view/0/list.php:40 comments/view/1/list.php:40
+msgid "Unapprove selected comments"
+msgstr ""
+
+#: comments/view/0/list.php:40 comments/view/1/list.php:40
+msgid "Delete them"
+msgstr ""
+
+#: comments/view/0/list.php:42 comments/view/1/list.php:42 orders/view/1/list.php:51
+#: products/view/1/list.php:61
+msgid "Select All"
+msgstr ""
+
+#: comments/view/0/list.php:83 comments/view/1/list.php:83
+msgid "APPROVED"
+msgstr ""
+
+#: comments/view/0/list.php:83 comments/view/1/list.php:83
+msgid "UNAPPROVED"
+msgstr ""
+
+#: comments/view/0/list.php:89 comments/view/1/list.php:89
+#, php-format
+msgid ""
+"This is a reply to <a href=\"%1$s\" class=\"eib2bpro-panel\"></a> Comment #%2$s"
+msgstr ""
+
+#: comments/view/0/list.php:101 comments/view/1/list.php:101
+msgid "You replied it &mdash; See"
+msgstr ""
+
+#: comments/view/0/list.php:108 comments/view/1/list.php:108
+msgid "Replied by"
+msgstr ""
+
+#: comments/view/0/list.php:113 comments/view/1/list.php:113
+msgid "Edit this reply"
+msgstr ""
+
+#: comments/view/0/list.php:114 comments/view/1/list.php:114
+msgid "Delete this reply forever"
+msgstr ""
+
+#: comments/view/0/list.php:125 comments/view/0/list.php:151
+#: comments/view/1/list.php:125 comments/view/1/list.php:151
+msgid "Unapprove"
+msgstr ""
+
+#: comments/view/0/list.php:141 comments/view/1/list.php:141
+msgid "Restore"
+msgstr ""
+
+#: comments/view/0/list.php:142 comments/view/0/list.php:147
+#: comments/view/1/list.php:142 comments/view/1/list.php:147
+#: coupons/view/1/list.php:104
+msgid "Delete Forever"
+msgstr ""
+
+#: comments/view/0/list.php:146 comments/view/1/list.php:146
+msgid "Not Spam"
+msgstr ""
+
+#: comments/view/0/list.php:152 comments/view/0/list.php:160
+#: comments/view/0/reply.php:11 comments/view/1/list.php:152
+#: comments/view/1/list.php:160
+msgid "Reply"
+msgstr ""
+
+#: comments/view/0/list.php:154 comments/view/0/list.php:162
+#: comments/view/0/nav.php:27 comments/view/1/list.php:154
+#: comments/view/1/list.php:162 comments/view/1/nav.php:27
+msgid "Spam"
+msgstr ""
+
+#: comments/view/0/nav.php:17 comments/view/1/nav.php:17 products/view/1/list.php:266
+msgid "Pending"
+msgstr ""
+
+#: comments/view/0/nav.php:32 comments/view/1/nav.php:32
+#: products/controller/ajax.php:130 products/controller/ajax.php:139
+msgid "Deleted"
+msgstr ""
+
+#: comments/view/0/nav.php:40 comments/view/1/nav.php:40
+#: core/shared/index/footer.php:57 coupons/view/1/nav.php:23
+#: customers/view/1/nav-groups.php:29 customers/view/1/nav-roles.php:28
+#: orders/view/1/nav.php:30 products/view/1/nav.php:34
+msgid "Search"
+msgstr ""
+
+#: comments/view/0/reply.php:33
+msgid "Your Reply"
+msgstr ""
+
+#: core/controller/activate.php:15
+msgid "WooCommerce must be enabled before activate the B2B Pro"
+msgstr ""
+
+#: core/controller/activate.php:109
+msgid "Type a private to-do for yourself and press enter"
+msgstr ""
+
+#: core/controller/activate.php:118
+msgid "Write here your private note..."
+msgstr ""
+
+#: core/controller/ajax.php:60 core/controller/todo.php:34
+#: core/controller/todo.php:48
+msgid "Can not save"
+msgstr ""
+
+#: core/controller/notifications.php:79 core/controller/notifications.php:248
+#: core/controller/notifications.php:328
+msgid "New order"
+msgstr ""
+
+#: core/controller/notifications.php:103
+#, php-format
+msgid "%s has commented to %s"
+msgstr ""
+
+#: core/controller/notifications.php:120 core/controller/notifications.php:361
+msgid "The customer is waiting for your approval"
+msgstr ""
+
+#: core/controller/notifications.php:123
+msgid "The customer has been approved"
+msgstr ""
+
+#: core/controller/notifications.php:146 core/controller/notifications.php:377
+msgid "New B2B customer"
+msgstr ""
+
+#: core/controller/notifications.php:163
+msgid "A new quote request"
+msgstr ""
+
+#: core/controller/notifications.php:178 core/controller/notifications.php:412
+#, php-format
+msgid "%s - Out of stock"
+msgstr ""
+
+#: core/controller/notifications.php:181 core/controller/notifications.php:415
+#, php-format
+msgid "%s - Low stock"
+msgstr ""
+
+#: core/controller/notifications.php:182 core/controller/notifications.php:416
+msgid "Low stock"
+msgstr ""
+
+#: core/controller/notifications.php:217
+msgid "Back"
+msgstr ""
+
+#: core/controller/notifications.php:249 core/controller/notifications.php:345
+msgid "New comment"
+msgstr ""
+
+#: core/controller/notifications.php:250
+msgid "Stock alerts"
+msgstr ""
+
+#: core/controller/notifications.php:395
+msgid "You have a new quote request"
+msgstr ""
+
+#: core/controller/notifications.php:421
+#, php-format
+msgid "Low stock for %s - %d"
+msgstr ""
+
+#: core/controller/top.php:48 core/shared/index/footer.php:56
+msgid "Me"
+msgstr ""
+
+#: core/controller/top.php:49 core/shared/index/footer.php:68
+#: core/shared/index/notifications.php:7
+msgid "Notifications"
+msgstr ""
+
+#: core/controller/top.php:50
+msgid "Today revenue"
+msgstr ""
+
+#: core/controller/top.php:51
+msgid "Online visitors"
+msgstr ""
+
+#: core/controller/top.php:53 core/controller/top.php:54 core/controller/top.php:55
+#: core/controller/top.php:56
+msgid "Divider"
+msgstr ""
+
+#: core/controller/top.php:65
+msgid "Not found."
+msgstr ""
+
+#: core/shared/index/footer.php:60 core/shared/index/header.php:83
+#: core/themes/one/shared/index/header.php:84
+msgid "Logout"
+msgstr ""
+
+#: core/shared/index/footer.php:113
+msgid "Searching..."
+msgstr ""
+
+#: core/shared/index/footer.php:122
+msgid "Nothing found"
+msgstr ""
+
+#: core/shared/index/header.php:80 core/themes/console/shared/index/header.php:76
+#: core/themes/one/shared/index/header.php:76
+msgid "View Store"
+msgstr ""
+
+#: core/shared/index/header.php:97
+msgid "Search orders, customers, products..."
+msgstr ""
+
+#: core/shared/index/notifications.php:43
+msgid "View Order"
+msgstr ""
+
+#: core/shared/index/notifications.php:72
+msgid "View Comment"
+msgstr ""
+
+#: core/shared/index/notifications.php:148 core/shared/index/notifications.php:190
+msgid "View user"
+msgstr ""
+
+#: core/shared/index/notifications.php:289
+#, php-format
+msgid ""
+"Coupon <span class=\"badge badge-pill badge-black text-uppercase\">%s</span> usage "
+"limit (%s) has been reached"
+msgstr ""
+
+#: core/shared/index/notifications.php:295
+msgid "View Coupon"
+msgstr ""
+
+#: core/shared/index/notifications.php:331
+msgid "Edit Product"
+msgstr ""
+
+#: core/shared/index/notifications.php:384
+msgid "No notification"
+msgstr ""
+
+#: core/shared/index/pagination.php:41
+msgid "records"
+msgstr ""
+
+#: core/shared/me/main.php:18
+msgid "To-dos"
+msgstr ""
+
+#: core/shared/me/main.php:19
+msgid "Notes"
+msgstr ""
+
+#: core/shared/note/mini.php:28
+msgid "Are you sure to delete?"
+msgstr ""
+
+#: core/shared/note/mini.php:43
+msgid "Add a new note..."
+msgstr ""
+
+#: core/shared/todo/mini.php:17
+msgid "Add a todo"
+msgstr ""
+
+#: core/shared/todo/mini.php:34
+msgid "Show more"
+msgstr ""
+
+#: core/themes/console/shared/index/header.php:79
+#: core/themes/one/shared/index/header.php:80
+msgid "WP Admin"
+msgstr ""
+
+#: core/themes/console/shared/index/header.php:82
+msgid "Profile"
+msgstr ""
+
+#: core/themes/console/shared/index/header.php:84
+msgid "Log out"
+msgstr ""
+
+#: core/themes/one/shared/index/header.php:98
+msgid "Search in orders, customers, products..."
+msgstr ""
+
+#: coupons/controller/settings.php:15 coupons/view/1/list.php:10 eib2bpro.php:152
+#: reactors/style/style.php:61 reports/controller/settings.php:44
+#: reports/view/1/nav.php:15 reports/view/1/overview.php:73
+msgid "Coupons"
+msgstr ""
+
+#: coupons/controller/settings.php:33 orders/controller/settings.php:34
+#: products/controller/settings.php:33
+msgid "WooCommerce Native"
+msgstr ""
+
+#: coupons/view/1/list.php:10
+msgid "New coupon"
+msgstr ""
+
+#: coupons/view/1/list.php:16
+msgid "Search in coupons..."
+msgstr ""
+
+#: coupons/view/1/list.php:41
+#, php-format
+msgid "%s %s"
+msgstr ""
+
+#: coupons/view/1/list.php:70
+msgid "TIMES USED"
+msgstr ""
+
+#: coupons/view/1/list.php:73
+msgid "TOTAL DISCOUNT"
+msgstr ""
+
+#: coupons/view/1/list.php:76
+msgid "TOTAL SPENT"
+msgstr ""
+
+#: coupons/view/1/list.php:84
+msgid "This coupon has expired"
+msgstr ""
+
+#: coupons/view/1/list.php:99
+msgid "Stats"
+msgstr ""
+
+#: coupons/view/1/list.php:103
+msgid "Restore Coupon"
+msgstr ""
+
+#: coupons/view/1/nav.php:11
+msgid "Active"
+msgstr ""
+
+#: coupons/view/1/nav.php:14
+msgid "Inactive"
+msgstr ""
+
+#: coupons/view/1/nav.php:17 orders/view/1/nav.php:22 products/view/1/list.php:82
+#: products/view/1/list.php:268
+msgid "Trash"
+msgstr ""
+
+#: customers/controller/ajax.php:180
+msgid "Select a state"
+msgstr ""
+
+#: customers/controller/ajax.php:201
+msgid "Last Orders"
+msgstr ""
+
+#: customers/view/1/list.php:23
+msgid "Search in customers..."
+msgstr ""
+
+#: customers/view/1/list.php:63
+msgid "ORDERS"
+msgstr ""
+
+#: customers/view/1/list.php:82
+msgid "Edit customer"
+msgstr ""
+
+#: customers/view/1/list.php:83
+msgid "Send e-mail"
+msgstr ""
+
+#: dashboard/controller/ajax.php:30
+msgid "This widget is not allowed multiple instance"
+msgstr ""
+
+#: dashboard/controller/main.php:149
+msgid "Display info about sales, customers etc."
+msgstr ""
+
+#: dashboard/controller/main.php:150
+msgid "Online Users"
+msgstr ""
+
+#: dashboard/controller/main.php:150
+msgid "Count of online users on your store"
+msgstr ""
+
+#: dashboard/controller/main.php:151 dashboard/view/1/widgets/hourly.php:9
+#: reports/view/1/overview.php:65 reports/view/1/overview.php:169
+msgid "Visitors"
+msgstr ""
+
+#: dashboard/controller/main.php:151
+msgid "Hourly/Daily/Monthly visitors count"
+msgstr ""
+
+#: dashboard/controller/main.php:152 dashboard/view/1/widgets/productviews.php:7
+msgid "Product Views"
+msgstr ""
+
+#: dashboard/controller/main.php:152
+msgid "Which products viewed today?"
+msgstr ""
+
+#: dashboard/controller/main.php:153 dashboard/view/1/widgets/lastactivity.php:10
+msgid "Last Activities"
+msgstr ""
+
+#: dashboard/controller/main.php:153
+msgid "Live info about your visitors activities"
+msgstr ""
+
+#: dashboard/controller/main.php:154
+msgid "Funnel Graph"
+msgstr ""
+
+#: dashboard/controller/main.php:154
+msgid "Graph of conversions on your store"
+msgstr ""
+
+#: dashboard/controller/settings.php:15 eib2bpro.php:146
+msgid "Dashboard"
+msgstr ""
+
+#: dashboard/controller/settings.php:25
+msgid "Refresh time (seconds)"
+msgstr ""
+
+#: dashboard/controller/settings.php:27
+msgid ""
+"Enter the number of seconds to refresh the widgets and notifications. If you enter "
+"a value less than 10 seconds, auto-refresh will be disabled."
+msgstr ""
+
+#: dashboard/view/1/dashboard-charts.php:9 dashboard/view/1/dashboard.php:8
+msgid "Charts"
+msgstr ""
+
+#: dashboard/view/1/dashboard.php:56
+msgid "Add or remove widgets"
+msgstr ""
+
+#: dashboard/view/1/widget-list.php:9
+msgid "Widgets"
+msgstr ""
+
+#: dashboard/view/1/widget-list.php:18
+msgid "Currently added widgets"
+msgstr ""
+
+#: dashboard/view/1/widget-list.php:33
+msgid "Remove"
+msgstr ""
+
+#: dashboard/view/1/widget-list.php:44
+msgid "Available widgets"
+msgstr ""
+
+#: dashboard/view/1/widget-list.php:60
+msgid "Add to dashboard"
+msgstr ""
+
+#: dashboard/view/1/widgets/funnel.php:7 reports/view/1/overview.php:311
+#: reports/view/1/overview.php:454
+msgid "Home Page"
+msgstr ""
+
+#: dashboard/view/1/widgets/funnel.php:7 reports/view/1/overview.php:311
+#: reports/view/1/overview.php:454
+msgid "Product Page"
+msgstr ""
+
+#: dashboard/view/1/widgets/funnel.php:7 dashboard/view/1/widgets/lastactivity.php:63
+#: reports/view/1/overview.php:311 reports/view/1/overview.php:454
+#: rules/view/0/list.php:81
+msgid "Checkout"
+msgstr ""
+
+#: dashboard/view/1/widgets/hourly.php:16
+msgid "Hourly"
+msgstr ""
+
+#: dashboard/view/1/widgets/hourly.php:21 reports/controller/settings.php:73
+#: reports/view/1/overview.php:17
+msgid "Daily"
+msgstr ""
+
+#: dashboard/view/1/widgets/hourly.php:26 reports/controller/settings.php:93
+#: reports/view/1/overview.php:19
+msgid "Monthly"
+msgstr ""
+
+#: dashboard/view/1/widgets/lastactivity.php:16 dashboard/widgets/overview.php:41
+#: dashboard/widgets/overview.php:164
+msgid "Online"
+msgstr ""
+
+#: dashboard/view/1/widgets/lastactivity.php:30
+msgid "No visitors online"
+msgstr ""
+
+#: dashboard/view/1/widgets/lastactivity.php:58
+#, php-format
+msgid "%s (%s) has been added to cart"
+msgstr ""
+
+#: dashboard/view/1/widgets/lastactivity.php:61
+#, php-format
+msgid "%s (%s) has been removed from cart"
+msgstr ""
+
+#: dashboard/view/1/widgets/lastactivity.php:65
+msgid "Homepage"
+msgstr ""
+
+#: dashboard/view/1/widgets/lastactivity.php:67
+msgid "Search:"
+msgstr ""
+
+#: dashboard/view/1/widgets/online-users.php:7
+msgid "Online Visitors"
+msgstr ""
+
+#: dashboard/view/1/widgets/productviews.php:14
+msgid "No products viewed today"
+msgstr ""
+
+#: dashboard/view/1/widgets/productviews.php:25 rules/view/0/list.php:607
+msgid "Category"
+msgstr ""
+
+#: dashboard/widgets/funnel.php:75 dashboard/widgets/hourly.php:183
+#: dashboard/widgets/productviews.php:77
+msgid "Live"
+msgstr ""
+
+#: dashboard/widgets/lastactivity.php:301
+msgid "Dimensions"
+msgstr ""
+
+#: dashboard/widgets/overview.php:42 dashboard/widgets/overview.php:165
+msgid "Today - Visitors"
+msgstr ""
+
+#: dashboard/widgets/overview.php:43 dashboard/widgets/overview.php:166
+msgid "Today - Orders"
+msgstr ""
+
+#: dashboard/widgets/overview.php:44 dashboard/widgets/overview.php:167
+msgid "Orders in progress"
+msgstr ""
+
+#: dashboard/widgets/overview.php:45 dashboard/widgets/overview.php:168
+msgid "Today - Sales"
+msgstr ""
+
+#: dashboard/widgets/overview.php:46 dashboard/widgets/overview.php:169
+msgid "Week - Sales"
+msgstr ""
+
+#: dashboard/widgets/overview.php:47 dashboard/widgets/overview.php:170
+msgid "Month - Sales"
+msgstr ""
+
+#: dashboard/widgets/overview.php:162
+msgid "Show these metrics"
+msgstr ""
+
+#: eib2bpro.php:151 products/view/1/list.php:223 reports/controller/settings.php:15
+#: reports/view/1/overview.php:8 reports/view/1/woocommerce.php:9
+msgid "Reports"
+msgstr ""
+
+#: helpers/functions.php:363
+msgid "Today"
+msgstr ""
+
+#: helpers/functions.php:367
+msgid "Yesterday"
+msgstr ""
+
+#: helpers/functions.php:371
+msgid "This Week"
+msgstr ""
+
+#: helpers/functions.php:375
+msgid "Last Week"
+msgstr ""
+
+#: helpers/functions.php:379
+msgid "This Month"
+msgstr ""
+
+#: helpers/functions.php:386
+msgid "Year "
+msgstr ""
+
+#: orders/controller/ajax.php:90
+msgid "Order is not exists"
+msgstr ""
+
+#: orders/controller/ajax.php:101
+msgid "Order can not be restore"
+msgstr ""
+
+#: orders/controller/ajax.php:103
+msgid "Order has been restored"
+msgstr ""
+
+#: orders/controller/settings.php:48
+msgid "Order statuses"
+msgstr ""
+
+#: orders/controller/settings.php:51
+msgid ""
+"Select which statuses will be shown when an order is clicked. You can show/hide or "
+"sort them."
+msgstr ""
+
+#: orders/view/0/list-mini.php:17
+msgid "Search in orders..."
+msgstr ""
+
+#: orders/view/0/list-mini.php:38
+msgid "Status"
+msgstr ""
+
+#: orders/view/0/list-mini.php:60 orders/view/1/list.php:43
+msgid "Restore orders"
+msgstr ""
+
+#: orders/view/0/list-mini.php:63
+msgid "Change status to &mdash; Processing"
+msgstr ""
+
+#: orders/view/0/list-mini.php:64
+msgid "Change status to &mdash; On-Hold"
+msgstr ""
+
+#: orders/view/0/list-mini.php:65
+msgid "Change status to &mdash; Completed"
+msgstr ""
+
+#: orders/view/0/list-mini.php:66 orders/view/1/list.php:49
+msgid "Move to trash"
+msgstr ""
+
+#: orders/view/0/list-mini.php:106 orders/view/0/list-mini.php:129
+#: orders/view/1/list.php:286
+msgid "Restore order"
+msgstr ""
+
+#: orders/view/0/list-mini.php:108 orders/view/0/list-mini.php:133
+msgid "Delete order forever"
+msgstr ""
+
+#: orders/view/0/list-mini.php:115 orders/view/1/list.php:104
+#, php-format
+msgid "Note: %s"
+msgstr ""
+
+#: orders/view/1/list.php:18
+msgid "Search in orders.."
+msgstr ""
+
+#: orders/view/1/list.php:64
+msgid "Order No: "
+msgstr ""
+
+#: orders/view/1/list.php:91
+msgid "Order No"
+msgstr ""
+
+#: orders/view/1/list.php:229
+msgid "Billing Address"
+msgstr ""
+
+#: orders/view/1/list.php:238 orders/view/1/list.php:261
+msgid "Telephone"
+msgstr ""
+
+#: orders/view/1/list.php:249
+msgid "Shipping Address"
+msgstr ""
+
+#: orders/view/1/list.php:274
+msgid "Change to..."
+msgstr ""
+
+#: orders/view/1/list.php:291
+msgid "View order details"
+msgstr ""
+
+#: orders/view/1/list.php:294
+msgid "E-mail to customer"
+msgstr ""
+
+#: orders/view/1/nav.php:11
+msgid "All Orders"
+msgstr ""
+
+#: products/controller/ajax.php:48
+msgid "Security check"
+msgstr ""
+
+#: products/controller/ajax.php:132 products/controller/ajax.php:141
+#, php-format
+msgid "Product #%d can not be deleted"
+msgstr ""
+
+#: products/controller/ajax.php:148
+msgid "Restored"
+msgstr ""
+
+#: products/controller/ajax.php:150
+#, php-format
+msgid "Product #%d can not be restored"
+msgstr ""
+
+#: products/view/0/attributes.php:8 products/view/1/nav.php:15
+msgid "Attributes"
+msgstr ""
+
+#: products/view/0/attributes.php:8
+msgid "New attribute"
+msgstr ""
+
+#: products/view/0/attributes.php:35
+msgid "Configure"
+msgstr ""
+
+#: products/view/1/list.php:10
+msgid "New product"
+msgstr ""
+
+#: products/view/1/list.php:18 products/view/1/list.php:37
+msgid "Search in products..."
+msgstr ""
+
+#: products/view/1/list.php:24 products/view/1/list.php:27
+msgid "All Categories"
+msgstr ""
+
+#: products/view/1/list.php:53
+msgid "Restore products"
+msgstr ""
+
+#: products/view/1/list.php:56
+msgid "Set to &mdash; Out of stock"
+msgstr ""
+
+#: products/view/1/list.php:57
+msgid "Set to &mdash; In stock"
+msgstr ""
+
+#: products/view/1/list.php:78
+msgid "Critical Stock"
+msgstr ""
+
+#: products/view/1/list.php:84
+msgid "On sale"
+msgstr ""
+
+#: products/view/1/list.php:87
+msgid "Trashed Products"
+msgstr ""
+
+#: products/view/1/list.php:89
+msgid "Private Products"
+msgstr ""
+
+#: products/view/1/list.php:91
+msgid "Draft Products"
+msgstr ""
+
+#: products/view/1/list.php:93
+msgid "Pending Review"
+msgstr ""
+
+#: products/view/1/list.php:95
+msgid "All Products"
+msgstr ""
+
+#: products/view/1/list.php:181
+msgid "This is a variable product, so you can not edit it directly"
+msgstr ""
+
+#: products/view/1/list.php:195 reports/controller/settings.php:47
+#: reports/view/1/nav.php:18
+msgid "Stock"
+msgstr ""
+
+#: products/view/1/list.php:199 products/view/1/search.php:44
+msgid "Unlimited"
+msgstr ""
+
+#: products/view/1/list.php:210
+msgid "Restore product"
+msgstr ""
+
+#: products/view/1/list.php:216 products/view/1/search.php:61
+msgid "Edit product"
+msgstr ""
+
+#: products/view/1/list.php:218
+msgid "View product page"
+msgstr ""
+
+#: products/view/1/list.php:220
+msgid "Duplicate"
+msgstr ""
+
+#: products/view/1/list.php:251
+msgid "Critical Stocks"
+msgstr ""
+
+#: products/view/1/list.php:257
+msgid "On Sale"
+msgstr ""
+
+#: products/view/1/list.php:260
+msgid "Private"
+msgstr ""
+
+#: products/view/1/list.php:263
+msgid "Draft"
+msgstr ""
+
+#: products/view/1/nav.php:28 products/view/1/nav.php:49
+msgid "SKU"
+msgstr ""
+
+#: products/view/1/nav.php:45
+msgid "ORDER BY"
+msgstr ""
+
+#: reactors/login/view/settings.php:11 reactors/style/view/settings.php:11
+msgid "Deactivate now"
+msgstr ""
+
+#: reactors/login/view/settings.php:33
+msgid "Left"
+msgstr ""
+
+#: reactors/login/view/settings.php:36
+msgid "Left 2"
+msgstr ""
+
+#: reactors/login/view/settings.php:39
+msgid "Center"
+msgstr ""
+
+#: reactors/login/view/settings.php:42
+msgid "Right"
+msgstr ""
+
+#: reactors/login/view/settings.php:45
+msgid "Right 2"
+msgstr ""
+
+#: reactors/login/view/settings.php:55
+msgid "Logo"
+msgstr ""
+
+#: reactors/login/view/settings.php:82
+msgid "Background image"
+msgstr ""
+
+#: reactors/login/view/settings.php:112
+msgid "Box background"
+msgstr ""
+
+#: reactors/login/view/settings.php:122
+msgid "Text color"
+msgstr ""
+
+#: reactors/login/view/settings.php:133
+msgid "Button background"
+msgstr ""
+
+#: reactors/login/view/settings.php:143
+msgid "Button text color"
+msgstr ""
+
+#: reactors/reactors.php:44
+msgid "Login Page"
+msgstr ""
+
+#: reactors/reactors.php:45
+msgid "Customize WordPress Login page of your store"
+msgstr ""
+
+#: reactors/reactors.php:46
+msgid ""
+"This reactor adapts your WP Login page to the E+ style. (Important Note: If you "
+"are already using an other WP Login Page Customizer plugin, do not activate this "
+"reactor!)"
+msgstr ""
+
+#: reactors/reactors.php:49 reactors/reactors.php:61
+msgid "NEW"
+msgstr ""
+
+#: reactors/reactors.php:56
+msgid "Style"
+msgstr ""
+
+#: reactors/reactors.php:57
+msgid "Apply E+ styles to important WP / WC pages"
+msgstr ""
+
+#: reactors/reactors.php:58
+msgid ""
+"This reactor adapts some important WordPress and WooCommerce pages to the E+ "
+"style. (Important Note: You need to enable Settings > Full Mode to use this "
+"reactor)"
+msgstr ""
+
+#: reactors/style/style.php:53
+msgid "Posts"
+msgstr ""
+
+#: reactors/style/style.php:54
+msgid "Pages"
+msgstr ""
+
+#: reactors/style/style.php:55
+msgid "Media"
+msgstr ""
+
+#: reactors/style/style.php:56
+msgid "Edit Attachment"
+msgstr ""
+
+#: reactors/style/style.php:58
+msgid "Comment > Edit"
+msgstr ""
+
+#: reactors/style/style.php:60
+msgid "Orders > Edit"
+msgstr ""
+
+#: reactors/style/style.php:62
+msgid "Coupons > Edit"
+msgstr ""
+
+#: reactors/style/style.php:64
+msgid "Products > Edit"
+msgstr ""
+
+#: reactors/style/style.php:65 settings/controller/theme.php:21
+msgid "Themes"
+msgstr ""
+
+#: reactors/style/style.php:66
+msgid "Theme Editor"
+msgstr ""
+
+#: reactors/style/style.php:67
+msgid "Theme Install"
+msgstr ""
+
+#: reactors/style/style.php:68
+msgid "Appearance > Widgets"
+msgstr ""
+
+#: reactors/style/style.php:70
+msgid "Users > Add New"
+msgstr ""
+
+#: reactors/style/style.php:71
+msgid "Users > Profile"
+msgstr ""
+
+#: reactors/style/style.php:72
+msgid "Nav Menus"
+msgstr ""
+
+#: reactors/style/style.php:73
+msgid "Plugins"
+msgstr ""
+
+#: reactors/style/style.php:74
+msgid "Plugins > Add New"
+msgstr ""
+
+#: reactors/style/style.php:75
+msgid "Plugins > Editor"
+msgstr ""
+
+#: reactors/style/style.php:76
+msgid "WooCommerce > Settings"
+msgstr ""
+
+#: reactors/style/style.php:77
+msgid "WooCommerce > Reports"
+msgstr ""
+
+#: reactors/style/style.php:78
+msgid "WooCommerce > Status"
+msgstr ""
+
+#: reactors/style/style.php:79
+msgid "Options > General"
+msgstr ""
+
+#: reactors/style/style.php:80
+msgid "Options > Writing "
+msgstr ""
+
+#: reactors/style/style.php:81
+msgid "Options > Reading "
+msgstr ""
+
+#: reactors/style/style.php:82
+msgid "Options > Discussion "
+msgstr ""
+
+#: reactors/style/style.php:83
+msgid "Options > Media"
+msgstr ""
+
+#: reactors/style/style.php:84
+msgid "Options > Permalink"
+msgstr ""
+
+#: reactors/style/style.php:85
+msgid "Options > Privacy"
+msgstr ""
+
+#: reactors/style/style.php:86
+msgid "Tools"
+msgstr ""
+
+#: reactors/style/style.php:87
+msgid "Tools > Import"
+msgstr ""
+
+#: reactors/style/style.php:88
+msgid "Tools > Export"
+msgstr ""
+
+#: reactors/style/style.php:89
+msgid "Tools > Export Personal Data"
+msgstr ""
+
+#: reactors/style/style.php:90
+msgid "Tools > Erase Personal Data"
+msgstr ""
+
+#: reactors/style/style.php:91
+msgid "Tools > Action Scheduler"
+msgstr ""
+
+#: reactors/style/view/settings.php:29
+msgid "Screens"
+msgstr ""
+
+#: reactors/style/view/settings.php:44
+msgid "If you have compatibility problems, please turn off style for that page"
+msgstr ""
+
+#: reactors/style/view/settings.php:56
+msgid "Add shadows to tables"
+msgstr ""
+
+#: reactors/style/view/settings.php:63
+msgid "Remove table row background colors"
+msgstr ""
+
+#: reactors/style/view/settings.php:70
+msgid "Show item actions when click like E+ (EXPERIMENTAL)"
+msgstr ""
+
+#: reports/controller/main.php:60
+msgid "This Year's Sales"
+msgstr ""
+
+#: reports/controller/main.php:62
+msgid "Last Year's Sales"
+msgstr ""
+
+#: reports/controller/main.php:64 reports/controller/main.php:76
+#: reports/controller/main.php:95 reports/controller/main.php:109
+msgid "Average Sales"
+msgstr ""
+
+#: reports/controller/main.php:74
+msgid "This Month's Sales"
+msgstr ""
+
+#: reports/controller/main.php:75
+msgid "Last Month's Sales"
+msgstr ""
+
+#: reports/controller/main.php:93
+msgid "This Week's Sales"
+msgstr ""
+
+#: reports/controller/main.php:94
+msgid "Last Week's Sales"
+msgstr ""
+
+#: reports/controller/main.php:105
+msgid "Today's Sales"
+msgstr ""
+
+#: reports/controller/main.php:107
+msgid "Yesterday's Sales"
+msgstr ""
+
+#: reports/controller/main.php:223
+msgid "API ERROR:"
+msgstr ""
+
+#: reports/controller/settings.php:25 reports/view/1/overview.php:77
+msgid "Goals"
+msgstr ""
+
+#: reports/controller/settings.php:37
+msgid "Home page of Reports"
+msgstr ""
+
+#: reports/controller/settings.php:40 reports/view/1/nav.php:11
+msgid "Revenue"
+msgstr ""
+
+#: reports/controller/settings.php:45 reports/view/1/nav.php:16
+#: reports/view/1/overview.php:71
+msgid "Taxes"
+msgstr ""
+
+#: reports/controller/settings.php:46 reports/view/1/nav.php:17
+msgid "Downloads"
+msgstr ""
+
+#: reports/controller/settings.php:84 reports/view/1/overview.php:18
+msgid "Weekly"
+msgstr ""
+
+#: reports/view/1/overview.php:69
+msgid "Net Sal."
+msgstr ""
+
+#: reports/view/1/overview.php:70
+msgid "Shipping"
+msgstr ""
+
+#: reports/view/1/overview.php:72
+msgid "Refunds"
+msgstr ""
+
+#: reports/view/1/overview.php:135
+msgid "Conversions"
+msgstr ""
+
+#: rules/controller/site.php:562
+#, php-format
+msgid ""
+"The quantity of products in your cart must be at least %d. There are currently %d "
+"products."
+msgstr ""
+
+#: rules/controller/site.php:571
+#, php-format
+msgid ""
+"The quantity of products in your cart must be at most %d. There are currently %d "
+"products."
+msgstr ""
+
+#: rules/controller/site.php:582
+#, php-format
+msgid "The total value of your cart must be at least %s"
+msgstr ""
+
+#: rules/controller/site.php:590
+#, php-format
+msgid "The total value of your cart should not exceed %s"
+msgstr ""
+
+#: rules/controller/site.php:638
+#, php-format
+msgid "The quantity of products (%s) in your cart is %d and must be at least %d"
+msgstr ""
+
+#: rules/controller/site.php:648
+#, php-format
+msgid "The quantity of products (%s) in your cart is %d and must not be more than %d"
+msgstr ""
+
+#: rules/controller/site.php:660
+#, php-format
+msgid "The value of the items (%s) in your cart is %s and must be at least %s"
+msgstr ""
+
+#: rules/controller/site.php:670
+#, php-format
+msgid "The value of the items (%s) in your cart is %s and must not be more than %s"
+msgstr ""
+
+#: rules/controller/site.php:731
+#, php-format
+msgid ""
+"The total quantity of products in the %s categories in your cart is %s and must be "
+"at least %s"
+msgstr ""
+
+#: rules/controller/site.php:741
+#, php-format
+msgid ""
+"The total quantity of products in the %s categories in your cart is %s and should "
+"not be more than %s"
+msgstr ""
+
+#: rules/controller/site.php:753
+#, php-format
+msgid ""
+"The products in the %s categories in your cart have a value of %s and must be at "
+"least %s "
+msgstr ""
+
+#: rules/controller/site.php:763
+#, php-format
+msgid ""
+"The total value of the products in the %s categories in your cart is %s and must "
+"not be more than %s"
+msgstr ""
+
+#: rules/controller/site.php:877
+#, php-format
+msgid "The quantity of products must be %d and its multiples."
+msgstr ""
+
+#: rules/controller/site.php:901 rules/controller/site.php:928
+#, php-format
+msgid "The quantity of products (%s) must be %s and its multiples."
+msgstr ""
+
+#: rules/controller/site.php:1063
+msgid "Payment method"
+msgstr ""
+
+#: rules/controller/site.php:1073
+#, php-format
+msgid "%s discount"
+msgstr ""
+
+#: rules/controller/site.php:1075
+#, php-format
+msgid "%s fee"
+msgstr ""
+
+#: rules/controller/site.php:1331
+msgid "ex. VAT"
+msgstr ""
+
+#: rules/controller/site.php:1441
+msgid "Rules applied"
+msgstr ""
+
+#: rules/view/0/list.php:6 rules/view/0/list.php:69
+msgid "Adjust Price"
+msgstr ""
+
+#: rules/view/0/list.php:7 rules/view/0/list.php:70
+msgid "Hide Price"
+msgstr ""
+
+#: rules/view/0/list.php:8 rules/view/0/list.php:71
+msgid "Add Quote Button"
+msgstr ""
+
+#: rules/view/0/list.php:10
+msgid "Minimum Order"
+msgstr ""
+
+#: rules/view/0/list.php:11
+msgid "Maximum Order"
+msgstr ""
+
+#: rules/view/0/list.php:12
+msgid "Cart Discount"
+msgstr ""
+
+#: rules/view/0/list.php:13
+msgid "Free Shipping"
+msgstr ""
+
+#: rules/view/0/list.php:14 rules/view/0/list.php:82
+msgid "Payment Method - Discount"
+msgstr ""
+
+#: rules/view/0/list.php:15 rules/view/0/list.php:83
+msgid "Payment Method - Min & Max"
+msgstr ""
+
+#: rules/view/0/list.php:16
+msgid "Extra Fee"
+msgstr ""
+
+#: rules/view/0/list.php:17 rules/view/0/list.php:84
+msgid "Tax Exemption (Customer)"
+msgstr ""
+
+#: rules/view/0/list.php:18 rules/view/0/list.php:85
+msgid "Tax Exemption (Product)"
+msgstr ""
+
+#: rules/view/0/list.php:19 rules/view/0/list.php:88
+msgid "Change Product Page Price Format (Experimental)"
+msgstr ""
+
+#: rules/view/0/list.php:44
+msgid "Rule #"
+msgstr ""
+
+#: rules/view/0/list.php:75
+msgid "Minimum order"
+msgstr ""
+
+#: rules/view/0/list.php:76
+msgid "Maximum order"
+msgstr ""
+
+#: rules/view/0/list.php:77
+msgid "Free shipping"
+msgstr ""
+
+#: rules/view/0/list.php:78
+msgid "Cart discount"
+msgstr ""
+
+#: rules/view/0/list.php:79
+msgid "Extra fee"
+msgstr ""
+
+#: rules/view/0/list.php:108 rules/view/0/list.php:153 rules/view/0/list.php:200
+#: rules/view/0/list.php:247 rules/view/0/list.php:272
+msgid "Amount"
+msgstr ""
+
+#: rules/view/0/list.php:112
+msgid "Fixed Discount"
+msgstr ""
+
+#: rules/view/0/list.php:113
+msgid "Percentage Discount"
+msgstr ""
+
+#: rules/view/0/list.php:114
+msgid "Fixed Price"
+msgstr ""
+
+#: rules/view/0/list.php:134
+msgid "Min (Optional)"
+msgstr ""
+
+#: rules/view/0/list.php:140
+msgid "Max (Optional)"
+msgstr ""
+
+#: rules/view/0/list.php:158
+msgid "Value"
+msgstr ""
+
+#: rules/view/0/list.php:177 rules/view/0/list.php:225
+msgid "IN"
+msgstr ""
+
+#: rules/view/0/list.php:178 rules/view/0/list.php:226
+msgid "NOT IN"
+msgstr ""
+
+#: rules/view/0/list.php:204
+msgid "Decrease by fixed price"
+msgstr ""
+
+#: rules/view/0/list.php:205
+msgid "Decrease by percentage"
+msgstr ""
+
+#: rules/view/0/list.php:206
+msgid "Increase by fixed price"
+msgstr ""
+
+#: rules/view/0/list.php:207
+msgid "Increase by percentage"
+msgstr ""
+
+#: rules/view/0/list.php:251
+msgid "Minimum"
+msgstr ""
+
+#: rules/view/0/list.php:258
+msgid "Maximum"
+msgstr ""
+
+#: rules/view/0/list.php:276
+msgid "Fixed Amount"
+msgstr ""
+
+#: rules/view/0/list.php:277
+msgid "Percentage Amount"
+msgstr ""
+
+#: rules/view/0/list.php:302
+msgid "Price Format (HTML)"
+msgstr ""
+
+#: rules/view/0/list.php:343
+msgid "Require VIES Validation"
+msgstr ""
+
+#: rules/view/0/list.php:357
+msgid "Everyone"
+msgstr ""
+
+#: rules/view/0/list.php:359
+msgid "All B2C users"
+msgstr ""
+
+#: rules/view/0/list.php:360
+msgid "All B2B users"
+msgstr ""
+
+#: rules/view/0/list.php:361
+msgid "User group"
+msgstr ""
+
+#: rules/view/0/list.php:366 rules/view/0/list.php:611
+msgid "in"
+msgstr ""
+
+#: rules/view/0/list.php:367 rules/view/0/list.php:613
+msgid "not in"
+msgstr ""
+
+#: rules/view/0/list.php:426
+msgid "Add product"
+msgstr ""
+
+#: rules/view/0/list.php:437
+msgid "Conditions"
+msgstr ""
+
+#: rules/view/0/list.php:456
+msgid "Add condition"
+msgstr ""
+
+#: rules/view/0/list.php:465
+msgid "\"Add to cart\" button"
+msgstr ""
+
+#: rules/view/0/list.php:468
+msgid "Show"
+msgstr ""
+
+#: rules/view/0/list.php:469
+msgid "Hide"
+msgstr ""
+
+#: rules/view/0/list.php:470
+msgid "Replace with \"Request a quote\" button (Popup)"
+msgstr ""
+
+#: rules/view/0/list.php:471
+msgid "Replace with \"Request a quote\" button (Cart)"
+msgstr ""
+
+#: rules/view/0/list.php:483
+msgid "Additionals"
+msgstr ""
+
+#: rules/view/0/list.php:485
+msgid "Track stats for this rule"
+msgstr ""
+
+#: rules/view/0/list.php:521
+msgid "Cart - Total Value"
+msgstr ""
+
+#: rules/view/0/list.php:522
+msgid "Cart - Total Qty"
+msgstr ""
+
+#: rules/view/0/list.php:524
+msgid "Date - Time"
+msgstr ""
+
+#: rules/view/0/list.php:526
+msgid "Time"
+msgstr ""
+
+#: rules/view/0/list.php:527
+msgid "Date & Time"
+msgstr ""
+
+#: rules/view/0/list.php:532
+msgid "at least one of"
+msgstr ""
+
+#: rules/view/0/list.php:533
+msgid "all selected"
+msgstr ""
+
+#: rules/view/0/list.php:534
+msgid "only selected"
+msgstr ""
+
+#: rules/view/0/list.php:535
+msgid "none of selected"
+msgstr ""
+
+#: rules/view/0/list.php:539 rules/view/0/list.php:547
+msgid "equals"
+msgstr ""
+
+#: rules/view/0/list.php:540
+msgid "more than"
+msgstr ""
+
+#: rules/view/0/list.php:541
+msgid "less than"
+msgstr ""
+
+#: rules/view/0/list.php:545
+msgid "from"
+msgstr ""
+
+#: rules/view/0/list.php:546
+msgid "to"
+msgstr ""
+
+#: settings/controller/general.php:16
+msgid "Settings about the panel"
+msgstr ""
+
+#: settings/controller/general.php:22
+msgid "Tracker"
+msgstr ""
+
+#: settings/controller/general.php:31
+msgid "Sometimes we need your logo to use in the E+"
+msgstr ""
+
+#: settings/controller/general.php:40
+msgid "Full Mode"
+msgstr ""
+
+#: settings/controller/general.php:43
+msgid "If you do not enable full mode, users can use both E+ and classic WP Admin"
+msgstr ""
+
+#: settings/controller/general.php:52
+msgid "Auto start"
+msgstr ""
+
+#: settings/controller/general.php:54
+msgid "Starts E+ automatically when full mode is disabled"
+msgstr ""
+
+#: settings/controller/general.php:64
+msgid "Keep data on uninstall"
+msgstr ""
+
+#: settings/controller/general.php:66
+msgid ""
+"Don't delete data while uninstalling so you don't lose anything when you reinstall "
+"E+ (Recommended)"
+msgstr ""
+
+#: settings/controller/general.php:79
+msgid "Enable tracker"
+msgstr ""
+
+#: settings/controller/general.php:82
+msgid "Enable"
+msgstr ""
+
+#: settings/controller/general.php:88
+msgid "Disable"
+msgstr ""
+
+#: settings/controller/general.php:102
+msgid "How many days will we keep the request data?"
+msgstr ""
+
+#: settings/controller/general.php:103
+msgid "1 day"
+msgstr ""
+
+#: settings/controller/general.php:103
+msgid "7 days"
+msgstr ""
+
+#: settings/controller/general.php:103
+msgid "30 days"
+msgstr ""
+
+#: settings/controller/general.php:103
+msgid "3 months"
+msgstr ""
+
+#: settings/controller/general.php:103
+msgid "6 months"
+msgstr ""
+
+#: settings/controller/general.php:103
+msgid "1 year"
+msgstr ""
+
+#: settings/controller/general.php:103
+msgid "2 years"
+msgstr ""
+
+#: settings/controller/general.php:114
+msgid "Enable Geolocation"
+msgstr ""
+
+#: settings/controller/general.php:117
+msgid ""
+"Try to guess the visitor's country. If you want to improve performance, you may "
+"consider turning it off."
+msgstr ""
+
+#: settings/controller/general.php:157 settings/controller/general.php:160
+msgid "Set your logo"
+msgstr ""
+
+#: settings/controller/main.php:61
+msgid "Can not connect to activation server, please try again later"
+msgstr ""
+
+#: settings/controller/main.php:68
+msgid ""
+"Can not retrive a valid response from activation server, please try again later"
+msgstr ""
+
+#: settings/controller/menu.php:14 settings/controller/theme.php:65
+#: settings/settings.php:77 settings/view/0/menu/new.php:5
+#: settings/view/0/theme/color.php:20
+msgid "Menu"
+msgstr ""
+
+#: settings/controller/menu.php:15
+msgid "Change menu items"
+msgstr ""
+
+#: settings/controller/menu.php:19
+msgid "New"
+msgstr ""
+
+#: settings/controller/reactors.php:15 settings/settings.php:82
+msgid "Reactors"
+msgstr ""
+
+#: settings/controller/reactors.php:16
+msgid "Add additional features to your panel"
+msgstr ""
+
+#: settings/controller/theme.php:15
+msgid "Theme & Colors"
+msgstr ""
+
+#: settings/controller/theme.php:16
+msgid "Change colors, fonts, etc."
+msgstr ""
+
+#: settings/controller/theme.php:32
+msgid "Font"
+msgstr ""
+
+#: settings/controller/theme.php:35
+msgid "Top"
+msgstr ""
+
+#: settings/controller/theme.php:38
+msgid "Tweaks"
+msgstr ""
+
+#: settings/controller/theme.php:44
+msgid "Right Panel"
+msgstr ""
+
+#: settings/controller/theme.php:54
+msgid "Width"
+msgstr ""
+
+#: settings/controller/theme.php:56
+msgid "Please enter the right panel width in px or %"
+msgstr ""
+
+#: settings/controller/theme.php:76
+msgid "Icon style"
+msgstr ""
+
+#: settings/controller/theme.php:78
+msgid "Filled"
+msgstr ""
+
+#: settings/controller/theme.php:79
+msgid "Outlined"
+msgstr ""
+
+#: settings/controller/theme.php:90
+msgid "Icon size"
+msgstr ""
+
+#: settings/controller/theme.php:102
+msgid "Menu padding"
+msgstr ""
+
+#: settings/controller/theme.php:115
+msgid "Title under icons"
+msgstr ""
+
+#: settings/controller/theme.php:127
+msgid "Table Rows"
+msgstr ""
+
+#: settings/controller/theme.php:137
+msgid "Margin"
+msgstr ""
+
+#: settings/controller/theme.php:149
+msgid "Radius"
+msgstr ""
+
+#: settings/controller/theme.php:161
+msgid "Padding"
+msgstr ""
+
+#: settings/controller/theme.php:186
+msgid "Instant Search: Start instant search on keypress"
+msgstr ""
+
+#: settings/controller/theme.php:190
+msgid "Quick Links: Go to the edit screen when clicking a title in a table row"
+msgstr ""
+
+#: settings/controller/theme.php:202
+msgid "CSS"
+msgstr ""
+
+#: settings/controller/theme.php:1369
+msgid ""
+"You can add your own custom CSS codes here. These codes will only be valid on the "
+"panel."
+msgstr ""
+
+#: settings/controller/theme.php:1370
+msgid "Note: Please do not add <style></style> tags"
+msgstr ""
+
+#: settings/settings.php:59
+msgid "Apps"
+msgstr ""
+
+#: settings/settings.php:72
+msgid "Theme"
+msgstr ""
+
+#: settings/settings.php:97
+msgid "Support"
+msgstr ""
+
+#: settings/view/0/menu/list.php:80
+msgid "DIVIDER"
+msgstr ""
+
+#: settings/view/0/menu/list.php:91 settings/view/0/menu/new.php:38
+msgid "Change icon"
+msgstr ""
+
+#: settings/view/0/menu/list.php:121
+msgid "Reset menu"
+msgstr ""
+
+#: settings/view/0/menu/new.php:17
+msgid "Open"
+msgstr ""
+
+#: settings/view/0/menu/new.php:19
+msgid "In the admin panel"
+msgstr ""
+
+#: settings/view/0/menu/new.php:20
+msgid "In the new browser tab"
+msgstr ""
+
+#: settings/view/0/menu/new.php:21
+msgid "As a divider"
+msgstr ""
+
+#: settings/view/0/menu/new.php:27
+msgid "Role"
+msgstr ""
+
+#: settings/view/0/menu/new.php:37
+msgid "Icon"
+msgstr ""
+
+#: settings/view/0/menu/new.php:44
+msgid "URL"
+msgstr ""
+
+#: settings/view/0/need.php:18
+msgid "Activation"
+msgstr ""
+
+#: settings/view/0/need.php:20
+msgid ""
+"We will send your Site URL and Purchase Code to Energy Activation Servers to "
+"complete process."
+msgstr ""
+
+#: settings/view/0/need.php:26
+msgid "Your site adress"
+msgstr ""
+
+#: settings/view/0/need.php:37
+msgid "Purchase Code"
+msgstr ""
+
+#: settings/view/0/need.php:44
+msgid "How to find my purchase code?"
+msgstr ""
+
+#: settings/view/0/need.php:69 settings/view/0/reactors/detail.php:18
+#: settings/view/0/reactors/list.php:29 settings/view/0/reactors/list.php:37
+msgid "Activate"
+msgstr ""
+
+#: settings/view/0/theme/color.php:21
+msgid "Icons"
+msgstr ""
+
+#: settings/view/0/theme/color.php:22
+msgid "Menu Hover"
+msgstr ""
+
+#: settings/view/0/theme/color.php:23
+msgid "Buttons"
+msgstr ""
+
+#: settings/view/0/theme/color.php:35
+msgid "Save custom colors"
+msgstr ""
+
+#: uninstall.php:48
+msgid "B2B Pro Reg. Types"
+msgstr ""

@@ -1,0 +1,463 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Min Max Quantity & Step Control for WooCommerce (PRO)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-03 06:34+0000\n"
+"PO-Revision-Date: 2023-01-05 04:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Bengali (Bangladesh)\n"
+"Language: bn_BD\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.3; wp-6.1.1\n"
+"X-Domain: wcmmq_pro"
+
+#: admin/license/template/license-view.php:33
+msgid " License Key"
+msgstr "লাইসেন্স নাম্বার"
+
+#: admin/license/init.php:97
+msgid " license to get automatic updates."
+msgstr "অটোমেটিক আপডেট পেতে লাইসেন্স আপডেট করুন।"
+
+#: wcmmq.php:276
+#, php-format
+msgid ""
+"\"%1$s\" requires \"%2$s\" to be upgraded to the latest version or greater "
+"than 2.0"
+msgstr ""
+"\"%1$s\" প্লাগিনের জন্য \"%2$s\" প্লাগিনটির লেটেস্ট ভার্শন বা ২.০ ভার্শনের "
+"চেয়ে বেশি অত্যাবশ্যক।"
+
+#: modules/module/cart-page-condition.php:26
+#: modules/module/cart-page-condition.php:37
+#: modules/module/cart-page-condition.php:41
+msgid "(Optional)"
+msgstr "(ঐচ্ছিক)"
+
+#: admin/license/template/license-view.php:39
+msgid "Activate"
+msgstr "চালু করুন"
+
+#: admin/license/init.php:95
+msgid "Activate License"
+msgstr "লাইসেন্স একটিভ করুন"
+
+#: admin/license/license.php:51 admin/license/license.php:104
+msgid "An error occurred, please try again."
+msgstr "কোনো এরর হয়েছে, আবার চেষ্টা করুন"
+
+#: admin/functions.php:127
+msgid "Available shortcode: [cart_max_quantity]"
+msgstr "ব্যবহারযোগ্য শর্টকোডঃ [cart_max_quantity]"
+
+#: admin/functions.php:113
+msgid "Available shortcode: [cart_min_price]"
+msgstr "ব্যবহারযোগ্য শর্টকোডঃ [cart_min_price]"
+
+#: admin/functions.php:118 admin/functions.php:122
+msgid "Available shortcode: [cart_min_quantity]"
+msgstr "ব্যবহারযোগ্য শর্টকোডঃ [cart_min_quantity]"
+
+#: admin/functions.php:139
+msgid "Available shortcode: [vari_count_total], [product_name]"
+msgstr "ব্যবহারযোগ্য শর্টকোডঃ [vari_count_total], [product_name]"
+
+#: admin/functions.php:131
+msgid "Available shortcode: [vari_total_max_qty], [product_name]"
+msgstr "ব্যবহারযোগ্য শর্টকোডঃ [vari_total_max_qty], [product_name]"
+
+#: admin/functions.php:135
+msgid "Available shortcode: [vari_total_min_qty], [product_name]"
+msgstr "ব্যবহারযোগ্য শর্টকোডঃ [vari_total_min_qty], [product_name]"
+
+#: admin/functions.php:117
+msgid "Cart Maximum Price Validation Message"
+msgstr "কার্টের সর্বোচ্চ মুল্যের ভ্যালিডেশান মেসেজ"
+
+#: admin/functions.php:126
+msgid "Cart Maximum Quantity Validation Message"
+msgstr "কার্টের সর্বোচ্চ পরিমানের ভ্যালিডেশান মেসেজ"
+
+#: admin/functions.php:112
+msgid "Cart Minimum Price Validation Message"
+msgstr "কার্টের সর্বোনিম্ন মুল্যের ভ্যালিডেশান মেসেজ"
+
+#: admin/functions.php:121
+msgid "Cart Minimum Quantity Validation Message"
+msgstr "কার্টের সর্বোনিম্ন পরিমানের ভ্যালিডেশান মেসেজ"
+
+#: modules/controller.php:12
+msgid "Cart Page Condition"
+msgstr "কার্ট পেজের জন্য কন্ডিশান"
+
+#: modules/module/cart-page-condition.php:20
+msgid "Cart Page Conditions"
+msgstr "কার্টপেজের কন্ডিশান"
+
+#: admin/includes/terms_condition.php:6
+msgid "Choose a"
+msgstr "বাছাই করুন"
+
+#: admin/set_menu_and_fac.php:42
+msgid "Choose Category"
+msgstr "ক্যাটাগরি বাছাই করুন"
+
+#: admin/set_menu_and_fac.php:131
+msgid "Click Here to change."
+msgstr "পরিবর্তন করতে এখানে ক্লিক করুন"
+
+#. Author of the plugin
+msgid "CodeAstrology"
+msgstr "CodeAstrology"
+
+#: admin/license/template/license-view.php:57
+#, php-format
+msgid "Congratulations! Your product is activated for %s."
+msgstr "স্বাগতম, %s এর জন্য আপনার লাইসেন্স একটিভ হয়েছে।"
+
+#: modules/controller.php:28
+msgid "Control enable/disable for Variable product variation."
+msgstr "ভেরিয়েবল প্রোডাক্টের ভেরিয়েশান কন্ট্রল চালু/বন্ধ"
+
+#: admin/functions.php:77
+msgid "Customized Dropdown"
+msgstr "কাস্টমাইজড ড্রপডাউন"
+
+#: admin/includes/terms_condition.php:84
+#: modules/module/variation-options.php:27
+msgid "Default Quantity"
+msgstr "স্বাভাবিক পরিমান"
+
+#: admin/includes/terms_condition.php:49
+msgid "Delete"
+msgstr "মুছুন"
+
+#: modules/module/variation-options.php:44
+msgid "Enter Maximum Quantity for this Variation"
+msgstr "ভেরিয়েশানের জন্য সর্বচ্চ পরিমান বলে দিন"
+
+#: modules/module/variation-options.php:19
+msgid "Enter Minimum Quantity for this Variation"
+msgstr "ভেরিয়েশানের জন্য সর্বনিম্ন পরিমান বলে দিন"
+
+#: modules/module/variation-options.php:56
+msgid "Enter quantity for this Variation"
+msgstr "ভেরিয়েশানের জন্য পরিমান বলে দিন"
+
+#: modules/module/variation-qty-count.php:105
+msgid ""
+"Enter the maximum limitation number, if you a limitation of variation "
+"quantity total."
+msgstr "যদি ভেরিয়েশানের পরিমান টোটালে লিমিটেশান থাকে, সেটা দিন"
+
+#: modules/module/variation-qty-count.php:85
+msgid ""
+"Enter the maximum quantity number. Customer can buy maximum this amount of "
+"products."
+msgstr "সর্বোচ্চ নাম্বার দিন, যার থেকে বেশি প্রোডাক্ট কাস্টমার কিনতে পারবে না।"
+
+#: modules/module/variation-qty-count.php:95
+msgid ""
+"Enter the minimum quantity number. Customer has to buy this amount of "
+"products."
+msgstr "সর্বোনিম্ন নাম্বার দিন, যার থেকে কম প্রোডাক্ট কাস্টমার কিনতে পারবে না।"
+
+#: admin/license/template/license-view.php:31
+msgid "Enter your license key here, to get auto updates."
+msgstr "অটোমেটিক আপডেট পেতে আপনার লাইসেন্স নাম্বার লিখুন।"
+
+#: modules/controller.php:13
+msgid ""
+"Extra control on cart page. Such: total price amout, total product count "
+"amount etc."
+msgstr "কার্ট পেজের জন্য অতিরিক্ত কন্ট্রল, যেমনঃ মোট মুল্য, মোট পন্যের পরিমান"
+
+#. Author URI of the plugin
+msgid "https://codeastrology.com"
+msgstr "https://codeastrology.com"
+
+#. URI of the plugin
+msgid "https://min-max-quantity.codeastrology.com/"
+msgstr "https://min-max-quantity.codeastrology.com/"
+
+#: admin/set_menu_and_fac.php:62
+msgid ""
+"If you choose any category here then, this global setting will only be "
+"applied to the chosen categories. ( For Multiple selections, Press Ctrl + "
+"your Category. )"
+msgstr ""
+"এখানে যে ক্যাটেগরিগুলো সিলেক্ট করা হবে, শুধু সেই ক্যাটেগরিগুলোতেই সেটিংগুলো "
+"এপ্লাই হবে। ( একের অধিক সিলেক্ট করার জন্য কন্টোল (Ctrl ) কি চেপে ধরে ক্লিক "
+"করুন ) "
+
+#: modules/module/cart-page-condition.php:47
+#: modules/module/cart-page-condition.php:54
+msgid "Input product Ids"
+msgstr "পন্যের আইডি"
+
+#: modules/module/cart-page-condition.php:55
+msgid ""
+"Insert Products IDs. Use a comma as a separator. (Example: 45,84,5).  Cart "
+"conditions will apply only those products"
+msgstr ""
+"এখানে প্রডাক্টের আইডিগুলো লিখুন। কমা দিয়ে আলদা করুন। ( যেমন 45,84,5 ) কার্ট "
+"কন্ডিশন গুলো শুধু সিলেক্ট করা প্রডাক্টেই এপ্লাই হবে। "
+
+#: modules/module/cart-page-condition.php:48
+msgid ""
+"Insert Products IDs. Use a comma as a separator. (Example: 45,84,5).  Cart "
+"conditions will not apply to those products"
+msgstr ""
+"এখানে প্রডাক্টের আইডিগুলো লিখুন। কমা দিয়ে আলদা করুন। ( যেমন 45,84,5 ) কার্ট "
+"কন্ডিশন গুলো শুধু সিলেক্ট করা প্রডাক্টেই এপ্লা।"
+
+#: admin/license/license.php:86
+msgid "Invalid license."
+msgstr "ভুল লাইসেন্স নাম্বার"
+
+#: modules/module/variation-options.php:31
+msgid ""
+"It is an optional Number, If do not set, Product default quantity will come "
+"from Minimum Quantity"
+msgstr ""
+"না দিলেই ও হবে। যদি কোয়ান্টিটি সেট না করেন তাহলে  মিনিমাম কোয়ান্টিটির "
+"ভ্যালুটাই এখানে সেট হয়ে যাবে।  "
+
+#: admin/functions.php:43
+msgid ""
+"Mainly for dropdown quantity box. It will show as first item of dropdown."
+msgstr "মুলত কোয়ান্টিটি  ড্রপডাউন বক্সের জন্য করা। "
+
+#: modules/controller.php:20
+msgid ""
+"Mainly for Variation Product and control count of variation and total of "
+"variation cart items."
+msgstr "মুলত ভেরিয়েবল পন্যের জন্য - ভেরিয়েশানের সংখ্যা নিয়ন্ত্রন করার জন্য।"
+
+#: modules/module/cart-page-condition.php:29
+#: modules/module/cart-page-condition.php:40
+msgid "Max"
+msgstr "সর্বোচ্চ"
+
+#: modules/module/variation-options.php:40
+msgid "Max Quantity"
+msgstr "সর্বোচ্চ পরিমান"
+
+#: modules/module/cart-page-condition.php:30
+msgid "Maximum Price"
+msgstr "সর্বোচ্চ মুল্য"
+
+#: admin/includes/terms_condition.php:64
+#: modules/module/cart-page-condition.php:41
+msgid "Maximum Quantity"
+msgstr "সর্বোচ্চ পরিমান"
+
+#: modules/module/cart-page-condition.php:25
+#: modules/module/cart-page-condition.php:36
+msgid "Min"
+msgstr "সর্বনিম্ন"
+
+#: modules/controller.php:27
+msgid "Min Max Control for Variation"
+msgstr "ভেরিয়েশানের জন্য Min Max Control"
+
+#: admin/license/init.php:25
+msgid "Min Max License"
+msgstr "Min Max License"
+
+#: wcmmq.php:278 admin/license/init.php:12
+msgid "Min Max Quantity & Step Control for WooCommerce"
+msgstr "Min Max Quantity & Step Control for WooCommerce"
+
+#. Name of the plugin
+#: wcmmq.php:277
+msgid "Min Max Quantity & Step Control for WooCommerce (PRO)"
+msgstr "Min Max Quantity & Step Control for WooCommerce (PRO)"
+
+#. Description of the plugin
+msgid ""
+"Min Max Quantity & Step Control plugin offers to display specific products "
+"with minimum, maximum quantity. As well as by this plugin you will be able "
+"to set the increment or decrement step as much as you want. In a word: "
+"Minimum Quantity, Maximum Quantity and Step can be controlled."
+msgstr ""
+"Min Max Quantity & Step Control plugin offers to display specific products "
+"with minimum, maximum quantity. As well as by this plugin you will be able "
+"to set the increment or decrement step as much as you want. In a word: "
+"Minimum Quantity, Maximum Quantity and Step can be controlled."
+
+#: modules/module/variation-options.php:15
+msgid "Min Quantity"
+msgstr "সর্বনিম্ন পরিমান"
+
+#: admin/functions.php:81
+msgid ""
+"Min,max compolsury. separat with(|). You have to set a limit for min and Max."
+msgstr ""
+"সর্বনিম্ন ও সর্বোচ্চ নাম্বার প্রয়োজন। (|) দিয়ে বিভক্ত করুন।আপনাকে অবশ্যই মিন "
+"ম্যাক্স দিতে হবে।"
+
+#: modules/module/cart-page-condition.php:26
+msgid "Minimum Price"
+msgstr "সর্বনিম্ন মুল্য"
+
+#: admin/includes/terms_condition.php:54
+#: modules/module/cart-page-condition.php:37
+msgid "Minimum Quantity"
+msgstr "সর্বনিম্ন পরিমান"
+
+#: includes/functions.php:435
+msgid "Multiply Price By Quantity"
+msgstr "পরিমান অনুযায়ী মুল্যের গুনফল"
+
+#: admin/set_menu_and_fac.php:127 includes/functions.php:443
+msgid "OFF"
+msgstr "বন্ধ"
+
+#: admin/set_menu_and_fac.php:127 includes/functions.php:443
+msgid "ON"
+msgstr "চালু"
+
+#: admin/functions.php:59 admin/functions.php:70
+msgid "Only for Dropdown first option"
+msgstr "শুধু মাত্র ড্রপডাউন এর জন্য"
+
+#: admin/license/init.php:97
+msgid "Please activate "
+msgstr "দয়াকরে চালু করুন"
+
+#: admin/set_menu_and_fac.php:137
+msgid "Prefix of Quantity"
+msgstr "পরিমানের প্রিফিক্স"
+
+#: modules/module/cart-page-condition.php:23
+msgid "Price Limit"
+msgstr "মুল্যের লিমিট"
+
+#: modules/module/cart-page-condition.php:45
+msgid "Product Exclude"
+msgstr "পন্য বাদদিন"
+
+#: modules/module/cart-page-condition.php:52
+msgid "Product Include"
+msgstr "পন্য যুক্তকরুন"
+
+#: includes/functions.php:446
+msgid ""
+"Product price will multiply by the quantity before being displayed on a "
+"single product page and will Increase or decrease in accordance with the "
+"quantity."
+msgstr "পন্যের মুল্য ও পরিমানের উপর গুনফল দেখাবে যদি এই অপশন টা চালু থাকে।"
+
+#: template/global/quantity-input.php:55
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr "পরিমান"
+
+#: template/global/quantity-input.php:46
+msgid "Quantity"
+msgstr "পরিমান"
+
+#: admin/set_menu_and_fac.php:117
+msgid "Quantity Button"
+msgstr "পরিমান বাটন"
+
+#: admin/functions.php:55
+msgid "Quantity Label (Optional)"
+msgstr "পরিমানের লেবেল (ঐচ্ছিক)"
+
+#: modules/module/cart-page-condition.php:34
+msgid "Quantity Limit"
+msgstr "পরিমানের লিমিট"
+
+#: admin/functions.php:66
+msgid "Quantity Option Suffix (Optional)"
+msgstr "পরিমানের সাফিক্স (ঐচ্ছিক)"
+
+#: admin/set_menu_and_fac.php:114
+msgid "Quantity Prefix/Suffix"
+msgstr "কোয়ান্টিটি বক্সের সাফিক্স/প্রিফিক্স"
+
+#: modules/module/variation-options.php:52
+msgid "Quantity Step"
+msgstr "পরিমানের ধাপ"
+
+#: admin/license/template/license-view.php:63
+msgid "Revoke License"
+msgstr "লাইসেন্স বাতিল করুন"
+
+#: admin/set_menu_and_fac.php:168 modules/module/cart-page-condition.php:60
+msgid "Save All"
+msgstr "সংরক্ষন করুন"
+
+#: admin/includes/terms_condition.php:74
+msgid "Step Quantity"
+msgstr "পরিমানের ধাপ"
+
+#: admin/set_menu_and_fac.php:152
+msgid "Suffix of Quantity"
+msgstr "পরিমানের সাফিক্স"
+
+#. the plugin name
+#: admin/license/license.php:96
+#, php-format
+msgid "This appears to be an invalid license key for %s."
+msgstr "%s এর জন্য লাইসেন্ড ভ্যালিড নহে"
+
+#: admin/functions.php:39
+msgid "Type (Optional)"
+msgstr "ধরন(ঐচ্ছিক)"
+
+#: modules/module/variation-qty-count.php:101
+msgid "Variation count limit(Optional)"
+msgstr "ভেরিয়েশানের গননা লিমিট(ঐচ্ছিক)"
+
+#: modules/module/variation-qty-count.php:91
+msgid "Variation minimum quantity total (Optional)"
+msgstr "ভেরিয়েশানের সর্বনিম্ন কোয়ান্টিটি টোটাল (ঐচ্ছিক)"
+
+#: modules/controller.php:19
+msgid "Variation Quanity and Count Control"
+msgstr "ভেরিয়েশানের পরিমান ও গননা নিয়ন্ত্রন"
+
+#: modules/module/variation-qty-count.php:81
+msgid "Variation quantity total limit(Optional)"
+msgstr "ভেরিয়েশানের মোট গননা নিয়ন্ত্রন(ঐছিক)"
+
+#: admin/functions.php:138
+msgid "Variation Total Count Message"
+msgstr "ভেরিয়েশানের টোটাল কাউন্ট মেসেজ"
+
+#: admin/functions.php:130
+msgid "Variation Total Maximum Quantity Message"
+msgstr "মোট ভেরিয়েশানের সর্বোচ্চ পরিমানের মেসেজ"
+
+#: admin/functions.php:134
+msgid "Variation Total Minimum Quantity Message"
+msgstr "মোট ভেরিয়েশানের সর্বনিম্ন পরিমানের মেসেজ"
+
+#: modules/module/variation-qty-count.php:109
+msgid "Variations quanity total and Variation count total"
+msgstr "ভেরিয়েশানের মোট পরিমান ও ভেরিয়েশানের গননা টোটাল"
+
+#: admin/license/license.php:91
+msgid "Your license is not active for this URL."
+msgstr "এই লিংকের জন্য লাইসেন্স নাম্বার টি ভ্যালিড নয়।"
+
+#. the license key expiration date
+#: admin/license/license.php:75
+#, php-format
+msgid "Your license key expired on %s."
+msgstr "%s তারিখে লাইসেন্স এক্সপাইর হয়েগেছে।"
+
+#: admin/license/license.php:82
+msgid "Your license key has been disabled."
+msgstr "লাইসেন্স বাতিল হয়েছে।"
+
+#: admin/license/license.php:100
+msgid "Your license key has reached its activation limit."
+msgstr "লাইসেন্স কি সাইট একটিভের লিমিট অতিক্রম করেছে। "

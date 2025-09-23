@@ -1,0 +1,722 @@
+/* ============================================ */
+/* settings.css                                 */
+/*                                              */
+/* Settings page styles                         */
+/*                                              */
+/* ============================================ */
+
+.eib2bpro-title {
+    display: none;
+}
+
+.eib2bpro-app-settings-form .card {
+    cursor: pointer;
+}
+
+.eib2bpro-app-settings-form .card a {
+    color: #000;
+}
+
+.eib2bpro-app-settings-form .card.selected a,
+.eib2bpro-app-settings-form .card.selected,
+.eib2bpro-app-settings-form .card:hover,
+.eib2bpro-app-settings-form .card:hover a {
+    background: #dc3546;
+    color: #fff;
+}
+
+.eib2bpro-app-settings-sub-title i {
+    margin-right: 15px;
+    border-right: 0px solid #eaeaea;
+    padding-right: 7px;
+    margin-top: -6px;
+    padding-bottom: 8px;
+    font-size: 52px;
+    color: #aaa;
+    float: left;
+}
+
+.eib2bpro-app-settings-sub-title .text-muted {
+    font-size: 13px;
+    padding-top: 6px;
+
+}
+
+
+.carousel-groups {
+    pointer-events: none;
+    position: relative;
+    left: 0px;
+    right: 0px;
+    display: block;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    height: 62px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    font-weight: normal;
+    background: #f9f9f9;
+    background: #f5f5f5;
+    background: #ffffff;
+
+}
+
+.carousel-groups li {
+    float: left;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: transparent;
+    display: block;
+    width: auto;
+    height: auto;
+    margin-right: 0px;
+    margin-left: 0px;
+    text-indent: inherit;
+    border: 0px;
+    transition: none;
+    color: #aaa;
+    opacity: 1;
+    font-size: 15px;
+}
+
+.carousel-groups li.active {
+    color: #000;
+    font-weight: bold;
+
+}
+
+.carousel-inner {
+    clear: both;
+    background: #fff;
+    position: initial !important;
+}
+
+.carousel-item {
+    transition: transform 0.5s ease, opacity .5s ease-out;
+    position: initial !important;
+
+}
+
+.carousel-item .eib2bpro-btn-fixed {
+    opacity: 0;
+}
+
+
+.eib2bpro-app-settings-sortable ol,
+.eib2bpro-app-settings-sortable li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.eib2bpro-app-settings-sortable li>div {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.eib2bpro-app-settings-menu .ui-sortable-helper {
+    background: #efefef;
+}
+
+.eib2bpro-app-settings-menu .ui-sortable-placeholder {
+    background: #efefef;
+}
+
+.eib2bpro-app-settings-menu .table-item {
+    font-size: 12px;
+}
+
+.eib2bpro-app-settings-menu .table-item .p-30 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+}
+
+.eib2bpro-app-settings-menu .table-item .eib2bpro-app-icon {
+    font-size: 16px;
+    color: #353535;
+    padding-bottom: 10px;
+}
+
+.eib2bpro-app-settings-sortable {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.eib2bpro-os-move {
+    color: #aaa;
+    font-size: 13px;
+}
+
+
+.eib2bpro-app-settings-menu .table-item .eib2bpro-os-change-icon {
+    border-radius: 48px;
+    background: #aaaaaa;
+    border: 0px solid #ccc;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    opacity: 0;
+    color: #fff;
+}
+
+.eib2bpro-app-settings-menu .table-item h5 {
+    font-size: 16px;
+    padding-top: 4px;
+    letter-spacing: 0px;
+    margin-bottom: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.eib2bpro-app-settings-menu .table-item:hover .eib2bpro-os-change-icon {
+    opacity: 1;
+}
+
+.eib2bpro-app-settings-menu .submenu .table-item {
+    border-left: 2px solid #ffd500
+}
+
+.eib2bpro-app-settings-menu .submenu .table-item .p-30 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.eib2bpro-app-settings .table-container {
+    background: #fff;
+    width: 100%;
+}
+
+#eib2bpro-theme .eib2bpro-app-settings-menu .table-item .eib2bpro-app-icon,
+#eib2bpro-theme .eib2bpro-app-settings-menu .table-item .eib2bpro-app-icon:before {
+    font-size: 23px;
+    color: #353535;
+    padding-bottom: 00px;
+    width: auto;
+    height: auto;
+
+}
+
+
+/* THEME */
+
+.eib2bpro-app-settings-theme .theme-item {
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    background: #f9f9f9;
+    background: #fff;
+    overflow: hidden;
+    height: 450px;
+    transition: transform 0.3s ease-in-out;
+    transform: translate(0px, 0px);
+
+}
+
+.eib2bpro-app-settings-theme .theme-selected {
+    color: red;
+    font-size: 21px;
+    xposition: absolute;
+    right: 30px;
+    top: 0px;
+    z-index: 999;
+}
+
+.eib2bpro-app-settings-theme .theme-item:hover,
+.eib2bpro-app-settings-theme .theme-item.selected {
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    color: #fff;
+
+}
+
+.eib2bpro-app-settings-theme .theme-item:hover a,
+.eib2bpro-app-settings-theme .theme-item.selected a {
+    color: #000;
+
+}
+
+.eib2bpro-app-settings-theme .theme-item:hover .theme-image {
+    transform: translate(0px, -15px);
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.eib2bpro-app-settings-theme .theme-item.selected h1 {
+    margin-left: -40px;
+}
+
+.eib2bpro-app-settings-theme .theme-item h1 {
+    text-align: center;
+    font-weight: boldx;
+    font-size: 25px;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.eib2bpro-app-settings-theme .h1-line {
+    border-bottom: 2px solid red;
+    display: inline-block;
+    width: 50px;
+}
+
+.eib2bpro-app-settings-theme .theme-image {
+    width: 216%;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+/* THEME: FONT */
+
+.eib2bpro-app-settings-theme-font-container-disabled,
+.eib2bpro-app-settings-theme-font-container {
+    height: 80vh;
+    overflow: auto;
+    width: auto;
+}
+
+.eib2bpro-app-settings-theme-font-container-disabled {
+    display: none;
+}
+
+.eib2bpro-app-settings-theme-font-container h5 {
+    margin-bottom: 0px;
+}
+
+input.eib2bpro-app-font-search {
+    border-radius: 23px;
+    background: #f9f9f9;
+    padding: 8px;
+    padding-left: 15px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    text-align: center;
+    width: 40%;
+    color: #000;
+
+}
+
+/* THEME: COLORS */
+
+.eib2bpro-app-settings-theme .colors-item {
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    border-left: 0px;
+}
+
+.eib2bpro-app-settings-theme .colors-item .eib2bpro-app-in-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.eib2bpro-app-settings-theme .colors-item .color-item label {
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-bottom: 0px !important;
+}
+
+.colorPickButton {
+    border-radius: 25px;
+    width: 22px;
+    height: 22px;
+    margin: 1px 4px;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    border: 1px solid #ccc;
+    text-indent: 9999px;
+    outline: none !important;
+}
+
+
+.eib2bpro-app-settings-form .table-container {
+    background: #fff;
+    width: 100%;
+}
+
+.eib2bpro-app-settings-form .table-container>.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.eib2bpro-app-settings-form .table-item {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.eib2bpro-app-settings-form .table-item:not(.col-12) {
+    border-left: 1px solid #eaeaea;
+
+}
+
+.eib2bpro-app-settings-form .table-item .p-30 {
+    padding: 30px
+}
+
+.eib2bpro-app-settings-form .table-item .p-20 {
+    padding: 20px;
+}
+
+.eib2bpro-app-settings-form .table-item .form-control {
+    border: 1px solid #ccc !important;
+    margin-top: 15px;
+}
+
+.eib2bpro-app-settings-form .table-item:hover .show-on-hover {
+    opacity: 1;
+}
+
+.eib2bpro-app-settings-form .table-item .show-on-hover {
+    opacity: 0;
+}
+
+.eib2bpro-app-settings-form .table-item .onoff_multiple_div {
+    line-height: 30px;
+}
+
+.eib2bpro-app-settings-form .table-item a.btn.eib2bpro-app-button-opt-click {
+    padding: 0.600rem 1rem;
+}
+
+.eib2bpro-app-settings-form .table-item input.form-control {
+    background: #efefef;
+    border: 0px !important;
+    border-radius: 5px;
+}
+
+.eib2bpro-app-settings-form .table-item input.eib2bpro-Settings_Input {
+    border: 1px solid #ccc !important;
+    border-radius: 0px;
+    background: #e9ecef;
+}
+
+
+.table_row_settings-group {
+    background: #fff;
+}
+
+.table_row_settings-group>.p-30 {
+    padding-bottom: 0px !important;
+    padding-top: 18px !important;
+}
+
+
+.btn-group-light {
+    background: #f9f9f9;
+    border-color: #ececec;
+}
+
+.btn-group .btn {
+    font-size: 14px;
+}
+
+/* ORDERS */
+
+.eib2bpro-settings-orders-status {
+    background: #f9f9f9;
+    ;
+    border-radius: 10px;
+    padding: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+
+/* ============================================ */
+/* GENERAL                                     */
+/* ============================================ */
+
+.eib2bpro-Settings_Logo {
+    display: inline-block;
+    padding: 6px;
+    border: 3px dashed #ccc;
+    border-radius: 16px;
+}
+
+.eib2bpro-Settings_Logo_New {
+    border-radius: 23px;
+    max-width: 200px;
+}
+
+.eib2bpro-settings .radio {
+    padding-bottom: 8px;
+}
+
+.upload-custom-img>img {
+    border-radius: 10px;
+    max-width: 300px;
+}
+
+.upload-custom-img-text {
+    margin-left: 30px;
+    color: var(--title-menu-a);
+    margin-right: 30px;
+}
+
+.p-2 .upload-custom-img-text {
+    margin: 0px;
+}
+
+.eib2bpro-Settings_Logo {
+    font-size: 16px;
+    padding: 50px;
+}
+
+
+.eib2bpro-Settings_Colors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.eib2bpro-Settings_Color,
+.eib2bpro-Settings_Color_Own {
+    width: 55px;
+    height: 55px;
+    border-radius: 40%;
+    margin: 10px;
+    border: 1px solid #b5b5b5;
+    background: red;
+}
+
+
+.eib2bpro-Settings_Color_Own>span {
+    font-size: 18px !important;
+    color: #fff !important;
+    padding: 18px;
+}
+
+.eib2bpro-Settings_Color:hover,
+.eib2bpro-Settings_Color_Selected {
+    border: 1px dashed #000;
+}
+
+.eib2bpro-Settings_Color_Own_Div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #aaa;
+    height: 300px;
+    background: #f9f9f9;
+}
+
+.eib2bpro-Settings_Color_Own_Options {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    line-height: 25px;
+}
+
+.eib2bpro-Settings_Color_Own_Options .wp-picker-default {
+    display: none !important;
+}
+
+/* WOOCOMMERCE */
+
+#eib2bpro-settings-woocommerce #eib2bpro-frame {
+    width: 95vw;
+    margin-top: -65px;
+    height: 2500px;
+}
+
+/* NOTIFICATIONS */
+
+.eib2bpro-app-settings-notifications .eib2bpro-app-save-button {
+    display: none;
+}
+
+/* REACTORS */
+
+.eib2bpro-app-settings-reactors .eib2bpro-app-save-button {
+    display: none;
+}
+
+.eib2bpro-app-settings-reactors .table-container,
+.eib2bpro-app-settings-reactors .carousel-inner {
+    box-shadow: none !important;
+    background-color: #f5f5f5;
+}
+
+
+/* ABOUT */
+
+.eib2bpro-settings-about {
+    background-size: auto auto;
+    background-color: rgba(255, 255, 255, 1);
+    background-image: repeating-linear-gradient(135deg, transparent, transparent 6px, rgba(226, 226, 226, 0.61) 6px, rgba(226, 226, 226, 0.61) 8px);
+    min-height: 500px;
+    text-align: center;
+}
+
+.eib2bpro-about-icon {
+    background: transparent;
+    border-radius: 00px;
+    padding: 0px;
+    display: inline-block;
+    margin-top: 110px;
+}
+
+.eib2bpro-about-icon {
+    font-size: 80px;
+    color: #bbb;
+}
+
+.eib2bpro-about-name {
+    background: #fff;
+    color: #aaa;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 0px 15px;
+    display: inline-block;
+    border-radius: 7px;
+}
+
+.eib2bpro-about-name.font-weight-normal {
+    font-size: 18px;
+    margin-top: -8px;
+    letter-spacing: 0px;
+
+}
+
+/* ============================================ */
+/* RESPONSIVE                                    */
+/* ============================================ */
+
+@media (max-width: 820px) {
+
+    .eib2bpro-title {
+        display: block;
+    }
+
+    .eib2bpro-Scroll2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+    }
+
+    .eib2bpro-Scroll2 .carousel-indicators {
+        display: inline-flex;
+        min-width: 100%;
+    }
+
+    .eib2bpro-menu-2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        background: #353535;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+    .eib2bpro-menu-2>div>ul {
+        width: 1500px;
+        margin-top: 3px;
+    }
+
+    .eib2bpro-menu-2 ul li,
+    .eib2bpro-menu-2 ul ul,
+    .eib2bpro-menu-2-group>div {
+        float: left;
+    }
+
+    .eib2bpro-menu-2-group {
+        padding-bottom: 5px !important;
+    }
+
+    .eib2bpro-menu-2-group>div {
+        padding: 8px;
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .eib2bpro-menu-2-group>div:after {
+        content: ': ';
+    }
+
+    .eib2bpro-menu-2 ul li {
+        margin-left: 10px;
+        margin-right: 10px;
+
+    }
+
+    .eib2bpro-menu-2-group:first-child>div {
+        display: none;
+        margin-left: 10px;
+    }
+
+    .eib2bpro-menu-2 ul li a {
+        color: var(--title-menu-a);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .eib2bpro-menu-2-item.eib2bpro-Selected a span {
+        color: #fff !important;
+    }
+
+    .eib2bpro-menu-2-item:last-child:after {
+        clear: both;
+    }
+
+    .eib2bpro-app-settings-sub-title {
+        text-align: center;
+        width: 100%;
+    }
+
+    .eib2bpro-app-settings-sub-title i {
+        display: none;
+    }
+
+    .eib2bpro-app-settings-sub-title .text-right {
+        float: none !important;
+        margin-top: 0px;
+        font-size: 11px !important;
+        text-align: center !important;
+        ;
+    }
+
+    /* Menu */
+
+    .eib2bpro-app-settings-menu li>div {
+        border-bottom: 0px;
+    }
+
+    .eib2bpro-app-settings-menu .carousel-groups ol,
+    .eib2bpro-app-settings-menu .carousel-groups li {
+        padding: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: inherit;
+    }
+
+    /* Lists */
+
+    .eib2bpro-List_M1 {
+        width: 100% !important;
+    }
+
+    .col-md-10.col-sm-12.pl-5 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .d-flex .switch_1.switch-sm {
+        min-width: 37px;
+    }
+
+    /* Font*/
+
+    .eib2bpro-app-settings-theme-font-container .card {
+        max-width: 100% !important;
+    }
+
+    input.eib2bpro-app-font-search {
+        width: 60%;
+    }
+}
