@@ -1,18 +1,5 @@
 <?php
-/**
- * La clase StoreLocatorService proporciona métodos auxiliares para recuperar información de tiendas
- * basada en metadatos personalizados en WooCommerce Multi-Locations Inventory Management.
- *
- * Métodos:
- *   - get_stores_by_locator_id(int $locator_id): array
- *       Devuelve un arreglo de tiendas activas asociadas a un ID de sucursal (locator).
- *       Cada tienda contiene 'term_id', 'vkey' y 'name'.
- *
- * Uso:
- *   StoreLocatorService::get_stores_by_locator_id($locator_id);
- *
- * @package bafar-WooCommerce-Multi-Locations-Inventory-Management
- */
+
 class StoreLocatorService
 {
     /**
@@ -39,8 +26,8 @@ class StoreLocatorService
         foreach ($results as $i => $row) {
             $stores[] = [
                 'term_id' => strval($row->term_id),
-                'vkey' => $i,
-                'name' => $row->name,
+                'vkey'    => $i,
+                'name'    => $row->name,
             ];
         }
 

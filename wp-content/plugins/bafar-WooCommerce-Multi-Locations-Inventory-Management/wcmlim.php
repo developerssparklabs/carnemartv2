@@ -19,7 +19,7 @@ use \Automattic\WooCommerce\Utilities\OrderUtil;
  * @package           Wcmlim
  *
  * @wordpress-plugin
- * Plugin Name:       WooCommerce Multi Locations Inventory Management
+ * Plugin Name:       Bafar :: WooCommerce Multi Locations Inventory Management 🏦
  * Plugin URI:        http://www.techspawn.com
  * Description:       This plugin will help you manage WooCommerce Products stocks through locations.
  * Version:           4.1.0
@@ -97,6 +97,10 @@ function wcmlim_activate()
 {
 	$active_plugins = get_option('active_plugins');
 	$wooactive_plugins = is_woocommerce_activated();
+	/**
+	 * Check if WooCommerce is active
+	 **/
+
 	$locationCookieTime = get_option('wcmlim_set_location_cookie_time');
 	if ($locationCookieTime == '') {
 		update_option('wcmlim_set_location_cookie_time', '30');
@@ -106,35 +110,33 @@ function wcmlim_activate()
 		require_once plugin_dir_path(__FILE__) . 'includes/class-wcmlim-activator.php';
 		Wcmlim_Activator::activate();
 	} else {
-		switch ($wooactive_plugins) {
-			case 0:
-				deactivate_plugins(__FILE__);
-				$error_message = esc_html__('<WooCommerce has not yet been installed or activated. WooCommerce Multi Locations Inventory Management is a WooCommerce Extension that will only function if WooCommerce is installed. Please first install and activate the WooCommerce Plugin.', 'wcmlim');
-				wp_die($error_message, 'Plugin dependency check', array('back_link' => true));
-				break;
-			default:
-				$soldoutbutton_text = get_option('wcmlim' . '_soldout_button_text');
-				if ($soldoutbutton_text != 'Agotado') {
-					update_option('wcmlim' . '_soldout_button_text', 'Agotado');
-				}
+		if ($wooactive_plugins == 0) {
+			deactivate_plugins(__FILE__);
+			$error_message = esc_html_e('WooCommerce has not yet been installed or activated. WooCommerce Multi Locations Inventory Management is a WooCommerce Extension that will only function if WooCommerce is installed. Please first install and activate the WooCommerce Plugin.', 'wcmlim');
+			wp_die($error_message, 'Plugin dependency check', array('back_link' => true));
+		} else {
 
-				$stockbutton_text = get_option('wcmlim' . '_instock_button_text');
-				if ($stockbutton_text != 'En stock') {
-					update_option('wcmlim' . '_instock_button_text', 'En stock');
-				}
+			$soldoutbutton_text = get_option('wcmlim' . '_soldout_button_text');
+			if ($soldoutbutton_text == false) {
+				update_option('wcmlim' . '_soldout_button_text', 'Sold Out');
+			}
 
-				$backorder_text = get_option('wcmlim' . '_onbackorder_button_text');
-				if ($backorder_text != 'Disponible en pedido') {
-					update_option('wcmlim' . '_onbackorder_button_text', 'Disponible en pedido');
-				}
+			$stockbutton_text = get_option('wcmlim' . '_instock_button_text');
+			if ($stockbutton_text == false) {
+				update_option('wcmlim' . '_instock_button_text', 'In Stock');
+			}
 
-				require_once plugin_dir_path(__FILE__) . 'includes/class-wcmlim-activator.php';
-				Wcmlim_Activator::activate();
-				break;
+			$backorder_text = get_option('wcmlim' . '_onbackorder_button_text');
+			if ($backorder_text == false) {
+				update_option('wcmlim' . '_onbackorder_button_text', 'Available on backorder');
+			}
+
+			require_once plugin_dir_path(__FILE__) . 'includes/class-wcmlim-activator.php';
+			Wcmlim_Activator::activate();
 		}
 	}
-}
 
+}
 add_action('admin_init', 'wcmlim_deactivate_self');
 function wcmlim_deactivate_self()
 {
@@ -147,7 +149,6 @@ function wcmlim_deactivate_self()
 		}
 	}
 }
-
 if (!function_exists('is_woocommerce_activated')) {
 	function is_woocommerce_activated()
 	{
@@ -155,6 +156,7 @@ if (!function_exists('is_woocommerce_activated')) {
 		$wooactive_plugins = 0;
 		foreach ($active_plugins as $key => $value) {
 			if (strpos($value, 'woocommerce.php') !== false) {
+
 				$wooactive_plugins = 1;
 			}
 		}
@@ -203,7 +205,7 @@ function wcmlim_run()
 			'before_woocommerce_init',
 			function () {
 				if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
-					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, positive_compatibility: true);
+					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
 				}
 
 				if (OrderUtil::custom_orders_table_usage_is_enabled()) {
@@ -219,46 +221,264 @@ function wcmlim_run()
 
 wcmlim_run();
 
-/*
- * Include front end file when user access /stores URL
+//write shortcode for wocommerce related products
+function wcmlim_related_products_shortcode()
+{
+	ob_start();
+	$product_id = get_the_ID();
+	$terms = get_the_terms($product_id, 'product_cat');
+	$term_names = array();
+	if ($terms && !is_wp_error($terms)) {
+		foreach ($terms as $term) {
+			if ($term->name !== 'Uncategorized') {
+				$term_names[] = $term->name;
+			}
+		}
+	}
+
+	$selected_loc_id = isset($_COOKIE['wcmlim_selected_location']) ? (int) $_COOKIE['wcmlim_selected_location'] : 0;
+	$locations = get_terms(array('taxonomy' => 'locations', 'hide_empty' => false, 'parent' => 0));
+	//get hide out of stock settings
+	foreach ($locations as $key => $term) {
+		if ($key == $selected_loc_id) {
+			$term_slug = $term->slug;
+			$term_id = $term->term_id;
+			break;
+		}
+	}
+	$q = new WP_Query(array(
+		'post_type' => 'product',
+		'posts_per_page' => '4',
+		'tax_query' => array(
+			'relation' => "AND",
+			array(
+				'taxonomy' => 'product_cat',
+				'field' => 'name',
+				'terms' => $term_names,
+				'operator' => 'IN'
+			),
+
+			array(
+				'taxonomy' => 'product_visibility',
+				'field' => 'name',
+				'terms' => array('outofstock'),
+				'operator' => 'NOT IN'
+			),
+			array(
+				'taxonomy' => 'locations',
+				'field' => 'slug',
+				'terms' => array($term_slug),
+				'operator' => 'IN'
+			),
+
+		),
+		'meta_query' => array(
+			'relation' => 'AND',
+			array(
+				'key' => 'wcmlim_stock_at_' . $term_id,
+				'value' => 0,
+				'compare' => '!=',
+			),
+			array(
+				'key' => 'wcmlim_stock_at_' . $term_id,
+				'value' => '',
+				'compare' => '!=',
+			),
+
+		),
+	));
+
+	if ($q->have_posts()) {
+		echo '<div class="related-products-grid">';
+
+		$counter = 0;
+		while ($q->have_posts()) {
+			$q->the_post();
+
+			echo '<div class="related-product-item">';
+			wc_get_template_part('content', 'product');
+			echo '</div>';
+
+			$counter++;
+			if ($counter % 3 === 0) {
+				echo '<div class="related-products-grid"></div>';
+			}
+		}
+
+		echo '</div>';
+
+		wp_reset_postdata();
+	} else {
+		echo 'No related products found.';
+	}
+
+	return ob_get_clean();
+}
+
+add_shortcode('wcmlim_related_products_shortcode', 'wcmlim_related_products_shortcode');
+
+/**
+ * ===============================================================
+ * Integración: Carga dinámica de tiendas y sincronización JSON
+ * ===============================================================
+ *
+ * Este bloque de código realiza dos tareas principales:
+ *
+ * 1. Renderizar el formulario de búsqueda de tiendas en la página
+ *    `/tiendas` usando un shortcode personalizado.
+ *
+ * 2. Registrar y ejecutar un cron programado que genera archivos
+ *    JSON cacheados para las tiendas activas por ubicación.
+ *
+ * Estructura:
+ * - Verifica si la URL es `/tiendas` y carga el formulario.
+ * - Incluye la clase del cron `SyncLocationsJson` si no existe.
+ * - Programa el cron para que inicie en 30 segundos y se repita
+ *   cada 24 horas (intervalo diario).
+ * - Registra el hook del cron.
+ * - Registra el hook de activación del plugin para agendar el cron.
+ * - Registra el hook de desactivación del plugin para limpiar el cron.
+ *
+ * Autor: Dens - Spark
+ * Fecha: 08/05/2025
  */
+
 if (preg_match('#^/tiendas/?(\?.*)?$#', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))) {
 	require_once plugin_dir_path(__FILE__) . 'includes/searchStore/index.php';
 }
 
-// Al activar el plugin, solo dejamos un "pendiente".
-register_activation_hook(__FILE__, 'cm_queue_states_stores_build');
+if (!class_exists('SyncLocationsJson')) {
+	require_once plugin_dir_path(__FILE__) . 'cron/SyncLocationsJson.php';
 
-function cm_queue_states_stores_build(): void
-{
-	update_option('cm_build_states_stores_pending', 1, false);
+	// Si no está programado aún, crear el evento cron
+	if (!wp_next_scheduled('sync_locations_json_event')) {
+		wp_schedule_event(time() + 30, 'daily', 'sync_locations_json_event');
+		error_log("🛠️ Evento del cron registrado manualmente.");
+	}
+
+	// Registrar el hook del cron
+	add_action('sync_locations_json_event', ['SyncLocationsJson', 'run']);
+
+	// Registrar evento al activar plugin
+	register_activation_hook(__FILE__, function () {
+		if (!wp_next_scheduled('sync_locations_json_event')) {
+			wp_schedule_event(time() + 300, 'daily', 'sync_locations_json_event'); // 5 minutos
+		}
+	});
+
+	// Limpiar cron al desactivar
+	register_deactivation_hook(__FILE__, function () {
+		wp_clear_scheduled_hook('sync_locations_json_event');
+	});
 }
 
-// En la siguiente carga del admin, ejecutamos al final del ciclo.
-add_action('wp_loaded', 'cm_run_states_stores_build_if_needed', PHP_INT_MAX);
-function cm_run_states_stores_build_if_needed(): void
+function geolocation_form()
 {
-	// Solo en admin y evitando AJAX/CRON
-	if (!is_admin() || wp_doing_ajax() || wp_doing_cron()) {
-		return;
-	}
+	?>
+	<div id="geolocation-modal"
+		style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 9999; justify-content: center; align-items: center;">
+		<div class="modal-msg-location">
+			<div class="modal-msg-location__icon"></div>
+			<div class="modal-msg-location__msg">
+				<div class="modal-msg-location__msg-title">
+					<h2 class="msg-title">¿Nos ayudas un momento?</h2>
+				</div>
+				<div class="modal-msg-location__msg-info">
+					<p class="msg-info">
+						Para ofrecerte una mejor experiencia y mostrarte productos disponibles cerca de ti,
+						<strong>necesitamos saber tu ubicación.</strong>
+					</p>
+					<p class="msg-info c-blue">
+						<strong>¿Te gustaría activarla ahora?</strong>
+					</p>
+				</div>
+				<div class="modal-msg-location__buttonspanel">
+					<button href="" class="modal-msg-location__btn btn-good" id="allow-geolocation">
+						Sí, compartir ubicación.
+					</button>
+					<button href="" class="modal-msg-location__btn btn-bad" id="deny-geolocation">
+						No, prefiero no hacerlo.
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	// ¿Hay tareas pendientes?
-	if (!get_option('cm_build_states_stores_pending')) {
-		return;
-	}
+	<div id="geolocation-reminder-modal"
+		style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
+		<div
+			style="background: white; padding: 30px; border-radius: 10px; max-width: 500px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+			<!-- Header con estilo warning -->
+			<div style="background: #FFF3CD; padding: 15px; border-bottom: 1px solid #FFEEBA;">
+				<h3
+					style="margin: 0; color: #856404; display: flex; align-items: center; justify-content: center; gap: 10px;">
+					<svg style="width: 24px; height: 24px; fill: #FFC107;" viewBox="0 0 24 24">
+						<path
+							d="M12 2L1 21h22L12 2zm0 3.5L18.5 19h-13L12 5.5zM12 16c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm-1-4V9h2v3h-2z" />
+					</svg>
+					<span>Experiencia limitada</span>
+				</h3>
+			</div>
+			<p style="color: #555; line-height: 1.5;">De acuerdo, le preguntaremos de nuevo más tarde. Recuerda que
+				necesitamos tu ubicación para mejorar su experiencia.</p>
+			<div style="margin-top: 25px;">
+				<button id="understand-reminder"
+					style="background: #2196F3; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
+					Entendido
+				</button>
+			</div>
+		</div>
+	</div>
 
-	// (Opcional) pequeño guard-rail: asegúrate de que la clase existe.
-	if (!class_exists('Wcmlim_Product_Taxonomy')) {
-		return; // o require_once tu clase si procede
-	}
+	<script>
 
-	// Ejecuta las tareas ya con todo cargado.
-	$wc = new Wcmlim_Product_Taxonomy();
-	$wc->wcmlim_save_location_groups_json();
-	$wc->wcmlim_resync_locator_meta_from_groups();
-	$wc->wcmlim_generate_store_shards();
+		// import * as alies_sucCalbk from "https://devs.mystagingwebsite.com/wp-content/plugins/bafar-WooCommerce-Multi-Locations-Inventory-Management/public/js/wcmlim_utility/generic/wcmlim_success_callback.js";
+		// import * as alies_errCalbk from "https://devs.mystagingwebsite.com/wp-content/plugins/bafar-WooCommerce-Multi-Locations-Inventory-Management/public/js/wcmlim_utility/generic/wcmlim_error_callback.js";
+		// import * as alies_setcookies from "https://devs.mystagingwebsite.com/wp-content/plugins/bafar-WooCommerce-Multi-Locations-Inventory-Management/public/js/wcmlim_utility/generic/wcmlim_setcookies.js";
 
-	// Borra el flag para que corra solo una vez.
-	delete_option('cm_build_states_stores_pending');
+
+	</script>
+	<?php
 }
+add_action('wp_footer', 'geolocation_form');
+
+function geolocation_modal_persistent(): void {
+	?>
+	<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		// ✅ Detectar si ya hay tienda
+		const hasStore = !!document.cookie.match(/wcmlim_selected_location_termid=\d+/);
+		const popupBtn = document.querySelector('#set-def-store-popup-btn');
+		if (!popupBtn) return;
+
+		// ✅ Botón manual de cambio de ubicación (opcional)
+		const manualBtn = document.querySelector('.btnManualmente');
+		if (manualBtn) {
+			manualBtn.addEventListener('click', function (e) {
+				e.preventDefault();
+				const trigger = document.querySelector('.postcode-checker-change.postcode-checker-change-show');
+				if (trigger) trigger.click();
+			});
+		}
+
+		// ✅ Si ya hay tienda, salir del script
+		if (hasStore) return;
+
+		// ✅ Interceptar cualquier botón de tipo add_to_cart
+		document.body.addEventListener('click', (e) => {
+			const target = e.target.closest('a.product_type_simple.add_to_cart_button.wcmlim_ajax_add_to_cart');
+			if (!target) return;
+
+			e.preventDefault();
+			e.stopImmediatePropagation();
+
+			console.warn('⚠️ Acción bloqueada. Debe elegir tienda primero.');
+			popupBtn.click(); // Simular click al popup de selección de tienda
+		}, true); // true: captura antes que WooCommerce
+	});
+	</script>
+	<?php
+}
+add_action('wp_footer', 'geolocation_modal_persistent');
+
+

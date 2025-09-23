@@ -1744,8 +1744,15 @@ class Wcmlim_Public
 				break;
 			}
 		}
+
 	}
+
+
 }
+
+
+
+
 
 function distance_between_coordinates($latitude1, $longitude1, $latitude2, $longitude2, $unit = 'miles')
 {
@@ -1811,9 +1818,3 @@ function wcmlim_get_lat_lng($address, $termid)
 	return json_encode($latlngarr);
 	wp_die();
 }
-
-// Inicializamos res
-include_once plugin_dir_path(__FILE__) . 'res/class-wcmlim-rest-loader.php';
-
-// Inicializamo la carga de shortcodes | Este archivo cargara los shortcodes de la pagina
-include_once plugin_dir_path(__FILE__) . 'partials/shortcodes/class-wcmlim-shortcode-loader.php';

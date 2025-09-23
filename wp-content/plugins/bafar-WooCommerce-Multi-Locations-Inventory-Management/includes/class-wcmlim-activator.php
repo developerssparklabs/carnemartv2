@@ -22,9 +22,10 @@ class Wcmlim_Activator
 	public static function activate()
 	{
 		$locationDistance = get_option('wcmlim_show_location_distance');
-		if ($locationDistance == "") {
-			update_option('wcmlim_show_location_distance', 'miles', true);
-		}
+       if($locationDistance=="")
+       {
+       update_option('wcmlim_show_location_distance','miles',true);
+       }
 		global $wp_roles;
 
 		if (!isset($wp_roles)) {
@@ -35,45 +36,45 @@ class Wcmlim_Activator
 			'location_regional_manager',
 			'Location Regional Manager',
 			array(
-				'level_9' => true,
-				'level_8' => true,
-				'level_7' => true,
-				'level_6' => true,
-				'level_5' => true,
-				'level_4' => true,
-				'level_3' => true,
-				'level_2' => true,
-				'level_1' => true,
-				'level_0' => true,
-				'read' => true,
-				'read_private_pages' => true,
-				'read_private_posts' => true,
-				'edit_posts' => true,
-				'edit_pages' => true,
-				'edit_published_posts' => true,
-				'edit_published_pages' => true,
-				'edit_private_pages' => true,
-				'edit_private_posts' => true,
-				'edit_others_posts' => true,
-				'edit_others_pages' => true,
-				'publish_posts' => true,
-				'publish_pages' => true,
-				'delete_posts' => true,
-				'delete_pages' => true,
-				'delete_private_pages' => true,
-				'delete_private_posts' => true,
+				'level_9'                => true,
+				'level_8'                => true,
+				'level_7'                => true,
+				'level_6'                => true,
+				'level_5'                => true,
+				'level_4'                => true,
+				'level_3'                => true,
+				'level_2'                => true,
+				'level_1'                => true,
+				'level_0'                => true,
+				'read'                   => true,
+				'read_private_pages'     => true,
+				'read_private_posts'     => true,
+				'edit_posts'             => true,
+				'edit_pages'             => true,
+				'edit_published_posts'   => true,
+				'edit_published_pages'   => true,
+				'edit_private_pages'     => true,
+				'edit_private_posts'     => true,
+				'edit_others_posts'      => true,
+				'edit_others_pages'      => true,
+				'publish_posts'          => true,
+				'publish_pages'          => true,
+				'delete_posts'           => true,
+				'delete_pages'           => true,
+				'delete_private_pages'   => true,
+				'delete_private_posts'   => true,
 				'delete_published_pages' => true,
 				'delete_published_posts' => true,
-				'delete_others_posts' => true,
-				'delete_others_pages' => true,
-				'manage_categories' => true,
-				'manage_links' => true,
-				'moderate_comments' => true,
-				'upload_files' => true,
-				'export' => true,
-				'import' => true,
-				'list_users' => true,
-				'edit_theme_options' => true,
+				'delete_others_posts'    => true,
+				'delete_others_pages'    => true,
+				'manage_categories'      => true,
+				'manage_links'           => true,
+				'moderate_comments'      => true,
+				'upload_files'           => true,
+				'export'                 => true,
+				'import'                 => true,
+				'list_users'             => true,
+				'edit_theme_options'     => true,
 			)
 		);
 		// Location Shop manager role.
@@ -81,45 +82,45 @@ class Wcmlim_Activator
 			'location_shop_manager',
 			'Location Shop manager',
 			array(
-				'level_9' => true,
-				'level_8' => true,
-				'level_7' => true,
-				'level_6' => true,
-				'level_5' => true,
-				'level_4' => true,
-				'level_3' => true,
-				'level_2' => true,
-				'level_1' => true,
-				'level_0' => true,
-				'read' => true,
-				'read_private_pages' => true,
-				'read_private_posts' => true,
-				'edit_posts' => true,
-				'edit_pages' => true,
-				'edit_published_posts' => true,
-				'edit_published_pages' => true,
-				'edit_private_pages' => true,
-				'edit_private_posts' => true,
-				'edit_others_posts' => true,
-				'edit_others_pages' => true,
-				'publish_posts' => true,
-				'publish_pages' => true,
-				'delete_posts' => true,
-				'delete_pages' => true,
-				'delete_private_pages' => true,
-				'delete_private_posts' => true,
+				'level_9'                => true,
+				'level_8'                => true,
+				'level_7'                => true,
+				'level_6'                => true,
+				'level_5'                => true,
+				'level_4'                => true,
+				'level_3'                => true,
+				'level_2'                => true,
+				'level_1'                => true,
+				'level_0'                => true,
+				'read'                   => true,
+				'read_private_pages'     => true,
+				'read_private_posts'     => true,
+				'edit_posts'             => true,
+				'edit_pages'             => true,
+				'edit_published_posts'   => true,
+				'edit_published_pages'   => true,
+				'edit_private_pages'     => true,
+				'edit_private_posts'     => true,
+				'edit_others_posts'      => true,
+				'edit_others_pages'      => true,
+				'publish_posts'          => true,
+				'publish_pages'          => true,
+				'delete_posts'           => true,
+				'delete_pages'           => true,
+				'delete_private_pages'   => true,
+				'delete_private_posts'   => true,
 				'delete_published_pages' => true,
 				'delete_published_posts' => true,
-				'delete_others_posts' => true,
-				'delete_others_pages' => true,
-				'manage_categories' => true,
-				'manage_links' => true,
-				'moderate_comments' => true,
-				'upload_files' => true,
-				'export' => true,
-				'import' => true,
-				'list_users' => true,
-				'edit_theme_options' => true,
+				'delete_others_posts'    => true,
+				'delete_others_pages'    => true,
+				'manage_categories'      => true,
+				'manage_links'           => true,
+				'moderate_comments'      => true,
+				'upload_files'           => true,
+				'export'                 => true,
+				'import'                 => true,
+				'list_users'             => true,
+				'edit_theme_options'     => true,
 			)
 		);
 
@@ -128,79 +129,31 @@ class Wcmlim_Activator
 		foreach ($capabilities as $cap_group) {
 			foreach ($cap_group as $cap) {
 				$wp_roles->add_cap('location_shop_manager', $cap);
-				$wp_roles->add_cap('location_regional_manager', $cap);
+				$wp_roles->add_cap('location_regional_manager', $cap);			
 			}
 		}
 
 		// Added Options on plugin activation
 
 
-		global $wpdb;
-		$options_table = $wpdb->prefix . 'options';
-		$ProductCentralControlOptions = $wpdb->get_results($wpdb->prepare("SELECT * FROM `" . $options_table . "` WHERE `option_name`= '%s'", 'ProductCentralControlOptions'));
-		$PCFO = maybe_unserialize($ProductCentralControlOptions[0]->option_value);
-		if (!empty($PCFO)) {
+global $wpdb;
+$options_table = $wpdb->prefix . 'options';                 
+$ProductCentralControlOptions = $wpdb->get_results($wpdb->prepare("SELECT * FROM `" . $options_table . "` WHERE `option_name`= '%s'", 'ProductCentralControlOptions'));
+$PCFO = maybe_unserialize($ProductCentralControlOptions[0]->option_value);
+ if(!empty($PCFO)){
 
-			$Values[] = array(
-				"id" => "Show",
-				"thumbnail" => "Show",
-				"name" => "Show",
-				"sku" => "Show",
-				"regular_price" => "Show",
-				"sale_price" => "Show"
-				,
-				"stock_quantity" => "Show",
-				"stock_status" => "Show",
-				"stock_at_location" => "Show",
-				"categories" => "",
-				"tags" => "",
-				"short_description" => "",
-				"description" => "",
-				"type" => "",
-				"status" => "",
-				"parent" => "",
-				"catalog_visibility" => "",
-				"tax_status" => "",
-				"backorders" => ""
-				,
-				"weight" => "",
-				"length" => "",
-				"width" => "",
-				"height" => "",
-				"manage_stock" => ""
-			);
+	$Values[] = array("id"=>"Show","thumbnail"=>"Show","name"=>"Show" ,"sku"=>"Show" ,"regular_price"=>"Show","sale_price"=>"Show" 
+,"stock_quantity"=>"Show" ,"stock_status"=>"Show", "stock_at_location"=>"Show", "categories"=>"" , "tags"=>"" , "short_description"=>"" ,
+"description"=>"", "type"=>"", "status"=>"", "parent"=>"", "catalog_visibility"=>"", "tax_status"=>"", "backorders"=>""
+,"weight"=>"", "length"=>"", "width"=>"", "height"=>"" , "manage_stock"=>""  );
 
-		} else {
-			$Values[] = array(
-				"id" => "Show",
-				"thumbnail" => "Show",
-				"name" => "Show",
-				"sku" => "Show",
-				"regular_price" => "Show",
-				"sale_price" => "Show"
-				,
-				"stock_quantity" => "Show",
-				"stock_status" => "Show",
-				"stock_at_location" => "Show",
-				"categories" => "",
-				"tags" => "",
-				"short_description" => "",
-				"description" => "",
-				"type" => "",
-				"status" => "",
-				"parent" => "",
-				"catalog_visibility" => "",
-				"tax_status" => "",
-				"backorders" => ""
-				,
-				"weight" => "",
-				"length" => "",
-				"width" => "",
-				"height" => "",
-				"manage_stock" => ""
-			);
-			update_option('ProductCentralControlOptions', $Values);
-		}
+} else {
+$Values[] = array("id"=>"Show","thumbnail"=>"Show","name"=>"Show" ,"sku"=>"Show" ,"regular_price"=>"Show","sale_price"=>"Show" 
+,"stock_quantity"=>"Show" ,"stock_status"=>"Show", "stock_at_location"=>"Show", "categories"=>"" , "tags"=>"" , "short_description"=>"" ,
+"description"=>"", "type"=>"", "status"=>"", "parent"=>"", "catalog_visibility"=>"", "tax_status"=>"", "backorders"=>""
+,"weight"=>"", "length"=>"", "width"=>"", "height"=>"" , "manage_stock"=>""  );
+update_option( 'ProductCentralControlOptions', $Values );
+} 
 	}
 
 	private static function get_core_capabilities()
