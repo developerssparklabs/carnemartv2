@@ -26,18 +26,18 @@ class Wcmlim_Product_Taxonomy
     add_action('locations_add_form_fields', array($this, 'formFields'), 10, 2);
     add_action('edited_locations', array($this, 'formSave'), 10, 2);
     add_action('created_locations', array($this, 'formSave'), 10, 2);
-    add_action( "delete_locations", array($this, 'execute_on_delete_locations'), 10, 4);
+    add_action("delete_locations", array($this, 'execute_on_delete_locations'), 10, 4);
     add_filter('locations_row_actions', array($this, 'disable_quick_edit'), 10, 2);
     add_filter('manage_edit-location_group_columns', array($this, 'editColumns_locgroup'));
-    add_filter( 'location_group_row_actions', array($this, 'editColumnsactions'), 10, 2);
+    add_filter('location_group_row_actions', array($this, 'editColumnsactions'), 10, 2);
     /*** Location Group */
-    $isLocationsGroup = get_option('wcmlim_enable_location_group');	
-    if( $isLocationsGroup == "on"){
+    $isLocationsGroup = get_option('wcmlim_enable_location_group');
+    if ($isLocationsGroup == "on") {
       add_action('location_group_edit_form', array($this, 'formFields_location_group'), 100, 2);
       add_action('location_group_add_form_fields', array($this, 'formFields_location_group'), 10, 2);
       add_action('edited_location_group', array($this, 'formSave_location_group'), 10, 2);
       add_action('created_location_group', array($this, 'formSave_location_group'), 10, 2);
-    } 
+    }
   }
 
   /**
@@ -49,61 +49,61 @@ class Wcmlim_Product_Taxonomy
   public function create_taxonomy()
   {
     $labels = array(
-      'name'                       => esc_html('Locations', 'wcmlim'),
-      'singular_name'              => esc_html('Location', 'wcmlim'),
-      'menu_name'                  => esc_html('Location', 'wcmlim'),
-      'all_items'                  => esc_html('All Locations', 'wcmlim'),
-      'parent_item'                => esc_html('Parent Item', 'wcmlim'),
-      'parent_item_colon'          => esc_html('Parent Item:', 'wcmlim'),
-      'new_item_name'              => esc_html('New Location Name', 'wcmlim'),
-      'add_new_item'               => esc_html('Add New Location', 'wcmlim'),
-      'edit_item'                  => esc_html('Edit Location', 'wcmlim'),
-      'update_item'                => esc_html('Update Location', 'wcmlim'),
+      'name' => esc_html('Locations', 'wcmlim'),
+      'singular_name' => esc_html('Location', 'wcmlim'),
+      'menu_name' => esc_html('Location', 'wcmlim'),
+      'all_items' => esc_html('All Locations', 'wcmlim'),
+      'parent_item' => esc_html('Parent Item', 'wcmlim'),
+      'parent_item_colon' => esc_html('Parent Item:', 'wcmlim'),
+      'new_item_name' => esc_html('New Location Name', 'wcmlim'),
+      'add_new_item' => esc_html('Add New Location', 'wcmlim'),
+      'edit_item' => esc_html('Edit Location', 'wcmlim'),
+      'update_item' => esc_html('Update Location', 'wcmlim'),
       'separate_items_with_commas' => esc_html('Separate Location with commas', 'wcmlim'),
-      'search_items'               => esc_html('Search Locations', 'wcmlim'),
-      'add_or_remove_items'        => esc_html('Add or remove Location', 'wcmlim'),
-      'choose_from_most_used'      => esc_html('Choose from the most used Location', 'wcmlim'),
-      'lat'                => esc_html('Lat', 'wcmlim'),
-      'lng'                => esc_html('Lng', 'wcmlim'),
+      'search_items' => esc_html('Search Locations', 'wcmlim'),
+      'add_or_remove_items' => esc_html('Add or remove Location', 'wcmlim'),
+      'choose_from_most_used' => esc_html('Choose from the most used Location', 'wcmlim'),
+      'lat' => esc_html('Lat', 'wcmlim'),
+      'lng' => esc_html('Lng', 'wcmlim'),
 
     );
     $capabilities = array(
-      'manage_terms'               => 'manage_woocommerce',
-      'edit_terms'                 => 'manage_woocommerce',
-      'delete_terms'               => 'manage_woocommerce',
-      'assign_terms'               => 'manage_woocommerce',
+      'manage_terms' => 'manage_woocommerce',
+      'edit_terms' => 'manage_woocommerce',
+      'delete_terms' => 'manage_woocommerce',
+      'assign_terms' => 'manage_woocommerce',
     );
-    
-    $locationWidget =  get_option('wcmlim_enable_location_widget');
-    if($locationWidget == 'on'){
+
+    $locationWidget = get_option('wcmlim_enable_location_widget');
+    if ($locationWidget == 'on') {
       $args = array(
-        'labels'                     => $labels,
-        'hierarchical'               => true,
-        'public'                     => true,
-        'show_ui'                    => true,
-        'show_in_rest'               => true,
-        'show_in_quick_edit'         => false,
-        'show_admin_column'          => true,
-        'show_in_menu'               => true,
-        'show_tagcloud'              => true,
-        'capabilities'               => $capabilities,
+        'labels' => $labels,
+        'hierarchical' => true,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'show_in_quick_edit' => false,
+        'show_admin_column' => true,
+        'show_in_menu' => true,
+        'show_tagcloud' => true,
+        'capabilities' => $capabilities,
       );
-    }else{
+    } else {
       $args = array(
-        'labels'                     => $labels,
-        'hierarchical'               => true,
-        'public'                     => true,
-        'show_ui'                    => true,
-        'show_in_rest'               => true,
-        'show_in_quick_edit'         => false,
-        'show_admin_column'          => true,
-        'show_in_menu'               => true,
-        'show_tagcloud'              => true,
-        'capabilities'               => $capabilities,
-        'meta_box_cb'                => false  
+        'labels' => $labels,
+        'hierarchical' => true,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'show_in_quick_edit' => false,
+        'show_admin_column' => true,
+        'show_in_menu' => true,
+        'show_tagcloud' => true,
+        'capabilities' => $capabilities,
+        'meta_box_cb' => false
       );
     }
-   
+
 
 
 
@@ -130,22 +130,22 @@ class Wcmlim_Product_Taxonomy
     register_term_meta('locations', 'wcmlim_lng', ['show_in_rest' => true]);
 
     /**start Location Group */
-    register_term_meta('locations', 'wcmlim_locator', ['show_in_rest' => true]); 
-   
-    register_taxonomy('location_group', 'product', array(	 
+    register_term_meta('locations', 'wcmlim_locator', ['show_in_rest' => true]);
+
+    register_taxonomy('location_group', 'product', array(
       'labels' => array(
-      'name' => _x( 'Location Group', 'taxonomy general name' ),
-      'singular_name' => _x( 'Location Group', 'taxonomy singular name' ),
-      'search_items' =>  __( 'Search Location Groups' ),
-      'all_items' => __( 'All Location Group' ),
-      'parent_item' => __( 'Parent Location Group' ),
-      'parent_item_colon' => __( 'Parent Location Group:' ),
-      'edit_item' => __( 'Edit Location Group' ),
-      'update_item' => __( 'Update Location Group' ),
-      'add_new_item' => __( 'Add New Location Group' ),
-      'new_item_name' => __( 'New Location Group Name' ),
-      'menu_name' => __( 'Location Groups' ),
-      ),     
+        'name' => _x('Location Group', 'taxonomy general name'),
+        'singular_name' => _x('Location Group', 'taxonomy singular name'),
+        'search_items' => __('Search Location Groups'),
+        'all_items' => __('All Location Group'),
+        'parent_item' => __('Parent Location Group'),
+        'parent_item_colon' => __('Parent Location Group:'),
+        'edit_item' => __('Edit Location Group'),
+        'update_item' => __('Update Location Group'),
+        'add_new_item' => __('Add New Location Group'),
+        'new_item_name' => __('New Location Group Name'),
+        'menu_name' => __('Location Groups'),
+      ),
       'meta_box_cb' => false,
     ));
     register_taxonomy_for_object_type('location_group', 'product');
@@ -169,23 +169,22 @@ class Wcmlim_Product_Taxonomy
    */
   public function editColumns($columns)
   {
-    if (isset($columns['description']))
-    {
+    if (isset($columns['description'])) {
       unset($columns['description']);
-        }
-        return $columns;
     }
-    /**
+    return $columns;
+  }
+  /**
    * Remove view for location group
    *
    * @param $columns
    *
    * @return mixed
    */
-  public function editColumnsactions ($actions,$tag)
-  {    
+  public function editColumnsactions($actions, $tag)
+  {
     unset($actions['view']);
-    return $actions;    
+    return $actions;
   }
 
   /**
@@ -197,56 +196,56 @@ class Wcmlim_Product_Taxonomy
    */
   public function editColumns_locgroup($columns)
   {
-    
+
     if (isset($columns['count'])) {
       unset($columns['count']);
     }
     return $columns;
   }
-  
+
   /**
    * Hide quick edit on locations taxonomy
    * 
    */
-  
+
   public function disable_quick_edit($actions = array(), $post = null)
   {
     if ($post->taxonomy !== "locations") {
       return $actions;
     }
-    
+
     if (isset($actions['inline hide-if-no-js'])) {
       unset($actions['inline hide-if-no-js']);
     }
 
     return $actions;
   }
-    /**
+  /**
    * Update stock on deleting locations
    * 
    */
-  public function execute_on_delete_locations($term, $tt_id, $deleted_term, $object_ids){
+  public function execute_on_delete_locations($term, $tt_id, $deleted_term, $object_ids)
+  {
     //You can write code here to be executed when this action occurs in WordPress. Use the parameters received in the function arguments & implement the required additional custom functionality according to your website requirements.
     $args = array(
-      'post_type'  => 'product',
-       'numberposts' => -1,
+      'post_type' => 'product',
+      'numberposts' => -1,
     );
-      $product_info = get_posts($args);
-      foreach ($product_info as $key => $value) {
+    $product_info = get_posts($args);
+    foreach ($product_info as $key => $value) {
       $total = 0;
-          $product_id = $value->ID;
-          $product = wc_get_product($product_id);
+      $product_id = $value->ID;
+      $product = wc_get_product($product_id);
       $locations = get_terms(array('taxonomy' => 'locations', 'hide_empty' => false));
-          foreach ($locations as $location) {
-            $total +=  intval(get_post_meta($product_id, "wcmlim_stock_at_{$location->term_id}", true));
-          }
-          if(intval($total) > 0)
-          {
-            update_post_meta($product_id, '_stock', $total);
-          }        
-
-      } 
- }
+      foreach ($locations as $location) {
+        $total += intval(get_post_meta($product_id, "wcmlim_stock_at_{$location->term_id}", true));
+      }
+      if (intval($total) > 0) {
+        update_post_meta($product_id, '_stock', $total);
+      }
+    }
+    $this->wcmlim_resync_locator_meta_from_groups();
+  }
   /**
    * Form fields
    *
@@ -347,7 +346,7 @@ class Wcmlim_Product_Taxonomy
 
       $location_fee = get_term_meta($term->term_id, 'wcmlim_location_fee', true);
       (isset($location_fee)) ? $location_fee : $location_fee = '';
-      
+
 
       $get_direction = get_term_meta($term->term_id, 'wcmlim_get_direction_for_location', true);
       (isset($get_direction)) ? $get_direction : $get_direction = '';
@@ -376,13 +375,13 @@ class Wcmlim_Product_Taxonomy
       }
     }
   }
-    /**
+  /**
    * Save term meta
    *
    * @param $term_id
    */
   public function formSave_location_group($term_id)
-  { 
+  {
     if (isset($_POST['wcmlim_email_regmanager'])) {
       update_term_meta($term_id, 'wcmlim_email_regmanager', sanitize_text_field($_POST['wcmlim_email_regmanager']));
     }
@@ -390,37 +389,36 @@ class Wcmlim_Product_Taxonomy
       $groupshopManager = isset($_POST['wcmlim_shop_regmanager']) ? (array) $_POST['wcmlim_shop_regmanager'] : array();
       $groupshopManager = array_map('esc_attr', $groupshopManager);
       update_term_meta($term_id, 'wcmlim_shop_regmanager', $groupshopManager);
-       
-  
-        if (isset($_POST['wcmlim_location'])) {
-          
-          $wcmlim_location = get_term_meta($term_id, 'wcmlim_location', true);
-          $wcmlim_location = is_array($wcmlim_location) ? $wcmlim_location : array();
 
-    if (!empty($_POST['wcmlim_location']) && is_array($_POST['wcmlim_location'])) {
+
+      if (isset($_POST['wcmlim_location'])) {
+
+        $wcmlim_location = get_term_meta($term_id, 'wcmlim_location', true);
+        $wcmlim_location = is_array($wcmlim_location) ? $wcmlim_location : array();
+
+        if (!empty($_POST['wcmlim_location']) && is_array($_POST['wcmlim_location'])) {
           $term_id_to_remove = array_diff($wcmlim_location, $_POST['wcmlim_location']);
-            if(!empty($term_id_to_remove)){
-              foreach ($term_id_to_remove as $removable_term_id) {
-                $sanitized_removable_term_id = sanitize_text_field($removable_term_id);
-                update_term_meta($sanitized_removable_term_id, 'wcmlim_locator', '');
-             }
+          if (!empty($term_id_to_remove)) {
+            foreach ($term_id_to_remove as $removable_term_id) {
+              $sanitized_removable_term_id = sanitize_text_field($removable_term_id);
+              update_term_meta($sanitized_removable_term_id, 'wcmlim_locator', '');
             }
           }
-          else {
-            $term_id_to_remove = array(); // Set an empty array if $_POST['wcmlim_location'] is not an array or is empty
+        } else {
+          $term_id_to_remove = array(); // Set an empty array if $_POST['wcmlim_location'] is not an array or is empty
         }
 
-          $locations = array_map('sanitize_text_field', $_POST['wcmlim_location']);
-          update_term_meta($term_id, 'wcmlim_location', $locations);
-      
-          foreach ($locations as $location_id) {
-              $sanitized_location_id = sanitize_text_field($location_id);
-              update_term_meta($sanitized_location_id, 'wcmlim_locator', $term_id);
-          }
-      }
-      
-        
+        $locations = array_map('sanitize_text_field', $_POST['wcmlim_location']);
+        update_term_meta($term_id, 'wcmlim_location', $locations);
 
+        foreach ($locations as $location_id) {
+          $sanitized_location_id = sanitize_text_field($location_id);
+          update_term_meta($sanitized_location_id, 'wcmlim_locator', $term_id);
+        }
+      }
+
+
+      $this->wcmlim_resync_locator_meta_from_groups();
     }
 
     $wcmlim_shop_regmanager = get_term_meta($term_id, 'wcmlim_shop_regmanager', true);
@@ -439,8 +437,47 @@ class Wcmlim_Product_Taxonomy
       update_option("taxonomy_$term_id", $term_meta);
     }
 
+    // Resync metas 'wcmlim_locator' en tiendas
+    $this->wcmlim_resync_locator_meta_from_groups();
 
+  }
 
+  /**
+   * Resync: para cada location_group, asigna en cada tienda (locations)
+   * la meta 'wcmlim_locator' con el term_id del grupo.
+   */
+  public function wcmlim_resync_locator_meta_from_groups(): array
+  {
+    $groups = get_terms([
+      'taxonomy' => 'location_group',
+      'hide_empty' => false,
+      'parent' => 0,
+    ]);
+    if (is_wp_error($groups)) {
+      return ['error' => $groups->get_error_message()];
+    }
+
+    $updated = 0;
+
+    foreach ($groups as $g) {
+      $loc_ids = get_term_meta($g->term_id, 'wcmlim_location', true);
+      $loc_ids = is_array($loc_ids) ? $loc_ids : ($loc_ids ? [(int) $loc_ids] : []);
+      $loc_ids = array_values(array_filter(array_map('intval', $loc_ids)));
+
+      if (!$loc_ids) {
+        continue;
+      }
+
+      foreach ($loc_ids as $loc_id) {
+        if (!term_exists($loc_id, 'locations')) {
+          continue;
+        }
+        update_term_meta($loc_id, 'wcmlim_locator', (int) $g->term_id);
+        $updated++;
+      }
+    }
+
+    return ['updated' => $updated];
   }
 
   /**
@@ -450,7 +487,7 @@ class Wcmlim_Product_Taxonomy
    */
   public function formSave($term_id)
   {
-   
+
     $autofill = get_option('wcmlim_enable_autocomplete_address');
     if ($_POST) {
       $shippingZone = isset($_POST['wcmlim_shipping_zone']) ? (array) $_POST['wcmlim_shipping_zone'] : array();
@@ -485,14 +522,14 @@ class Wcmlim_Product_Taxonomy
       update_term_meta($term_id, 'wcmlim_wcpos_compatiblity', $_POST['wcmlim_wcpos_compatiblity']);
       update_term_meta($term_id, 'wcmlim_shipping_method', $shippingMethod);
       update_term_meta($term_id, 'wcmlim_allow_pickup', sanitize_text_field($_POST['wcmlim_allow_pickup']));
-      update_term_meta($term_id, 'wcmlim_service_radius_for_location', sanitize_text_field($_POST['wcmlim_service_radius']));      
-      update_term_meta($term_id, 'wcmlim_location_fee', sanitize_text_field($_POST['wcmlim_location_fee']));      
-      update_term_meta($term_id, 'wcmlim_dimension_unit', $wcmlim_dimension_unit);      
+      update_term_meta($term_id, 'wcmlim_service_radius_for_location', sanitize_text_field($_POST['wcmlim_service_radius']));
+      update_term_meta($term_id, 'wcmlim_location_fee', sanitize_text_field($_POST['wcmlim_location_fee']));
+      update_term_meta($term_id, 'wcmlim_dimension_unit', $wcmlim_dimension_unit);
       update_term_meta($term_id, 'wcmlim_lat', sanitize_text_field($_POST['wcmlim_lat']));
       update_term_meta($term_id, 'wcmlim_lng', sanitize_text_field($_POST['wcmlim_lng']));
       update_term_meta($term_id, 'wcmlim_stockupp_pos', $_POST['wcmlim_stockupp_pos']);
       // for group field   
-      update_term_meta(sanitize_text_field($_POST['wcmlim_locator']), 'wcmlim_location',$term_id);   
+      update_term_meta(sanitize_text_field($_POST['wcmlim_locator']), 'wcmlim_location', $term_id);
     }
 
     if ($_POST && isset($_POST['wcmlim_street_address']) && isset($_POST['wcmlim_city']) && isset($_POST['wcmlim_postcode']) && isset($_POST['wcmlim_country_state'])) {
@@ -505,12 +542,12 @@ class Wcmlim_Product_Taxonomy
       update_term_meta($term_id, 'wcmlim_location_priority', sanitize_text_field($_POST['wcmlim_location_priority']));
       update_term_meta($term_id, 'wcmlim_start_time', sanitize_text_field($_POST['wcmlim_start_time']));
       update_term_meta($term_id, 'wcmlim_end_time', sanitize_text_field($_POST['wcmlim_end_time']));
-      update_term_meta($term_id, 'wcmlim_dimension_unit', sanitize_text_field($_POST['wcmlim_dimension_unit']));      
+      update_term_meta($term_id, 'wcmlim_dimension_unit', sanitize_text_field($_POST['wcmlim_dimension_unit']));
       $pwsz = isset($_POST['wcmlim_shipping_zone']) ? (array) $_POST['wcmlim_shipping_zone'] : array();
       $pwsz = array_map('esc_attr', $pwsz);
       update_term_meta($term_id, 'wcmlim_shipping_zone', $pwsz);
 
-      $pwsm  = isset($_POST['wcmlim_shipping_method']) ? (array) $_POST['wcmlim_shipping_method'] : array();
+      $pwsm = isset($_POST['wcmlim_shipping_method']) ? (array) $_POST['wcmlim_shipping_method'] : array();
       $pwsm = array_map('esc_attr', $pwsm);
       update_term_meta($term_id, 'wcmlim_shipping_method', $pwsm);
 
@@ -523,8 +560,8 @@ class Wcmlim_Product_Taxonomy
       update_term_meta($term_id, 'wcmlim_pos_compatiblity', $_POST['wcmlim_pos_compatiblity']);
       update_term_meta($term_id, 'wcmlim_wcpos_compatiblity', $_POST['wcmlim_wcpos_compatiblity']);
       update_term_meta($term_id, 'wcmlim_allow_pickup', sanitize_text_field($_POST['wcmlim_allow_pickup']));
-      update_term_meta($term_id, 'wcmlim_service_radius_for_location', sanitize_text_field($_POST['wcmlim_service_radius']));      
-      update_term_meta($term_id, 'wcmlim_location_fee', sanitize_text_field($_POST['wcmlim_location_fee']));      
+      update_term_meta($term_id, 'wcmlim_service_radius_for_location', sanitize_text_field($_POST['wcmlim_service_radius']));
+      update_term_meta($term_id, 'wcmlim_location_fee', sanitize_text_field($_POST['wcmlim_location_fee']));
       update_term_meta($term_id, 'wcmlim_lat', sanitize_text_field($_POST['wcmlim_lat']));
       update_term_meta($term_id, 'wcmlim_lng', sanitize_text_field($_POST['wcmlim_lng']));
       update_term_meta($term_id, 'wcmlim_stockupp_pos', sanitize_text_field($_POST['wcmlim_stockupp_pos']));
@@ -564,14 +601,14 @@ class Wcmlim_Product_Taxonomy
       $wcmlim_pos_compatiblity = get_term_meta($term_id, 'wcmlim_pos_compatiblity', true);
       $wcpos_selected_outlet = get_term_meta($term_id, 'wcmlim_wcpos_compatiblity', true);
       $allow_pickup = get_term_meta($term_id, 'wcmlim_allow_pickup', true);
-      $service_radius = get_term_meta( $term_id, 'wcmlim_service_radius_for_location' , true );
-      $location_fee = get_term_meta( $term_id, 'wcmlim_location_fee' , true );
-      
-      $wcmlim_dimension_unit = get_term_meta( $term_id, 'wcmlim_dimension_unit' , true );
-      $wcmlim_tax_locations = get_term_meta( $term_id, 'wcmlim_tax_locations' , true );
-      $wcmlim_lat = get_term_meta( $term_id, 'wcmlim_lat' , true );
-      $wcmlim_lng = get_term_meta( $term_id, 'wcmlim_lng' , true );
-      $wcmlim_stockupp_pos = get_term_meta( $term_id, 'wcmlim_stockupp_pos' , true );
+      $service_radius = get_term_meta($term_id, 'wcmlim_service_radius_for_location', true);
+      $location_fee = get_term_meta($term_id, 'wcmlim_location_fee', true);
+
+      $wcmlim_dimension_unit = get_term_meta($term_id, 'wcmlim_dimension_unit', true);
+      $wcmlim_tax_locations = get_term_meta($term_id, 'wcmlim_tax_locations', true);
+      $wcmlim_lat = get_term_meta($term_id, 'wcmlim_lat', true);
+      $wcmlim_lng = get_term_meta($term_id, 'wcmlim_lng', true);
+      $wcmlim_stockupp_pos = get_term_meta($term_id, 'wcmlim_stockupp_pos', true);
 
 
       $term_meta = [
@@ -617,12 +654,12 @@ class Wcmlim_Product_Taxonomy
       $wcmlim_tax_locations[] = get_term_meta($term_id, 'wcmlim_tax_locations', true);
       $wcmlim_shop_manager = get_term_meta($term_id, 'wcmlim_shop_manager', true);
       $wcmlim_payment_methods = array();
-      $wcmlim_payment_methods[] =  get_term_meta($term_id, 'wcmlim_payment_methods', true);
+      $wcmlim_payment_methods[] = get_term_meta($term_id, 'wcmlim_payment_methods', true);
       $wcmlim_pos_compatiblity = get_term_meta($term_id, 'wcmlim_pos_compatiblity', true);
       $wcpos_selected_outlet = get_term_meta($term_id, 'wcmlim_wcpos_compatiblity', true);
-      $wcmlim_lat = get_term_meta( $term_id, 'wcmlim_lat' , true );
-      $wcmlim_lng = get_term_meta( $term_id, 'wcmlim_lng' , true );
-      $wcmlim_stockupp_pos = get_term_meta( $term_id, 'wcmlim_stockupp_pos' , true );
+      $wcmlim_lat = get_term_meta($term_id, 'wcmlim_lat', true);
+      $wcmlim_lng = get_term_meta($term_id, 'wcmlim_lng', true);
+      $wcmlim_stockupp_pos = get_term_meta($term_id, 'wcmlim_stockupp_pos', true);
 
       $allow_pickup = get_term_meta($term_id, 'wcmlim_allow_pickup', true);
       $service_radius = get_term_meta($term_id, 'wcmlim_service_radius_for_location', true);
@@ -657,8 +694,7 @@ class Wcmlim_Product_Taxonomy
       // Save the option array.
       update_option("taxonomy_$term_id", $term_meta);
     }
+
+    $this->wcmlim_resync_locator_meta_from_groups();
   }
-
-
-
 }
