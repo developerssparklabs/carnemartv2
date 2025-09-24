@@ -1,0 +1,30 @@
+{
+	"apiVersion": 2,
+	"name": "wc-local-pickup/pickup-checkout",
+	"version": "1.0.0",
+	"title": "Local Pickup",
+	"category": "woocommerce",
+	"description": "Local Pickup.",
+	"supports": {
+		"html": false,
+		"align": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"parent": ["woocommerce/checkout-pickup-options-block"],
+	"attributes": {
+		"lock": {
+			"type": "object",
+			"default": {
+				"remove": true,
+				"move": true
+			}
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "loyalty-program",
+	"editorStyle": "file:../../../build/style-pickup-checkout-block.css"
+}

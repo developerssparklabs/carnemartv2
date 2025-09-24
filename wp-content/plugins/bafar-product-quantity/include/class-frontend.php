@@ -50,8 +50,8 @@ if (!class_exists('PQ_Frontend')) {
 			}
 			$term_id = $_COOKIE['wcmlim_selected_location_termid'];
 			$item_data[] = array(
-				'key'     => 'Disponibilidad',
-				'value'   => get_post_meta($cart_item['product_id'], "wcmlim_stock_at_{$term_id}", true),
+				'key' => 'Disponibilidad',
+				'value' => get_post_meta($cart_item['product_id'], "wcmlim_stock_at_{$term_id}", true),
 				'display' => '',
 			);
 			return $item_data;
@@ -85,7 +85,7 @@ if (!class_exists('PQ_Frontend')) {
 			if (!is_product()) {
 				return $precio . " &nbsp; " . $final;
 			} else {
-				return $final .  $precio;
+				return $final . $precio;
 			}
 		}
 
@@ -98,7 +98,7 @@ if (!class_exists('PQ_Frontend')) {
 			}
 
 			$before = '';
-			if (! $product->is_sold_individually() && $product->is_purchasable()) {
+			if (!$product->is_sold_individually() && $product->is_purchasable()) {
 				$before = $this->pq_get_field($product);
 			}
 			/*$label = get_post_meta( $product->get_id(), 'ri_quantity_step_label', true);
@@ -151,65 +151,62 @@ if (!class_exists('PQ_Frontend')) {
 		}
 
 
+		// public function pq_get_field_vold($product)
+		// {
+		// 	//cantidades keikos sergio spark
+		// 	$qty_step = !empty($qty_step) ? floatval($qty_step) : 1;
+
+		// 	//$x; // se cambia para mejorar la UX
+		// 	$label = get_post_meta($product->get_id(), 'ri_quantity_step_label', true);
+		// 	$maximk = $this->validar_stock_por_ubicacion($product->get_id());
+		// 	// Generar el campo de cantidad con botones "minus" y "plus"
+		// 	$field = '<div class="quantity">';
+		// 	$field .= '<button type="button" class="minus">-</button>';
+		// 	$field .= '<input type="number" id="quantity_' . $product->get_id() . '" class="keikos pq-qty-input input-text qty text"  max="' . $maximk . '" step="' . $qty_step . '" min="' . $qty_step . '" name="quantity" value="' . $qty_step . '" title="Qty" size="4" inputmode="numeric">';
+		// 	$field .= '<input type="hidden" id="quantity_step_' . $product->get_id() . '" value=' . get_post_meta($product->get_id(), 'ri_quantity_step', true) . '">';
+		// 	$field .= '<input type="hidden" id="id_producto_' . $product->get_id() . '" value=' . $product->get_id() . '>';
+		// 	$field .= '<input type="hidden" id="unidad_' . $product->get_id() . '" value=' . $label . '>';
+		// 	$field .= '<button type="button" class="plus">+</button>';
+		// 	$field .= '</div>';
 
 
-
-		public function pq_get_field_vold($product)
-		{
-			//cantidades keikos sergio spark
-			$qty_step = !empty($qty_step) ? floatval($qty_step) : 1;
-
-			//$x; // se cambia para mejorar la UX
-			$label = get_post_meta($product->get_id(), 'ri_quantity_step_label', true);
-			$maximk = $this->validar_stock_por_ubicacion($product->get_id());
-			// Generar el campo de cantidad con botones "minus" y "plus"
-			$field = '<div class="quantity">';
-			$field .= '<button type="button" class="minus">-</button>';
-			$field .= '<input type="number" id="quantity_' . $product->get_id() . '" class="keikos pq-qty-input input-text qty text"  max="' .	$maximk   . '" step="' . $qty_step . '" min="' . $qty_step . '" name="quantity" value="' . $qty_step . '" title="Qty" size="4" inputmode="numeric">';
-			$field .= '<input type="hidden" id="quantity_step_' . $product->get_id() . '" value=' . get_post_meta($product->get_id(), 'ri_quantity_step', true) . '">';
-			$field .= '<input type="hidden" id="id_producto_' . $product->get_id() . '" value=' . $product->get_id() . '>';
-			$field .= '<input type="hidden" id="unidad_' . $product->get_id() . '" value=' . $label . '>';
-			$field .= '<button type="button" class="plus">+</button>';
-			$field .= '</div>';
-
-
-			return $field;
-		}
+		// 	return $field;
+		// }
 
 		// Versión ajustada para incremento en grid
 		public function pq_get_field($product)
 		{
-			$product_id = $product->get_id();
+			//$product_id = $product->get_id();
 
-			$qty_step = get_post_meta($product_id, 'ri_quantity_step', true);
-			$qty_min  = get_post_meta($product_id, 'min_quantity', true);
-			$label    = get_post_meta($product_id, 'ri_quantity_step_label', true);
-			$maximk   = $this->validar_stock_por_ubicacion($product_id);
+			// $qty_step = get_post_meta($product_id, 'ri_quantity_step', true);
+			// $qty_min = get_post_meta($product_id, 'min_quantity', true);
+			// $label = get_post_meta($product_id, 'ri_quantity_step_label', true);
+			// $maximk = $this->validar_stock_por_ubicacion($product_id);
 
 			// Determinar decimales basados en qty_min
-			$decimal_places = $this->get_decimal_places($qty_min);
+			//$decimal_places = $this->get_decimal_places($qty_min);
 
 			// Valores por defecto si no están definidos
-			$qty_min = !empty($qty_min)
-				? number_format(floatval($qty_min), $decimal_places, '.', '')
-				: number_format(1, $decimal_places, '.', '');
+			// $qty_min = !empty($qty_min)
+			// 	? number_format(floatval($qty_min), $decimal_places, '.', '')
+			// 	: number_format(1, $decimal_places, '.', '');
 
-			$qty_step = !empty($qty_step)
-				? number_format(floatval($qty_step), $decimal_places, '.', '')
-				: $qty_min;
+			// $qty_step = !empty($qty_step)
+			// 	? number_format(floatval($qty_step), $decimal_places, '.', '')
+			// 	: $qty_min;
 
-			$field  = '<div class="quantity">';
-			$field .= '<button type="button" class="minus">-</button>';
-			$field .= '<input type="number" id="quantity_' . $product_id . '" class="keikos pq-qty-input input-text qty text" ';
-			$field .= 'max="' . $maximk . '" step="' . $qty_step . '" min="' . $qty_min . '" name="quantity" value="' . $qty_min . '" ';
-			$field .= 'title="Qty" size="4" inputmode="numeric">';
-			$field .= '<input type="hidden" id="quantity_step_' . $product_id . '" value="' . $qty_step . '">';
-			$field .= '<input type="hidden" id="id_producto_' . $product_id . '" value="' . $product_id . '">';
-			$field .= '<input type="hidden" id="unidad_' . $product_id . '" value="' . $label . '">';
-			$field .= '<button type="button" class="plus">+</button>';
-			$field .= '</div>';
+			// $field = '<div class="quantity">';
+			// $field .= '<button type="button" class="minus">-</button>';
+			// $field .= '<input type="number" id="quantity_' . $product_id . '" class="keikos pq-qty-input input-text qty text" ';
+			// $field .= 'max="' . $maximk . '" step="' . $qty_step . '" min="' . $qty_min . '" name="quantity" value="' . $qty_min . '" ';
+			// $field .= 'title="Qty" size="4" inputmode="numeric">';
+			// $field .= '<input type="hidden" id="quantity_step_' . $product_id . '" value="' . $qty_step . '">';
+			// $field .= '<input type="hidden" id="id_producto_' . $product_id . '" value="' . $product_id . '">';
+			// $field .= '<input type="hidden" id="unidad_' . $product_id . '" value="' . $label . '">';
+			// $field .= '<button type="button" class="plus">+</button>';
+			// $field .= '</div>';
 
-			return $field;
+			return '';
 		}
 		/**
 		 * Obtiene el número de decimales en un número
@@ -218,7 +215,7 @@ if (!class_exists('PQ_Frontend')) {
 		 */
 		private function get_decimal_places($number)
 		{
-			$number = (string)$number;
+			$number = (string) $number;
 			if (strpos($number, '.') !== false) {
 				return strlen(substr($number, strpos($number, '.') + 1));
 			}
@@ -248,9 +245,9 @@ if (!class_exists('PQ_Frontend')) {
 				}
 				$product_quantity = woocommerce_quantity_input(
 					array(
-						'input_name'   => "cart[{$cart_item_key}][qty]",
-						'input_value'  => $cart_item['quantity'],
-						'step'         => $qty_step,
+						'input_name' => "cart[{$cart_item_key}][qty]",
+						'input_value' => $cart_item['quantity'],
+						'step' => $qty_step,
 						'product_name' => $product->get_name(),
 					),
 					$product,

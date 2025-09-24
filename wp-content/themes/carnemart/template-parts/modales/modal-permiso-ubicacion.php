@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalPermisos">
+<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalPermisos">
     Inicio
 </button>
 
@@ -13,7 +13,8 @@
 
 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalNoPermiso">
     No permiso
-</button> -->
+</button>
+
 
 
 <!-- Modal permisos de ubicación -->
@@ -39,6 +40,8 @@
     </div>
 </div>
 
+
+
 <!-- Modal selección de tienda -->
 <div class="modal fade" id="modalSeleccionTienda" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="modalSeleccionTiendaLabel" aria-hidden="true">
@@ -59,37 +62,38 @@
                     proporcione su dirección para localizar la más cercana.
                 </p>
                 <p class="has-principal-color mb-0 pb-0">
-                    <a href="#" class="link-inline"><i class="bi bi-geo-alt"></i> <span id="shareGeoModal"
-                            class="eti-pointer">Compartir mi ubicación</span></a> <span id="showPostalCode"
-                        class="eti-pointer">o agregar mi código
-                        postal</span>
+                    <a href="#" class="link-inline"><i class="bi bi-geo-alt"></i> Compartir mi ubicación</a> o agregar
+                    mi código postal
                 </p>
-                <div class="field cold-md-12 custom-form">
-                    <input id="inputCodePostal" class="input" type="text" inputmode="numeric" autocomplete="postal-code"
-                        maxlength="5" pattern="\d{5}" required placeholder="Ingresa tu código postal" />
-                    <small class="error-msg">Por favor ingresa un código postal válido</small>
-                </div>
+
                 <form class="row no-gutters form-seleccion-sucursal custom-form" action="">
                     <div class="col-md-12">
                         <label for="seleccionEstado" class="form-label">Estado</label>
-                        <select id="selectState" class="form-select form-select-sm" aria-label="Seleccion de estado">
+                        <select class="form-select form-select-sm" aria-label="Seleccion de estado">
+                            <option selected>Selecciona</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
                         </select>
                     </div>
+
                     <div class="col-md-12">
                         <label for="seleccionSucursal" class="form-label">Sucursal</label>
-                        <select id="selectStore" class="form-select form-select-sm" aria-label="Seleccion de sucursal">
-                            <option selected>Selecciona sucursal</option>
+                        <select class="form-select form-select-sm" aria-label="Seleccion de estado">
+                            <option selected>Selecciona</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
                         </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <div id="content-search-stores">
-                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal Tiendas Cercanas -->
 <div class="modal fade" id="modalTiendasCercanas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -104,6 +108,7 @@
                         class="bi bi-x-circle-fill"></i></button>
             </div>
             <div class="modal-body fs-7">
+
                 <ul class="has-principal-color listado-tienda-encontrada">
                     <li class="elemento-destacado"><b><i class="bi bi-shop-window bi-listado"></i> Tienda:</b> CMT Eje 3
                         - M310</li>
@@ -130,6 +135,8 @@
     </div>
 </div>
 
+
+
 <!-- Modal NO permiso -->
 <div class="modal fade" id="modalNoPermiso" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalNoPermisoLabel"
     aria-hidden="true">
@@ -154,150 +161,111 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Precarga de la primera modal -->
+
 <style>
     .progress .autoclose-bar {
         width: 100%;
         transition: width var(--autoCloseMs, 4000ms) linear !important;
     }
-
-    #content-search-stores {
-        width: 100%;
-    }
-
-    /* Contenedor scrollable dentro del modal */
-    #content-search-stores.stores-list {
-        margin-top: 10px;
-        border-radius: 10px;
-        overflow: auto;
-    }
-
-    #content-search-stores .stores-status {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 16px;
-        color: #374151;
-        font-size: 14px;
-        background-color: #021b6d;
-        color: #fff;
-        border-radius: 12px;
-    }
-
-    #content-search-stores .spinner {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        border: 2px solid #e5e7eb;
-        border-top-color: #111827;
-        animation: spin .6s linear infinite;
-    }
-
-    @keyframes spin {
-        to {
-            transform: rotate(360deg);
-        }
-    }
-
-    /* Ítem */
-    .store-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        padding: 10px 12px;
-        margin-bottom: 8px;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        background: #fff;
-        box-shadow: 0 1px 1px rgba(16, 24, 40, .04);
-        cursor: pointer;
-    }
-
-    .store-item:hover {
-        box-shadow: 0 2px 8px #021b6d;
-        border-color: #d1d5db;
-    }
-
-    .store-item__left {
-        flex: 1 1 auto;
-        min-width: 0;
-    }
-
-    .store-item__state {
-        font-size: 11px;
-        font-weight: 700;
-        color: #0ea5e9;
-        text-transform: uppercase;
-        letter-spacing: .04em;
-    }
-
-    .store-item__head {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 2px;
-    }
-
-    .store-item__name {
-        font-size: 15px;
-        font-weight: 700;
-        color: #111827;
-        line-height: 1.2;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .store-item__dist {
-        flex: 0 0 auto;
-        padding: 2px 8px;
-        border-radius: 9999px;
-        background: green;
-        color: white;
-        font-weight: 600;
-        font-size: 11px;
-        white-space: nowrap;
-    }
-
-    .store-item__meta {
-        font-size: 12px;
-        color: #4b5563;
-        line-height: 1.35;
-        margin-top: 4px;
-    }
-
-    .store-item__meta-line {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .store-item__right {
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        align-items: flex-end;
-    }
-
-    .chip {
-        padding: 4px 8px;
-        border-radius: 7px;
-        background: #ecfdf5;
-        color: #047857;
-        font-weight: 700;
-        font-size: 11px;
-        white-space: nowrap;
-    }
-
-    /**
-    * Error codigo postal
-    */
-    .error-msg {
-        display: none;
-        color: #dc2626;
-        font-weight: 500;
-        font-style: italic;
-        font-size: 11px;
-    }
 </style>
+<script>
+    jQuery(document).ready(function ($) {
+
+
+        const isSafari = (() => {
+            const ua = navigator.userAgent;
+            const vendor = navigator.vendor || '';
+            const isChromium =
+                'userAgentData' in navigator || /Chrome|Chromium|CriOS|Edg|OPR/i.test(ua);
+            const isSafariToken = /Safari/i.test(ua) && /Version\/\d+/i.test(ua);
+            const isApple = /Apple/i.test(vendor);
+            return isApple && isSafariToken && !isChromium;
+        })();
+        console.log("Safari:: ", isSafari);
+        const isSafariTest = (() => {
+            const ua = navigator.userAgent;
+            const isSafariUA = /^((?!chrome|chromium|android).)*safari/i.test(ua);
+            const isAppleVendor = navigator.vendor && navigator.vendor.includes('Apple');
+            return isSafariUA && isAppleVendor;
+        })();
+        console.log("Safari2:: ", isSafari);
+
+        //Modal de permisos de ubicación(Modal Permisos)
+        setTimeout(function () {
+            var modalPermisos = new bootstrap.Modal(document.getElementById('modalPermisos'));
+            modalPermisos.show();
+        }, 3000);
+
+
+        // Modal de tienda cercana con auto cierre 
+        var modalSeleccionTienda = new bootstrap.Modal(document.getElementById('modalSeleccionTienda'));
+        // Abrir modal al dar click en el botón
+        $('#btnAbrirTienda').on('click', function () {
+            modalSeleccionTienda.show();
+            // Este cierra la banda azul de buscar tienda
+            $('.buscador-contenido').slideToggle(300);
+        });
+
+
+        // Animacion de autocierre TIENDA CERCANA ------------------------------------------------
+        var duracionMs = 8000; // 
+
+        var $modal = $('#modalTiendasCercanas');
+        var $bar = $('#autocloseBar');
+        var $count = $('#countdown');
+        var tickId = null;
+
+
+        if ($bar[0]) $bar[0].style.setProperty('--autoCloseMs', duracionMs + 'ms');
+
+        // Evita duplicar handlers si pegas este bloque más de una vez
+        $modal.off('.autoclose');
+
+        $modal.on('shown.bs.modal.autoclose', function () {
+            // Reset visual
+            $bar.css('width', '100%');
+            var segundos = Math.ceil(duracionMs / 1000);
+            $count.text(segundos);
+
+            // Forzar reflow para que la transición 100% -> 0% sí ocurra
+            void $bar[0].offsetWidth;
+
+            // Dispara la animación
+            $bar.css('width', '0%');
+
+            // Cuenta regresiva cada 1s
+            tickId = setInterval(function () {
+                segundos--;
+                $count.text(Math.max(segundos, 0));
+                if (segundos <= 0) {
+                    clearInterval(tickId);
+                    tickId = null;
+                }
+            }, 1000);
+
+            // Cierra exactamente cuando termine la transición de la barra
+            $bar.one('transitionend', function () {
+                var inst = bootstrap.Modal.getOrCreateInstance($modal[0]);
+                inst.hide();
+            });
+        });
+
+        $modal.on('hide.bs.modal.autoclose', function () {
+            if (tickId) {
+                clearInterval(tickId);
+                tickId = null;
+            }
+            // Deja listo por si se vuelve a abrir
+            $bar.css('width', '100%');
+            $count.text(Math.ceil(duracionMs / 1000));
+        });
+
+
+
+
+    });
+</script>

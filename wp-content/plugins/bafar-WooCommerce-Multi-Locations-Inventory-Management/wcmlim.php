@@ -55,7 +55,7 @@ define('WCMLIM_URL_PATH', plugins_url('/', __FILE__));
 define('WCMLIM_BASE', plugin_basename(__FILE__));
 define('WCMLIM_SVALIDATOR', 'wcmlim_support_validater');
 
-add_action("enqueue_block_editor_assets", "wcmlim_blocks_enqueue");
+// dd_action("enqueue_block_editor_assets", "wcmlim_blocks_enqueue");
 
 function wcmlim_blocks_enqueue()
 {
@@ -442,40 +442,41 @@ function geolocation_form()
 }
 add_action('wp_footer', 'geolocation_form');
 
-function geolocation_modal_persistent(): void {
+function geolocation_modal_persistent(): void
+{
 	?>
 	<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		// ✅ Detectar si ya hay tienda
-		const hasStore = !!document.cookie.match(/wcmlim_selected_location_termid=\d+/);
-		const popupBtn = document.querySelector('#set-def-store-popup-btn');
-		if (!popupBtn) return;
+		document.addEventListener('DOMContentLoaded', () => {
+			// ✅ Detectar si ya hay tienda
+			const hasStore = !!document.cookie.match(/wcmlim_selected_location_termid=\d+/);
+			const popupBtn = document.querySelector('#set-def-store-popup-btn');
+			if (!popupBtn) return;
 
-		// ✅ Botón manual de cambio de ubicación (opcional)
-		const manualBtn = document.querySelector('.btnManualmente');
-		if (manualBtn) {
-			manualBtn.addEventListener('click', function (e) {
+			// ✅ Botón manual de cambio de ubicación (opcional)
+			const manualBtn = document.querySelector('.btnManualmente');
+			if (manualBtn) {
+				manualBtn.addEventListener('click', function (e) {
+					e.preventDefault();
+					const trigger = document.querySelector('.postcode-checker-change.postcode-checker-change-show');
+					if (trigger) trigger.click();
+				});
+			}
+
+			// ✅ Si ya hay tienda, salir del script
+			if (hasStore) return;
+
+			// ✅ Interceptar cualquier botón de tipo add_to_cart
+			document.body.addEventListener('click', (e) => {
+				const target = e.target.closest('a.product_type_simple.add_to_cart_button.wcmlim_ajax_add_to_cart');
+				if (!target) return;
+
 				e.preventDefault();
-				const trigger = document.querySelector('.postcode-checker-change.postcode-checker-change-show');
-				if (trigger) trigger.click();
-			});
-		}
+				e.stopImmediatePropagation();
 
-		// ✅ Si ya hay tienda, salir del script
-		if (hasStore) return;
-
-		// ✅ Interceptar cualquier botón de tipo add_to_cart
-		document.body.addEventListener('click', (e) => {
-			const target = e.target.closest('a.product_type_simple.add_to_cart_button.wcmlim_ajax_add_to_cart');
-			if (!target) return;
-
-			e.preventDefault();
-			e.stopImmediatePropagation();
-
-			console.warn('⚠️ Acción bloqueada. Debe elegir tienda primero.');
-			popupBtn.click(); // Simular click al popup de selección de tienda
-		}, true); // true: captura antes que WooCommerce
-	});
+				console.warn('⚠️ Acción bloqueada. Debe elegir tienda primero.');
+				popupBtn.click(); // Simular click al popup de selección de tienda
+			}, true); // true: captura antes que WooCommerce
+		});
 	</script>
 	<?php
 }

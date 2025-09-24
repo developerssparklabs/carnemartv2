@@ -1,0 +1,500 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-16 23:31+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: sales-booster-woocommerce.php:62
+msgid ""
+"Sales Booster For WooCommerce needs WooCommerce to be installed and active."
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:18
+msgid "Sales Booster For WooCommerce"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:18
+#: includes/class-sb-product-settings.php:19
+msgid "Sales Booster"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:20
+msgid "General Settings"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:57
+msgid "On Checkout Offer"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:58
+msgid "After Checkout Offer"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:59
+msgid "Frequently Bought Together Shortcode"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:68
+#: includes/class-sb-backend-settings.php:129
+#: includes/class-sb-backend-settings.php:228
+#: includes/class-sb-backend-settings.php:396
+msgid "Select Products"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:69
+#: includes/class-sb-backend-settings.php:229
+msgid "This offer will be enabled when the selected products are in the cart."
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:74
+#: includes/class-sb-backend-settings.php:234
+msgid "Display for: "
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:80
+#: includes/class-sb-backend-settings.php:240
+msgid "All Products"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:81
+#: includes/class-sb-backend-settings.php:241
+msgid "Specific Products"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:94
+#: includes/class-sb-backend-settings.php:254
+msgid "Products in the cart"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:111
+#: includes/class-sb-general-settings.php:10
+#: includes/class-sb-general-settings.php:41
+#: includes/class-sb-product-settings.php:66
+#: includes/class-sb-product-settings.php:198 includes/functions.php:31
+msgid "Frequently Bought Together"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:123
+#: includes/class-sb-backend-settings.php:283
+msgid "Create Offers"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:124
+msgid "Select a product to offer during checkout if the conditions are met."
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:146
+msgid "Offered product before order"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:158
+#: includes/class-sb-backend-settings.php:318
+msgid "Discount Type (Optional):"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:164
+#: includes/class-sb-backend-settings.php:324
+#: includes/class-sb-backend-settings.php:413
+msgid "Percentage"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:165
+#: includes/class-sb-backend-settings.php:325
+#: includes/class-sb-backend-settings.php:414
+#: includes/class-sb-product-settings.php:81
+#: includes/class-sb-product-settings.php:213
+msgid "Fixed"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:172
+#: includes/class-sb-backend-settings.php:332
+msgid "Discount (Optional):"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:182
+#: includes/class-sb-backend-settings.php:342
+msgid "Customize Design"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:187
+msgid "Offer Title"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:198
+#: includes/class-sb-backend-settings.php:356
+msgid "Offer Description"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:209
+msgid "Show Image"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:215
+msgid "Enable product thumbnail on checkout page."
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:271
+msgid "Specify products for offered product"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:284
+msgid "Select a product to offer during Order if the conditions are met."
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:289
+msgid "Select Product"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:306
+msgid "Offered product after order"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:346
+msgid "Title Offer"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:373
+msgid "Create Shortcode Of Frequently Bought Together Products"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:376
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:383
+msgid "Parent/Main Product"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:411
+#: includes/class-sb-product-settings.php:76
+#: includes/class-sb-product-settings.php:208
+msgid "Discount Type"
+msgstr ""
+
+#: includes/class-sb-backend-settings.php:419
+#: includes/class-sb-product-settings.php:92
+#: includes/class-sb-product-settings.php:224
+msgid "Discount"
+msgstr ""
+
+#: includes/class-sb-cart.php:108
+msgid "Frequently Bought Discount"
+msgstr ""
+
+#: includes/class-sb-common.php:20 includes/class-sb-common.php:21
+msgctxt "Custom post type name"
+msgid "On Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:22
+msgid "Add New On Checkout "
+msgstr ""
+
+#: includes/class-sb-common.php:23
+msgid "New On Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:24
+msgid "View On Checkout Product"
+msgstr ""
+
+#: includes/class-sb-common.php:25
+msgid "On Checkout Offers"
+msgstr ""
+
+#: includes/class-sb-common.php:26
+msgid "Search On Checkout Product"
+msgstr ""
+
+#: includes/class-sb-common.php:27
+msgid "Edit On Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:28
+msgid "Update On Checkout Product"
+msgstr ""
+
+#: includes/class-sb-common.php:29
+msgid "On Checkout Product Not Found"
+msgstr ""
+
+#: includes/class-sb-common.php:30
+msgid "On Checkout Product not Found in Trash"
+msgstr ""
+
+#: includes/class-sb-common.php:33 includes/class-sb-common.php:34
+msgctxt "Custom post type name"
+msgid "After Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:35
+msgid "Add New After Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:36
+msgid "New After Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:37
+msgid "View After Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:38
+msgid "After Checkout Offers"
+msgstr ""
+
+#: includes/class-sb-common.php:39
+msgid "Search After Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:40
+msgid "Edit After Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:41
+msgid "Update After Checkout"
+msgstr ""
+
+#: includes/class-sb-common.php:42
+msgid "After Checkout Not Found"
+msgstr ""
+
+#: includes/class-sb-common.php:43
+msgid "After Checkout not Found in Trash"
+msgstr ""
+
+#: includes/class-sb-common.php:46 includes/class-sb-common.php:47
+msgctxt "Custom post type name"
+msgid "Bought Together Shortcode"
+msgstr ""
+
+#: includes/class-sb-common.php:48
+msgid "Add New Shortcode"
+msgstr ""
+
+#: includes/class-sb-common.php:49
+msgid "New Shortcode"
+msgstr ""
+
+#: includes/class-sb-common.php:50
+msgid "View Shortcode"
+msgstr ""
+
+#: includes/class-sb-common.php:51
+msgid "Bought Together"
+msgstr ""
+
+#: includes/class-sb-common.php:52
+msgid "Search Shortcode"
+msgstr ""
+
+#: includes/class-sb-common.php:53
+msgid "Edit Shortcode"
+msgstr ""
+
+#: includes/class-sb-common.php:54
+msgid "Update Shortcode"
+msgstr ""
+
+#: includes/class-sb-common.php:55
+msgid "Shortcode Not Found"
+msgstr ""
+
+#: includes/class-sb-common.php:56
+msgid "Shortcode not Found in Trash"
+msgstr ""
+
+#: includes/class-sb-common.php:60 includes/class-sb-common.php:75
+msgid "Description."
+msgstr ""
+
+#: includes/class-sb-common.php:90
+msgid ""
+"Frequently bought together shortcode, create unlimited shortcodes & place on "
+"any page."
+msgstr ""
+
+#: includes/class-sb-common.php:110
+msgid "Something is wrong please try again."
+msgstr ""
+
+#: includes/class-sb-common.php:132
+msgid "Unable to remove product from cart."
+msgstr ""
+
+#: includes/class-sb-common.php:140
+msgid "Product removed successfully."
+msgstr ""
+
+#: includes/class-sb-common.php:186 includes/class-sb-common.php:191
+#: includes/class-sb-common.php:196
+msgid "No products found."
+msgstr ""
+
+#: includes/class-sb-frontend.php:77 includes/class-sb-frontend.php:181
+msgid "Add offer to my order."
+msgstr ""
+
+#: includes/class-sb-frontend.php:112 includes/class-sb-frontend.php:198
+msgid "Original Price: "
+msgstr ""
+
+#: includes/class-sb-frontend.php:113 includes/class-sb-frontend.php:199
+msgid "Discounted Price: "
+msgstr ""
+
+#: includes/class-sb-frontend.php:139
+msgid "Wait! Your order is almost complete..."
+msgstr ""
+
+#: includes/class-sb-frontend.php:140
+#, php-format
+msgid "Add this offer to your order with 50% off!"
+msgstr ""
+
+#: includes/class-sb-frontend.php:201
+msgid "Add to my order"
+msgstr ""
+
+#: includes/class-sb-frontend.php:202
+msgid "No thanks, I will pass!"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:11
+msgid "Label Settings"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:50
+msgid "Allow Duplicate Discount"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:53
+msgid ""
+"Allow duplicate discount if quantity increased of frequently bought product."
+msgstr ""
+
+#: includes/class-sb-general-settings.php:58
+msgid "Hide Price For Items On Cart"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:61
+msgid ""
+"Hide price for frequently bought together product items on the cart page."
+msgstr ""
+
+#: includes/class-sb-general-settings.php:66
+msgid "Disable Quantity For Items On Cart"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:69
+msgid ""
+"Disable quantity field for frequently bought together product items on the "
+"cart page."
+msgstr ""
+
+#: includes/class-sb-general-settings.php:74
+msgid "Disable Remove Link For Items On Cart"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:77
+msgid ""
+"Disable remove link for frequently bought together product items on the cart "
+"page, instead will be automatically removed with parent product."
+msgstr ""
+
+#: includes/class-sb-general-settings.php:88
+msgid "General Labels"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:97
+msgid "Discount Title"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:104
+msgid "Discount Description"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:107
+msgid "Add {discount} tag to display discount value in description."
+msgstr ""
+
+#: includes/class-sb-general-settings.php:112
+msgid "Total Price Label"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:119
+msgid "Add To Cart Button Label"
+msgstr ""
+
+#: includes/class-sb-general-settings.php:126
+msgid "Cart Discount Label"
+msgstr ""
+
+#: includes/class-sb-product-settings.php:48
+#: includes/class-sb-product-settings.php:180
+msgid "Enable"
+msgstr ""
+
+#: includes/class-sb-product-settings.php:49
+#: includes/class-sb-product-settings.php:181
+msgid "Enable frequently bought together."
+msgstr ""
+
+#: includes/class-sb-product-settings.php:58
+#: includes/class-sb-product-settings.php:190
+msgid "Frequently Bought Products"
+msgstr ""
+
+#: includes/class-sb-product-settings.php:61
+#: includes/class-sb-product-settings.php:193
+msgid "Select frequently bought products."
+msgstr ""
+
+#: includes/class-sb-product-settings.php:78
+#: includes/class-sb-product-settings.php:210
+msgid "Specify discount type you want to provide."
+msgstr ""
+
+#: includes/class-sb-product-settings.php:95
+#: includes/class-sb-product-settings.php:227
+msgid ""
+"Specify discount on frequently bought together products. Leave empty to "
+"provide no discount."
+msgstr ""
+
+#: includes/class-sb-product-settings.php:237
+msgid "Discount Label"
+msgstr ""
+
+#: includes/class-sb-product-settings.php:240
+msgid "Discount label for cart."
+msgstr ""
+
+#: includes/functions.php:11 includes/functions.php:126
+msgid "Add To Cart"
+msgstr ""
+
+#: includes/functions.php:16
+msgid "No products found!"
+msgstr ""
+
+#: includes/functions.php:96
+msgid "Total Price"
+msgstr ""
+
+#: includes/functions.php:119
+msgid "Save {discount} when bought together"
+msgstr ""

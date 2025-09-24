@@ -20,7 +20,8 @@ async function fetchLocationData() {
   //fetch location verifica si ya hay tiendas seleccionadas
 
   // Obtener el elemento del DOM
-  const link = document.querySelector(".woocommerce-loop-product__title");
+  const link = document.getElementById("btnBuscadorTienda");
+  const span = link ? link.querySelector("span") : null;
   const txtentrega = document.querySelector(".txtentrega");
   const txthorarios = document.querySelector(".txthorarios");
   const txtubicacion = document.querySelector(".txtubicacion");
@@ -42,7 +43,7 @@ async function fetchLocationData() {
     locationId == null ||
     locationId === ""
   ) {
-    link.textContent = "Buscar tienda"; // Texto alternativo si las cookies no son válidas
+    span.textContent = "Buscar tienda"; // Texto alternativo si las cookies no son válidas
     var names = "wcmlim_selected_location_termid";
     document.cookie =
       names + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -92,8 +93,8 @@ async function fetchLocationData() {
       const updatedName = parts[0];
 
       // Cambia el texto en el link
-      if (link) {
-        link.textContent = updatedName + " - (Cambiar tienda)";
+      if (span) {
+        span.textContent = updatedName + " - (Cambiar tienda)";
       }
 
       const km_alberto_serch = getCookie("km_alberto_serch");
@@ -108,9 +109,9 @@ async function fetchLocationData() {
         ", " +
         data.meta.wcmlim_administrative_area_level_1;
       txtentrega.innerHTML =
-        address 
+        address
         +
-       "<a class='resultados__ubicacion-inline-link' href='" +
+        "<a class='resultados__ubicacion-inline-link' href='" +
         data.url_maps +
         "' target='_blank'> Ver en Google Maps </a>";
       //enlace a google maps

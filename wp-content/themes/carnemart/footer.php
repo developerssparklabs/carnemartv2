@@ -1,13 +1,18 @@
 <?php
-$imgLogoFooter = get_field('logotipo_footer_desktop', 'option') ?? '';
-$bloque_1_footer = get_field('contenido_footer_1', 'option') ?? '';
-$banner_footer_img = ['url' => get_field('banner_footer_img', 'option') ?? '', 'alt' => ''];
-$banner_footer_txt = get_field('banner_footer_txt', 'option') ?? '';
-$banner_footer_descripcion = get_field('banner_footer_descripcion', 'option') ?? '';
-$banner_footer_color_txt = get_field('banner_footer_color_txt', 'option') ?? '';
-$banner_footer_color_fondo = get_field('banner_footer_color_fondo', 'option') ?? '';
+$imgLogoFooter = get_field('logotipo_footer_desktop', 'option');
+$bloque_1_footer = get_field('contenido_footer_1', 'option');
+
+$banner_footer_img = get_field('banner_footer_img', 'option');
+$banner_footer_txt = get_field('banner_footer_txt', 'option');
+$banner_footer_descripcion = get_field('banner_footer_descripcion', 'option');
+$banner_footer_color_txt = get_field('banner_footer_color_txt', 'option');
+$banner_footer_color_fondo = get_field('banner_footer_color_fondo', 'option');
+
 $medios_pago_img = get_field('medios_pago_img', 'option');
+
 ?>
+
+
 <?php
 $linkD = get_field('numero_whatsapp', 'option');
 if ($linkD):
@@ -23,7 +28,7 @@ if ($linkD):
 <?php if (get_field('show_barra_footer', 'option')) { ?>
   <!-- Footer Seccion 1 -->
   <div class="site__footer footer__seccion-01"
-    style="background-color:<?php echo $banner_footer_color_fondo; ?>!important; color:<?php echo $banner_footer_color_txt; ?>;  background-image: url('<?php echo $banner_footer_img['url']; ?>');">
+    style="background-color:<?php echo $banner_footer_color_fondo; ?>!important; color:<?php echo $banner_footer_color_txt; ?>;  background-image: url('<?php echo $banner_footer_img; ?>');">
     <div class="site__footer-box1">
 
       <div class="banner_footer__box-contenido">

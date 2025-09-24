@@ -3,10 +3,10 @@ $pl_enable = get_option('wcmlim_preferred_location');
 $api_key = get_option('wcmlim_google_api_key');
 $autodetect = get_option('wcmlim_enable_autodetect_location');
 $autodetect_by_maxmind = get_option('wcmlim_enable_autodetect_location_by_maxmind');
-$enable_price     = 'on';
+$enable_price = 'on';
 $uspecLoc = get_option('wcmlim_enable_userspecific_location');
 $showLS = get_option("wcmlim_show_location_selection");
-$instock     = get_option('wcmlim_instock_button_text');
+$instock = get_option('wcmlim_instock_button_text');
 $instock = __($instock, 'wcmlim');
 $soldout = get_option('wcmlim_soldout_button_text');
 $soldout = __($soldout, 'wcmlim');
@@ -19,20 +19,20 @@ $default_zoom = get_option('wcmlim_default_zoom');
 $setting_loc_dis_unit = get_option("wcmlim_show_location_distance", true);
 $default_map_color = get_option('wcmlim_default_map_color');
 $widget_select_type = get_option('wcmlim_widget_select_mode');
-$optiontype_loc = get_option('wcmlim_select_or_dropdown');		
-$scoptiontype_loc = get_option('wcmlim_listing_inline_location');		
+$optiontype_loc = get_option('wcmlim_select_or_dropdown');
+$scoptiontype_loc = get_option('wcmlim_listing_inline_location');
 $fulladd = get_option('wcmlim_radio_loc_fulladdress');
 $viewformat = get_option('wcmlim_radio_loc_format');
 $wchideoosproduct = get_option("woocommerce_hide_out_of_stock_items");
 $isClearCart = get_option('wcmlim_clear_cart');
-$isdefault   = get_option('wcmlim_enable_default_location');
+$isdefault = get_option('wcmlim_enable_default_location');
 $stock_display_format = get_option('woocommerce_stock_format');
-$isLocationsGroup = get_option('wcmlim_enable_location_group');	
+$isLocationsGroup = get_option('wcmlim_enable_location_group');
 $current_user_id = get_current_user_id();
 $isAdmin = current_user_can('administrator', $current_user_id);
 $specificLocation = get_user_meta($current_user_id, 'wcmlim_user_specific_location', true);
 $getdirection = get_option('wcmlim_get_direction_for_location');
-$coordinates_calculator      = get_option('wcmlim_distance_calculator_by_coordinates');
+$coordinates_calculator = get_option('wcmlim_distance_calculator_by_coordinates');
 $suggestion_off = get_option('wcmlim_suggestion_off');
 $geolocation = get_option('wcmlim_geo_location');
 $auto_billing_address = get_option("wcmlim_auto_billing_address");
@@ -53,31 +53,31 @@ wp_localize_script($this->plugin_name, 'wcmlim_public', $script_data_array);
 
 
 
-wp_enqueue_script($this->plugin_name.'localization', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim_utility/generic/wcmlim_localization.js', array('jquery'), $this->version . rand(), true);
-wp_enqueue_script($this->plugin_name.'localization', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim_utility/generic/wcmlim_listOrdering.js', array('jquery'), $this->version . rand(), true);
+wp_enqueue_script($this->plugin_name . 'localization', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim_utility/generic/wcmlim_localization.js', array('jquery'), $this->version . rand(), true);
+wp_enqueue_script($this->plugin_name . 'localization', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim_utility/generic/wcmlim_listOrdering.js', array('jquery'), $this->version . rand(), true);
 
 
-wp_enqueue_script($this->plugin_name.'-popup-js', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-popup-min.js', array('jquery'), $this->version . rand(), true);
-if($autodetect_by_maxmind == 'on'){
-    wp_enqueue_script($this->plugin_name.'_maxmind', 'https://geoip-js.com/js/apis/geoip2/v2.1/geoip2.js', array('jquery'), $this->version . rand(), true);
-    wp_enqueue_script($this->plugin_name.'_maxmind_geocode', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-autodetect-maxmind.js', array('jquery'), $this->version . rand(), true);
+// wp_enqueue_script($this->plugin_name.'-popup-js', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-popup-min.js', array('jquery'), $this->version . rand(), true);
+// if($autodetect_by_maxmind == 'on'){
+//     wp_enqueue_script($this->plugin_name.'_maxmind', 'https://geoip-js.com/js/apis/geoip2/v2.1/geoip2.js', array('jquery'), $this->version . rand(), true);
+//     wp_enqueue_script($this->plugin_name.'_maxmind_geocode', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-autodetect-maxmind.js', array('jquery'), $this->version . rand(), true);
 
-}
+// }
 
- if ( $isLocationsGroup == "on" ) {
-    wp_enqueue_script($this->plugin_name . '_locator', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-locator-min.js', array('jquery'), $this->version . rand(), true);	
+if ($isLocationsGroup == "on") {
+    wp_enqueue_script($this->plugin_name . '_locator', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-locator-min.js', array('jquery'), $this->version . rand(), true);
     if ($getdirection == 'on') {
-        wp_enqueue_script($this->plugin_name.'_getdirlocationgroup', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-getdirlocationgroup-min.js', array('jquery'), $this->version . rand(), true);	
+        wp_enqueue_script($this->plugin_name . '_getdirlocationgroup', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-getdirlocationgroup-min.js', array('jquery'), $this->version . rand(), true);
     }
 }
 if ($getdirection == 'on') {
-    wp_enqueue_script($this->plugin_name.'_direction', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-getdirection-min.js', array('jquery'), $this->version . rand(), true);
-  }
-  if ($showNxtLoc == 'on' &&  $coordinates_calculator!='on') {
-    wp_enqueue_script($this->plugin_name.'_direction', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-get-next-closest-location-min.js', array('jquery'), $this->version . rand(), true); 
+    wp_enqueue_script($this->plugin_name . '_direction', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-getdirection-min.js', array('jquery'), $this->version . rand(), true);
+}
+if ($showNxtLoc == 'on' && $coordinates_calculator != 'on') {
+    wp_enqueue_script($this->plugin_name . '_direction', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-get-next-closest-location-min.js', array('jquery'), $this->version . rand(), true);
 }
 
-wp_enqueue_script($this->plugin_name.'product_single_validation', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-product-single-validation-min.js', array('jquery'), $this->version . rand(), true);
+wp_enqueue_script($this->plugin_name . 'product_single_validation', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-product-single-validation-min.js', array('jquery'), $this->version . rand(), true);
 $backorder_for_locations = 'on';
 $specific_location = 'on';
 $hideDropdown = get_option('wcmlim_hide_show_location_dropdown');
@@ -107,7 +107,7 @@ wp_localize_script($this->plugin_name, 'multi_inventory', array(
     "scoptiontype_loc" => $scoptiontype_loc,
     "fulladd" => $fulladd,
     "viewformat" => $viewformat,
-    'NextClosestinStock' => esc_html__('Next Closest in Stock', 'wcmlim'),			
+    'NextClosestinStock' => esc_html__('Next Closest in Stock', 'wcmlim'),
     'away' => esc_html__('away', 'wcmlim'),
     'wchideoosproduct' => $wchideoosproduct,
     "isClearCart" => $isClearCart,
@@ -118,15 +118,15 @@ wp_localize_script($this->plugin_name, 'multi_inventory', array(
     "resUserSLK" => $specificLocation,
     "isLocationsGroup" => $isLocationsGroup,
     "isBackorderOn" => $backorder_for_locations,
-    "hideDropdown"=>  $hideDropdown,
+    "hideDropdown" => $hideDropdown,
     'hideSuggestion' => $suggestion_off,
     'auto_billing_address' => $auto_billing_address,
-    
+
 ));
 /* fontawesome */
 wp_enqueue_script('wcmlim-fontawesome', "https://kit.fontawesome.com/82940a45e9.js", array('jquery'), $this->version, true);
 $advanceListView = get_option('wcmlim_radio_loc_format');
 $optiontype_loc = get_option('wcmlim_select_or_dropdown');
 if ($advanceListView == "advanced_list_view" && $optiontype_loc == 'on') {
-    wp_enqueue_script($this->plugin_name. '_list_view_pro', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-advanced-list-view.js', array(), $this->version . rand(), 'all');
+    wp_enqueue_script($this->plugin_name . '_list_view_pro', plugin_dir_path(plugin_dir_url(__DIR__)) . 'js/wcmlim-advanced-list-view.js', array(), $this->version . rand(), 'all');
 }

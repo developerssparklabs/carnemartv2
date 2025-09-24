@@ -13,6 +13,7 @@ defined('ABSPATH') || exit;
 get_header('shop');
 $current_category = get_queried_object();
 
+
 ?>
 <section id="post-<?php the_ID(); ?>" <?php post_class('site__content-page'); ?>>
     <?php
@@ -42,14 +43,14 @@ $current_category = get_queried_object();
     if ($term instanceof WP_Term && $term->taxonomy === 'product_cat') {
         // Descripción de la categoría
         $descripcion = term_description($term->term_id, 'product_cat'); // puede traer HTML
-    
+
         // Imagen destacada de la categoría (WooCommerce la guarda como 'thumbnail_id')
         $thumb_id = get_term_meta($term->term_id, 'thumbnail_id', true);
         $img_html = '';
         if ($thumb_id) {
             $img_html = wp_get_attachment_image($thumb_id, 'large', false, [
-                'class' => 'cat-thumb',
-                'alt' => esc_attr($term->name),
+                'class'   => 'cat-thumb',
+                'alt'     => esc_attr($term->name),
                 'loading' => 'lazy',
             ]);
         }
@@ -69,11 +70,9 @@ $current_category = get_queried_object();
         $imagen_id = (int) get_term_meta($term->term_id, 'imagen_destacada', true);
         if ($imagen_id) {
             $alt = get_post_meta($imagen_id, '_wp_attachment_image_alt', true);
-            if ($alt === '')
-                $alt = get_the_title($imagen_id);
-            if ($alt === '')
-                $alt = $term->name;
-            ?>
+            if ($alt === '') $alt = get_the_title($imagen_id);
+            if ($alt === '') $alt = $term->name;
+    ?>
             <section class="archive-product-top">
                 <figure class="archive-product__figure">
                     <?php
@@ -82,16 +81,16 @@ $current_category = get_queried_object();
                         'full',
                         false,
                         [
-                            'class' => 'archive-product__image',
-                            'alt' => $alt,
-                            'loading' => 'lazy',
+                            'class'    => 'archive-product__image',
+                            'alt'      => $alt,
+                            'loading'  => 'lazy',
                             'decoding' => 'async',
                         ]
                     );
                     ?>
                 </figure>
             </section>
-            <?php
+    <?php
         }
     }
     ?>
@@ -101,11 +100,11 @@ $current_category = get_queried_object();
             <?php
             if (function_exists('woocommerce_breadcrumb')) {
                 woocommerce_breadcrumb(array(
-                    'delimiter' => ' &#47; ',
+                    'delimiter'   => ' &#47; ',
                     'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="breadcrumb">',
-                    'wrap_after' => '</nav>',
-                    'before' => '<span>',
-                    'after' => '</span>',
+                    'wrap_after'  => '</nav>',
+                    'before'      => '<span>',
+                    'after'       => '</span>',
                 ));
             }
             ?>
@@ -126,7 +125,7 @@ $current_category = get_queried_object();
                 ?>
             </h1>
 
-            <?php if (!empty($descripcion)): ?>
+            <?php if (! empty($descripcion)): ?>
                 <div class="cat-description">
                     <?php echo wp_kses_post($descripcion); ?>
                 </div>
@@ -145,7 +144,7 @@ $current_category = get_queried_object();
                 <div class="widget widget-search">
                     <?php get_search_form(); ?>
                 </div>
-                <?php if (is_active_sidebar('woocommerce-sidebar')): ?>
+                <?php if (is_active_sidebar('woocommerce-sidebar')) : ?>
                     <?php dynamic_sidebar('woocommerce-sidebar'); ?>
                 <?php endif; ?>
                 <!-- Resumen de filtros -->
@@ -157,26 +156,55 @@ $current_category = get_queried_object();
 
         <!-- Columna de productos -->
         <div class="columna-productos -grid-archive">
-            <div class="columna-header-wc">
-                <div class="woocommerce-header-info">
-                    <div class="woocommerce-header-info">
-                        <p class="woocommerce-result-count" role="alert" aria-relevant="all" aria-hidden="false">
-                            <?php cm_echo_archive_total(); ?>
-                        </p>
-                    </div>
-                </div>
-                <select name="orderby" class="orderby" aria-label="Pedido de la tienda">
-                    <option value="menu_order" selected="selected">Orden por defecto</option>
-                    <option value="popularity">Ordenar por popularidad</option>
-                    <option value="rating">Ordenar por calificación media</option>
-                    <option value="date">Ordenar por las últimas</option>
-                    <option value="price">Ordenar por precio: bajo a alto</option>
-                    <option value="price-desc">Ordenar por precio: alto a bajo</option>
-                </select>
-                <input type="hidden" name="paged" value="1">
-                <input type="hidden" name="categorias[0]" value="aceites"><input type="hidden" name="min_price"
-                    value="7"><input type="hidden" name="max_price" value="770">
-            </div>
+            <?php if (woocommerce_product_loop()) : ?>
+
+                <?php
+                /**
+                 * Hook: woocommerce_before_shop_loop.
+                 *
+                 * @hooked woocommerce_output_all_notices - 10
+                 * @hooked woocommerce_result_count - 20
+                 * @hooked woocommerce_catalog_ordering - 30
+                 */
+                do_action('woocommerce_before_shop_loop');
+
+                woocommerce_product_loop_start();
+
+                if (wc_get_loop_prop('total')) {
+                    while (have_posts()) {
+                        the_post();
+
+                        /**
+                         * Hook: woocommerce_shop_loop.
+                         */
+                        do_action('woocommerce_shop_loop');
+
+                        wc_get_template_part('content', 'product');
+                    }
+                }
+
+                woocommerce_product_loop_end();
+
+                /**
+                 * Hook: woocommerce_after_shop_loop.
+                 *
+                 * @hooked woocommerce_pagination - 10
+                 */
+                do_action('woocommerce_after_shop_loop');
+                ?>
+
+            <?php else : ?>
+
+                <?php
+                /**
+                 * Hook: woocommerce_no_products_found.
+                 *
+                 * @hooked wc_no_products_found - 10
+                 */
+                do_action('woocommerce_no_products_found');
+                ?>
+
+            <?php endif; ?>
         </div>
     </div>
     <div class="espaciox2"></div>

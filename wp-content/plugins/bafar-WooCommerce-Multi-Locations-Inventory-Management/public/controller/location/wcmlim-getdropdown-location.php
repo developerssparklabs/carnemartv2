@@ -82,6 +82,5 @@ if ($restricUsers == 'on' && $roles[0] == 'customer') {
     }
 }
 
-error_log("result (WCMLIM-GETDROPDOWN-LOCATION):: " . print_r($result, true));
 echo json_encode($result);
-die();  
+die();

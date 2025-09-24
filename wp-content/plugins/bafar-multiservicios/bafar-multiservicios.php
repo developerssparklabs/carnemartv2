@@ -1264,118 +1264,360 @@ YALO API
         3
     );
 
+    if (!function_exists('anaquel_home')) {
+        function anaquel_home($atts)
+        {
 
-
-
-    function anaquel_home($atts)
-    {
-        // Atributos para el shortcode
-        $atts = shortcode_atts(
-            [
-                "columns" => 4,  // Número de columnas
-                "rows" => 3,  // Número de filas (no usado directamente aquí)
-                "total_products" => 20, // Total de productos
-            ],
-            $atts
-        );
-
-        // Preparar los argumentos de consulta
-        $args = [
-            "post_type" => "product",
-            "posts_per_page" => $atts["total_products"],
-            "post_status" => "publish",
-            "orderby" => "rand",
-            "meta_query" => [
-                "relation" => "AND",
+            // Atributos para el shortcode
+            $atts = shortcode_atts(
                 [
-                    "key" => "_stock_status",
-                    "value" => "instock",
-                    "compare" => "=",
+                    'columns' => 4,
+                    'rows' => 3,
+                    'total_products' => 20, // Total de productos a mostrar
                 ],
-                [
-                    "key" => "_stock",
-                    "value" => "1",
-                    "compare" => ">",
-                    "type" => "NUMERIC",
+                $atts,
+                'home_productos_sb'
+            );
+
+            // Detectar tienda seleccionada
+            $term_id = (!empty($_COOKIE['wcmlim_selected_location_termid']) && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined')
+                ? intval($_COOKIE['wcmlim_selected_location_termid'])
+                : 0;
+
+            // Cache key única por tienda y configuración
+            $cache_key = 'anaquel_home_' . md5(serialize($atts) . '_' . $term_id);
+            $cache_expiration = 15 * MINUTE_IN_SECONDS;
+
+            // Intentar obtener del cache
+            $cached_result = get_transient($cache_key);
+            if ($cached_result !== false) {
+                return $cached_result;
+            }
+
+            // Preparar los argumentos de consulta
+            $args = [
+                'post_type' => 'product',
+                'posts_per_page' => intval($atts['total_products']) * 2, // Traer extra para filtrar
+                'post_status' => 'publish',
+                'orderby' => 'rand',
+                'fields' => 'ids',   // solo IDs
+                'no_found_rows' => true,
+                'update_post_meta_cache' => false,
+                'update_post_term_cache' => false,
+                'meta_query' => [
+                    'relation' => 'AND',
+                    [
+                        'key' => '_stock_status',
+                        'value' => 'instock',
+                        'compare' => '=',
+                    ],
+                    // Excluir productos cuyo product_step NO sea entero <= 1 (chequeo fino más abajo)
+                    [
+                        'key' => 'product_step',
+                        'value' => '.',
+                        'compare' => 'NOT LIKE',
+                    ],
                 ],
-                // Excluir productos cuyo product_step no sea entero ≤ 1
-                [
-                    "key" => "product_step",
-                    "value" => ".",
-                    "compare" => "NOT LIKE",
-                ],
-            ],
-        ];
-
-        // Detectar tienda seleccionada
-        $term_id = !empty($_COOKIE["wcmlim_selected_location_termid"])
-            && $_COOKIE["wcmlim_selected_location_termid"] !== "undefined"
-            ? intval($_COOKIE["wcmlim_selected_location_termid"])
-            : 0;
-
-        // Si hay tienda seleccionada, filtrar por stock en esa tienda
-        if ($term_id) {
-            $args["meta_query"][] = [
-                "key" => "wcmlim_stock_at_{$term_id}",
-                "value" => "0",
-                "compare" => ">",
-                "type" => "NUMERIC",
             ];
-            // Excluir productos cuyo precio regular en tienda sea 0 o no exista
-            $args["meta_query"][] = [
-                "key" => "wcmlim_regular_price_at_{$term_id}",
-                "value" => 0,
-                "compare" => ">",
-                "type" => "NUMERIC",
-            ];
-        } else {
-            // Sin tienda: excluir productos cuyo precio base (_regular_price) sea 0
-            $args["meta_query"][] = [
-                "key" => "_regular_price",
-                "value" => 0,
-                "compare" => ">",
-                "type" => "NUMERIC",
-            ];
-        }
 
-        // Ejecutar la consulta
-        $loop = new WP_Query($args);
+            if ($term_id) {
+                // Stock por tienda
+                $args['meta_query'][] = [
+                    'key' => "wcmlim_stock_at_{$term_id}",
+                    'value' => '0',
+                    'compare' => '>',
+                    'type' => 'NUMERIC',
+                ];
+                // Precio regular por tienda > 0
+                $args['meta_query'][] = [
+                    'key' => "wcmlim_regular_price_at_{$term_id}",
+                    'value' => 0,
+                    'compare' => '>',
+                    'type' => 'NUMERIC',
+                ];
+            } else {
+                // Sin tienda: precio base > 0 y stock > 1
+                $args['meta_query'][] = [
+                    'key' => '_regular_price',
+                    'value' => 0,
+                    'compare' => '>',
+                    'type' => 'NUMERIC',
+                ];
+                $args['meta_query'][] = [
+                    'key' => '_stock',
+                    'value' => '1',
+                    'compare' => '>',
+                    'type' => 'NUMERIC',
+                ];
+            }
 
-        // Recopilar IDs de productos que cumplen con product_step
-        $filtered = [];
-        if ($loop->have_posts()) {
-            while ($loop->have_posts()) {
-                $loop->the_post();
-                global $product;
+            // Ejecutar consulta
+            $product_ids = get_posts($args);
 
-                $step = get_post_meta($product->get_id(), 'product_step', true);
-                if (is_numeric($step) && floor($step) == $step && $step <= 1) {
-                    $filtered[] = $product->get_id();
+            // Filtrar por product_step vía query directa (optimizada)
+            $filtered = [];
+            if (!empty($product_ids)) {
+                global $wpdb;
+
+                // Asegurar IDs enteros
+                $safe_ids = array_map('intval', $product_ids);
+                $ids_string = implode(',', $safe_ids);
+
+                // Nota: %s solo para la meta_key, el IN() ya va saneado arriba.
+                $meta_results = $wpdb->get_results(
+                    $wpdb->prepare("
+                    SELECT post_id, meta_value 
+                    FROM {$wpdb->postmeta} 
+                    WHERE post_id IN ($ids_string) 
+                    AND meta_key = %s
+                ", 'product_step')
+                );
+
+                // Lookup de product_step
+                $step_meta = [];
+                foreach ($meta_results as $result) {
+                    $step_meta[intval($result->post_id)] = $result->meta_value;
+                }
+
+                // Filtrado final
+                foreach ($safe_ids as $product_id) {
+                    if (count($filtered) >= intval($atts['total_products'])) {
+                        break;
+                    }
+                    $step = isset($step_meta[$product_id]) ? $step_meta[$product_id] : '';
+                    if (is_numeric($step) && floor($step) == $step && $step <= 1) {
+                        $filtered[] = $product_id;
+                    }
                 }
             }
-            wp_reset_postdata();
-        }
 
-        // Renderizar salida
-        if (!empty($filtered)) {
-            echo '<div class="elementor-element elementor-element-5828161beto carnemart-loop-productos elementor-grid-mobile-2 elementor-grid-4 elementor-grid-tablet-3 elementor-products-grid elementor-wc-products elementor-widget elementor-widget-woocommerce-products"><div class="elementor-widget-container"><div class="woocommerce columns-' . esc_attr($atts["columns"]) . '"><ul class="products elementor-grid columns-' . esc_attr($atts["columns"]) . '">';
+            // Renderizar salida (usar buffer y luego RETURN)
+            ob_start();
 
-            foreach ($filtered as $product_id) {
-                $post_object = get_post($product_id);
-                setup_postdata($GLOBALS['post'] = &$post_object);
-                wc_get_template_part("content", "product");
+            if (!empty($filtered)) {
+                // Pasar columnas al loop nativo
+                wc_set_loop_prop('columns', intval($atts['columns']));
+
+                echo '<div class="elementor-element elementor-element-5828161beto carnemart-loop-productos elementor-grid-mobile-2 elementor-grid-4 elementor-grid-tablet-3 elementor-products-grid elementor-wc-products elementor-widget elementor-widget-woocommerce-products"><div class="elementor-widget-container"><div class="woocommerce columns-' . esc_attr($atts['columns']) . '"><ul class="products elementor-grid columns-' . esc_attr($atts['columns']) . '">';
+
+                foreach ($filtered as $product_id) {
+                    $post_object = get_post($product_id);
+                    if ($post_object) {
+                        setup_postdata($GLOBALS['post'] = $post_object);
+                        wc_get_template_part('content', 'product'); // item nativo
+                    }
+                }
+
+                echo '</ul></div></div></div>';
+                wp_reset_postdata();
+            } else {
+                echo '<div class="msg-general"><span class="cu-info-circle"></span><span class="msg-text">No hay productos disponibles en este momento.</span></div>';
             }
 
-            echo '</ul></div></div></div>';
-            wp_reset_postdata();
-        } else {
-            echo '<div class="msg-general"><span class="cu-info-circle"></span><span class="msg-text">No hay productos disponibles en este momento.</span></div>';
+            $output = ob_get_clean();
+
+            // Guardar cache y RETURN (no echo)
+            set_transient($cache_key, $output, $cache_expiration);
+            return $output;
         }
     }
 
+    // Evitar registrar el shortcode dos veces
+    if (!shortcode_exists('home_productos_sb')) {
+        add_shortcode('home_productos_sb', 'anaquel_home');
+    }
 
-    add_shortcode("home_productos_sb", "anaquel_home");
+    // Limpiar cache cuando se actualicen productos o stock
+    add_action('woocommerce_product_set_stock', 'clear_anaquel_home_cache');
+    add_action('woocommerce_variation_set_stock', 'clear_anaquel_home_cache');
+    add_action('save_post', 'clear_anaquel_home_cache_on_product_save');
 
+    if (!function_exists('clear_anaquel_home_cache')) {
+        function clear_anaquel_home_cache($product = null)
+        {
+            global $wpdb;
+            // Borra transients de DB (funciona aunque no haya object cache)
+            $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_anaquel_home_%'");
+            $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_anaquel_home_%'");
+        }
+    }
+
+    if (!function_exists('clear_anaquel_home_cache_on_product_save')) {
+        function clear_anaquel_home_cache_on_product_save($post_id)
+        {
+            if (get_post_type($post_id) === 'product') {
+                clear_anaquel_home_cache();
+            }
+        }
+    }
+
+    /**
+     * === Precio por tienda y step/mínimo decimal por producto ===
+     * Requisitos:
+     *  - Cookie: wcmlim_selected_location_termid
+     *  - Metas de precio por tienda: wcmlim_regular_price_at_{TERM}, wcmlim_sale_price_at_{TERM}
+     *  - Meta de step: product_step  (ej: "0.5"). Opcional: product_min (ej: "0.5")
+     */
+
+    if (!function_exists('sb_get_current_store_term_id')) {
+        function sb_get_current_store_term_id(): int
+        {
+            if (!empty($_COOKIE['wcmlim_selected_location_termid']) && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined') {
+                return (int) $_COOKIE['wcmlim_selected_location_termid'];
+            }
+            return 0;
+        }
+    }
+
+    if (!function_exists('sb_get_store_price_for_product')) {
+        /**
+         * Obtiene el precio (regular/sale) para un producto/variación según tienda.
+         * Devuelve array [ 'regular' => float|null, 'sale' => float|null ] con null si no aplica.
+         */
+        function sb_get_store_price_for_product($product): array
+        {
+            $term_id = sb_get_current_store_term_id();
+            $pid = $product instanceof WC_Product ? $product->get_id() : (int) $product;
+
+            if ($term_id <= 0 || $pid <= 0) {
+                return ['regular' => null, 'sale' => null];
+            }
+
+            $regular_meta_key = "wcmlim_regular_price_at_{$term_id}";
+            $sale_meta_key = "wcmlim_sale_price_at_{$term_id}";
+
+            // Intentar primero en la variación (si es variation), luego en el padre.
+            $regular = get_post_meta($pid, $regular_meta_key, true);
+            $sale = get_post_meta($pid, $sale_meta_key, true);
+
+            if ($product instanceof WC_Product_Variation) {
+                $parent_id = $product->get_parent_id();
+                if (($regular === '' || $regular === null) && $parent_id) {
+                    $regular = get_post_meta($parent_id, $regular_meta_key, true);
+                }
+                if (($sale === '' || $sale === null) && $parent_id) {
+                    $sale = get_post_meta($parent_id, $sale_meta_key, true);
+                }
+            }
+
+            $regular = is_numeric($regular) ? (float) $regular : null;
+            $sale = is_numeric($sale) ? (float) $sale : null;
+
+            // Normaliza: si sale no es menor que regular, ignóralo
+            if ($sale !== null && $regular !== null && $sale >= $regular) {
+                $sale = null;
+            }
+
+            return ['regular' => $regular, 'sale' => $sale];
+        }
+    }
+
+    /**
+     * 1) Forzar precio usado por WooCommerce (simples y variaciones)
+     *    Esto afecta carrito/checkout y el get_price() interno.
+     */
+    add_filter('woocommerce_product_get_price', function ($price, $product) {
+        $store = sb_get_store_price_for_product($product);
+        if ($store['sale'] !== null)
+            return $store['sale'];
+        if ($store['regular'] !== null)
+            return $store['regular'];
+        return $price;
+    }, 10, 2);
+
+    add_filter('woocommerce_product_variation_get_price', function ($price, $product) {
+        $store = sb_get_store_price_for_product($product);
+        if ($store['sale'] !== null)
+            return $store['sale'];
+        if ($store['regular'] !== null)
+            return $store['regular'];
+        return $price;
+    }, 10, 2);
+
+    // También regular/sale para consistencia con reglas/promos.
+    add_filter('woocommerce_product_get_regular_price', function ($reg, $product) {
+        $store = sb_get_store_price_for_product($product);
+        return $store['regular'] !== null ? $store['regular'] : $reg;
+    }, 10, 2);
+
+    add_filter('woocommerce_product_get_sale_price', function ($sale, $product) {
+        $store = sb_get_store_price_for_product($product);
+        return $store['sale'] !== null ? $store['sale'] : $sale;
+    }, 10, 2);
+
+    /**
+     * 2) Mostrar el HTML del precio con los valores por tienda (simple/variable)
+     *    Esto asegura que en la ficha se vea el precio correcto aunque el tema cachee el get_price_html().
+     */
+    add_filter('woocommerce_get_price_html', function ($price_html, $product) {
+        $store = sb_get_store_price_for_product($product);
+        if ($store['regular'] === null && $store['sale'] === null) {
+            return $price_html; // sin cambio
+        }
+
+        if ($store['sale'] !== null) {
+            // Precio en oferta
+            $html = '<del>' . wc_price($store['regular']) . '</del> ';
+            $html .= '<ins>' . wc_price($store['sale']) . '</ins>';
+            return $html;
+        }
+
+        // Precio regular
+        return wc_price($store['regular']);
+    }, 10, 2);
+
+    /**
+     * 3) Step y mínimo de cantidad (decimales)
+     *    Lee metas: product_step (ej "0.5") y opcional product_min (ej "0.5")
+     */
+    add_filter('woocommerce_quantity_input_args', function ($args, $product) {
+        $pid = $product instanceof WC_Product ? $product->get_id() : 0;
+        $step_meta = $pid ? get_post_meta($pid, 'product_step', true) : '';
+        $min_meta = $pid ? get_post_meta($pid, 'product_min', true) : '';
+
+        // Fallback: si no hay product_min, usa el mismo valor del step como mínimo.
+        $step = is_numeric($step_meta) ? (float) $step_meta : 1;
+        $min = is_numeric($min_meta) ? (float) $min_meta : $step;
+
+        // Sanitiza (no permitir 0 o negativos)
+        if ($step <= 0)
+            $step = 1;
+        if ($min <= 0)
+            $min = $step;
+
+        $args['step'] = $step;
+        $args['min_value'] = $min;
+        error_log("Producto {$pid}: step={$step}, min={$min}");
+        // Permitir teclado decimal en móviles y patrón de decimales
+        $args['inputmode'] = 'decimal';
+        $args['pattern'] = '[0-9]*[.,]?[0-9]*';
+
+        return $args;
+    }, 10, 2);
+
+    /**
+     * 3.1) Asegurar que WooCommerce **no redondee a enteros** las cantidades.
+     *      wc_stock_amount() aplica este filtro al normalizar cantidades.
+     */
+    add_filter('woocommerce_stock_amount', function ($qty, $product = null) {
+        return is_numeric($qty) ? (float) $qty : $qty;
+    }, 10, 2);
+
+    /**
+     * 3.2) Opcional: cantidad por defecto igual al mínimo (si el tema la pone en 1)
+     */
+    add_filter('woocommerce_quantity_input_min', function ($min, $product) {
+        $pid = $product instanceof WC_Product ? $product->get_id() : 0;
+        $min_meta = $pid ? get_post_meta($pid, 'product_min', true) : '';
+        $step_meta = $pid ? get_post_meta($pid, 'product_step', true) : '';
+
+        $step = is_numeric($step_meta) ? (float) $step_meta : 1;
+        $minv = is_numeric($min_meta) ? (float) $min_meta : $step;
+
+        if ($minv > 0)
+            return $minv;
+        return $min;
+    }, 10, 2);
 
     //**** recomendados */
 
@@ -3152,8 +3394,7 @@ function get_custom_order_data($data)
             // Devolver la respuesta
             return rest_ensure_response($response);
         } else {
-            if($order_data['status'] == "completed")
-            {
+            if ($order_data['status'] == "completed") {
                 // Si el pedido esta en estado 'completed'
                 $response = [
                     'message' => 'El pedido ya esta en estatus completado',

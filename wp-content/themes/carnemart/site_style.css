@@ -231,6 +231,10 @@ body.woocommerce-cart {
     border-radius: 300px !important;
     /* background-color: var(--color-secundario) !important; */
     color: var(--color-claro) !important;
+
+    &:hover {
+      /* background-color: var(--color-tercero) !important; */
+    }
   }
 
   .actions {
@@ -537,7 +541,8 @@ iframe.full-width-iframe {
   line-height: 1 !important;
   background-color: var(--color-principal) !important;
   color: var(--color-claro) !important;
-  text-decoration: none !important;
+  ;
+  text-decoration: none !important !important;
   padding: 10px 20px !important;
   border-radius: 300px !important;
 
@@ -1620,7 +1625,7 @@ header.site__header {
   width: 100%;
   background-color: var(--color-claro);
   padding-bottom: 0;
-  /* border-bottom: solid 4px var(--color-principal); */
+  border-bottom: solid 4px var(--color-principal);
   transition: all ease 0.45s;
 }
 
@@ -1722,17 +1727,15 @@ header.site__header.isMenuScroll .site__logo {
 }
 
 .icon-down {
+  transition: all ease 0.15s;
   transform: rotate(0deg);
   transform-origin: center;
-  transition: transform .18s cubic-bezier(.22, .61, .36, 1);
-  will-change: transform;
-  /* hint para GPU */
-  backface-visibility: hidden;
-  /* evita parpadeos en algunos navegadores */
-}
 
-.icon-down.giro {
-  transform: rotate(180deg);
+  &.giro {
+    transition: all ease 0.15s;
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
 }
 
 .buscador-contenido {
@@ -1813,40 +1816,6 @@ header.site__header.isMenuScroll .site__logo {
 
 .caja__recoleccion .caja__entrega-titulo {
   background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 16 16'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %23fff; %7D %3C/style%3E%3C/defs%3E%3C!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709) --%3E%3Cg%3E%3Cg id='Capa_1'%3E%3Cpath class='cls-1' d='M12.2,8.9c-.5,1.1-1.2,2.1-2,3.1-.7.9-1.4,1.8-2.2,2.6-.8-.8-1.5-1.7-2.2-2.6-.7-.9-1.4-2-2-3.1-.5-1.1-.8-2.1-.8-2.9,0-2.8,2.2-5,5-5s5,2.2,5,5-.3,1.9-.8,2.9M8,16s6-5.7,6-10S11.3,0,8,0,2,2.7,2,6s6,10,6,10'/%3E%3Cpath class='cls-1' d='M8,8c-1.1,0-2-.9-2-2s.9-2,2-2,2,.9,2,2-.9,2-2,2M8,9c1.7,0,3-1.3,3-3s-1.3-3-3-3-3,1.3-3,3,1.3,3,3,3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-.wcmlim-address,
-.wcmlim-collection {
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-
-.wcmlim-address a,
-.wcmlim-collection a {
-  display: inline-block;
-  margin-top: .25rem;
-  color: #fff;
-}
-
-.wcmlim_href_h_location {
-  background-color: var(--color-secundario);
-  padding: 2px;
-  width: 80%;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 5px;
-  text-decoration: none !important;
-  border-bottom: none !important;
-
-  &:hover {
-    color: #ffffff;
-    background-color: var(--color-tercero);
-  }
-}
-
-.wcmlim-collection-content div {
-  display: flex;
-  flex-direction: column;
 }
 
 .resultados__ubicacion-lista {
@@ -3572,7 +3541,6 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-  appearance: textfield;
 }
 
 .site__section.site__section-titulo-simple {
@@ -5279,6 +5247,7 @@ body.woocommerce-order-pay #embed-target {
 }
 
 .caja-campos-pago select.wc-blocks-components-select__select {
+  -webkit-appearance: none;
   background-color: rgba(255, 255, 255, 0) !important;
   color: #ffffff !important;
   font-size: 16px;
@@ -5830,6 +5799,7 @@ body.woocommerce-order-received .woocommerce-thankyou-order-details strong {
   position: absolute;
   width: 100%;
   pointer-events: none;
+  -webkit-appearance: none;
   background: transparent;
 }
 
@@ -7218,6 +7188,8 @@ body.finalizar-compra {
   position: relative;
 }
 
+.slider-giros-negocio {}
+
 .custom-arrow-square-giros-negocio {
   display: inline-flex !important;
   flex-direction: column;
@@ -7237,6 +7209,8 @@ body.finalizar-compra {
     right: -3px;
   }
 }
+
+.slider-giros-item {}
 
 .slider-giros-negocio-wrapper {
   .slick-arrow {
@@ -7474,6 +7448,7 @@ img.slide-slick-marca_img {
 
   .bi {
     font-size: 25px;
+    stroke-width: ;
   }
 }
 
@@ -7494,12 +7469,10 @@ img.slide-slick-marca_img {
   width: 30px;
   height: 30px;
   transition: transform 0.2s ease;
-  background-color: #fff;
-  /* fallback for browsers that do not support SVG backgrounds */
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Capa_1' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 32 32'%3E%3C!-- Generator: Adobe Illustrator 29.7.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 8) --%3E%3Cdefs%3E%3Cstyle%3E .st0 %7B fill: %23009a38; %7D %3C/style%3E%3C/defs%3E%3Cpath class='st0' d='M5.8,13l9.3,8c.2.2.5.3.9.3s.6-.1.9-.3l9.3-8c.1-.1.2-.3.3-.4,0-.2.1-.3.1-.5,0-.4,0-.7-.3-1-.2-.3-.6-.4-.9-.5-.4,0-.7,0-1,.3l-8.5,7.3-8.5-7.3c-.3-.2-.6-.3-1-.3-.4,0-.7.2-.9.5-.2.3-.3.6-.3,1,0,.4.2.7.5.9Z'/%3E%3C/svg%3E3E");
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Capa_1' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 32 32'%3E%3C!-- Generator: Adobe Illustrator 29.7.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 8) --%3E%3Cdefs%3E%3Cstyle%3E .st0 %7B fill: %23009a38; %7D %3C/style%3E%3C/defs%3E%3Cpath class='st0' d='M5.8,13l9.3,8c.2.2.5.3.9.3s.6-.1.9-.3l9.3-8c.1-.1.2-.3.3-.4,0-.2.1-.3.1-.5,0-.4,0-.7-.3-1-.2-.3-.6-.4-.9-.5-.4,0-.7,0-1,.3l-8.5,7.3-8.5-7.3c-.3-.2-.6-.3-1-.3-.4,0-.7.2-.9.5-.2.3-.3.6-.3,1,0,.4.2.7.5.9Z'/%3E%3C/svg%3E");
 }
 
 .faq-item.is-open .faq-chevron {
@@ -7798,6 +7771,7 @@ h1.area-encabezado-single__titulo {
     border-radius: 300px !important;
     font-size: 16px !important;
     padding: 2px 10px;
+    margin-top: 0px !important;
   }
 }
 
@@ -9418,19 +9392,6 @@ h1.area-encabezado-single__titulo {
       width: 100%;
     }
   }
-}
-
-/* Estilos generales */
-.eti-pointer {
-  cursor: pointer;
-}
-
-.invalid {
-  border: 1px solid #dc2626 !important;
-}
-
-.field {
-  position: relative;
 }
 
 .bi::before,

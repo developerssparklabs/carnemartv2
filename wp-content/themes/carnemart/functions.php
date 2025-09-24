@@ -626,8 +626,4 @@ add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mime
     return $data;
 }, 10, 4);
 
-// WooCommerce: overrides para archivos (tienda/categorías)
-require_once get_template_directory() . '/woocommerce/archives-tweaks.php';
-
-// Helpers para archivos (tienda/categorías)
-require_once get_template_directory() . '/woocommerce/archive-helpers.php';
+require_once get_stylesheet_directory() . '/functions-extend.php';
