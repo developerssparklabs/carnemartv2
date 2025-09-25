@@ -31,9 +31,47 @@ export function getNearestStores(latManual = null, lonManual = null) {
                         let timeMinutes = ((store.distance_km / 30) * 60).toFixed(2);
                         let serviceType = store.distance_km < 8 ? "Servicio a domicilio y recoger en tienda" : "Solo recoger en tienda";
 
-                        let storeHTML = `<p style="display:none;"><a href="#" class="btn tienda-button" data-lc-storeid="${store.storeid}" data-lc-name="${store.name}" data-lc-key="${store.loc_id}" data-lc-address="${store.address}" data-lc-term="${store.termid}">${store.name} - ${store.distance_km.toFixed(2)} km</a> 
-                            <br><strong>Tiempo estimado:</strong> ${timeMinutes} minutos.
-                            <br><strong>${serviceType}</strong></p>`;
+                        const isPickupOnly = Number(store.distance_km) >= 8;
+                        const chipBg = isPickupOnly ? '#fff7e6' : '#eaf7f0';
+                        const chipColor = isPickupOnly ? '#8a5a00' : '#196d4f';
+                        const chipBorder = isPickupOnly ? '#ffe3b3' : '#bfe7d6';
+
+                        let storeHTML = `
+<div style="display:none;background:#ffffff;border:1px solid #e6e9ef;border-radius:10px;padding:12px;margin:10px 0;box-shadow:0 2px 6px rgba(0,0,0,.06);">
+  <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:flex-start;">
+    
+    <div style="flex:1;min-width:220px;">
+      <h3 style="margin:0 0 6px 0;font-size:15px;line-height:1.25;color:#1f2937;font-weight:700;">
+        ${store.name}
+      </h3>
+      <div style="font-size:13px;color:#475569;line-height:1.45;">
+        <div style="margin:2px 0;">Distancia: <strong style="color:#1f2937;">${Number(store.distance_km).toFixed(2)} km</strong></div>
+        <div style="margin:2px 0;">Tiempo estimado: <strong style="color:#1f2937;">${timeMinutes}</strong> min</div>
+        <div style="margin:2px 0;">
+          Servicio:
+          <span style="display:inline-block;padding:2px 8px;border-radius:999px;background:${chipBg};border:1px solid ${chipBorder};color:${chipColor};font-weight:700;font-size:12px;margin-left:4px;">
+            ${serviceType}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex-shrink:0;display:flex;align-items:center;gap:8px;">
+      <a href="#"
+         class="tienda-button btn tienda-button"
+         data-lc-storeid="${store.storeid}"
+         data-lc-name="${store.name}"
+         data-lc-key="${store.loc_id}"
+         data-lc-address="${store.address}"
+         data-lc-term="${store.termid}"
+         style="background:#19a463;color:#fff;padding:8px 12px;border:0;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;display:inline-block;">
+        Seleccionar
+      </a>
+    </div>
+
+  </div>
+</div>`;
+
 
                         let $storeEl = jQuery(storeHTML).appendTo('.er_location');
                         setTimeout(() => {
