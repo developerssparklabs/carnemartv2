@@ -213,6 +213,8 @@ export function successCallback(position) {
         // }
         hideLoader();
       } else {
+        const modalSinTiendas = new bootstrap.Modal(document.getElementById('modalSinTiendas'));
+        modalSinTiendas.show();
         hideLoader();
       }
     });

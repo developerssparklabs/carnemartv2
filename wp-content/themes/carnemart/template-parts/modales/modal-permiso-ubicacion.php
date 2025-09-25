@@ -325,3 +325,38 @@
         </div>
     </div>
 </div>
+
+<!-- Modal no se encontraron tiendas cercanas -->
+<div class="modal fade" id="modalSinTiendas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modalSinTiendasLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header header-icono">
+                <p class="modal-title fs-4 has-principal-color d-flex" id="modalSinTiendasLabel">
+                    <i class="bi bi-exclamation-circle big-icon has-amarillo-color"></i>
+                    <b>¡Lo sentimos!<br> No encontramos una tienda cerca</b>
+                </p>
+            </div>
+            <div class="modal-body fs-7">
+                <p class="has-principal-color">
+                    <b class="has-rojo-color">No hemos encontrado ninguna tienda disponible cerca de tu ubicación
+                        actual.</b>
+                </p>
+                <p class="has-principal-color">
+                    Te sugerimos las siguientes opciones:
+                </p>
+                <ul class="has-principal-color">
+                    <li>Selecciona manualmente una tienda de nuestra lista</li>
+                    <li>Verifica que tu ubicación sea correcta</li>
+                </ul>
+            </div>
+            <div class="modal-footer d-flex flex-column gap-2">
+                <div class="d-flex flex-column gap-2 w-100"></div>
+                <button type="button" class="btn btn-primary fs-7 w-100" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#modalSeleccionTienda">
+                    <i class="bi bi-shop"></i> Seleccionar tienda manualmente
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
