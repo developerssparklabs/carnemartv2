@@ -225,24 +225,27 @@ do_action('woocommerce_before_main_content');
 					<div class="custom-100">
 						<div class="area-info-compra">
 							<?php
-							// obtenemos el primer step
-							function sb_get_first_step($tiers) {
-								if (empty($tiers)) {
-									return null;
+							    if (!function_exists('sb_get_first_step'))  {
+									// obtenemos el primer step
+									function sb_get_first_step($tiers) {
+										if (empty($tiers)) {
+											return null;
+										}
+										
+										$first_key = array_key_first($tiers);
+										if ($first_key === null) {
+											return null;
+										}
+										
+										// Extract the first numeric value from the key
+										if (preg_match('/(\d+(?:\.\d+)?)/', $first_key, $matches)) {
+											return (float) $matches[1];
+										}
+										
+										return null;
+									}
 								}
 								
-								$first_key = array_key_first($tiers);
-								if ($first_key === null) {
-									return null;
-								}
-								
-								// Extract the first numeric value from the key
-								if (preg_match('/(\d+(?:\.\d+)?)/', $first_key, $matches)) {
-									return (float) $matches[1];
-								}
-								
-								return null;
-							}
 							// Si el producto es variable
 							/* ==== PINTAR PRECIO ==== */
 							if ($product->is_type('variable')) {

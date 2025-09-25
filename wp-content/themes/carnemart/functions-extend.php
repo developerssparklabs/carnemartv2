@@ -3317,6 +3317,28 @@ if (!function_exists('sb_format_qty')) {
 /* ===== Render precio + volumen ===== */
 if (!function_exists('bafar_custom_loop_price')) {
     add_action('woocommerce_after_shop_loop_item_title', 'bafar_custom_loop_price', 10);
+
+    if (!function_exists('sb_get_first_step')) {
+        function sb_get_first_step($tiers)
+        {
+            if (empty($tiers)) {
+                return null;
+            }
+
+            $first_key = array_key_first($tiers);
+            if ($first_key === null) {
+                return null;
+            }
+
+            // Extract the first numeric value from the key
+            if (preg_match('/(\d+(?:\.\d+)?)/', $first_key, $matches)) {
+                return (float) $matches[1];
+            }
+
+            return null;
+        }
+    }
+
     function bafar_custom_loop_price()
     {
         global $product;
@@ -3341,6 +3363,8 @@ if (!function_exists('bafar_custom_loop_price')) {
         $regular = null;
         $sale = null;
 
+        $showOfert = false;
+
         if (!empty($tiers)) {
             // Tomar PRIMER tier (clave + valor)
             [$first_key, $first_val] = sb_array_first_kv($tiers);
@@ -3348,6 +3372,14 @@ if (!function_exists('bafar_custom_loop_price')) {
 
             // Precio entre paréntesis en la clave => regular del tier
             $paren_reg = sb_parse_paren_price_from_key((string) $first_key);
+
+            $first_step = sb_get_first_step($tiers);
+            $step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
+
+
+            if ($first_step == $step_meta) {
+                $showOfert = true;
+            }
 
             // 1) Regular
             if ($paren_reg !== null && $paren_reg > 0) {
@@ -3370,7 +3402,7 @@ if (!function_exists('bafar_custom_loop_price')) {
 
         // Pintar precio
         echo '<span class="price"><span class="woocommerce-Price-amount amount"><bdi>';
-        if ($show_del && $regular) {
+        if ($show_del && $regular && $showOfert) {
             echo '<del style="color:#888;margin-right:.5em;">' . wc_price($regular) . '</del>';
             echo '<ins style="color:#0866FD;text-decoration:none;font-weight:600;">' . wc_price($sale) . '</ins>';
         } else {
@@ -3380,8 +3412,14 @@ if (!function_exists('bafar_custom_loop_price')) {
 
         // ===== Acordeón "Ver precios por volumen" (del SEGUNDO tier en adelante) =====
         if (!empty($tiers)) {
+            $first_step = sb_get_first_step($tiers);
+            $step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
+
+            $saltar_first_tier = ($first_step == $step_meta);
+
+
             // Cortamos el primer tier
-            $rest = array_slice($tiers, 1, null, true);
+            $rest = $saltar_first_tier ? array_slice($tiers, 1, null, true) : $tiers;
             if (!empty($rest)) {
                 static $css_done = false;
                 if (!$css_done) {
