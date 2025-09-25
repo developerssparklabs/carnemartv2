@@ -225,7 +225,7 @@ function personalizar_botones_cantidad()
         echo '<button class="quantity-decrease">-</button>';
         echo '<input type="number" class="quantity-input" value="' . esc_attr($min) . '" min="' . esc_attr($min) . '" step="' . esc_attr($step) . '" aria-label="Cantidad">';
         echo '<button class="quantity-increase">+</button>';
-        echo '<button class="button product_type_simple add_to_cart_button wcmlim_ajax_add_to_cart add-to-cart" 
+        echo '<button class="button product_type_simple add_to_cart_button wcmlim_ajax_add_to_cart add-to-cart"  style="color: #fff"
             data-cart-url="' . $_cart_url . '" 
             data-isredirect="' . $_isRedirect . '" 
             data-quantity="' . $qty_min . '" 
