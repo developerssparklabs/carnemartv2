@@ -45,11 +45,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const decreaseButton = wrapper.querySelector('.quantity-decrease');
     const increaseButton = wrapper.querySelector('.quantity-increase');
 
+    const min = parseInt(input.getAttribute('min')) || 1;
+    const step = parseInt(input.getAttribute('step')) || 1;
+
     if (decreaseButton) {
       decreaseButton.addEventListener('click', function () {
         const currentValue = parseInt(input.value) || 1;
-        if (currentValue > 1) {
-          input.value = currentValue - 1;
+        if (currentValue > min) {
+          input.value = currentValue - step;
         }
       });
     }
@@ -57,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (increaseButton) {
       increaseButton.addEventListener('click', function () {
         const currentValue = parseInt(input.value) || 1;
-        input.value = currentValue + 1;
+        input.value = currentValue + step;
       });
     }
   });

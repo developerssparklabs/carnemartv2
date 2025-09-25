@@ -62,11 +62,18 @@
                     proporcione su dirección para localizar la más cercana.
                 </p>
                 <p class="has-principal-color mb-0 pb-0">
-                    <a href="#" class="link-inline"><i class="bi bi-geo-alt"></i> Compartir mi ubicación</a> o agregar
-                    mi código postal
-                </p>
+                    <a href="#" class="link-inline" id="btnLocaliza"><i class="bi bi-geo-alt"></i> Compartir mi
+                        ubicación</a>
 
-                <form class="row no-gutters form-seleccion-sucursal custom-form" action="">
+                    <span id="togglePostcode" role="button" tabindex="0" aria-controls="contentPostalCode"
+                        aria-expanded="false" style="cursor:pointer"
+                        onclick="(el=>{const box=document.getElementById('contentPostalCode');const open=box.classList.toggle('is-open');el.setAttribute('aria-expanded',open)})(this)"
+                        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">
+                        o agregar mi código postal
+                    </span>
+                </p>
+                <?php echo do_shortcode('[wcmlim_locations_switch]'); ?>
+                <!-- <form class="row no-gutters form-seleccion-sucursal custom-form" action="">
                     <div class="col-md-12">
                         <label for="seleccionEstado" class="form-label">Estado</label>
                         <select class="form-select form-select-sm" aria-label="Seleccion de estado">
@@ -86,13 +93,24 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </form>
+                </form> -->
             </div>
             <div class="modal-footer">
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    #contentPostalCode {
+        display: none;
+    }
+
+    #contentPostalCode.is-open {
+        display: flex !important;
+    }
+</style>
+
 
 
 <!-- Modal Tiendas Cercanas -->
@@ -263,9 +281,5 @@
             $bar.css('width', '100%');
             $count.text(Math.ceil(duracionMs / 1000));
         });
-
-
-
-
     });
 </script>

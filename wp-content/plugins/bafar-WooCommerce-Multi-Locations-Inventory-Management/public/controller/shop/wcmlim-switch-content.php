@@ -25,7 +25,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
             <div class="wcmlim-lc-switch">
                 <form id="lc-switch-form" class="inline_wcmlim_lc" method="post">
                     <div class="wcmlim_form_box">
-                        <div class="wcmlim_sel_location wcmlim_storeloc">
+                        <div class="wcmlim_sel_location wcmlim_storeloc"
+                            style="display: flex !important;flex-direction: column !important;">
                             <div class="wcmlim_change_lc_to new"><?php if ($Inline_title) {
                                 echo $Inline_title;
                             } else {
@@ -65,11 +66,9 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                         $loc_dis_un = get_option("wcmlim_location_distance", );
                                         ?>
                                         <input type="text" placeholder="<?php _e("Enter Pincode/Zipcode", "wcmlim", ); ?>" required
-                                            class="class_post_code_global" name="post_code_global"
-                                            value="<?php if ($globpin != 0) {
+                                            class="class_post_code_global" name="post_code_global" value="<?php if ($globpin != 0) {
                                                 esc_html_e($globpin);
-                                            } ?>"
-                                            id="elementIdGlobalCode">
+                                            } ?>" id="elementIdGlobalCode">
                                         <input type="button" class="button" id="submit_postcode_global"
                                             value="<?php _e("Buscar", "wcmlim", ); ?>">
                                         <input type='hidden' name="global_postal_check" id='global-postal-check' value='true'>
@@ -116,71 +115,69 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
         }
         if (sizeof($locations_list) >= 0 && sizeof($storelocator_list) >= 0) { ?>
             <style>
-                .main-cont{
-                    width: 80%;
-                }
+                /* .espacio {
+                                                                                            display: block;
+                                                                                            height: 20px;
+                                                                                        }
 
-                .espacio {
-                    display: block;
-                    height: 20px;
-                }
+                                                                                        .zipcodeinfo__box-bloque-2,
+                                                                                        .zipcodeinfo__box-bloque-3,
+                                                                                        .zipcodeinfo__box-form {
+                                                                                            display: none !important;
+                                                                                        }
 
-                .zipcodeinfo__box-bloque-2,
-                .zipcodeinfo__box-bloque-3,
-                .zipcodeinfo__box-form {
-                    display: none !important;
-                }
+                                                                                        .zipcodeinfo__box {
+                                                                                            display: flex;
+                                                                                            text-align: center;
+                                                                                            margin-bottom: 4px;
 
-                .zipcodeinfo__box {
-                    display: flex;
-                    text-align: center;
-                    margin-bottom: 4px;
-                    h3 {
-                        font-weight: bold !important;
-                        font-family: "Oswald", Sans-serif !important;
-                        color: var(--e-global-color-accent) !important;
-                        font-size: 22px;
-                        padding: 0;
-                        margin: 0 0 10px 0;
-                    }
+                                                                                            h3 {
+                                                                                                font-weight: bold !important;
+                                                                                                font-family: "Oswald", Sans-serif !important;
+                                                                                                color: var(--e-global-color-accent) !important;
+                                                                                                font-size: 22px;
+                                                                                                padding: 0;
+                                                                                                margin: 0 0 10px 0;
+                                                                                            }
 
-                    p {
-                        font-family: "Poppins" !important;
-                        font-size: 14px;
-                        line-height: 1.3;
-                        color: var(--e-global-color-primary) !important;
-                    }
-                }
+                                                                                            p {
+                                                                                                font-family: "Poppins" !important;
+                                                                                                font-size: 14px;
+                                                                                                line-height: 1.3;
+                                                                                                color: var(--e-global-color-primary) !important;
+                                                                                            }
+                                                                                        }
 
-                .zipcodeinfo__box-form {
-                    display: flex;
-                    margin: 0 auto;
-                    width: 80%;
-                    padding-top: 13px;
+                                                                                        .zipcodeinfo__box-form {
+                                                                                            display: flex;
+                                                                                            margin: 0 auto;
+                                                                                            width: 80%;
+                                                                                            padding-top: 13px;
 
-                    div {
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
-                        width: 100%;
-                    }
-                }
+                                                                                            div {
+                                                                                                display: flex;
+                                                                                                align-items: center;
+                                                                                                gap: 15px;
+                                                                                                width: 100%;
+                                                                                            }
+                                                                                        }
 
-                .zipcodeinfo__box-input {
-                    height: 50px;
-                    margin: 10px 0;
-                    width: 100%;
-                    text-align: center;
-                    font-family: "Poppins" !important;
-                    font-size: 15px;
-                    border: solid 1px var(--e-global-color-primary) !important;
-                    color: var(--e-global-color-primary) !important;
-                }
+                                                                                        .zipcodeinfo__box-input {
+                                                                                            height: 50px;
+                                                                                            margin: 10px 0;
+                                                                                            width: 100%;
+                                                                                            text-align: center;
+                                                                                            font-family: "Poppins" !important;
+                                                                                            font-size: 15px;
+                                                                                            border: solid 1px var(--e-global-color-primary) !important;
+                                                                                            color: var(--e-global-color-primary) !important;
+                                                                                        }
 
-                .zipcodeinfo__box-input::placeholder {
-                    color: var(--e-global-color-primary) !important;
-                }
+                                                                                        .zipcodeinfo__box-input::placeholder {
+                                                                                            color: var(--e-global-color-primary) !important;
+                                                                                        }
 
+                                                                                        */
                 .zipcodeinfo__box-btn {
                     border: solid 1px var(--e-global-color-accent) !important;
                     background-color: var(--e-global-color-accent) !important;
@@ -189,22 +186,22 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                     padding-left: 20px !important;
                     padding-right: 20px !important;
                     transition: all ease .1s;
+                    /* 
+                                                        &:hover {
+                                                            border: solid 1px var(--e-global-color-accent) !important;
+                                                            background-color: rgba(255, 255, 255, 0) !important;
+                                                            color: var(--e-global-color-accent) !important;
+                                                        } */
 
-                    &:hover {
-                        border: solid 1px var(--e-global-color-accent) !important;
-                        background-color: rgba(255, 255, 255, 0) !important;
-                        color: var(--e-global-color-accent) !important;
-                    }
+                    /* &.full-width {
+                                                            width: 80% !important;
+                                                        }
 
-                    &.full-width {
-                        width: 80% !important;
-                    }
-
-                    &.negative {
-                        border: solid 1px var(--e-global-color-accent) !important;
-                        background-color: #ffffff !important;
-                        color: var(--e-global-color-accent) !important;
-                    }
+                                                        &.negative {
+                                                            border: solid 1px var(--e-global-color-accent) !important;
+                                                            background-color: #ffffff !important;
+                                                            color: var(--e-global-color-accent) !important;
+                                                        } */
 
                 }
 
@@ -228,48 +225,49 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                     }
                 }
 
-                #mensajesPopup {
-                    position: relative;
-                    top: 10px;
-                }
+                /* 
+                                                                                        #mensajesPopup {
+                                                                                            position: relative;
+                                                                                            top: 10px;
+                                                                                        } */
 
                 /* Aplicamos estilos para las tiendas */
-                .er_location p {
-                    opacity: 0;
-                    transform: translateY(20px);
-                    transition: all 0.5s ease;
-                }
+                /* .er_location p {
+                                                                                            opacity: 0;
+                                                                                            transform: translateY(20px);
+                                                                                            transition: all 0.5s ease;
+                                                                                        }
 
-                .er_location p.show {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-
+                                                                                        .er_location p.show {
+                                                                                            opacity: 1;
+                                                                                            transform: translateY(0);
+                                                                                        } */
             </style>
-            <div class="main-cont">
+            <div class="">
                 <div class="zipcodeinfo__box zipcodeinfo__box-bloque-1" id="zipcodeinfoCajaIngresarCP">
-                    <div class="zipcodeinfo__box-contendido">
+                    <!-- <div class="zipcodeinfo__box-contendido">
                         <h3>Estimado Cliente</h3>
                         <p>Por favor seleccione la tienda de su interés o proporcione su dirección para localizar la mas cercana.
                         </p>
-                    </div>
-                    <a href="#" class="btnCompartirUbicacion" id="btnLocaliza">Compartir mi ubicación</a>
+                    </div> -->
+                    <!-- <a href="#" class="btnCompartirUbicacion">Compartir mi ubicación</a> -->
                     <?php
                     ?>
-                    <a href="#" onclick="document.querySelector('.postcode-checker-change.postcode-checker-change-show').click();"
-                        class="btnManualmente">o ingresa tu Código Postal</a>
-                    <div class="zipcodeinfo__box-form">
+                    <div id="contentPostalCode" class="zipcodeinfo__box-form postcode-checker-change postcode-checker-change-show"
+                        style="display: none">
                         <div>
                             <input type="text" id="elementIdGlobalCode" name="fname" value="" placeholder="Ingresa tu Código Postal"
                                 class="zipcodeinfo__box-input">
-                            <input type="submit" value="Buscar" id="submit_postcode_global" class="zipcodeinfo__box-btn">
+                            <button type="submit" id="submit_postcode_global" class="zipcodeinfo__box-btn"
+                                style="color: #fff !important;background: green !important;">Buscar</button>
                         </div>
                     </div>
                 </div>
                 <div class="wcmlim-lc-switch">
                     <form id="lc-switch-form" class="inline_wcmlim_lc" method="post">
                         <div class="wcmlim_form_box">
-                            <div class="wcmlim_sel_location wcmlim_storeloc">
+                            <div class="wcmlim_sel_location wcmlim_storeloc"
+                                style="display: flex !important;flex-direction: column !important;">
                                 <?php
                                 $current_user = wp_get_current_user();
                                 $current_user_id = get_current_user_id();
@@ -305,7 +303,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
 
                                             <option class="<?php echo "wclimstore_" . $restricted_store->term_id; ?>"
                                                 value="<?php echo $restricted_store->term_id; ?>">
-                                                <?php echo ucfirst($restricted_store->name, ); ?></option>
+                                                <?php echo ucfirst($restricted_store->name, ); ?>
+                                            </option>
                                         </select>
                                         <?php
                                     } else { ?>
@@ -351,8 +350,7 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                         if ($lcselect == "on") {
                                             echo "wcmlim-lc-select-2";
                                         }
-                                        ?>"
-                                            id="wcmlim-change-lc-select">
+                                        ?>" id="wcmlim-change-lc-select">
                                             <option value="-1" <?php if (!$selected_location) {
                                                 echo "selected='selected'";
                                             } ?>><?php _e("Selecciona", "wcmlim", ); ?></option>
@@ -516,8 +514,10 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
 
                                 <div class="search_rep">
                                     <div class="postcode-checker-response"></div>
-                                    <a class="postcode-checker-change postcode-checker-change-show" href="#" data-wpzc-form-open="" ">
-                                                    <i class=" fa fa-edit" aria-hidden="true"></i>
+                                    <a class="postcode-checker-change postcode-checker-change-show" href="#"
+                                        data-wpzc-form-open="" ">
+                                                                                                                                                                                                                                                                                                                                                                                                    <i class="
+                        fa fa-edit" aria-hidden="true"></i>
                                     </a>
                                 </div>
                                 <!-- <div class="postcode-checker-keikoxxxx">

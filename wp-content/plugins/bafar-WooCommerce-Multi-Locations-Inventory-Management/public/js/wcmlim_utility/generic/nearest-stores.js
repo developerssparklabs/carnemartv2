@@ -116,11 +116,11 @@ export function getNearestStores(latManual = null, lonManual = null) {
                                                                 },
                                                                 allowOutsideClick: false
                                                             }).then(() => {
-        
+
                                                                 alies_setcookies.setcookie("wcmlim_selected_location", locationKey);
                                                                 alies_setcookies.setcookie("wcmlim_selected_location_termid", locationTermID);
-        
-                                                                 // Segundo modal de “redirigiéndote…”
+
+                                                                // Segundo modal de “redirigiéndote…”
                                                                 return Swal.fire({
                                                                     icon: 'info',
                                                                     title: '<strong>Redirigiéndote a la tienda seleccionada…</strong>',
@@ -133,7 +133,7 @@ export function getNearestStores(latManual = null, lonManual = null) {
                                                                     timerProgressBar: true,
                                                                     showConfirmButton: false,
                                                                     customClass: {
-                                                                    popup: 'swal2-border-radius redirect-modal'
+                                                                        popup: 'swal2-border-radius redirect-modal'
                                                                     },
                                                                     allowOutsideClick: false
                                                                 }).then(() => {
@@ -171,7 +171,7 @@ export function getNearestStores(latManual = null, lonManual = null) {
                                                             `,
                                                             confirmButtonText: 'Entendido',
                                                             customClass: {
-                                                            popup: 'swal2-border-radius clear-cart-modal'
+                                                                popup: 'swal2-border-radius clear-cart-modal'
                                                             }
                                                         });
                                                         jQuery(".single_add_to_cart_button").prop("disabled", false);
@@ -185,9 +185,11 @@ export function getNearestStores(latManual = null, lonManual = null) {
                                     } else {
                                         alies_setcookies.setcookie("wcmlim_selected_location", locationKey);
                                         alies_setcookies.setcookie("wcmlim_selected_location_termid", locationTermID);
-                                        hideLoader();
+                                        // hideLoader();
                                         jQuery(".single_add_to_cart_button").prop("disabled", false);
-                                        window.location.href = window.location.href + "/?r=refresh";
+
+                                        // recargar la página para actualizar la tienda sin limpiar el carrito
+                                        window.location.reload();
                                     }
                                 },
                             });
@@ -205,9 +207,9 @@ export function getNearestStores(latManual = null, lonManual = null) {
                         Puedes intentarlo de nuevo o ingresar tu <strong>código postal</strong> para buscar manualmente.
                     </p>
                     `)
-                    .appendTo('.er_location')
-                    .show()
-                    .addClass('show');
+                        .appendTo('.er_location')
+                        .show()
+                        .addClass('show');
 
                     hideLoader();
                 }

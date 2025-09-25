@@ -4,7 +4,6 @@
             <button class="btn__buscador" id="btnBuscadorTienda" aria-label="Buscar tienda"><span>Buscar tienda</span>
                 <i class="bi bi-chevron-down icon-down"></i></button>
         </div>
-        <?php echo do_shortcode('[wcmlim_locations_popup]'); ?>
         <div class="buscador-contenido">
             <div class="resultados__ubicacion">
                 <div class="resultados__ubicacion-caja caja__entrega">
@@ -25,14 +24,12 @@
                         <li><span class="resultados__ubicacion-lista-titulo txtubicacion "></span></li>
                     </ul>
                 </div>
-                <div class=" resultados__ubicacion-caja caja__botonera">
-                    <!-- <a href="#" id="btnAbrirTienda" onclick="" class="resultados__ubicacion-boton"
-                        title="Cambiar dirección">Cambiar dirección</a> -->
-                    <button class="resultados__ubicacion-boton">
-                        <a id="set-def-store-popup-btn" class="set-def-store-popup-btn" href="#set-def-store"
-                            title="Cambiar dirección"></a>
-                        <p>Cambiar dirección</p>
-                    </button>
+
+
+                <div class="resultados__ubicacion-caja caja__botonera">
+                    <a href="#" id="btnAbrirTienda" onclick="" class="resultados__ubicacion-boton"
+                        title="Cambiar dirección">
+                        Cambiar dirección</a>
                     <a href="#" id="ctaOpenBox" class="resultados__ubicacion-inline-link" title=Continua con tus
                         compras">Continua con tus compras</a>
                 </div>
