@@ -38,3 +38,5 @@
 //     $button_text = __("Add to cart", "woocommerce");
 //     $button = '<a data-cart-url="' . $_cart_url . '" data-isredirect="' . $_isRedirect . '" data-quantity="' . $qty_min . '" class="button product_type_simple add_to_cart_button wcmlim_ajax_add_to_cart" data-product_id="' . $_product_id . '" data-product_sku="' . $_product_sku . '" aria-label="Add “' . $_product_name . '” to your cart" data-selected_location="' . $ln . '" data-location_key="' . $_location_key . '" data-location_qty="' . $_location_qty . '" data-location_termid="' . $_location_termId . '" data-product_price="' . $_product_price . '" data-location_sale_price="' . $_location_sale_price . '" data-location_regular_price="' . $_location_regular_price . '" data-product_backorder="' . $_product_backorder . '" rel="nofollow">' . $button_text . '</a>';
 // }
+
+return '';
