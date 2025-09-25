@@ -21,7 +21,7 @@ wp_enqueue_style($this->plugin_name . "-popup-css", plugin_dir_path(plugin_dir_u
 
 
 if ($customcss_enable == "") {
-    wp_enqueue_style($this->plugin_name . '_frontview_css', plugin_dir_path(plugin_dir_url(__DIR__)) . 'css/wcmlim-frontview-min.css', array(), $this->version . rand(), 'all');
+    // wp_enqueue_style($this->plugin_name . '_frontview_css', plugin_dir_path(plugin_dir_url(__DIR__)) . 'css/wcmlim-frontview-min.css', array(), $this->version . rand(), 'all');
 }
 
 $advanceListView = get_option('wcmlim_radio_loc_format');

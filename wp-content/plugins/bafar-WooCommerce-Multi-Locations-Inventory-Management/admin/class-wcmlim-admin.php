@@ -94,7 +94,7 @@ class Wcmlim_Admin
 
     $customcss_enable = get_option('wcmlim_custom_css_enable');
     if ($customcss_enable == "") {
-      wp_enqueue_style($this->plugin_name . '_frontview_css', WCMLIM_URL_PATH . '/public/css/wcmlim-frontview-min.css', array(), $this->version, 'all');
+      // wp_enqueue_style($this->plugin_name . '_frontview_css', WCMLIM_URL_PATH . '/public/css/wcmlim-frontview-min.css', array(), $this->version, 'all');
     }
   }
 

@@ -32,7 +32,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                             } else {
                                 _e("Location: ", "wcmlim");
                             } ?></div>
-                            <select name="wcmlim_change_lc_to" class="wcmlim-lc-select" id="wcmlim-change-lc-select">
+                            <select name="wcmlim_change_lc_to" class="wcmlim-lc-select wcmlim-select-style-general"
+                                id="wcmlim-change-lc-select">
                                 <option value="-1" <?php if (!$selected_location) {
                                     echo "selected='selected'";
                                 } ?>><?php _e("Seleccionar", "wcmlim"); ?></option>
@@ -116,68 +117,68 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
         if (sizeof($locations_list) >= 0 && sizeof($storelocator_list) >= 0) { ?>
             <style>
                 /* .espacio {
-                                                                                            display: block;
-                                                                                            height: 20px;
-                                                                                        }
+                                                                                                                                                        display: block;
+                                                                                                                                                        height: 20px;
+                                                                                                                                                    }
 
-                                                                                        .zipcodeinfo__box-bloque-2,
-                                                                                        .zipcodeinfo__box-bloque-3,
-                                                                                        .zipcodeinfo__box-form {
-                                                                                            display: none !important;
-                                                                                        }
+                                                                                                                                                    .zipcodeinfo__box-bloque-2,
+                                                                                                                                                    .zipcodeinfo__box-bloque-3,
+                                                                                                                                                    .zipcodeinfo__box-form {
+                                                                                                                                                        display: none !important;
+                                                                                                                                                    }
 
-                                                                                        .zipcodeinfo__box {
-                                                                                            display: flex;
-                                                                                            text-align: center;
-                                                                                            margin-bottom: 4px;
+                                                                                                                                                    .zipcodeinfo__box {
+                                                                                                                                                        display: flex;
+                                                                                                                                                        text-align: center;
+                                                                                                                                                        margin-bottom: 4px;
 
-                                                                                            h3 {
-                                                                                                font-weight: bold !important;
-                                                                                                font-family: "Oswald", Sans-serif !important;
-                                                                                                color: var(--e-global-color-accent) !important;
-                                                                                                font-size: 22px;
-                                                                                                padding: 0;
-                                                                                                margin: 0 0 10px 0;
-                                                                                            }
+                                                                                                                                                        h3 {
+                                                                                                                                                            font-weight: bold !important;
+                                                                                                                                                            font-family: "Oswald", Sans-serif !important;
+                                                                                                                                                            color: var(--e-global-color-accent) !important;
+                                                                                                                                                            font-size: 22px;
+                                                                                                                                                            padding: 0;
+                                                                                                                                                            margin: 0 0 10px 0;
+                                                                                                                                                        }
 
-                                                                                            p {
-                                                                                                font-family: "Poppins" !important;
-                                                                                                font-size: 14px;
-                                                                                                line-height: 1.3;
-                                                                                                color: var(--e-global-color-primary) !important;
-                                                                                            }
-                                                                                        }
+                                                                                                                                                        p {
+                                                                                                                                                            font-family: "Poppins" !important;
+                                                                                                                                                            font-size: 14px;
+                                                                                                                                                            line-height: 1.3;
+                                                                                                                                                            color: var(--e-global-color-primary) !important;
+                                                                                                                                                        }
+                                                                                                                                                    }
 
-                                                                                        .zipcodeinfo__box-form {
-                                                                                            display: flex;
-                                                                                            margin: 0 auto;
-                                                                                            width: 80%;
-                                                                                            padding-top: 13px;
+                                                                                                                                                    .zipcodeinfo__box-form {
+                                                                                                                                                        display: flex;
+                                                                                                                                                        margin: 0 auto;
+                                                                                                                                                        width: 80%;
+                                                                                                                                                        padding-top: 13px;
 
-                                                                                            div {
-                                                                                                display: flex;
-                                                                                                align-items: center;
-                                                                                                gap: 15px;
-                                                                                                width: 100%;
-                                                                                            }
-                                                                                        }
+                                                                                                                                                        div {
+                                                                                                                                                            display: flex;
+                                                                                                                                                            align-items: center;
+                                                                                                                                                            gap: 15px;
+                                                                                                                                                            width: 100%;
+                                                                                                                                                        }
+                                                                                                                                                    }
 
-                                                                                        .zipcodeinfo__box-input {
-                                                                                            height: 50px;
-                                                                                            margin: 10px 0;
-                                                                                            width: 100%;
-                                                                                            text-align: center;
-                                                                                            font-family: "Poppins" !important;
-                                                                                            font-size: 15px;
-                                                                                            border: solid 1px var(--e-global-color-primary) !important;
-                                                                                            color: var(--e-global-color-primary) !important;
-                                                                                        }
+                                                                                                                                                    .zipcodeinfo__box-input {
+                                                                                                                                                        height: 50px;
+                                                                                                                                                        margin: 10px 0;
+                                                                                                                                                        width: 100%;
+                                                                                                                                                        text-align: center;
+                                                                                                                                                        font-family: "Poppins" !important;
+                                                                                                                                                        font-size: 15px;
+                                                                                                                                                        border: solid 1px var(--e-global-color-primary) !important;
+                                                                                                                                                        color: var(--e-global-color-primary) !important;
+                                                                                                                                                    }
 
-                                                                                        .zipcodeinfo__box-input::placeholder {
-                                                                                            color: var(--e-global-color-primary) !important;
-                                                                                        }
+                                                                                                                                                    .zipcodeinfo__box-input::placeholder {
+                                                                                                                                                        color: var(--e-global-color-primary) !important;
+                                                                                                                                                    }
 
-                                                                                        */
+                                                                                                                                                    */
                 .zipcodeinfo__box-btn {
                     border: solid 1px var(--e-global-color-accent) !important;
                     background-color: var(--e-global-color-accent) !important;
@@ -187,21 +188,21 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                     padding-right: 20px !important;
                     transition: all ease .1s;
                     /* 
-                                                        &:hover {
-                                                            border: solid 1px var(--e-global-color-accent) !important;
-                                                            background-color: rgba(255, 255, 255, 0) !important;
-                                                            color: var(--e-global-color-accent) !important;
-                                                        } */
+                                                                                                                    &:hover {
+                                                                                                                        border: solid 1px var(--e-global-color-accent) !important;
+                                                                                                                        background-color: rgba(255, 255, 255, 0) !important;
+                                                                                                                        color: var(--e-global-color-accent) !important;
+                                                                                                                    } */
 
                     /* &.full-width {
-                                                            width: 80% !important;
-                                                        }
+                                                                                                                        width: 80% !important;
+                                                                                                                    }
 
-                                                        &.negative {
-                                                            border: solid 1px var(--e-global-color-accent) !important;
-                                                            background-color: #ffffff !important;
-                                                            color: var(--e-global-color-accent) !important;
-                                                        } */
+                                                                                                                    &.negative {
+                                                                                                                        border: solid 1px var(--e-global-color-accent) !important;
+                                                                                                                        background-color: #ffffff !important;
+                                                                                                                        color: var(--e-global-color-accent) !important;
+                                                                                                                    } */
 
                 }
 
@@ -226,22 +227,22 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                 }
 
                 /* 
-                                                                                        #mensajesPopup {
-                                                                                            position: relative;
-                                                                                            top: 10px;
-                                                                                        } */
+                                                                                                                                                    #mensajesPopup {
+                                                                                                                                                        position: relative;
+                                                                                                                                                        top: 10px;
+                                                                                                                                                    } */
 
                 /* Aplicamos estilos para las tiendas */
                 /* .er_location p {
-                                                                                            opacity: 0;
-                                                                                            transform: translateY(20px);
-                                                                                            transition: all 0.5s ease;
-                                                                                        }
+                                                                                                                                                        opacity: 0;
+                                                                                                                                                        transform: translateY(20px);
+                                                                                                                                                        transition: all 0.5s ease;
+                                                                                                                                                    }
 
-                                                                                        .er_location p.show {
-                                                                                            opacity: 1;
-                                                                                            transform: translateY(0);
-                                                                                        } */
+                                                                                                                                                    .er_location p.show {
+                                                                                                                                                        opacity: 1;
+                                                                                                                                                        transform: translateY(0);
+                                                                                                                                                    } */
             </style>
             <div class="">
                 <div class="zipcodeinfo__box zipcodeinfo__box-bloque-1" id="zipcodeinfoCajaIngresarCP">
@@ -263,6 +264,59 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                         </div>
                     </div>
                 </div>
+                <style>
+                    .wcmlim-select-style-general {
+                        background-color: rgba(255, 255, 255, 0) !important;
+                        border: solid 1px var(--color-tercero);
+                        border-radius: 8px !important;
+                        padding: 10px 20px !important;
+                        height: 45px;
+                        text-align: left;
+                        width: 100%;
+                        letter-spacing: 1px;
+                        margin-bottom: 10px !important;
+                        font-weight: 400;
+                        -webkit-appearance: none !important;
+                        -webkit-border-radius: 0px;
+                        color: var(--color-obscuro);
+                        -webkit-appearance: none;
+                        /* WebKit */
+                        -moz-appearance: none;
+                        /* Mozilla */
+                        appearance: none;
+                        font-family: var(--fuente-regular);
+                        font-size: 16px !important;
+                    }
+
+                    #wcmlim-change-lc-select {
+                        background-color: rgba(255, 255, 255, 0) !important;
+                        border: solid 1px var(--color-tercero);
+                        border-radius: 8px !important;
+                        padding: 10px 20px !important;
+                        height: 45px;
+                        text-align: left;
+                        width: 100%;
+                        letter-spacing: 1px;
+                        margin-bottom: 10px !important;
+                        font-weight: 400;
+                        -webkit-appearance: none !important;
+                        -webkit-border-radius: 0px;
+                        color: var(--color-obscuro);
+                        -webkit-appearance: none;
+                        /* WebKit */
+                        -moz-appearance: none;
+                        /* Mozilla */
+                        appearance: none;
+                        font-family: var(--fuente-regular);
+                        font-size: 16px !important;
+                    }
+
+                    .wcmlim_change_sl_to,
+                    #wcmlim_store_label_popup {
+                        font-weight: 700;
+                        color: #021b6d;
+                    }
+                </style>
                 <div class="wcmlim-lc-switch">
                     <form id="lc-switch-form" class="inline_wcmlim_lc" method="post">
                         <div class="wcmlim_form_box">
@@ -288,7 +342,7 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                         _e("Ciudad: ", "wcmlim");
                                     } ?></p>
                                     <?php if ($restricUsers == "on" && $roles[0] == "customer") { ?>
-                                        <select name="wcmlim_change_sl_to" id="wcmlim-change-sl-select">
+                                        <select name="wcmlim_change_sl_to" class="wcmlim-select-style-general" id="wcmlim-change-sl-select">
                                             <option value="-1"><?php _e("Selecciona", "wcmlim", ); ?></option>
                                             <?php
                                             foreach ($locations_list as $key => $loc) {
@@ -308,7 +362,7 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                         </select>
                                         <?php
                                     } else { ?>
-                                        <select name="wcmlim_change_sl_to" id="wcmlim-change-sl-select">
+                                        <select name="wcmlim_change_sl_to" class="wcmlim-select-style-general" id="wcmlim-change-sl-select">
                                             <option value="-1"><?php _e("Selecciona", "wcmlim", ); ?></option>
                                             <?php foreach ($storelocator_list as $key => $loc) { ?>
                                                 <option class="<?php echo "wclimstore_" . $loc["store_id"]; ?>"
@@ -322,7 +376,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                     <p class="wcmlim_change_lc_to" id="wcmlim_store_label_popup"><?php _e("Sucursal: ", "wcmlim", ); ?>
                                     </p>
                                     <?php if ($restricUsers == "on" && $roles[0] == "customer") { ?>
-                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select" id="wcmlim-change-lc-select">
+                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select wcmlim-select-style-general"
+                                            id="wcmlim-change-lc-select">
                                             <option value="-1" <?php if (!$selected_location) {
                                                 echo "selected='selected'";
                                             } ?>><?php _e("Seleccionar1", "wcmlim"); ?></option>
@@ -364,7 +419,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                         _e("Location: ", "wcmlim");
                                     } ?></div>
                                     <?php if (isset($roles[0]) && $roles[0] == "customer") { ?>
-                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select" id="wcmlim-change-lc-select">
+                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select wcmlim-select-style-general"
+                                            id="wcmlim-change-lc-select">
                                             <option value="-1" <?php if (!$selected_location) {
                                                 echo "selected='selected'";
                                             } ?>>
@@ -410,7 +466,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                         </select>
                                         <?php
                                     } elseif (isset($roles[0]) && $roles[0] != "") { ?>
-                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select" id="wcmlim-change-lc-select">
+                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select wcmlim-select-style-general"
+                                            id="wcmlim-change-lc-select">
                                             <option value="-1" <?php if (!$selected_location) {
                                                 echo "selected='selected'";
                                             } ?>><?php _e("Seleccionar tienda1", "wcmlim", ); ?></option>
@@ -431,7 +488,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
 
                                         <?php
                                     } elseif ($restricUsers == "") { ?>
-                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select" id="wcmlim-change-lc-select">
+                                        <select name="wcmlim_change_lc_to" class="wcmlim-lc-select wcmlim-select-style-general"
+                                            id="wcmlim-change-lc-select">
                                             <option value="-1" <?php if (!$selected_location) {
                                                 echo "selected='selected'";
                                             } ?>>
@@ -483,7 +541,8 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                     } else {
                                         _e("Location: ", "wcmlim");
                                     } ?></div>
-                                    <select name="wcmlim_change_lc_to" class="wcmlim-lc-select" id="wcmlim-change-lc-select">
+                                    <select name="wcmlim_change_lc_to" class="wcmlim-lc-select wcmlim-select-style-general"
+                                        id="wcmlim-change-lc-select">
                                         <option value="-1" <?php if (!$selected_location) {
                                             echo "selected='selected'";
                                         } ?>><?php _e("Seleccionar tienda11", "wcmlim", ); ?></option>
@@ -516,7 +575,7 @@ if ($isLocationsGroup == "on" && empty($this->wcmlim_get_all_store())) {
                                     <div class="postcode-checker-response"></div>
                                     <a class="postcode-checker-change postcode-checker-change-show" href="#"
                                         data-wpzc-form-open="" ">
-                                                                                                                                                                                                                                                                                                                                                                                                    <i class="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="
                         fa fa-edit" aria-hidden="true"></i>
                                     </a>
                                 </div>
