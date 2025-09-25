@@ -150,105 +150,133 @@ do_action('woocommerce_before_main_content');
 
 				<div class="stock-section">
 					<?php
-					$stock_quantity = $product->get_stock_quantity();
-					$stock_status = $product->get_stock_status();
-
-					if ($stock_status === 'instock') {
-						echo '<p class="product-stock in-stock"><strong>Stock:</strong> Disponible (' . esc_html($stock_quantity) . ' unidades)</p>';
-					} elseif ($stock_status === 'onbackorder') {
-						echo '<p class="product-stock backorder"><strong>Stock:</strong> Disponible bajo pedido</p>';
-					} else {
-						echo '<p class="product-stock out-of-stock" style="display:none!important;"><strong>Stock:</strong> Agotado</p>';
+					// Verificar cookie de tienda
+					$term_id = sb_get_current_store_term_id();
+					if ($term_id) {
+						$stock_quantity = get_post_meta($product->get_id(), "wcmlim_stock_at_{$term_id}", true);
+						$stock_status = $product->get_stock_status();
+						if ($stock_status === 'instock') {
+							echo '<p class="product-stock in-stock"><strong>Stock:</strong> Disponible (' . esc_html($stock_quantity) . ' unidades)</p>';
+						} elseif ($stock_status === 'onbackorder') {
+							echo '<p class="product-stock backorder"><strong>Stock:</strong> Disponible bajo pedido</p>';
+						} else {
+							echo '<p class="product-stock out-of-stock" style="display:none!important;"><strong>Stock:</strong> Agotado</p>';
+						}
 					}
 					?>
 				</div>
 
 				<?php
-					if ( ! function_exists('sb_get_current_store_term_id') ) {
-						function sb_get_current_store_term_id(): int {
-							if (!empty($_COOKIE['wcmlim_selected_location_termid']) && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined') {
-								return (int) $_COOKIE['wcmlim_selected_location_termid'];
-							}
-							return 0;
+				if (!function_exists('sb_get_current_store_term_id')) {
+					function sb_get_current_store_term_id(): int
+					{
+						if (!empty($_COOKIE['wcmlim_selected_location_termid']) && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined') {
+							return (int) $_COOKIE['wcmlim_selected_location_termid'];
 						}
+						return 0;
 					}
+				}
 
-					if ( ! function_exists('sb_get_store_prices_for_product') ) {
-						/**
-						 * Devuelve precios para un producto/variación, priorizando la tienda actual.
-						 * return ['regular'=>float|null, 'sale'=>float|null, 'price'=>float]  (price = efectivo)
-						 */
-						function sb_get_store_prices_for_product($product): array {
-							$pid = $product instanceof WC_Product ? $product->get_id() : (int) $product;
-							$term_id = sb_get_current_store_term_id();
+				if (!function_exists('sb_get_store_prices_for_product')) {
+					/**
+					 * Devuelve precios para un producto/variación, priorizando la tienda actual.
+					 * return ['regular'=>float|null, 'sale'=>float|null, 'price'=>float]  (price = efectivo)
+					 */
+					function sb_get_store_prices_for_product($product): array
+					{
+						$pid = $product instanceof WC_Product ? $product->get_id() : (int) $product;
+						$term_id = sb_get_current_store_term_id();
 
-							$reg = $sale = null;
-							if ($term_id > 0 && $pid > 0) {
-								$reg = get_post_meta($pid, "wcmlim_regular_price_at_{$term_id}", true);
-								$sale = get_post_meta($pid, "wcmlim_sale_price_at_{$term_id}", true);
+						$reg = $sale = null;
+						if ($term_id > 0 && $pid > 0) {
+							$reg = get_post_meta($pid, "wcmlim_regular_price_at_{$term_id}", true);
+							$sale = get_post_meta($pid, "wcmlim_sale_price_at_{$term_id}", true);
 
-								// si es variación y no tiene meta, caer al padre
-								if ($product instanceof WC_Product_Variation) {
-									$parent_id = $product->get_parent_id();
-									if (($reg === '' || $reg === null) && $parent_id) $reg = get_post_meta($parent_id, "wcmlim_regular_price_at_{$term_id}", true);
-									if (($sale === '' || $sale === null) && $parent_id) $sale = get_post_meta($parent_id, "wcmlim_sale_price_at_{$term_id}", true);
-								}
+							// si es variación y no tiene meta, caer al padre
+							if ($product instanceof WC_Product_Variation) {
+								$parent_id = $product->get_parent_id();
+								if (($reg === '' || $reg === null) && $parent_id)
+									$reg = get_post_meta($parent_id, "wcmlim_regular_price_at_{$term_id}", true);
+								if (($sale === '' || $sale === null) && $parent_id)
+									$sale = get_post_meta($parent_id, "wcmlim_sale_price_at_{$term_id}", true);
 							}
-
-							// normaliza
-							$reg  = is_numeric($reg)  ? (float) $reg  : null;
-							$sale = is_numeric($sale) ? (float) $sale : null;
-							if ($sale !== null && $reg !== null && $sale >= $reg) $sale = null;
-
-							// fallback a precios nativos si no hay por tienda
-							$fallback_reg  = (float) $product->get_regular_price();
-							$fallback_sale = $product->get_sale_price() !== '' ? (float) $product->get_sale_price() : null;
-
-							$effective_reg  = $reg  !== null ? $reg  : $fallback_reg;
-							$effective_sale = $sale !== null ? $sale : $fallback_sale;
-
-							$price = ($effective_sale !== null) ? $effective_sale : $effective_reg;
-
-							return ['regular' => $effective_reg, 'sale' => $effective_sale, 'price' => (float) $price];
 						}
+
+						// normaliza
+						$reg = is_numeric($reg) ? (float) $reg : null;
+						$sale = is_numeric($sale) ? (float) $sale : null;
+						if ($sale !== null && $reg !== null && $sale >= $reg)
+							$sale = null;
+
+						// fallback a precios nativos si no hay por tienda
+						$fallback_reg = (float) $product->get_regular_price();
+						$fallback_sale = $product->get_sale_price() !== '' ? (float) $product->get_sale_price() : null;
+
+						$effective_reg = $reg !== null ? $reg : $fallback_reg;
+						$effective_sale = $sale !== null ? $sale : $fallback_sale;
+
+						$price = ($effective_sale !== null) ? $effective_sale : $effective_reg;
+
+						return ['regular' => $effective_reg, 'sale' => $effective_sale, 'price' => (float) $price];
 					}
+				}
 				?>
 				<div class="custom-row bloque-precio-detalle">
 					<div class="custom-100">
 						<div class="area-info-compra">
 							<?php
+							// obtenemos el primer step
+							function sb_get_first_step($tiers) {
+								if (empty($tiers)) {
+									return null;
+								}
+								
+								$first_key = array_key_first($tiers);
+								if ($first_key === null) {
+									return null;
+								}
+								
+								// Extract the first numeric value from the key
+								if (preg_match('/(\d+(?:\.\d+)?)/', $first_key, $matches)) {
+									return (float) $matches[1];
+								}
+								
+								return null;
+							}
 							// Si el producto es variable
 							/* ==== PINTAR PRECIO ==== */
-							if ( $product->is_type('variable') ) {
+							if ($product->is_type('variable')) {
 
 								$child_ids = $product->get_children(); // ids de variaciones
 								$prices = $regs = $sales = [];
 
-								foreach ( $child_ids as $vid ) {
+								foreach ($child_ids as $vid) {
 									$v = wc_get_product($vid);
-									if ( ! $v ) continue;
+									if (!$v)
+										continue;
 									$p = sb_get_store_prices_for_product($v);
 									// ignora variaciones sin precio real
 									if ($p['price'] > 0) {
 										$prices[] = $p['price'];
-										$regs[]   = $p['regular'];
-										if ($p['sale'] !== null) $sales[] = $p['sale'];
+										$regs[] = $p['regular'];
+										if ($p['sale'] !== null)
+											$sales[] = $p['sale'];
 									}
 								}
 
-								if ( empty($prices) ) {
+								if (empty($prices)) {
 									// Fallback total a comportamiento nativo si no encontramos nada
-									echo '<p class="product-price-sale">' . wp_kses_post( $product->get_price_html() ) . '</p>';
+									echo '<p class="product-price-sale">' . wp_kses_post($product->get_price_html()) . '</p>';
 								} else {
 									$min_price = min($prices);
 									$max_price = max($prices);
-									$min_reg   = !empty($regs)  ? min($regs)  : $min_price;
-									$max_reg   = !empty($regs)  ? max($regs)  : $max_price;
+									$min_reg = !empty($regs) ? min($regs) : $min_price;
+									$max_reg = !empty($regs) ? max($regs) : $max_price;
 
 									// Mostrar tachado si hay alguna variación en oferta (por tienda o nativo)
 									$hay_oferta = !empty($sales);
 
-									if ( $hay_oferta && ($min_reg > $min_price || $max_reg > $max_price) ) : ?>
+									if ($hay_oferta && ($min_reg > $min_price || $max_reg > $max_price)): ?>
 										<p class="product-price-original">
 											<del><?php echo wc_price($min_reg); ?> - <?php echo wc_price($max_reg); ?></del>
 										</p>
@@ -260,78 +288,282 @@ do_action('woocommerce_before_main_content');
 								<?php }
 
 							} else {
-								// Producto simple
-								$p = sb_get_store_prices_for_product($product);
-								$hay_oferta = ($p['sale'] !== null);
+								    $pid = $product->get_id();
+									$unit = get_post_meta($pid, 'ri_quantity_step_label', true);
+									$unit_txt = $unit ? ' <span class="por-label" style="color:#6c757d;font-size:15px;">por <b>' . esc_html($unit) . '</b></span>' : '';
 
-								if ( $hay_oferta ) : ?>
-									<p class="product-price-original">
-										<del><?php echo wc_price($p['regular']); ?></del>
-									</p>
-								<?php endif; ?>
+									$term_id = sb_get_current_store_term_id();
 
-								<p class="product-price-sale">
-									<?php echo wc_price( $p['price'] ); ?>
-									<?php if ( $hay_oferta && $p['regular'] > 0 ) :
-										$pct = round( ( ($p['regular'] - $p['price']) / $p['regular'] ) * 100 );
-									?>
-										<span class="product-discount-tag">
-											<span class="mini-texto">Ahorre</span>
-											<span class="mini-descuento">-<?php echo esc_html($pct); ?>%</span>
-										</span>
-									<?php endif; ?>
-								</p>
+									// Precio base por tienda o nativo
+									$price_base_tienda = $term_id ? get_post_meta($pid, "wcmlim_regular_price_at_{$term_id}", true) : '';
+									$price_base_tienda = is_numeric($price_base_tienda) ? (float) $price_base_tienda : null;
+									$price_base_nativo = (float) $product->get_regular_price();
+
+									// Tiers (array asociativo "key" => price)
+									$tiers = $term_id ? sb_get_tiers_meta($pid, $term_id) : [];
+
+									$show_del = false;
+									$regular = null;
+									$sale = null;
+
+									$showOfert = false;
+									if (!empty($tiers)) {
+										// Tomar PRIMER tier (clave + valor)
+										[$first_key, $first_val] = sb_array_first_kv($tiers);
+										$first_val = is_numeric($first_val) ? (float) $first_val : null;
+
+										// Precio entre paréntesis en la clave => regular del tier
+										$paren_reg = sb_parse_paren_price_from_key((string) $first_key);
+
+										$first_step = sb_get_first_step($tiers);
+
+										// echo '<pre>';
+										// print_r($first_val);
+										// echo '</pre>';
+
+										// echo '<pre>';
+										// print_r($paren_reg);
+										// echo '</pre>';
+
+										// echo '<pre>';
+										// print_r($first_step);
+										// echo '</pre>';
+
+										$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
+
+										if ($first_step == $step_meta) {
+											$showOfert = true;
+										}
+										// 1) Regular
+										if ($paren_reg !== null && $paren_reg > 0) {
+											$regular = $paren_reg;
+										} else {
+											// si no hay numérico entre paréntesis, usamos el base de tienda si existe, si no nativo
+											$regular = $price_base_tienda !== null ? $price_base_tienda : $price_base_nativo;
+										}
+
+										// 2) Sale (el valor del primer tier, solo si es menor al regular)
+										if ($first_val !== null && $regular !== null && $first_val < $regular) {
+											$sale = $first_val;
+											$show_del = true;
+										}
+
+									} else {
+										// Sin tiers: usa base tienda o nativo
+										$regular = $price_base_tienda !== null ? $price_base_tienda : $price_base_nativo;
+									}
+
+									// Pintar precio
+									if ($show_del && $regular && $showOfert) {
+										// echo '<span class="product-discount-tag">';
+										// echo '<span class="mini-texto">Ahorre</span>';
+										// echo '<span class="mini-descuento">-' . esc_html($regular) . '%</span>';
+										// echo '</span>';
+										
+										echo '<div>';
+										echo '<p class="product-price-original" style="color: red; font-size: 20px">';
+										echo '<del>' . wc_price($regular) . '</del>';
+										echo '</p>';
+										echo '<p class="product-price-sale">' . wc_price($sale) . $unit_txt . '</p>';
+										echo '</div>';
+									} else {
+										echo '<p class="product-price-sale">' . wc_price($regular) . $unit_txt . '</p>';
+									}		
+								?>
 							<?php } ?>
 							<?php if ($product->is_in_stock()):
 
-								// === Paso y mínimo desde metas ===
-								$pid = $product->get_id();
-								$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
-								$min_meta = get_post_meta($pid, 'product_min', true); // opcional. Si no hay, usamos el step
+								$term_id = sb_get_current_store_term_id();
+								if (!$term_id) {
+									echo '<div class="cm-store-required" style="
+										display: flex;
+										margin-top:10px;
+										background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+										color: white;
+										padding: 15px;
+										border-radius: 8px;
+										text-align: left;
+										font-weight: bold;
+										margin-bottom: 10px;
+										box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+									">
+										<i class="bi bi-geo-alt-fill" style="margin-right: 8px; font-size: 1.1em;"></i> 
+										<div>
+											Selecciona una tienda para ver el precio, disponibilidad y opciones de compra de este producto.
+										</div>
+									</div>';
+								} else {
+									// === Paso y mínimo desde metas ===
+									$pid = $product->get_id();
+									$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
+									$min_meta = get_post_meta($pid, 'product_min', true); // opcional. Si no hay, usamos el step
 							
-								$step = is_numeric($step_meta) ? (float) $step_meta : 1;
-								$min = is_numeric($min_meta) ? (float) $min_meta : $step;
+									$step = is_numeric($step_meta) ? (float) $step_meta : 1;
+									$min = is_numeric($min_meta) ? (float) $min_meta : $step;
 
-								if ($step <= 0)
-									$step = 1;
-								if ($min <= 0)
-									$min = $step;
+									if ($step <= 0)
+										$step = 1;
+									if ($min <= 0)
+										$min = $step;
 
-								// Cantidad por defecto = mínimo
-								$default_qty = $min;
+									// Cantidad por defecto = mínimo
+									$default_qty = $min;
 
-								// Máximo recomendado (si manejas stock; quítalo si no lo necesitas)
-								$max_qty = $product->backorders_allowed() ? '' : $product->get_stock_quantity();
+									// Máximo recomendado (si manejas stock; quítalo si no lo necesitas)
+									$max_qty = $product->backorders_allowed() ? '' : $product->get_stock_quantity();
 
-								// Decimales para formatear el valor mostrado
-								$decimals = strpos((string) $step, '.') !== false ? strlen(substr(strrchr((string) $step, '.'), 1)) : 0;
+									// Decimales para formatear el valor mostrado
+									$decimals = strpos((string) $step, '.') !== false ? strlen(substr(strrchr((string) $step, '.'), 1)) : 0;
+
+									?>
+										<form class="cart"
+											action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>"
+											method="post" enctype="multipart/form-data">
+
+											<div class="product-quantity" style="margin-top: 12px;">
+												<button type="button" class="quantity-btn quantity-minus"
+													aria-label="Disminuir">-</button>
+
+												<input type="number" 
+													id="quantity-input" 
+													class="quantity-input" 
+													name="quantity"
+													value="<?php echo esc_attr(wc_format_decimal($default_qty, $decimals)); ?>" 
+													step="<?php echo esc_attr($step); ?>" 
+													min="<?php echo esc_attr($min); ?>"
+													<?php if ($max_qty): ?>max="<?php echo esc_attr($max_qty); ?>"<?php endif; ?>
+													inputmode="decimal" 
+													pattern="[0-9]*[.,]?[0-9]*"
+													aria-label="<?php esc_attr_e('Cantidad'); ?>">
+
+												<button type="button" class="quantity-btn quantity-plus"
+													aria-label="Aumentar">+</button>
+											</div>
+
+											<!-- Necesario para que el POST agregue este producto -->
+											<input type="hidden" name="add-to-cart"
+												value="<?php echo esc_attr($product->get_id()); ?>">
+
+											<button type="submit" class="add-to-cart-button single_add_to_cart_button button">
+												Añadir al carrito <i class="bi bi-cart2"></i>
+											</button>
+										</form>
+									<?php
+								}
 								?>
-								<form class="cart"
-									action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>"
-									method="post" enctype="multipart/form-data">
-
-									<div class="product-quantity">
-										<button type="button" class="quantity-btn quantity-minus"
-											aria-label="Disminuir">-</button>
-
-										<input type="number" id="quantity-input" class="quantity-input" name="quantity"
-											value="<?php echo esc_attr(wc_format_decimal($default_qty, $decimals)); ?>" step="<?php echo esc_attr($step); ?>" min="<?php echo esc_attr($min); ?>"
-											<?php if ($max_qty): ?>max="<?php echo esc_attr($max_qty); ?>" <?php endif; ?> inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*"
-											aria-label="<?php esc_attr_e('Cantidad'); ?>">
-
-										<button type="button" class="quantity-btn quantity-plus"
-											aria-label="Aumentar">+</button>
-									</div>
-
-									<!-- Necesario para que el POST agregue este producto -->
-									<input type="hidden" name="add-to-cart"
-										value="<?php echo esc_attr($product->get_id()); ?>">
-
-									<button type="submit" class="add-to-cart-button single_add_to_cart_button button">
-										Añadir al carrito <i class="bi bi-cart2"></i>
-									</button>
-								</form>
 							<?php endif; ?>
+
+							<?php
+								// Mostrar los tiers (escalados)
+								$term_id = sb_get_current_store_term_id();
+
+								$pid = $product->get_id();
+
+								// Tiers (array asociativo "key" => price)
+								$tiers = $term_id ? sb_get_tiers_meta($pid, $term_id) : [];
+
+								// ===== Tabla "Precios por volumen" SIEMPRE visible (del segundo tier en adelante) =====
+								if (!empty($tiers)) {
+									
+									$first_step = sb_get_first_step($tiers);
+									$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
+
+									$saltar_first_tier = ($first_step == $step_meta);
+
+									// Saltamos el primer tier (ya mostrado como precio actual)
+									$rest = $saltar_first_tier ? array_slice($tiers, 1, null, true) : $tiers;
+
+									if (!empty($rest)) {
+										// Base para calcular “Ahorro”
+										if (!$saltar_first_tier)  {
+											$base_price = $regular;
+										} else {
+											$base_price = (isset($sale) && $sale > 0 && $sale < $regular) ? (float)$sale : (float)$regular;
+										}
+
+										static $css_done_vol = false;
+										if (!$css_done_vol) {
+											echo '<style>
+											.bafar-volume-open{margin:.5rem 0 1rem; margin-top: 20px}
+											.bafar-volume-title{
+												color:#0866FD; font-weight:700; margin-bottom:.35rem; display:flex; align-items:center;
+											}
+
+											.bafar-table-wrap{margin-top:.35rem}
+											.bafar-table{width:100%; border-collapse:collapse; font-size:.95rem; background:#fff; border:1px solid #e6e8ef; border-radius:8px; overflow:hidden; table-layout:fixed}
+											/* Columnas: 55% / 25% / 20% para alinear números */
+											.bafar-table col.col-desde{width:55%}
+											.bafar-table col.col-precio{width:25%}
+											.bafar-table col.col-ahorro{width:20%}
+
+											.bafar-table thead th{
+												text-align:left; background:#f7f9fc; color:#334155; font-weight:700; padding:.6rem .75rem; border-bottom:1px solid #e6e8ef;
+											}
+											.bafar-table thead th.price,
+											.bafar-table thead th.save{ text-align:right; }
+
+											.bafar-table tbody td{
+												padding:.6rem .75rem; border-bottom:1px solid #f0f2f6; vertical-align:middle;
+											}
+											.bafar-table tbody tr:last-child td{border-bottom:none}
+
+											.bafar-table td.price{ text-align:right; font-weight:700; color:#0b2a6b }
+											.bafar-table td.save{  text-align:right; font-weight:700; color:#0a7a2a }
+											.bafar-dot{display:inline-block; width:.45rem; height:.45rem; border-radius:50%; background:#0866FD; margin-right:.45rem; vertical-align:middle}
+
+											/* Responsive: tabla apilada */
+											@media (max-width: 640px){
+												.bafar-table thead{display:none}
+												.bafar-table, .bafar-table tbody, .bafar-table tr, .bafar-table td {display:block; width:100%}
+												.bafar-table tr{border-bottom:1px solid #eef1f6; padding:.35rem 0}
+												.bafar-table td{padding:.45rem .75rem}
+												.bafar-table td::before{
+													content:attr(data-label); display:block; font-size:.8rem; color:#64748b; margin-bottom:.15rem; font-weight:600;
+												}
+												.bafar-table td.price, .bafar-table td.save{ text-align:left }
+											}
+											</style>';
+											$css_done_vol = true;
+										}
+
+										echo '<div class="bafar-volume-open">';
+										echo   '<div class="bafar-table-wrap">';
+										echo     '<table class="bafar-table">';
+										echo       '<colgroup>
+														<col class="col-desde">
+														<col class="col-precio">
+														<col class="col-ahorro">
+													</colgroup>';
+										echo       '<thead><tr>';
+										echo         '<th>Desde</th><th class="price">Precio</th><th class="save">Ahorro</th>';
+										echo       '</tr></thead><tbody>';
+
+										foreach ($rest as $k => $v) {
+											if (!is_numeric($v)) continue;
+											$v   = (float) $v;
+											$qty = sb_parse_qty_from_key((string) $k); // tu helper
+											$qty_txt = sb_format_qty((float) $qty) . ($unit ? ' ' . esc_html($unit) : '');
+
+											// Ahorro vs base
+											$save_txt = '—';
+											if (!empty($base_price) && $base_price > 0 && $v < $base_price) {
+												$pct = round((($base_price - $v) / $base_price) * 100);
+												$save_txt = '-' . $pct . '%';
+											}
+
+											echo '<tr>';
+											echo   '<td data-label="Desde"><span class="bafar-dot"></span>desde ' . esc_html($qty_txt) . '</td>';
+											echo   '<td data-label="Precio" class="price">' . wc_price($v) . '</td>';
+											echo   '<td data-label="Ahorro" class="save">' . esc_html($save_txt) . '</td>';
+											echo '</tr>';
+										}
+
+										echo       '</tbody></table>';
+										echo   '</div>'; // .bafar-table-wrap
+										echo '</div>';   // .bafar-volume-open
+									}
+								}
+							?>
 						</div>
 
 					</div>
