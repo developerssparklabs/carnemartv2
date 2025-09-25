@@ -166,8 +166,6 @@
             <div class="modal-header header-icono">
                 <p class="modal-title fs-4 has-principal-color d-flex" id="modalNoPermisoLabel"><i
                         class="bi bi-x-circle big-icon has-rojo-color"></i><b>¡Entendemos<br> tu decisión.</b></p>
-                <button type="button" class="modal-cierre" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="bi bi-x-circle-fill"></i></button>
             </div>
             <div class="modal-body fs-7">
 

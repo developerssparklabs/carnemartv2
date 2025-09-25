@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const status = await navigator.permissions.query({ name: 'geolocation' });
 
             status.onchange = () => {
-              //  console.log("Estado de permiso cambiado a:", status.state);
+                //  console.log("Estado de permiso cambiado a:", status.state);
                 handlePermissionChange(status.state);
             };
 
@@ -250,19 +250,30 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     document.getElementById('deny-geolocation').addEventListener('click', () => {
         modal.style.display = 'none';
-        Swal.fire({
-            icon: "error",
-            text: "Has decidido no compartir tu ubicación. No volveremos a pedirla.",
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-            allowEscapeKey: false
-        }).then(() => {
+        const modalNoPermiso = new bootstrap.Modal(document.getElementById('modalNoPermiso'));
+        modalNoPermiso.show();
+
+        // Detectar cuando el usuario hace click en el botón de cerrar
+        document.querySelector('#modalNoPermiso [data-bs-dismiss="modal"]').addEventListener('click', () => {
             setCookie('geolocation_accepted', 'false');
             setTimeout(() => {
                 window.location.href = window.location.pathname;
             }, 300);
         });
+
+        // Swal.fire({
+        //     icon: "error",
+        //     text: "Has decidido no compartir tu ubicación. No volveremos a pedirla.",
+        //     allowOutsideClick: false,
+        //     allowEscapeKey: false,
+        //     allowOutsideClick: false,
+        //     allowEscapeKey: false
+        // }).then(() => {
+        //     setCookie('geolocation_accepted', 'false');
+        //     setTimeout(() => {
+        //         window.location.href = window.location.pathname;
+        //     }, 300);
+        // });
     });
 
     /**
