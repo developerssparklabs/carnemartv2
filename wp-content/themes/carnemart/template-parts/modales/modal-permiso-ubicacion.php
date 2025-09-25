@@ -122,21 +122,24 @@
                 <p class="modal-title fs-4 has-principal-color d-flex" id="modalTiendasCercanasLabel"><i
                         class="bi bi-check-circle big-icon has-verde-color"></i><b>¡Encontramos una tienda<br> cerca de
                         ti!</b></p>
-                <button type="button" class="modal-cierre" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="bi bi-x-circle-fill"></i></button>
+                <!-- <button type="button" class="modal-cierre" data-bs-dismiss="modal" aria-label="Close"><i
+                        class="bi bi-x-circle-fill"></i></button> -->
             </div>
             <div class="modal-body fs-7">
 
                 <ul class="has-principal-color listado-tienda-encontrada">
-                    <li class="elemento-destacado"><b><i class="bi bi-shop-window bi-listado"></i> Tienda:</b> CMT Eje 3
-                        - M310</li>
-                    <li><b><i class="bi bi-geo-alt bi-listado"></i> Dirección:</b> 02810 Manuel Rivera Anaya CROC 1 473
-                        Azcapotzalco Ciudad de México Ciudad de México 02510 México 19.487 -99.1859</li>
-                    <li><b><i class="bi bi-pin-map bi-listado"></i> Coordenadas:</b> 19.487, -99.1859</li>
-                    <li><b><i class="bi bi-arrows bi-listado"></i> Distancia:</b> 6.21 km</li>
-                    <li><b><i class="bi bi-clock-history bi-listado"></i> Tiempo estimado:</b> 12.42 minutos</li>
-                    <li><b><i class="bi bi-info-circle bi-listado"></i> Servicio:</b> Servicio a domicilio y recoger en
-                        tienda</li>
+                    <li class="elemento-destacado"><b><i class="bi bi-shop-window bi-listado"></i> Tienda:</b> <span
+                            id="modalTiendaNombre"></span> </li>
+                    <li><b><i class="bi bi-geo-alt bi-listado"></i> Dirección:</b> <span
+                            id="modalTiendaDireccion"></span> </li>
+                    <li><b><i class="bi bi-pin-map bi-listado"></i> Coordenadas:</b> <span
+                            id="modalTiendaCoordenadas"></span> </li>
+                    <li><b><i class="bi bi-arrows bi-listado"></i> Distancia:</b> <span
+                            id="modalTiendaDistancia"></span></li>
+                    <li><b><i class="bi bi-clock-history bi-listado"></i> Tiempo estimado:</b> <span
+                            id="modalTiendaTiempoEstimado"></span> </li>
+                    <li><b><i class="bi bi-info-circle bi-listado"></i> Servicio:</b> <span
+                            id="modalTiendaServicio"></span></li>
                 </ul>
             </div>
             <div class="modal-footer d-flex flex-column p-relative p-0 m-0 overflow-hidden">
@@ -212,11 +215,8 @@
         })();
         console.log("Safari2:: ", isSafari);
 
-        //Modal de permisos de ubicación(Modal Permisos)
-        setTimeout(function () {
-            var modalPermisos = new bootstrap.Modal(document.getElementById('modalPermisos'));
-            modalPermisos.show();
-        }, 3000);
+        // //Modal de permisos de ubicación(Modal Permisos)
+
 
 
         // Modal de tienda cercana con auto cierre 
@@ -283,3 +283,45 @@
         });
     });
 </script>
+
+<!-- Modal cuando hay productos en el carrito -->
+
+<!-- Modal productos en carrito -->
+<div class="modal fade" id="modalCarrito" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modalCarritoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header header-icono">
+                <p class="modal-title fs-4 has-principal-color d-flex" id="modalCarritoLabel">
+                    <i class="bi bi-exclamation-triangle-fill big-icon has-amarillo-color"></i>
+                    <b>¡Atención!<br> Tienes productos en tu carrito</b>
+                </p>
+            </div>
+            <div class="modal-body fs-7">
+                <p class="has-principal-color">
+                    <b class="has-rojo-color">Si cambias de tienda ahora, perderás todos los productos que tienes en tu
+                        carrito de compras.</b>
+                </p>
+                <p class="has-principal-color mb-0">
+                    ¿Qué prefieres hacer?
+                </p>
+            </div>
+            <div class="modal-footer d-flex flex-column gap-2">
+                <div class="d-flex gap-2 w-100">
+                    <button type="button" class="btn btn-danger fs-7 flex-fill" data-bs-dismiss="modal"
+                        id="btnCambiarTienda">
+                        Cambiar tienda (perderé mis productos)
+                    </button>
+                    <button type="button" class="btn btn-primary fs-7 flex-fill"
+                        onclick="window.location.href='/checkout'">
+                        Ir a pagar mis productos
+                    </button>
+                </div>
+                <button type="button" class="btn btn-secondary fs-7 w-100" data-bs-dismiss="modal"
+                    id="btnSeguirComprando">
+                    <i class="bi bi-cart-plus"></i> Continuar comprando en esta tienda
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

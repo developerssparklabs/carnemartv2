@@ -430,6 +430,125 @@ function geolocation_form()
 		</div>
 	</div>
 
+	<style>
+		/*Modal de ubicación*/
+		.modal-msg-location {
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+			padding: 35px 15px;
+			background-color: #ffffff;
+			border-radius: 15px;
+			width: 100%;
+			max-width: 520px;
+		}
+
+		.modal-msg-location__icon {
+			display: block;
+			width: 60px;
+			min-width: 40px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Capa_1' data-name='Capa 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B fill: %23009a38; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M300,589s216.75-205.41,216.75-361.25c0-119.71-97.04-216.75-216.75-216.75S83.25,108.04,83.25,227.75c0,155.84,216.75,361.25,216.75,361.25M300,336.12c-59.85,0-108.38-48.52-108.38-108.38s48.52-108.38,108.38-108.38,108.38,48.52,108.38,108.38-48.52,108.38-108.38,108.38'/%3E%3C/svg%3E");
+		}
+
+		.modal-msg-location__msg {
+			display: flex;
+			flex-direction: column;
+			padding-right: 10px;
+			font-family: "Poppins", Sans-serif;
+		}
+
+		.modal-msg-location__msg-title {
+			color: #021B6D !important;
+		}
+
+		h2.msg-title {
+			margin: 0 0 5px 0 !important;
+			padding: 0 !important;
+			font-size: 25px;
+			font-weight: 700;
+		}
+
+		p.msg-info {
+			margin: 0 !important;
+			padding: 0 0 10px 0 !important;
+			font-size: 14px;
+
+			&.c-blue {
+				color: #021B6D !important;
+			}
+		}
+
+		.modal-msg-location__buttonspanel {
+			display: flex;
+			flex-direction: row;
+			gap: 5px;
+
+		}
+
+		.modal-msg-location__btn {
+			font-size: 14px;
+			text-decoration: none !important;
+			padding: 5px 15px;
+			border-radius: 2px;
+			color: #ffffff;
+			border: none !important;
+
+			&.btn-good {
+				background-color: #009A38;
+
+				&:hover {
+					background-color: #13b950;
+				}
+			}
+
+			&.btn-bad {
+				background-color: #bc0909;
+
+				&:hover {
+					background-color: #eb0707;
+				}
+			}
+		}
+
+		@media screen and (max-width:680px) {
+			h2.msg-title {
+				font-size: 16px;
+			}
+
+			p.msg-info,
+			.modal-msg-location__btn {
+				font-size: 13px;
+			}
+
+			.modal-msg-location__msg {
+				width: 80%;
+			}
+
+			.modal-msg-location {
+				max-width: 90% !important;
+			}
+		}
+
+		@media screen and (max-width:480px) {
+			h2.msg-title {
+				font-size: 16px;
+			}
+
+			p.msg-info,
+			.modal-msg-location__btn {
+				font-size: 13px;
+			}
+
+			.modal-msg-location__buttonspanel {
+				flex-direction: column;
+				text-align: center;
+			}
+		}
+
+		/*Modal de ubicación*/
+	</style>
 	<script>
 
 		// import * as alies_sucCalbk from "https://devs.mystagingwebsite.com/wp-content/plugins/bafar-WooCommerce-Multi-Locations-Inventory-Management/public/js/wcmlim_utility/generic/wcmlim_success_callback.js";

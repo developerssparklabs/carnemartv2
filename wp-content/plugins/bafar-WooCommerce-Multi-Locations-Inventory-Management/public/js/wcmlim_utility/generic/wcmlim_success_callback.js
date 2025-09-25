@@ -29,94 +29,188 @@ export function successCallback(position) {
     getStores(lat, lng).then((statusStores) => {
       if (statusStores[0]) {
         const store = statusStores[1][0];
+        // console.log("Tienda más cercana:", store);
         const timeMinutes = ((store.distance_km / 30) * 60).toFixed(2); // Estimación de 30km/h
         const serviceType = store.distance_km < 8
           ? "Servicio a domicilio y recoger en tienda"
           : "Solo recoger en tienda";
-        Swal.fire({
-          icon: 'success',
-          title: '<strong>¡Tienda más cercana encontrada!</strong>',
-          html: `
-                  <div style="text-align: left; font-size: 15px; color: #333;">
-                    <p><strong>Tienda:</strong> ${store.name}</p>
-                    <p><strong>Dirección:</strong> ${store.address}</p>
-                    <p><strong>Coordenadas:</strong> ${store.latitude}, ${store.longitude}</p>
-                    <p><strong>Distancia:</strong> ${store.distance_km.toFixed(2)} km</p>
-                    <p><strong>Tiempo estimado:</strong> ${timeMinutes} minutos</p>
-                    <p><strong>Servicio:</strong> ${serviceType}</p>
-                    <div style="margin-top: 10px; color: #555;">
-                      <em>Estamos dirigiéndote a tu tienda más cercana...</em>
-                    </div>
-                  </div>
-                `,
-          timer: 7500, // El tiempo que se mostrará el modal (3.5s)
-          timerProgressBar: true,
-          showConfirmButton: false,
-          showCancelButton: false,
-          customClass: {
-            popup: 'swal2-border-radius location_shared-modal'
-          },
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          didClose: () => {
-            const storeData = {
-              storeid: store.storeid,
-              name: store.name,
-              loc_id: store.loc_id,
-              address: store.address,
-              termid: store.termid
-            };
 
-           // console.log("Tienda confirmada:", storeData);
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: '<strong>¡Tienda más cercana encontrada!</strong>',
+        //   html: `
+        //           <div style="text-align: left; font-size: 15px; color: #333;">
+        //             <p><strong>Tienda:</strong> ${store.name}</p>
+        //             <p><strong>Dirección:</strong> ${store.address}</p>
+        //             <p><strong>Coordenadas:</strong> ${store.latitude}, ${store.longitude}</p>
+        //             <p><strong>Distancia:</strong> ${store.distance_km.toFixed(2)} km</p>
+        //             <p><strong>Tiempo estimado:</strong> ${timeMinutes} minutos</p>
+        //             <p><strong>Servicio:</strong> ${serviceType}</p>
+        //             <div style="margin-top: 10px; color: #555;">
+        //               <em>Estamos dirigiéndote a tu tienda más cercana...</em>
+        //             </div>
+        //           </div>
+        //         `,
+        //   timer: 7500, // El tiempo que se mostrará el modal (3.5s)
+        //   timerProgressBar: true,
+        //   showConfirmButton: false,
+        //   showCancelButton: false,
+        //   customClass: {
+        //     popup: 'swal2-border-radius location_shared-modal'
+        //   },
+        //   allowOutsideClick: false,
+        //   allowEscapeKey: false,
+        //   didClose: () => {
+        //     const storeData = {
+        //       storeid: store.storeid,
+        //       name: store.name,
+        //       loc_id: store.loc_id,
+        //       address: store.address,
+        //       termid: store.termid
+        //     };
 
-            if (cartStatus) {
-              Swal.fire({
-                icon: 'warning',
-                title: '<strong class="location_shared-title">Atención: acción requerida</strong>',
-                html: `
-                        <div class="location_shared-content">
-                          <p>Hemos detectado que tienes productos en tu carrito de compras.</p>
-                          <p>Para continuar, es necesario <strong>vaciar tu carrito</strong>.</p>
-                          <p>¿Deseas proceder con esta acción?</p>
-                        </div>
-                      `,
-                showCancelButton: true,
-                confirmButtonText: 'Sí, vaciar carrito',
-                cancelButtonText: 'No, mantener carrito',
-                customClass: {
-                  popup: 'swal2-border-radius location_shared-modal',
-                  confirmButton: 'swal2-location_shared-confirm',
-                  cancelButton: 'swal2-location_shared-cancel'
-                },
-                buttonsStyling: false,
-                allowOutsideClick: false,
-                allowEscapeKey: false
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  simpleClearCart(urlCleanCart).then((status) => {
-                    if (status) {
-                      alies_setcookies.setcookie("wcmlim_selected_location", storeData.loc_id);
-                      alies_setcookies.setcookie("wcmlim_selected_location_termid", storeData.termid);
-                      setCookie('geolocation_accepted', 'true');
-                      showLoader();
-                      setTimeout(() => {
-                        window.location.search = '?r=refresh';
-                      }, 500);
-                    }
-                  });
+        //     // console.log("Tienda confirmada:", storeData);
+        const modalTiendasCercanas = new bootstrap.Modal(document.getElementById('modalTiendasCercanas'));
+
+        const modalTiendaNombre = document.getElementById('modalTiendaNombre');
+        const modalTiendaDireccion = document.getElementById('modalTiendaDireccion');
+        const modalTiendaDistancia = document.getElementById('modalTiendaDistancia');
+        const modalTiendaTiempo = document.getElementById('modalTiendaTiempoEstimado');
+        const modalTiendaServicio = document.getElementById('modalTiendaServicio');
+
+        const modalTiendaCoordenadas = document.getElementById('modalTiendaCoordenadas');
+
+        modalTiendaNombre.textContent = store.name;
+        modalTiendaDireccion.textContent = store.address || 'Dirección no disponible';
+        modalTiendaDistancia.textContent = `${store.distance_km.toFixed(2)} km`;
+        modalTiendaTiempo.textContent = `${timeMinutes} minutos`;
+        modalTiendaServicio.textContent = serviceType;
+
+        modalTiendaCoordenadas.textContent = `${store.latitude}, ${store.longitude}`;
+
+        modalTiendasCercanas.show();
+
+        // detectamos cuando el modal se cierre modalTiendasCercanas
+        document.getElementById('modalTiendasCercanas').addEventListener('hidden.bs.modal', function (event) {
+          const storeData = {
+            storeid: store.storeid,
+            name: store.name,
+            loc_id: store.loc_id,
+            address: store.address,
+            termid: store.termid
+          };
+
+          if (cartStatus) {
+            const modalCarrito = new bootstrap.Modal(document.getElementById('modalCarrito'));
+            modalCarrito.show();
+            // Swal.fire({
+            //   icon: 'warning',
+            //   title: '<strong class="location_shared-title">Atención: acción requerida</strong>',
+            //   html: `
+            //             <div class="location_shared-content">
+            //               <p>Hemos detectado que tienes productos en tu carrito de compras.</p>
+            //               <p>Para continuar, es necesario <strong>vaciar tu carrito</strong>.</p>
+            //               <p>¿Deseas proceder con esta acción?</p>
+            //             </div>
+            //           `,
+            //   showCancelButton: true,
+            //   confirmButtonText: 'Sí, vaciar carrito',
+            //   cancelButtonText: 'No, mantener carrito',
+            //   customClass: {
+            //     popup: 'swal2-border-radius location_shared-modal',
+            //     confirmButton: 'swal2-location_shared-confirm',
+            //     cancelButton: 'swal2-location_shared-cancel'
+            //   },
+            //   buttonsStyling: false,
+            //   allowOutsideClick: false,
+            //   allowEscapeKey: false
+            // }).then((result) => {
+            //   if (result.isConfirmed) {
+            //     simpleClearCart(urlCleanCart).then((status) => {
+            //       if (status) {
+            //         alies_setcookies.setcookie("wcmlim_selected_location", storeData.loc_id);
+            //         alies_setcookies.setcookie("wcmlim_selected_location_termid", storeData.termid);
+            //         alies_setcookies.setcookie('geolocation_accepted', 'true');
+            //         showLoader();
+            //         setTimeout(() => {
+            //           window.location.href = window.location.pathname + '?t=' + Date.now();
+            //         }, 500);
+            //       }
+            //     });
+            //   }
+            // });
+
+            const btnModalCarritoAceptar = document.getElementById('btnCambiarTienda');
+            btnModalCarritoAceptar.addEventListener('click', function () {
+              simpleClearCart(urlCleanCart).then((status) => {
+                if (status) {
+                  alies_setcookies.setcookie("wcmlim_selected_location", storeData.loc_id);
+                  alies_setcookies.setcookie("wcmlim_selected_location_termid", storeData.termid);
+                  alies_setcookies.setcookie('geolocation_accepted', 'true');
+                  showLoader();
+                  setTimeout(() => {
+                    window.location.href = window.location.pathname + '?t=' + Date.now();
+                  }, 500);
                 }
               });
-            } else {
-              alies_setcookies.setcookie("wcmlim_selected_location", storeData.loc_id);
-              alies_setcookies.setcookie("wcmlim_selected_location_termid", storeData.termid);
-              setCookie('geolocation_accepted', 'true');
-              showLoader();
-              setTimeout(() => {
-                window.location.search = '?r=refresh';
-              }, 500);
-            }
+            });
+          } else {
+            alies_setcookies.setcookie("wcmlim_selected_location", storeData.loc_id);
+            alies_setcookies.setcookie("wcmlim_selected_location_termid", storeData.termid);
+            alies_setcookies.setcookie('geolocation_accepted', 'true');
+            showLoader();
+            setTimeout(() => {
+              window.location.href = window.location.pathname + '?t=' + Date.now();
+            }, 500);
           }
         });
+
+        // if (cartStatus) {
+        //   Swal.fire({
+        //     icon: 'warning',
+        //     title: '<strong class="location_shared-title">Atención: acción requerida</strong>',
+        //     html: `
+        //                 <div class="location_shared-content">
+        //                   <p>Hemos detectado que tienes productos en tu carrito de compras.</p>
+        //                   <p>Para continuar, es necesario <strong>vaciar tu carrito</strong>.</p>
+        //                   <p>¿Deseas proceder con esta acción?</p>
+        //                 </div>
+        //               `,
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Sí, vaciar carrito',
+        //     cancelButtonText: 'No, mantener carrito',
+        //     customClass: {
+        //       popup: 'swal2-border-radius location_shared-modal',
+        //       confirmButton: 'swal2-location_shared-confirm',
+        //       cancelButton: 'swal2-location_shared-cancel'
+        //     },
+        //     buttonsStyling: false,
+        //     allowOutsideClick: false,
+        //     allowEscapeKey: false
+        //   }).then((result) => {
+        //     if (result.isConfirmed) {
+        //       simpleClearCart(urlCleanCart).then((status) => {
+        //         if (status) {
+        //           alies_setcookies.setcookie("wcmlim_selected_location", storeData.loc_id);
+        //           alies_setcookies.setcookie("wcmlim_selected_location_termid", storeData.termid);
+        //           alies_setcookies.setcookie('geolocation_accepted', 'true');
+        //           showLoader();
+        //           setTimeout(() => {
+        //             window.location.search = '?r=refresh';
+        //           }, 500);
+        //         }
+        //       });
+        //     }
+        //   });
+        // } else {
+        //   alies_setcookies.setcookie("wcmlim_selected_location", storeData.loc_id);
+        //   alies_setcookies.setcookie("wcmlim_selected_location_termid", storeData.termid);
+        //   alies_setcookies.setcookie('geolocation_accepted', 'true');
+        //   showLoader();
+        //   setTimeout(() => {
+        //     window.location.search = '?r=refresh';
+        //   }, 500);
+        // }
         hideLoader();
       } else {
         hideLoader();
