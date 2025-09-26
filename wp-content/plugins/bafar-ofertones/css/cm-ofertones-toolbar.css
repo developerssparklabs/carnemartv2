@@ -11,13 +11,16 @@
   box-shadow: 0 2px 14px rgba(11, 45, 107, 0.06);
   position: sticky;
   top: 72px;
-  z-index: 1; /* se pega debajo del header del sitio */
+  z-index: 1;
+  /* se pega debajo del header del sitio */
 }
+
 @media (max-width: 992px) {
   .cm-ofertones-toolbar {
     top: 56px;
   }
 }
+
 @media (max-width: 680px) {
   .cm-ofertones-toolbar {
     flex-direction: column;
@@ -34,6 +37,7 @@
   gap: 10px;
   min-width: 0;
 }
+
 .cm-oft-badge {
   display: inline-flex;
   align-items: center;
@@ -46,6 +50,7 @@
   font-weight: 700;
   letter-spacing: 0.2px;
 }
+
 .cm-oft-badge svg {
   color: #0b2d6b;
 }
@@ -61,49 +66,67 @@
   border-radius: 10px;
   font-weight: 600;
 }
+
 .cm-oft-count strong {
   color: #0b2d6b;
   font-weight: 800;
 }
 
-/* Ordenar */
+/* ===== Ordenar (alineación perfecta + responsive) ===== */
 .cm-oft-sort {
   display: flex;
   align-items: center;
-  gap: 10px;
+  /* centra label + select */
+  gap: 12px;
   margin-left: auto;
+  min-height: 42px;
+  /* asegura misma altura visual que el select */
 }
+
 .cm-oft-sort-label {
   color: #475569;
   font-weight: 600;
-}
-@media (max-width: 680px) {
-  .cm-oft-sort-label {
-    font-size: 0.95rem;
-  }
+  line-height: 1;
+  /* evita baile por métricas de la fuente */
+  display: inline-flex;
+  align-items: center;
+  /* centra vertical el texto respecto al select */
 }
 
+/* Wrapper del select: mantiene caret centrado */
 .cm-oft-select-wrap {
   position: relative;
   display: inline-flex;
+  align-items: center;
 }
+
+/* Select normalizado cross-browser */
 .cm-oft-select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #d8e1f0;
   color: #0b2d6b;
-  padding: 10px 36px 10px 12px;
+  height: 42px;
+  /* altura fija */
+  line-height: 42px;
+  /* baseline estable */
+  padding: 0 36px 0 12px;
+  /* vertical 0, el alto lo da height */
   border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 1px 1px rgba(11, 45, 107, 0.04) inset;
+  box-shadow: 0 1px 1px rgba(11, 45, 107, .04) inset;
 }
+
+/* Focus accesible */
 .cm-oft-select:focus {
-  outline: 3px solid rgba(11, 45, 107, 0.15);
+  outline: 3px solid rgba(11, 45, 107, .18);
   outline-offset: 2px;
 }
+
+/* Caret centrado */
 .cm-oft-caret {
   position: absolute;
   right: 10px;
@@ -113,7 +136,28 @@
   color: #0b2d6b;
 }
 
-/* Pequeños ajustes para integrarse con Woo */
-.woocommerce .cm-ofertones-toolbar {
-  margin: 0 0 16px;
+/* === Responsive === */
+@media (max-width: 680px) {
+  .cm-oft-sort {
+    width: 100%;
+    justify-content: space-between;
+    /* label a la izq, select a la der */
+  }
+
+  .cm-oft-select {
+    width: 100%;
+    /* el select no queda mini */
+    max-width: 320px;
+    /* opcional: límite visual */
+  }
+}
+
+.cm-ofertones-error {
+  background: #F06F51;
+  text-align: center;
+  padding: 22px;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
 }

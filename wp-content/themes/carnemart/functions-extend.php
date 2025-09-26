@@ -4310,22 +4310,22 @@ function cm_recommendations_shortcode($atts)
 /**
  * 3) Hook final: sustituimos el render nativo y, en AJAX, imprimimos tu markup completo
  */
-remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
-add_action('woocommerce_after_shop_loop_item', 'cm_loop_render_flex_precio', 10);
-function cm_loop_render_flex_precio()
-{
-    global $product;
+//remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+//add_action('woocommerce_after_shop_loop_item', 'cm_loop_render_flex_precio', 10);
+// function cm_loop_render_flex_precio()
+// {
+//     global $product;
 
-    if (defined('DOING_AJAX') && DOING_AJAX) {
-        echo '<div class="flex-precio">';
-        cm_render_qty_field($product->get_id());
-        cm_render_add_to_cart_button($product);
-        echo '</div>';
-    } else {
-        // Render nativo fuera de AJAX (tu shortcode ya incluye el <div class="flex-precio">)
-        woocommerce_template_loop_add_to_cart();
-    }
-}
+//     if (defined('DOING_AJAX') && DOING_AJAX) {
+//         echo '<div class="flex-precio">';
+//         cm_render_qty_field($product->get_id());
+//         cm_render_add_to_cart_button($product);
+//         echo '</div>';
+//     } else {
+//         // Render nativo fuera de AJAX (tu shortcode ya incluye el <div class="flex-precio">)
+//         woocommerce_template_loop_add_to_cart();
+//     }
+// }
 
 // Carga el walker personalizado para categorías de productos
 add_action('init', function () {

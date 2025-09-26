@@ -9,7 +9,10 @@ $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
 
 // obtenemos el minimo del producto
 $product_step = get_post_meta($product_id, 'product_step', true);
+$product_step = empty($product_step) ? 1 : $product_step;
+
 $min_quantity = get_post_meta($product_id, 'min_quantity', true);
+$min_quantity = empty($min_quantity) ? 1 : $min_quantity;
 
 // si la cantidad no es multiplo del step o es menor al minimo
 if (($quantity % $product_step) != 0 || $quantity < $min_quantity) {
