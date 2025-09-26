@@ -475,7 +475,6 @@ do_action('woocommerce_before_main_content');
 
 									// Saltamos el primer tier (ya mostrado como precio actual)
 									$rest = $saltar_first_tier ? array_slice($tiers, 1, null, true) : $tiers;
-
 									if (!empty($rest)) {
 										// Base para calcular “Ahorro”
 										if (!$saltar_first_tier)  {
@@ -564,6 +563,27 @@ do_action('woocommerce_before_main_content');
 										echo       '</tbody></table>';
 										echo   '</div>'; // .bafar-table-wrap
 										echo '</div>';   // .bafar-volume-open
+									} else {
+										if (count($tiers) === 1) {
+											$only_tier = reset($tiers);
+											echo '<div style="color: #0a7a2a; font-weight: 700; margin-top: 10px; padding: 10px; background: #f0f9f0; border-radius: 5px; border-left: 4px solid #0a7a2a;">';
+											$tier_key = array_key_first($tiers);
+											$tier_text = '';
+
+											// Buscar el texto después de los paréntesis con decimales
+											if (preg_match('/\(\d+\.\d+\)\s*(.+)$/', $tier_key, $matches)) {
+												$tier_text = trim($matches[1]);
+											}
+
+											if ($tier_text) {
+												echo '<i class="bi bi-info-circle-fill" style="margin-right: 8px;"></i>';
+												echo esc_html($tier_text);
+											} else {
+												echo '<i class="bi bi-tag-fill" style="margin-right: 8px;"></i>';
+												echo 'Precio especial disponible';
+											}
+											echo '</div>';
+										}
 									}
 								}
 							?>
