@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalElement = document.querySelector('.side__sidebar-carrito-costo-total .woocommerce-Price-amount.amount');
     if (totalElement) {
       try {
-        const response = await fetch('/lanaval/wp-admin/admin-ajax.php?action=get_cart_total', {
+        const response = await fetch('/wp-admin/admin-ajax.php?action=get_cart_total', {
           method: 'GET',
         });
         const data = await response.json();
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
           ?.textContent.match(/x\s(\d+)/)?.[1] || 1
       );
 
-      const response = await fetch('/lanaval/wp-admin/admin-ajax.php', {
+      const response = await fetch('/wp-admin/admin-ajax.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
