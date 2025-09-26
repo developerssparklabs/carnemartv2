@@ -527,28 +527,30 @@ function obtener_skus_2x1()
     return []; // Si no existe, devuelve array vacío
 }
 
+// No se usara esto de aqui, comentado por Dens | 2025-09-26
 //  Aplicar descuento en carrito
-add_action('woocommerce_before_calculate_totals', 'aplicar_2x1_por_sku', 20);
-function aplicar_2x1_por_sku($cart)
-{
-    if (is_admin() && !defined('DOING_AJAX'))
-        return;
+// add_action('woocommerce_before_calculate_totals', 'aplicar_2x1_por_sku', 20);
+// function aplicar_2x1_por_sku($cart)
+// {
+//     error_log('aplicar_2x1_por_sku');
+//     if (is_admin() && !defined('DOING_AJAX'))
+//         return;
 
-    $skus_promocion = obtener_skus_2x1();
+//     $skus_promocion = obtener_skus_2x1();
 
-    foreach ($cart->get_cart() as $cart_item) {
-        $product = $cart_item['data'];
-        if (in_array($product->get_sku(), $skus_promocion)) {
-            $cantidad = $cart_item['quantity'];
-            if ($cantidad >= 2) {
-                $precio_original = $product->get_regular_price();
-                $pares = floor($cantidad / 2);
-                $descuento_total = ($pares * $precio_original) / $cantidad;
-                $product->set_price($precio_original - $descuento_total);
-            }
-        }
-    }
-}
+//     foreach ($cart->get_cart() as $cart_item) {
+//         $product = $cart_item['data'];
+//         if (in_array($product->get_sku(), $skus_promocion)) {
+//             $cantidad = $cart_item['quantity'];
+//             if ($cantidad >= 2) {
+//                 $precio_original = $product->get_regular_price();
+//                 $pares = floor($cantidad / 2);
+//                 $descuento_total = ($pares * $precio_original) / $cantidad;
+//                 $product->set_price($precio_original - $descuento_total);
+//             }
+//         }
+//     }
+// }
 
 //  Badge en listado
 add_action('woocommerce_before_shop_loop_item_title', 'badge_2x1_en_listado', 9);

@@ -8,21 +8,19 @@ $manage_stock = get_post_meta($product_id, '_manage_stock', true);
 $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
 
 $cart_qty = 0;
-foreach( $woocommerce->cart->get_cart() as $item => $items)
-{
+foreach ($woocommerce->cart->get_cart() as $item => $items) {
     $product_ids = $items['variation_id'] ? $items['variation_id'] : $items['product_id'];
-    if($product_ids == $product_id)
-    {
+    if ($product_ids == $product_id) {
         $cart_qty += $items['quantity'];
-         
-        
+
+
     }
-}  
+}
 
 
 
 $cart_qty += $quantity;
-if($manage_stock == "true" || $manage_stock == "yes" || $manage_stock == "1"){
+if ($manage_stock == "true" || $manage_stock == "yes" || $manage_stock == "1") {
     update_post_meta($product_id, '_manage_stock', 'yes');
     $manage_stock = "yes";
 }
@@ -31,15 +29,14 @@ if($manage_stock == "true" || $manage_stock == "yes" || $manage_stock == "1"){
 //15 de enero se modifica para que no permita agregar al carrito si no hay stock en la ubicación
 // comentamos esto para que no bloquee la seleccion
 //restricting user from adding product to cart if the location is not selected (when manage stock is on)
-if($manage_stock == "yes" && empty($product_location_termid))
-{
- //   echo '3';
-   // wp_die();
+if ($manage_stock == "yes" && empty($product_location_termid)) {
+    //   echo '3';
+    // wp_die();
 }
 
-if($manage_stock != "yes" && !empty($product_location_termid)){
- //   echo '2';
-  //  wp_die();
+if ($manage_stock != "yes" && !empty($product_location_termid)) {
+    //   echo '2';
+    //  wp_die();
 }
 
 
@@ -49,8 +46,8 @@ $_location_termid = $_COOKIE['wcmlim_selected_location_termid'];
 
 $__stock_at_location = get_post_meta($product_id, "wcmlim_stock_at_{$_location_termid}", true);
 
-if($manage_stock == "yes"){
-    if ($__stock_at_location <= 0 ) {
+if ($manage_stock == "yes") {
+    if ($__stock_at_location <= 0) {
         echo '2';
         wp_die();
     }
@@ -58,7 +55,7 @@ if($manage_stock == "yes"){
 // is_backorder_allowed at location fetch
 
 $allow_backorder = get_post_meta($product_id, "wcmlim_allow_backorder_at_{$product_location_termid}", true);
- 
+
 if ($allow_backorder == 'No' || $allow_backorder == 'no') {
     // Backorders are not allowed, check if cart quantity exceeds stock at location
     if ($cart_qty > $__stock_at_location) {
@@ -67,7 +64,7 @@ if ($allow_backorder == 'No' || $allow_backorder == 'no') {
         wp_die();
     }
 }
- 
+
 
 $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
 $product_status = get_post_status($product_id);
@@ -84,10 +81,9 @@ $product_location_sale_price = isset($_POST['product_location_sale_price']) ? $_
 // wcmlim_allow_specific_location_241_location_id_22
 $_location_termid = $_COOKIE['wcmlim_selected_location_termid'];
 
-$allow_specific_location = get_post_meta($product_id, 'wcmlim_allow_specific_location_at_'.$_location_termid, true);
+$allow_specific_location = get_post_meta($product_id, 'wcmlim_allow_specific_location_at_' . $_location_termid, true);
 
-if($allow_specific_location != 'Yes' && get_option('wcmlim_enable_specific_location') == "on")
-{
+if ($allow_specific_location != 'Yes' && get_option('wcmlim_enable_specific_location') == "on") {
     $reserr = "2";
     echo $reserr;
     wp_die();
@@ -136,29 +132,29 @@ if ($isClearCart == 'on') {
     }
 }*/
 
- 
+
 if ($passed_validation && 'publish' === $product_status) {
-    
+
     $_location_data = array();
     $_location_data['select_location']['location_name'] = $product_location;
-    $_location_data['select_location']['location_key'] = (int)$product_location_key;
-    $_location_data['select_location']['location_qty'] = (int)$product_location_qty;
-    $_location_data['select_location']['location_termId'] = (int)$product_location_termid;
-    
-    if($_isrspon == "on"){
-        if(!empty($product_location_regular_price) && empty($product_location_sale_price)){
-            $_location_data['select_location']['location_cart_price'] =  strip_tags(html_entity_decode(wc_price($product_location_regular_price)));
+    $_location_data['select_location']['location_key'] = (int) $product_location_key;
+    $_location_data['select_location']['location_qty'] = (int) $product_location_qty;
+    $_location_data['select_location']['location_termId'] = (int) $product_location_termid;
+
+    if ($_isrspon == "on") {
+        if (!empty($product_location_regular_price) && empty($product_location_sale_price)) {
+            $_location_data['select_location']['location_cart_price'] = strip_tags(html_entity_decode(wc_price($product_location_regular_price)));
         }
 
-        if(!empty($product_location_sale_price)){
+        if (!empty($product_location_sale_price)) {
             $_location_data['select_location']['location_cart_price'] = strip_tags(html_entity_decode(wc_price($product_location_sale_price)));
         }
-        
-        if(empty($product_location_regular_price) && empty($product_location_sale_price)){
+
+        if (empty($product_location_regular_price) && empty($product_location_sale_price)) {
             $_location_data['select_location']['location_cart_price'] = strip_tags(html_entity_decode(wc_price($product_price)));
         }
     }
-    
+
     WC()->cart->add_to_cart($product_id, $quantity, '0', array(), $_location_data);
 
     WC_AJAX::get_refreshed_fragments();

@@ -75,12 +75,12 @@ class Offers
                         if ($product) { ?>
                             <div class="eib2bpro-b2b-offer-line">
                                 <div class="eib2bpro-b2b-offer-line-image"><img src="<?php
-                                                                                        if ($product->is_type('variation')) {
-                                                                                            eib2bpro_a(get_the_post_thumbnail_url($product->get_parent_id()));
-                                                                                        } else {
-                                                                                            eib2bpro_a(get_the_post_thumbnail_url($_product['id']));
-                                                                                        }
-                                                                                        ?>" class="eib2bpro-Product_Image"></div>
+                                if ($product->is_type('variation')) {
+                                    eib2bpro_a(get_the_post_thumbnail_url($product->get_parent_id()));
+                                } else {
+                                    eib2bpro_a(get_the_post_thumbnail_url($_product['id']));
+                                }
+                                ?>" class="eib2bpro-Product_Image"></div>
                                 <div class="eib2bpro-b2b-offer-line-name">
                                     <div class="eib2bpro-b2b-offer-line-product-name">
                                         <a href="<?php eib2bpro_a($product->get_permalink()) ?>"><?php eib2bpro_e($product->get_name()) ?></a>
@@ -89,13 +89,15 @@ class Offers
                                         <?php echo eib2bpro_r($product->get_price_html()); ?></a>
                                     </div>
                                     <?php if ($product->is_type('variable')) { ?>
-                                        <a href="<?php eib2bpro_a($product->get_permalink()) ?>" class="eib2bpro_offer_add_to_cart_options button"><?php esc_html_e('SELECT OPTIONS', 'eib2bpro') ?></a>
+                                        <a href="<?php eib2bpro_a($product->get_permalink()) ?>"
+                                            class="eib2bpro_offer_add_to_cart_options button"><?php esc_html_e('SELECT OPTIONS', 'eib2bpro') ?></a>
                                     <?php } else { ?>
-                                        <button class="eib2bpro_offer_add_to_cart" data-product="<?php eib2bpro_a($product->get_id()) ?>"><?php eib2bpro_e($params['add_to_cart']) ?></button>
+                                        <button class="eib2bpro_offer_add_to_cart"
+                                            data-product="<?php eib2bpro_a($product->get_id()) ?>"><?php eib2bpro_e($params['add_to_cart']) ?></button>
                                     <?php } ?>
                                 </div>
                             </div>
-            <?php }
+                        <?php }
                     }
                 }
             } ?>
@@ -111,12 +113,12 @@ class Offers
                             $_product['price'] = self::fix_price_by_tax($_product['price'], $params['always_include_tax']); ?>
                             <div class="eib2bpro-b2b-offer-line">
                                 <div class="eib2bpro-b2b-offer-line-image"><img src="<?php
-                                                                                        if ($product->is_type('variation')) {
-                                                                                            eib2bpro_a(get_the_post_thumbnail_url($product->get_parent_id()));
-                                                                                        } else {
-                                                                                            eib2bpro_a(get_the_post_thumbnail_url($_product['id']));
-                                                                                        }
-                                                                                        ?>" class="eib2bpro-Product_Image"></div>
+                                if ($product->is_type('variation')) {
+                                    eib2bpro_a(get_the_post_thumbnail_url($product->get_parent_id()));
+                                } else {
+                                    eib2bpro_a(get_the_post_thumbnail_url($_product['id']));
+                                }
+                                ?>" class="eib2bpro-Product_Image"></div>
                                 <div class="eib2bpro-b2b-offer-line-name">
                                     <div class="eib2bpro-b2b-offer-line-product-name">
                                         <a href="<?php eib2bpro_a($product->get_permalink()) ?>"><?php eib2bpro_e($product->get_name()) ?></a>
@@ -127,21 +129,22 @@ class Offers
                                             x
                                             <span class="eib2bpro-b2b-offer-line-badge"><?php echo esc_html($_product['unit']); ?></span>
                                             = <?php echo wc_price(wc_format_decimal($_product['price']) * $_product['unit']);
-                                                $total += $_product['price'] * $_product['unit'];
-                                                ?>
+                                            $total += $_product['price'] * $_product['unit'];
+                                            ?>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                    <?php }
+                        <?php }
                     }
                     ?>
                     <div class="eib2bpro-b2b-offer-line-end"></div>
                     <hr>
                     <table class="eib2bpro_offers_product_table">
                         <tfoot>
-                            <td class="eib2bpro_offers_add_to_cart" colspan="2"><button class="eib2bpro_offer_add_to_cart" data-offer="<?php eib2bpro_a($offer->ID) ?>"><?php eib2bpro_e($params['add_to_cart']) ?></button></td>
+                            <td class="eib2bpro_offers_add_to_cart" colspan="2"><button class="eib2bpro_offer_add_to_cart"
+                                    data-offer="<?php eib2bpro_a($offer->ID) ?>"><?php eib2bpro_e($params['add_to_cart']) ?></button></td>
                             <td class="eib2bpro_offer_total" colspan="2">
                                 <?php esc_html_e('Total', 'eib2bpro') ?>: <?php echo eib2bpro_r(wc_price($total)) ?>
                                 <?php if ('incl' !== get_option('woocommerce_tax_display_shop')) {
@@ -150,7 +153,7 @@ class Offers
                             </td>
                         </tfoot>
                     </table>
-            <?php }
+                <?php }
             } ?>
             <div class="eib2bpro-b2b-offer-line-end"></div>
             <?php if (!empty($promo_text = get_post_meta($offer->ID, 'eib2bpro_promo_text', true))) {
@@ -169,15 +172,17 @@ class Offers
         // pagination
         if (1 < $offers->max_num_pages) { ?>
             <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                <?php if (1 !== $current_page) : ?>
-                    <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button" href="<?php echo esc_url(wc_get_endpoint_url(eib2bpro_option('b2b_endpoints_offers', 'offers'), $current_page - 1)); ?>"><?php esc_html_e('Previous', 'woocommerce'); ?></a>
+                <?php if (1 !== $current_page): ?>
+                    <a class="woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button"
+                        href="<?php echo esc_url(wc_get_endpoint_url(eib2bpro_option('b2b_endpoints_offers', 'offers'), $current_page - 1)); ?>"><?php esc_html_e('Previous', 'woocommerce'); ?></a>
                 <?php endif; ?>
 
-                <?php if (intval($offers->max_num_pages) !== $current_page) : ?>
-                    <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button" href="<?php echo esc_url(wc_get_endpoint_url(eib2bpro_option('b2b_endpoints_offers', 'offers'), $current_page + 1)); ?>"><?php esc_html_e('Next', 'woocommerce'); ?></a>
+                <?php if (intval($offers->max_num_pages) !== $current_page): ?>
+                    <a class="woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button"
+                        href="<?php echo esc_url(wc_get_endpoint_url(eib2bpro_option('b2b_endpoints_offers', 'offers'), $current_page + 1)); ?>"><?php esc_html_e('Next', 'woocommerce'); ?></a>
                 <?php endif; ?>
             </div>
-            <?php }
+        <?php }
 
         $content = ob_get_contents();
         ob_end_clean();
@@ -375,6 +380,7 @@ class Offers
 
     public static function cart_calculate_totals($cart)
     {
+        // error_log('cart_calculate_totals');
         foreach ($cart->cart_contents as $cart_item_key => $value) {
             if (isset($value['eib2bpro_offer'])) {
                 $offer_id = intval($value['eib2bpro_offer']);
@@ -398,7 +404,7 @@ class Offers
                 $offer = get_post(intval($values['eib2bpro_offer']));
                 if ($offer) {
                     echo '<div class="eib2bpro-b2b-offer-in-cart eib2bpro_offers">';
-                    echo  '<div class="eib2bpro-b2b-offer-in-cart-head">' . esc_html__('You have added an offer to your cart', 'eib2bpro') . '</div>';
+                    echo '<div class="eib2bpro-b2b-offer-in-cart-head">' . esc_html__('You have added an offer to your cart', 'eib2bpro') . '</div>';
                     echo '<hr>';
 
                     $products = get_post_meta($offer->ID, 'eib2bpro_products', true);
@@ -411,12 +417,12 @@ class Offers
                                 $_product['price'] = self::fix_price_by_tax($_product['price']); ?>
                                 <div class="eib2bpro-b2b-offer-line">
                                     <div class="eib2bpro-b2b-offer-line-image"><img src="<?php
-                                                                                            if ($product->is_type('variation')) {
-                                                                                                eib2bpro_a(get_the_post_thumbnail_url($product->get_parent_id()));
-                                                                                            } else {
-                                                                                                eib2bpro_a(get_the_post_thumbnail_url($_product['id']));
-                                                                                            }
-                                                                                            ?>" class="eib2bpro-Product_Image"></div>
+                                    if ($product->is_type('variation')) {
+                                        eib2bpro_a(get_the_post_thumbnail_url($product->get_parent_id()));
+                                    } else {
+                                        eib2bpro_a(get_the_post_thumbnail_url($_product['id']));
+                                    }
+                                    ?>" class="eib2bpro-Product_Image"></div>
                                     <div class="eib2bpro-b2b-offer-line-name">
                                         <div class="eib2bpro-b2b-offer-line-product-name">
                                             <a href="<?php eib2bpro_a($product->get_permalink()) ?>"><?php eib2bpro_e($product->get_name()) ?></a>
@@ -427,14 +433,14 @@ class Offers
                                                 x
                                                 <span class="eib2bpro-b2b-offer-line-badge"><?php echo esc_html($_product['unit']); ?></span>
                                                 = <?php echo wc_price(wc_format_decimal($_product['price']) * $_product['unit']);
-                                                    $total += $_product['price'] * $_product['unit'];
-                                                    ?>
+                                                $total += $_product['price'] * $_product['unit'];
+                                                ?>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                        <?php }
+                            <?php }
                         }
                         ?>
                         <div class="eib2bpro-b2b-offer-line-end"></div>
@@ -442,14 +448,15 @@ class Offers
                         <table class="eib2bpro_offers_cart_table">
                             <tbody>
                                 <td class="eib2bpro_offers_add_to_cart">
-                                    <a href="<?php eib2bpro_a(wc_get_cart_remove_url($item)) ?>" class="eib2bpro-b2b-offer-in-cart-remove button "><?php esc_html_e('Remove from cart', 'eib2bpro') ?></a>
+                                    <a href="<?php eib2bpro_a(wc_get_cart_remove_url($item)) ?>"
+                                        class="eib2bpro-b2b-offer-in-cart-remove button "><?php esc_html_e('Remove from cart', 'eib2bpro') ?></a>
                                 </td>
                                 <td class=" eib2bpro_offer_total">
                                     <?php esc_html_e('Total', 'eib2bpro') ?>: <?php echo eib2bpro_r(wc_price($total)) ?>
                                 </td>
                             </tbody>
                         </table>
-<?php }
+                    <?php }
                     echo '</div>';
                 }
             }

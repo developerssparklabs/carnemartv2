@@ -319,53 +319,55 @@ class Wcmlim_Public
 		include plugin_dir_path(__FILE__) . 'controller/shop/wcmlim-display-location-dropdown.php';
 	}
 
+	// Comentamos toda la logica de la funcion, debido a que ya se implementa mejor el filtro en el tema carnemart
 	public function wcmlim_add_custom_price($cart_object)
 	{
-		// Avoiding hook repetition (when using price calculations for example)
-		if (did_action('woocommerce_before_calculate_totals') >= 2)
-			return;
+		// error_log('add_custom_price');
+		// // Avoiding hook repetition (when using price calculations for example)
+		// if (did_action('woocommerce_before_calculate_totals') >= 2)
+		// 	return;
 
-		foreach ($cart_object->get_cart() as $key => $item_values) {
-			##  Get cart item data
-			if (isset($item_values['select_location'])) {
-				$location_termId = $item_values['select_location']['location_termId'];
-				$location_regular_price = '';
-				$location_sale_price = '';
-				$prod_id = '';
+		// foreach ($cart_object->get_cart() as $key => $item_values) {
+		// 	##  Get cart item data
+		// 	if (isset($item_values['select_location'])) {
+		// 		$location_termId = $item_values['select_location']['location_termId'];
+		// 		$location_regular_price = '';
+		// 		$location_sale_price = '';
+		// 		$prod_id = '';
 
-				//check if product is variable
-				$product_type = $item_values['data']->get_type();
-				if ($product_type == "variation") {
-					$prod_id = $item_values["variation_id"];
-					$manageStock = get_post_meta($item_values["variation_id"], '_manage_stock', true);
-				} else {
-					$prod_id = $item_values["product_id"];
-					$manageStock = get_post_meta($item_values["product_id"], '_manage_stock', true);
-				}
-				$location_regular_price = get_post_meta($prod_id, '_regular_price', true);
-				$location_sale_price = get_post_meta($prod_id, '_sale_price', true);
-				$location_regular_price = get_post_meta($prod_id, "wcmlim_regular_price_at_{$location_termId}", true);
-				$location_sale_price = get_post_meta($prod_id, "wcmlim_sale_price_at_{$location_termId}", true);
-				$price1 = ($location_sale_price != '') ? $location_sale_price : $location_regular_price;
-				$price1 = (empty($price1)) ? $item_values['data']->get_price() : $price1;
-				$item_values['select_location']['location_cart_price'] = $price1;
-				if ($manageStock == "no") {
-					$price = $item_values['data']->get_price();
-					return wc_price($price);
-				} else {
-					$original_price = isset($item_values['select_location']['location_org_price']) ? $item_values['select_location']['location_org_price'] : ""; // Product original price
-					if (!empty($original_price)) {
-						## Set the new item price in cart
-						$item_values['data']->set_price(($original_price));
-					} else {
-						$price = isset($item_values['select_location']['location_cart_price']) ? $item_values['select_location']['location_cart_price'] : "";
-						$newprice = html_entity_decode($price);
-						## Set the new item price in cart
-						$item_values['data']->set_price(($newprice));
-					}
-				}
-			}
-		}
+		// 		//check if product is variable
+		// 		$product_type = $item_values['data']->get_type();
+		// 		if ($product_type == "variation") {
+		// 			$prod_id = $item_values["variation_id"];
+		// 			$manageStock = get_post_meta($item_values["variation_id"], '_manage_stock', true);
+		// 		} else {
+		// 			$prod_id = $item_values["product_id"];
+		// 			$manageStock = get_post_meta($item_values["product_id"], '_manage_stock', true);
+		// 		}
+		// 		$location_regular_price = get_post_meta($prod_id, '_regular_price', true);
+		// 		$location_sale_price = get_post_meta($prod_id, '_sale_price', true);
+		// 		$location_regular_price = get_post_meta($prod_id, "wcmlim_regular_price_at_{$location_termId}", true);
+		// 		$location_sale_price = get_post_meta($prod_id, "wcmlim_sale_price_at_{$location_termId}", true);
+		// 		$price1 = ($location_sale_price != '') ? $location_sale_price : $location_regular_price;
+		// 		$price1 = (empty($price1)) ? $item_values['data']->get_price() : $price1;
+		// 		$item_values['select_location']['location_cart_price'] = $price1;
+		// 		if ($manageStock == "no") {
+		// 			$price = $item_values['data']->get_price();
+		// 			return wc_price($price);
+		// 		} else {
+		// 			$original_price = isset($item_values['select_location']['location_org_price']) ? $item_values['select_location']['location_org_price'] : ""; // Product original price
+		// 			if (!empty($original_price)) {
+		// 				## Set the new item price in cart
+		// 				$item_values['data']->set_price(($original_price));
+		// 			} else {
+		// 				$price = isset($item_values['select_location']['location_cart_price']) ? $item_values['select_location']['location_cart_price'] : "";
+		// 				$newprice = html_entity_decode($price);
+		// 				## Set the new item price in cart
+		// 				$item_values['data']->set_price(($newprice));
+		// 			}
+		// 		}
+		// 	}
+		// }
 	}
 
 	public function wcmlim_get_all_locations()
