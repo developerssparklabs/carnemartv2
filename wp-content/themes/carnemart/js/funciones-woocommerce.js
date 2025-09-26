@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const input = wrapper.querySelector('.quantity-input');
     const decreaseButton = wrapper.querySelector('.quantity-decrease');
     const increaseButton = wrapper.querySelector('.quantity-increase');
-    const min = parseInt(input.getAttribute('min')) || 1;
-    const step = parseInt(input.getAttribute('step')) || 1;
+    const min = parseFloat(input.getAttribute('min')) || 1;
+    const step = parseFloat(input.getAttribute('step')) || 1;
 
     if (decreaseButton) {
       decreaseButton.addEventListener('click', function () {
-        const currentValue = parseInt(input.value) || 1;
+        const currentValue = parseFloat(input.value) || 1;
         if (currentValue > min) {
           input.value = currentValue - step;
           //input.setAttribute('data-cantidad-carrito', parseFloat(input.value) || 0);
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (increaseButton) {
       increaseButton.addEventListener('click', function () {
-        const currentValue = parseInt(input.value) || 1;
+        const currentValue = parseFloat(input.value) || 1;
         input.value = currentValue + step;
         //  input.setAttribute('data-cantidad-carrito', parseFloat(input.value) || 0);
       });
