@@ -161,7 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
 
                 }
-                loader.style.display = 'none';
+                if (loader) {
+                    loader.style.display = 'none';
+                }
             },
             {
                 enableHighAccuracy: true,
