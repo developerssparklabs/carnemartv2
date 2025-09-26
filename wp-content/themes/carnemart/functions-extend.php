@@ -1031,7 +1031,7 @@ function custom_quantity_buttons_global()
     }
 }
 
-add_action('wp_footer', 'custom_quantity_buttons_global');
+// add_action('wp_footer', 'custom_quantity_buttons_global');
 
 /**
  * Obtenemos la cantidad del producto en el carrito
@@ -3291,8 +3291,9 @@ if (!function_exists('sb_get_tiers_meta')) {
     // Busca el meta de tiers. Ajusta candidatos si usas otro nombre.
     function sb_get_tiers_meta(int $product_id, int $term_id): array
     {
+        $customer_group = get_customer_group_from_location($term_id);
         // Tu código original usa este meta:
-        $candidates = ["eib2bpro_price_tiers_group_{$term_id}"];
+        $candidates = ["eib2bpro_price_tiers_group_{$customer_group}"];
         foreach ($candidates as $meta_key) {
             $json = get_post_meta($product_id, $meta_key, true);
             if ($json) {
@@ -3659,29 +3660,29 @@ function bloquear_si_tier_price_es_cero()
         <?php
     endif;
 }
-add_filter('woocommerce_add_to_cart_validation', 'validar_precio_tiers_en_add_to_cart', 10, 5);
-function validar_precio_tiers_en_add_to_cart($passed, $product_id, $quantity, $variation_id = null, $variations = null)
-{
-    // Obtener todos los metacampos
-    $meta_data = get_post_meta($product_id);
+// add_filter('woocommerce_add_to_cart_validation', 'validar_precio_tiers_en_add_to_cart', 10, 5);
+// function validar_precio_tiers_en_add_to_cart($passed, $product_id, $quantity, $variation_id = null, $variations = null)
+// {
+//     // Obtener todos los metacampos
+//     $meta_data = get_post_meta($product_id);
 
-    foreach ($meta_data as $key => $value) {
-        // Revisar solo los que empiezan con eib2bpro_price_tiers_group_
-        if (strpos($key, 'eib2bpro_price_tiers_group_') === 0) {
-            $json = json_decode($value[0], true);
-            if (is_array($json)) {
-                foreach ($json as $qty => $price) {
-                    if (floatval(trim($price)) <= 0) {
-                        wc_add_notice('Este producto tiene un precio inválido por volumen. No se puede añadir al carrito.', 'error');
-                        return false;
-                    }
-                }
-            }
-        }
-    }
+//     foreach ($meta_data as $key => $value) {
+//         // Revisar solo los que empiezan con eib2bpro_price_tiers_group_
+//         if (strpos($key, 'eib2bpro_price_tiers_group_') === 0) {
+//             $json = json_decode($value[0], true);
+//             if (is_array($json)) {
+//                 foreach ($json as $qty => $price) {
+//                     if (floatval(trim($price)) <= 0) {
+//                         wc_add_notice('Este producto tiene un precio inválido por volumen. No se puede añadir al carrito.', 'error');
+//                         return false;
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-    return $passed;
-}
+//     return $passed;
+// }
 /*
  *
  * Bloqueo de venta de productos en 0.00 pesos: eof
