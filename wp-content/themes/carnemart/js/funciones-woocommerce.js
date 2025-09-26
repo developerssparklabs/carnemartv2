@@ -5,38 +5,38 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Manejo del botón "Añadir al carrito"
   document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-      const productId = this.getAttribute('data-product-id');
-      const quantityInput = this.closest('.quantity-wrapper')?.querySelector('.quantity-input');
-      const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+    // button.addEventListener('click', function (event) {
+    //   event.preventDefault();
+    //   const productId = this.getAttribute('data-product-id');
+    //   const quantityInput = this.closest('.quantity-wrapper')?.querySelector('.quantity-input');
+    //   const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
 
-      if (!productId || isNaN(quantity) || quantity < 1) {
-        return;
-      }
+    //   if (!productId || isNaN(quantity) || quantity < 1) {
+    //     return;
+    //   }
 
-      // Enviar solicitud AJAX
-      const ajaxUrl = `${window.location.origin}/lanaval/?wc-ajax=add_to_cart`;
+    //   // Enviar solicitud AJAX
+    //   const ajaxUrl = `${window.location.origin}/lanaval/?wc-ajax=add_to_cart`;
 
-      fetch(ajaxUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `product_id=${productId}&quantity=${quantity}`,
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error();
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.fragments) {
-            actualizarCarritoLateral(data.fragments);
-          }
-        });
-    });
+    //   fetch(ajaxUrl, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //     body: `product_id=${productId}&quantity=${quantity}`,
+    //   })
+    //     .then(response => {
+    //       if (!response.ok) {
+    //         throw new Error();
+    //       }
+    //       return response.json();
+    //     })
+    //     .then(data => {
+    //       if (data.fragments) {
+    //         actualizarCarritoLateral(data.fragments);
+    //       }
+    //     });
+    // });
   });
 
   // Manejo de los botones "+" y "-" en el input
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const input = wrapper.querySelector('.quantity-input');
     const decreaseButton = wrapper.querySelector('.quantity-decrease');
     const increaseButton = wrapper.querySelector('.quantity-increase');
-
     const min = parseInt(input.getAttribute('min')) || 1;
     const step = parseInt(input.getAttribute('step')) || 1;
 
@@ -53,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentValue = parseInt(input.value) || 1;
         if (currentValue > min) {
           input.value = currentValue - step;
+          //input.setAttribute('data-cantidad-carrito', parseFloat(input.value) || 0);
         }
       });
     }
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
       increaseButton.addEventListener('click', function () {
         const currentValue = parseInt(input.value) || 1;
         input.value = currentValue + step;
+        //  input.setAttribute('data-cantidad-carrito', parseFloat(input.value) || 0);
       });
     }
   });
