@@ -369,7 +369,9 @@ function bafar_ofertas_export_page()
         echo '<div class="notice notice-success"><p><strong>¡Listo!</strong> ' . esc_html($msg) . '. ';
         if ($url)
             echo 'Descargar: <a class="button button-primary" target="_blank" href="' . esc_url($url) . '">Abrir JSON</a>';
-        echo ' <span style="opacity:.7">(' . $cnt . ' productos)</span></p></div>';
+        if ($cnt > 0) {
+            echo ' <span style="opacity:.7">(' . $cnt . ' productos)</span></p></div>';
+        }
     }
     if (!empty($_GET['bof_err'])) {
         $msg = sanitize_text_field($_GET['bof_err']);
@@ -396,27 +398,44 @@ function bafar_ofertas_export_page()
 
         <hr />
         <p><strong>Salida por producto (ejemplo):</strong></p>
-        <pre style="background:#f6f7f7;padding:12px;border:1px solid #ccd0d4;overflow:auto">
-                                                                                        {
-                                                                                          "id": "78",
-                                                                                          "sku": "504",
-                                                                                          "slug": "pierna-sin-hueso-frontera-de-cerdo-reb",
-                                                                                          "name": "Pierna Sin Hueso Frontera De Cerdo Reb",
-                                                                                          "permalink": "https://…/product/…/",
-                                                                                          "image": "https://…/imagen.jpg",
-                                                                                          "store_term_id": "264",
-                                                                                          "customer_group": "1837",
-                                                                                          "prices": {
-                                                                                            "regular": "78.90",
-                                                                                            "sale": "75.90",
-                                                                                            "discount_abs": "3",
-                                                                                            "discount_pct": "0.0380228137"
-                                                                                          },
-                                                                                          "stock": { "status": "instock", "at_store": "2610" },
-                                                                                          "tiers": { "10.00": "70.00" },      // solo steps > step del producto
-                                                                                          "steps": { "product_step": "1.00", "first_tier_step": "1.00" }
-                                                                                        }
-                                                                                        </pre>
+        <pre style="background:#f6f7f7;padding:12px;border:1px solid #ccd0d4;overflow:auto">{
+                                                          "id": "78",
+                                                          "sku": "504",
+                                                          "slug": "pierna-sin-hueso-frontera-de-cerdo-reb",
+                                                          "name": "Pierna Sin Hueso Frontera De Cerdo Reb",
+                                                          "permalink": "https://…/product/…/",
+                                                          "image": "https://…/imagen.jpg",
+                                                          "store_term_id": "264",
+                                                          "customer_group": "1837",
+                                                          "prices": {
+                                                            "regular": "78.90",
+                                                            "sale": "75.90",
+                                                            "discount_abs": "3",
+                                                            "discount_pct": "0.0380228137"
+                                                          },
+                                                          "stock": { 
+                                                            "status": "instock", 
+                                                            "at_store": "2610" 
+                                                          },
+                                                          "tiers": { 
+                                                            "10.00": "70.00" 
+                                                          },
+                                                          "steps": { 
+                                                            "product_step": "1.00", 
+                                                            "first_tier_step": "1.00" 
+                                                          }
+                                                        }</pre>
+        <div>
+            <h1>Sincronizar las ofertas de todas las tiendas</h1>
+            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                <?php wp_nonce_field('bof_sync'); ?>
+                <input type="hidden" name="action" value="bof_sync">
+                <p>Esto recorre todas las tiendas activas (términos con <code>customer_group</code>) y genera el JSON de
+                    ofertas
+                    para cada una. Puede tardar varios minutos.</p>
+                <?php submit_button('Sincronizar todas las tiendas'); ?>
+            </form>
+        </div>
     </div>
 <?php }
 
@@ -448,6 +467,95 @@ add_action('admin_post_bof_export_json', function () {
     }
     exit;
 });
+
+/**
+ * Acción que sincroniza todas las tiendas (términos con customer_group)
+ * Dispara jobs individuales usando Action Scheduler (WooCommerce)
+ */
+add_action("admin_post_bof_sync", function () {
+    if (!current_user_can('manage_woocommerce')) {
+        wp_die('No autorizado', 403);
+    }
+    check_admin_referer('bof_sync');
+
+    // Verifica que Action Scheduler esté disponible
+    if (!function_exists('as_schedule_single_action')) {
+        wp_die('Action Scheduler no disponible. Verifica que WooCommerce esté activo.', 500);
+    }
+
+    $terms = get_terms(array(
+        'taxonomy' => 'locations',
+        'hide_empty' => false,
+        'meta_query' => array(
+            array(
+                'key' => 'customer_group',
+                'compare' => 'EXISTS'
+            ),
+            array(
+                'key' => 'centro_activo',
+                'value' => '1'
+            )
+        )
+    ));
+
+    if (is_wp_error($terms)) {
+        wp_die('Error al obtener tiendas: ' . $terms->get_error_message(), 500);
+    }
+
+    $total_stores = count($terms);
+
+    // Encolar una acción (job) por tienda en Action Scheduler
+    foreach ($terms as $index => $term) {
+        error_log("Ofertones: Encolando tienda term_id={$term->term_id} ({$term->name})");
+        $delay = 60 * ($index + 1); // 60s, 120s, 180s, etc. (opcional para escalonar)
+        as_schedule_single_action(
+            time() + $delay,
+            'bof_process_single_store',
+            array('term_id' => (int) $term->term_id),
+            'bof-sync' // grupo opcional para identificar en la UI de Woo
+        );
+    }
+
+    $msg = "Se programaron {$total_stores} tiendas en la cola de WooCommerce.";
+    $args = array(
+        'bof_done' => 1,
+        'bof_msg' => rawurlencode($msg)
+    );
+
+    wp_safe_redirect(add_query_arg($args, wp_get_referer()));
+    exit;
+});
+
+/**
+ * Hook del job para procesar una tienda individual (Action Scheduler pasa args como array)
+ */
+add_action('bof_process_single_store', function ($args) {
+    @set_time_limit(60); // 1 minuto máximo por tienda
+    error_log("Ofertones: Procesando tienda en job, args=" . print_r($args, true));
+    $term_id = $args ?? 0;
+    if (!$term_id) {
+        if (function_exists('wc_get_logger')) {
+            wc_get_logger()->warning('Ofertones: term_id inválido en bof_process_single_store', array('source' => 'bof-offers'));
+        }
+        return;
+    }
+
+    $res = bof_export_offers_json($term_id);
+
+    $log = wc_get_logger();
+    // Log (usa el logger de Woo si existe; si no, error_log)
+    if (function_exists('wc_get_logger')) {
+        if (!empty($res['ok'])) {
+            $log->info("Ofertones - Term ID {$term_id}: OK ({$res['count']} productos)", array('source' => 'bof-offers'));
+        } else {
+            $msg = isset($res['msg']) ? $res['msg'] : 'Error desconocido';
+            $log->error("Ofertones - Term ID {$term_id}: ERROR: {$msg}", array('source' => 'bof-offers'));
+        }
+    } else {
+        $log->error("Ofertones - Term ID {$term_id}: " . (!empty($res['ok']) ? "OK ({$res['count']} productos)" : "ERROR: {$res['msg']}"));
+    }
+}, 10, 1);
+
 
 /**
  * Front-end CSS para Ofertones
