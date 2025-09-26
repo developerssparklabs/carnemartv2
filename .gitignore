@@ -73,3 +73,5 @@ Thumbs.db
 
 # --- Plugin de Redis Object Cache -------------------
 /wp-content/plugins/redis-cache/
+# --- Plugin de Query Monitor ----------------------
+/wp-content/plugins/query-monitor/
