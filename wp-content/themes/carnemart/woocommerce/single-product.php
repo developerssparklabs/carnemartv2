@@ -334,7 +334,7 @@ do_action('woocommerce_before_main_content');
 
 										$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
 
-										if ($first_step == $step_meta) {
+										if ($first_step <= $step_meta) {
 											$showOfert = true;
 										}
 										// 1) Regular
@@ -471,7 +471,7 @@ do_action('woocommerce_before_main_content');
 									$first_step = sb_get_first_step($tiers);
 									$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
 
-									$saltar_first_tier = ($first_step == $step_meta);
+									$saltar_first_tier = ($first_step <= $step_meta);
 
 									// Saltamos el primer tier (ya mostrado como precio actual)
 									$rest = $saltar_first_tier ? array_slice($tiers, 1, null, true) : $tiers;

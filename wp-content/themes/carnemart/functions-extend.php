@@ -3378,7 +3378,7 @@ if (!function_exists('bafar_custom_loop_price')) {
             $step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
 
 
-            if ($first_step == $step_meta) {
+            if ($first_step <= $step_meta) {
                 $showOfert = true;
             }
 
@@ -3416,8 +3416,7 @@ if (!function_exists('bafar_custom_loop_price')) {
             $first_step = sb_get_first_step($tiers);
             $step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
 
-            $saltar_first_tier = ($first_step == $step_meta);
-
+            $saltar_first_tier = ($first_step <= $step_meta);
 
             // Cortamos el primer tier
             $rest = $saltar_first_tier ? array_slice($tiers, 1, null, true) : $tiers;
