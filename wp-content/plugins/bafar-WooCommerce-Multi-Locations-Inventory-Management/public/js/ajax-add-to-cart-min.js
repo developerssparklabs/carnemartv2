@@ -142,6 +142,16 @@
                             }).then(() => {
                                 window.location.href = window.location.href
                             });
+                        else if ('9' == a)
+                            Swal.fire({
+                                title: "Cantidad no válida",
+                                text: "La cantidad que intentas agregar no coincide con los incrementos permitidos para este producto. Por favor verifica y ajusta la cantidad correcta.",
+                                icon: "warning",
+                                confirmButtonText: "Entendido",
+                                confirmButtonColor: "#3085d6"
+                            }).then(() => {
+
+                            });
 
                         if (a.error && a.product_url) {
                             window.location = a.product_url;

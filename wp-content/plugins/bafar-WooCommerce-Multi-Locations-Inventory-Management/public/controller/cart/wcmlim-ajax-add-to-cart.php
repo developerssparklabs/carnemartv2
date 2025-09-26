@@ -7,6 +7,16 @@ $product_location_termid = isset($_POST['product_location_termid']) ? $_POST['pr
 $manage_stock = get_post_meta($product_id, '_manage_stock', true);
 $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
 
+// obtenemos el minimo del producto
+$product_step = get_post_meta($product_id, 'product_step', true);
+$min_quantity = get_post_meta($product_id, 'min_quantity', true);
+
+// si la cantidad no es multiplo del step o es menor al minimo
+if (($quantity % $product_step) != 0 || $quantity < $min_quantity) {
+    echo '9';
+    wp_die();
+}
+
 $cart_qty = 0;
 foreach ($woocommerce->cart->get_cart() as $item => $items) {
     $product_ids = $items['variation_id'] ? $items['variation_id'] : $items['product_id'];
