@@ -371,6 +371,8 @@ function bafar_ofertas_export_page()
             echo 'Descargar: <a class="button button-primary" target="_blank" href="' . esc_url($url) . '">Abrir JSON</a>';
         if ($cnt > 0) {
             echo ' <span style="opacity:.7">(' . $cnt . ' productos)</span></p></div>';
+        } else {
+            echo '</p></div>';
         }
     }
     if (!empty($_GET['bof_err'])) {
@@ -399,32 +401,32 @@ function bafar_ofertas_export_page()
         <hr />
         <p><strong>Salida por producto (ejemplo):</strong></p>
         <pre style="background:#f6f7f7;padding:12px;border:1px solid #ccd0d4;overflow:auto">{
-                                                          "id": "78",
-                                                          "sku": "504",
-                                                          "slug": "pierna-sin-hueso-frontera-de-cerdo-reb",
-                                                          "name": "Pierna Sin Hueso Frontera De Cerdo Reb",
-                                                          "permalink": "https://…/product/…/",
-                                                          "image": "https://…/imagen.jpg",
-                                                          "store_term_id": "264",
-                                                          "customer_group": "1837",
-                                                          "prices": {
-                                                            "regular": "78.90",
-                                                            "sale": "75.90",
-                                                            "discount_abs": "3",
-                                                            "discount_pct": "0.0380228137"
-                                                          },
-                                                          "stock": { 
-                                                            "status": "instock", 
-                                                            "at_store": "2610" 
-                                                          },
-                                                          "tiers": { 
-                                                            "10.00": "70.00" 
-                                                          },
-                                                          "steps": { 
-                                                            "product_step": "1.00", 
-                                                            "first_tier_step": "1.00" 
-                                                          }
-                                                        }</pre>
+                                                              "id": "78",
+                                                              "sku": "504",
+                                                              "slug": "pierna-sin-hueso-frontera-de-cerdo-reb",
+                                                              "name": "Pierna Sin Hueso Frontera De Cerdo Reb",
+                                                              "permalink": "https://…/product/…/",
+                                                              "image": "https://…/imagen.jpg",
+                                                              "store_term_id": "264",
+                                                              "customer_group": "1837",
+                                                              "prices": {
+                                                                "regular": "78.90",
+                                                                "sale": "75.90",
+                                                                "discount_abs": "3",
+                                                                "discount_pct": "0.0380228137"
+                                                              },
+                                                              "stock": { 
+                                                                "status": "instock", 
+                                                                "at_store": "2610" 
+                                                              },
+                                                              "tiers": { 
+                                                                "10.00": "70.00" 
+                                                              },
+                                                              "steps": { 
+                                                                "product_step": "1.00", 
+                                                                "first_tier_step": "1.00" 
+                                                              }
+                                                            }</pre>
         <div>
             <h1>Sincronizar las ofertas de todas las tiendas</h1>
             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
