@@ -1264,192 +1264,191 @@ YALO API
         3
     );
 
-    if (!function_exists('anaquel_home')) {
-        function anaquel_home($atts)
-        {
+    // if (!function_exists('anaquel_home')) {
+    //     function anaquel_home($atts)
+    //     {
 
-            // Atributos para el shortcode
-            $atts = shortcode_atts(
-                [
-                    'columns' => 4,
-                    'rows' => 3,
-                    'total_products' => 20, // Total de productos a mostrar
-                ],
-                $atts,
-                'home_productos_sb'
-            );
+    //         // Atributos para el shortcode
+    //         $atts = shortcode_atts(
+    //             [
+    //                 'columns' => 4,
+    //                 'rows' => 3,
+    //                 'total_products' => 20, // Total de productos a mostrar
+    //             ],
+    //             $atts,
+    //             'home_productos_sb'
+    //         );
 
-            // Detectar tienda seleccionada
-            $term_id = (!empty($_COOKIE['wcmlim_selected_location_termid']) && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined')
-                ? intval($_COOKIE['wcmlim_selected_location_termid'])
-                : 0;
+    //         // Detectar tienda seleccionada
+    //         $term_id = (!empty($_COOKIE['wcmlim_selected_location_termid']) && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined')
+    //             ? intval($_COOKIE['wcmlim_selected_location_termid'])
+    //             : 0;
 
-            // Cache key única por tienda y configuración
-            $cache_key = 'anaquel_home_' . md5(serialize($atts) . '_' . $term_id);
-            $cache_expiration = 15 * MINUTE_IN_SECONDS;
+    //         // Cache key única por tienda y configuración
+    //         $cache_key = 'anaquel_home_' . md5(serialize($atts) . '_' . $term_id);
+    //         $cache_expiration = 15 * MINUTE_IN_SECONDS;
 
-            // Intentar obtener del cache
-            $cached_result = get_transient($cache_key);
-            if ($cached_result !== false) {
-                return $cached_result;
-            }
+    //         // Intentar obtener del cache
+    //         $cached_result = get_transient($cache_key);
+    //         if ($cached_result !== false) {
+    //             return $cached_result;
+    //         }
 
-            // Preparar los argumentos de consulta
-            $args = [
-                'post_type' => 'product',
-                'posts_per_page' => intval($atts['total_products']) * 2, // Traer extra para filtrar
-                'post_status' => 'publish',
-                'orderby' => 'rand',
-                'fields' => 'ids',   // solo IDs
-                'no_found_rows' => true,
-                'update_post_meta_cache' => false,
-                'update_post_term_cache' => false,
-                'meta_query' => [
-                    'relation' => 'AND',
-                    [
-                        'key' => '_stock_status',
-                        'value' => 'instock',
-                        'compare' => '=',
-                    ],
-                    // Excluir productos cuyo product_step NO sea entero <= 1 (chequeo fino más abajo)
-                    [
-                        'key' => 'product_step',
-                        'value' => '.',
-                        'compare' => 'NOT LIKE',
-                    ],
-                ],
-            ];
+    //         $args = [
+    //             'post_type' => 'product',
+    //             'posts_per_page' => intval($atts['total_products']) * 2, // Traer extra para filtrar
+    //             'post_status' => 'publish',
+    //             'orderby' => 'rand',
+    //             'fields' => 'ids',   // solo IDs
+    //             'no_found_rows' => true,
+    //             'update_post_meta_cache' => false,
+    //             'update_post_term_cache' => false,
+    //             'meta_query' => [
+    //                 'relation' => 'AND',
+    //                 [
+    //                     'key' => '_stock_status',
+    //                     'value' => 'instock',
+    //                     'compare' => '=',
+    //                 ],
+    //                 // Excluir productos cuyo product_step NO sea entero <= 1 (chequeo fino más abajo)
+    //                 [
+    //                     'key' => 'product_step',
+    //                     'value' => '.',
+    //                     'compare' => 'NOT LIKE',
+    //                 ],
+    //             ],
+    //         ];
 
-            if ($term_id) {
-                // Stock por tienda
-                $args['meta_query'][] = [
-                    'key' => "wcmlim_stock_at_{$term_id}",
-                    'value' => '0',
-                    'compare' => '>',
-                    'type' => 'NUMERIC',
-                ];
-                // Precio regular por tienda > 0
-                $args['meta_query'][] = [
-                    'key' => "wcmlim_regular_price_at_{$term_id}",
-                    'value' => 0,
-                    'compare' => '>',
-                    'type' => 'NUMERIC',
-                ];
-            } else {
-                // Sin tienda: precio base > 0 y stock > 1
-                $args['meta_query'][] = [
-                    'key' => '_regular_price',
-                    'value' => 0,
-                    'compare' => '>',
-                    'type' => 'NUMERIC',
-                ];
-                $args['meta_query'][] = [
-                    'key' => '_stock',
-                    'value' => '1',
-                    'compare' => '>',
-                    'type' => 'NUMERIC',
-                ];
-            }
+    //         if ($term_id) {
+    //             // Stock por tienda
+    //             $args['meta_query'][] = [
+    //                 'key' => "wcmlim_stock_at_{$term_id}",
+    //                 'value' => '0',
+    //                 'compare' => '>',
+    //                 'type' => 'NUMERIC',
+    //             ];
+    //             // Precio regular por tienda > 0
+    //             $args['meta_query'][] = [
+    //                 'key' => "wcmlim_regular_price_at_{$term_id}",
+    //                 'value' => 0,
+    //                 'compare' => '>',
+    //                 'type' => 'NUMERIC',
+    //             ];
+    //         } else {
+    //             // Sin tienda: precio base > 0 y stock > 1
+    //             $args['meta_query'][] = [
+    //                 'key' => '_regular_price',
+    //                 'value' => 0,
+    //                 'compare' => '>',
+    //                 'type' => 'NUMERIC',
+    //             ];
+    //             $args['meta_query'][] = [
+    //                 'key' => '_stock',
+    //                 'value' => '1',
+    //                 'compare' => '>',
+    //                 'type' => 'NUMERIC',
+    //             ];
+    //         }
 
-            // Ejecutar consulta
-            $product_ids = get_posts($args);
+    //         // Ejecutar consulta
+    //         $product_ids = get_posts($args);
 
-            // Filtrar por product_step vía query directa (optimizada)
-            $filtered = [];
-            if (!empty($product_ids)) {
-                global $wpdb;
+    //         // Filtrar por product_step vía query directa (optimizada)
+    //         $filtered = [];
+    //         if (!empty($product_ids)) {
+    //             global $wpdb;
 
-                // Asegurar IDs enteros
-                $safe_ids = array_map('intval', $product_ids);
-                $ids_string = implode(',', $safe_ids);
+    //             // Asegurar IDs enteros
+    //             $safe_ids = array_map('intval', $product_ids);
+    //             $ids_string = implode(',', $safe_ids);
 
-                // Nota: %s solo para la meta_key, el IN() ya va saneado arriba.
-                $meta_results = $wpdb->get_results(
-                    $wpdb->prepare("
-                    SELECT post_id, meta_value 
-                    FROM {$wpdb->postmeta} 
-                    WHERE post_id IN ($ids_string) 
-                    AND meta_key = %s
-                ", 'product_step')
-                );
+    //             // Nota: %s solo para la meta_key, el IN() ya va saneado arriba.
+    //             $meta_results = $wpdb->get_results(
+    //                 $wpdb->prepare("
+    //                 SELECT post_id, meta_value 
+    //                 FROM {$wpdb->postmeta} 
+    //                 WHERE post_id IN ($ids_string) 
+    //                 AND meta_key = %s
+    //             ", 'product_step')
+    //             );
 
-                // Lookup de product_step
-                $step_meta = [];
-                foreach ($meta_results as $result) {
-                    $step_meta[intval($result->post_id)] = $result->meta_value;
-                }
+    //             // Lookup de product_step
+    //             $step_meta = [];
+    //             foreach ($meta_results as $result) {
+    //                 $step_meta[intval($result->post_id)] = $result->meta_value;
+    //             }
 
-                // Filtrado final
-                foreach ($safe_ids as $product_id) {
-                    if (count($filtered) >= intval($atts['total_products'])) {
-                        break;
-                    }
-                    $step = isset($step_meta[$product_id]) ? $step_meta[$product_id] : '';
-                    if (is_numeric($step) && floor($step) == $step && $step <= 1) {
-                        $filtered[] = $product_id;
-                    }
-                }
-            }
+    //             // Filtrado final
+    //             foreach ($safe_ids as $product_id) {
+    //                 if (count($filtered) >= intval($atts['total_products'])) {
+    //                     break;
+    //                 }
+    //                 $step = isset($step_meta[$product_id]) ? $step_meta[$product_id] : '';
+    //                 if (is_numeric($step) && floor($step) == $step && $step <= 1) {
+    //                     $filtered[] = $product_id;
+    //                 }
+    //             }
+    //         }
 
-            // Renderizar salida (usar buffer y luego RETURN)
-            ob_start();
+    //         // Renderizar salida (usar buffer y luego RETURN)
+    //         ob_start();
 
-            if (!empty($filtered)) {
-                // Pasar columnas al loop nativo
-                wc_set_loop_prop('columns', intval($atts['columns']));
+    //         if (!empty($filtered)) {
+    //             // Pasar columnas al loop nativo
+    //             wc_set_loop_prop('columns', intval($atts['columns']));
 
-                echo '<div class="elementor-element elementor-element-5828161beto carnemart-loop-productos elementor-grid-mobile-2 elementor-grid-4 elementor-grid-tablet-3 elementor-products-grid elementor-wc-products elementor-widget elementor-widget-woocommerce-products"><div class="elementor-widget-container"><div class="woocommerce columns-' . esc_attr($atts['columns']) . '"><ul class="products elementor-grid columns-' . esc_attr($atts['columns']) . '">';
+    //             echo '<div class="elementor-element elementor-element-5828161beto carnemart-loop-productos elementor-grid-mobile-2 elementor-grid-4 elementor-grid-tablet-3 elementor-products-grid elementor-wc-products elementor-widget elementor-widget-woocommerce-products"><div class="elementor-widget-container"><div class="woocommerce columns-' . esc_attr($atts['columns']) . '"><ul class="products elementor-grid columns-' . esc_attr($atts['columns']) . '">';
 
-                foreach ($filtered as $product_id) {
-                    $post_object = get_post($product_id);
-                    if ($post_object) {
-                        setup_postdata($GLOBALS['post'] = $post_object);
-                        wc_get_template_part('content', 'product'); // item nativo
-                    }
-                }
+    //             foreach ($filtered as $product_id) {
+    //                 $post_object = get_post($product_id);
+    //                 if ($post_object) {
+    //                     setup_postdata($GLOBALS['post'] = $post_object);
+    //                     wc_get_template_part('content', 'product'); // item nativo
+    //                 }
+    //             }
 
-                echo '</ul></div></div></div>';
-                wp_reset_postdata();
-            } else {
-                echo '<div class="msg-general"><span class="cu-info-circle"></span><span class="msg-text">No hay productos disponibles en este momento.</span></div>';
-            }
+    //             echo '</ul></div></div></div>';
+    //             wp_reset_postdata();
+    //         } else {
+    //             echo '<div class="msg-general"><span class="cu-info-circle"></span><span class="msg-text">No hay productos disponibles en este momento.</span></div>';
+    //         }
 
-            $output = ob_get_clean();
+    //         $output = ob_get_clean();
 
-            // Guardar cache y RETURN (no echo)
-            set_transient($cache_key, $output, $cache_expiration);
-            return $output;
-        }
-    }
+    //         // Guardar cache y RETURN (no echo)
+    //         set_transient($cache_key, $output, $cache_expiration);
+    //         return $output;
+    //     }
+    // }
 
     // Evitar registrar el shortcode dos veces
-    if (!shortcode_exists('home_productos_sb')) {
-        add_shortcode('home_productos_sb', 'anaquel_home');
-    }
+    // if (!shortcode_exists('home_productos_sb')) {
+    //     add_shortcode('home_productos_sb', 'anaquel_home');
+    // }
 
     // Limpiar cache cuando se actualicen productos o stock
-    add_action('woocommerce_product_set_stock', 'clear_anaquel_home_cache');
-    add_action('woocommerce_variation_set_stock', 'clear_anaquel_home_cache');
-    add_action('save_post', 'clear_anaquel_home_cache_on_product_save');
+    // add_action('woocommerce_product_set_stock', 'clear_anaquel_home_cache');
+    // add_action('woocommerce_variation_set_stock', 'clear_anaquel_home_cache');
+    // add_action('save_post', 'clear_anaquel_home_cache_on_product_save');
 
-    if (!function_exists('clear_anaquel_home_cache')) {
-        function clear_anaquel_home_cache($product = null)
-        {
-            global $wpdb;
-            // Borra transients de DB (funciona aunque no haya object cache)
-            $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_anaquel_home_%'");
-            $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_anaquel_home_%'");
-        }
-    }
+    // if (!function_exists('clear_anaquel_home_cache')) {
+    //     function clear_anaquel_home_cache($product = null)
+    //     {
+    //         global $wpdb;
+    //         // Borra transients de DB (funciona aunque no haya object cache)
+    //         $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_anaquel_home_%'");
+    //         $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_anaquel_home_%'");
+    //     }
+    // }
 
-    if (!function_exists('clear_anaquel_home_cache_on_product_save')) {
-        function clear_anaquel_home_cache_on_product_save($post_id)
-        {
-            if (get_post_type($post_id) === 'product') {
-                clear_anaquel_home_cache();
-            }
-        }
-    }
+    // if (!function_exists('clear_anaquel_home_cache_on_product_save')) {
+    //     function clear_anaquel_home_cache_on_product_save($post_id)
+    //     {
+    //         if (get_post_type($post_id) === 'product') {
+    //             clear_anaquel_home_cache();
+    //         }
+    //     }
+    // }
 
     /**
      * === Precio por tienda y step/mínimo decimal por producto ===
@@ -3410,6 +3409,7 @@ function get_custom_order_data($data)
             return rest_ensure_response($response);
         }
     } else {
+        $payment_method = '';
         $response = array(
             "base_currency_code" => get_woocommerce_currency(),
             "base_discount_amount" => $order->get_discount_total(),
@@ -3501,7 +3501,6 @@ function get_custom_order_data($data)
                     "base_row_total_incl_tax" => $item->get_subtotal() + $item->get_total_tax(), // Subtotal base incluyendo impuestos
                 );
             }, $order->get_items()),
-
             // Payment Information
             "payment" => array(
                 "method" => $payment_method,
