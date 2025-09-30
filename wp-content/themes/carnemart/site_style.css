@@ -144,6 +144,7 @@ body {
 }
 
 /*-------------------------------------- Nuevow 29 Sep ----------------------*/
+
 /*Quitar boton de ir a pagar*/
 .side__sidebar-carrito-pago{
   display:none!important;
@@ -243,6 +244,45 @@ form.woocommerce-checkout #customer_details{
 
 form.woocommerce-checkout #order_review{
   width:480px;
+}
+
+body.checkout tr.woocommerce-shipping-totals.shipping{
+  width:auto!important;
+}
+body.checkout td.product-name>strong{
+  font-size:14px!important;
+  font-weight: 400 !important;
+}
+
+body.checkout td.product-name>strong p.datos-tienda{
+  font-weight:700!important;
+}
+
+body.checkout td.variation-Disponibilidad{
+  font-size:14px!important;
+  font-weight: 400 !important;
+}
+
+body.checkout .woocommerce-NoticeGroup-checkout{
+  width:100%!important;
+}
+body.checkout .variation {
+  margin:10px 0!important;
+}
+body.checkout .variation-Disponibilidad{
+  font-size:14px!important;
+  font-weight:400!important;
+}
+body.checkout dd.variation-Disponibilidad{
+  font-size:14px!important;
+  font-weight:700!important;
+}
+.woocommerce-error{
+  border:none!important;
+}
+.woocommerce-error a{
+  color:#ffffff!important;
+  font-weight:400!important;
 }
 
 
@@ -565,7 +605,7 @@ iframe.full-width-iframe {
   height: 25px;
   font-size: 24px;
   cursor: pointer;
-  color: var(--color-principal);
+  color: var(--color-claro);
 }
 
 .woocommerce-message a.wc-forward {
@@ -737,7 +777,7 @@ h3#order_review_heading {
     justify-content: space-between;
     padding: 8px;
     border-radius: 10px;
-    background-color: #ffffff78;
+    background-color: #ffffff;
     margin-bottom: 5px;
   }
 
@@ -3116,21 +3156,21 @@ a.flotante-cta-whats:hover {
 }
 
 .cart-contents .cart-contents-count {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 150px;
-  background-color: var(--color-secundario);
-  color: var(--color-claro);
-  border: solid 1px var(--color-secundario);
-  font-size: 0.9rem;
-  line-height: 1;
-  position: absolute;
-  right: -5px;
-  top: -3px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-width: 30px;
+    height: 22px;
+    border-radius: 150px;
+    background-color: var(--color-secundario);
+    color: var(--color-claro);
+    border: solid 1px var(--color-secundario);
+    font-size: 12px;
+    line-height: 1;
+    position: absolute;
+    right: -13px;
+    top: -3px;
 }
 
 .site__sidebar-carrito {
