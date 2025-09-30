@@ -25,21 +25,18 @@ foreach ($woocommerce->cart->get_cart() as $item => $items) {
     $product_ids = $items['variation_id'] ? $items['variation_id'] : $items['product_id'];
     if ($product_ids == $product_id) {
         $cart_qty += $items['quantity'];
-
-
     }
 }
 
-
-
 $cart_qty += $quantity;
+
 if ($manage_stock == "true" || $manage_stock == "yes" || $manage_stock == "1") {
-    update_post_meta($product_id, '_manage_stock', 'yes');
+    // update_post_meta($product_id, '_manage_stock', 'yes');
     $manage_stock = "yes";
 }
 
 
-//15 de enero se modifica para que no permita agregar al carrito si no hay stock en la ubicación
+//15 de enero se modifica para que no permita agregar al carrito si no hay stock en la ubicaciÃ³n
 // comentamos esto para que no bloquee la seleccion
 //restricting user from adding product to cart if the location is not selected (when manage stock is on)
 if ($manage_stock == "yes" && empty($product_location_termid)) {
@@ -53,7 +50,7 @@ if ($manage_stock != "yes" && !empty($product_location_termid)) {
 }
 
 
-//modifique esta funcion ya que busca el stock en el $product_location_termid y debe ser en la ubicación
+//modifique esta funcion ya que busca el stock en el $product_location_termid y debe ser en la ubicaciÃ³n
 // wcmlim_allow_specific_location_241_location_id_22
 $_location_termid = $_COOKIE['wcmlim_selected_location_termid'];
 
@@ -67,16 +64,21 @@ if ($manage_stock == "yes") {
 }
 // is_backorder_allowed at location fetch
 
-$allow_backorder = get_post_meta($product_id, "wcmlim_allow_backorder_at_{$product_location_termid}", true);
+// No se usa actualmente
+//$allow_backorder = get_post_meta($product_id, "wcmlim_allow_backorder_at_{$product_location_termid}", true);
 
-if ($allow_backorder == 'No' || $allow_backorder == 'no') {
-    // Backorders are not allowed, check if cart quantity exceeds stock at location
-    if ($cart_qty > $__stock_at_location) {
-        // Quantity in cart exceeds stock at $quantity` return error
-        echo '4';
-        wp_die();
-    }
+if ($cart_qty > $__stock_at_location) {
+    // Quantity in cart exceeds stock at $quantity` return error
+    echo '4';
+    wp_die();
+} else {
+   
 }
+
+// Actualmente no se usa esta validacion
+// if ($allow_backorder == 'No' || $allow_backorder == 'no') {
+//     // Backorders are not allowed, check if cart quantity exceeds stock at location
+// }
 
 
 $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
@@ -98,12 +100,11 @@ $allow_specific_location = get_post_meta($product_id, 'wcmlim_allow_specific_loc
 
 if ($allow_specific_location != 'Yes' && get_option('wcmlim_enable_specific_location') == "on") {
     $reserr = "2";
-    echo $reserr;
     wp_die();
 }
 
 $isClearCart = get_option('wcmlim_clear_cart');
-//esta funcion controla que la carta debe vaciarse si se agrega un producto de otra ubicación
+//esta funcion controla que la carta debe vaciarse si se agrega un producto de otra ubicaciÃ³n
 /*
 if ($isClearCart == 'on') {
 

@@ -1,5 +1,5 @@
 !function (t) {
-    // Función para actualizar el carrito lateral con los fragments
+    // FunciÃ³n para actualizar el carrito lateral con los fragments
     function actualizarCarritoLateral(fragments) {
         for (const selector in fragments) {
             const element = document.querySelector(selector);
@@ -53,7 +53,7 @@
                     if ("0" == t)
                         return Swal.fire({
                             icon: "error",
-                            text: "¡El producto no tiene stock!"
+                            text: "Â¡El producto no tiene stock!"
                         }), !0
                 }
             });
@@ -87,26 +87,26 @@
                     if (b.fragments) {
                         actualizarCarritoLateral(b.fragments);
                     } else {
-                        let a = parseInt(b, 10); // Convierte a número ignorando espacios y saltos de línea
+                        let a = parseInt(b, 10); // Convierte a nÃºmero ignorando espacios y saltos de lÃ­nea
 
                         if ("4" == a)
                             return Swal.fire({
                                 title: "No disponible",
-                                text: `La cantidad disponible es ${l} en la ubicación ${n}`,
+                                text: `La cantidad disponible es ${l} en la ubicaciÃ³n ${n}`,
                                 icon: "warning"
                             }).then(() => {
-                                window.location.href = window.location.href
+                                // window.location.href = window.location.href
                             }), !1;
 
                         if ("1" == a)
                             Swal.fire({
-                                title: "¡Producto sin stock!",
-                                text: "Este producto no está disponible por el momento. Te invitamos a seguir explorando nuestro catálogo; seguramente encontrarás una alternativa que se ajuste a tus necesidades.",
+                                title: "Â¡Producto sin stock!",
+                                text: "Este producto no estÃ¡ disponible por el momento. Te invitamos a seguir explorando nuestro catÃ¡logo; seguramente encontrarÃ¡s una alternativa que se ajuste a tus necesidades.",
                                 icon: "warning",
                                 showCancelButton: !0,
                                 confirmButtonColor: "#3085d6",
                                 cancelButtonColor: "#d33",
-                                confirmButtonText: "¡Sí, actualizar carrito!"
+                                confirmButtonText: "Â¡SÃ­, actualizar carrito!"
                             }).then(t => {
                                 if (t.isConfirmed) {
                                     let { ajaxurl: a } = multi_inventory;
@@ -116,8 +116,8 @@
                                         data: { action: "wcmlim_empty_cart_content" },
                                         success(t) {
                                             Swal.fire({
-                                                title: "¡Carrito actualizado!",
-                                                text: "Los artículos de tu carrito han sido actualizados, por favor añade el artículo de nuevo.",
+                                                title: "Â¡Carrito actualizado!",
+                                                text: "Los artÃ­culos de tu carrito han sido actualizados, por favor aÃ±ade el artÃ­culo de nuevo.",
                                                 icon: "success"
                                             }).then(() => {
                                                 window.location.href = window.location.href
@@ -129,7 +129,7 @@
                         else if ("2" == a)
                             Swal.fire({
                                 title: "Producto no disponible",
-                                text: "El artículo no está disponible en esta ubicación, asegurese de seleccionar una tienda.",
+                                text: "El artÃ­culo no estÃ¡ disponible en esta ubicaciÃ³n, asegurese de seleccionar una tienda.",
                                 icon: "warning"
                             }).then(() => {
                                 window.location.href = window.location.href
@@ -140,17 +140,17 @@
                                 text: "Estimado cliente, por favor primero selecciona una tienda",
                                 icon: "warning"
                             }).then(() => {
-                                window.location.href = window.location.href
+                                //window.location.href = window.location.href
                             });
                         else if ('9' == a)
                             Swal.fire({
-                                title: "Cantidad no válida",
+                                title: "Cantidad no vÃ¡lida",
                                 text: "La cantidad que intentas agregar no coincide con los incrementos permitidos para este producto. Por favor verifica y ajusta la cantidad correcta.",
                                 icon: "warning",
                                 confirmButtonText: "Entendido",
                                 confirmButtonColor: "#3085d6"
                             }).then(() => {
-
+                                //window.location.href = window.location.href
                             });
 
                         if (a.error && a.product_url) {
@@ -158,7 +158,6 @@
                             return
                         }
                     }
-
 
                     t(document.body).trigger("added_to_cart", [a.fragments, a.cart_hash, o]),
                         "yes" == is_redirect && (window.location = redirect_url)
