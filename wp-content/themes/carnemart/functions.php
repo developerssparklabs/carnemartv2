@@ -629,3 +629,27 @@ add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mime
 }, 10, 4);
 
 require_once get_stylesheet_directory() . '/functions-extend.php';
+
+add_action('wp_footer', function () {
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltip = document.querySelector('.cm-peso-tooltip-1');
+            var trigger = document.getElementById('showInfoPeso');
+
+            if (!tooltip || !trigger) return;
+
+            // Desktop: mouseenter/mouseleave
+            trigger.addEventListener('mouseenter', function () {
+                tooltip.classList.add('isActive');
+                console.log('entra');
+            });
+
+            trigger.addEventListener('mouseleave', function () {
+                tooltip.classList.remove('isActive');
+                console.log('sale');
+            });
+        });
+    </script>
+    <?php
+});

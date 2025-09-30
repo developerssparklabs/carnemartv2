@@ -462,30 +462,6 @@
             });
           });
 
-
-          // Animacion tipo tooltip
-          // --- Desktop (hover real) ---
-          $("#showInfoPeso").on("mouseenter", function() {
-            $(".cm-peso-tooltip").addClass("isActive");
-          });
-          $("#showInfoPeso").on("mouseleave", function() {
-            $(".cm-peso-tooltip").removeClass("isActive");
-          });
-
-          // --- Mobile (tap toggle) ---
-          $("#showInfoPeso").on("touchstart click", function(e) {
-            // evita que se dispare doble en algunos navegadores
-            e.preventDefault();
-            $(".cm-peso-tooltip").toggleClass("isActive");
-          });
-
-
-          
-
-
-
-
-
           // Funcionalidad de las FAQS
         jQuery(function () {
           var $wrapper = jQuery('.wrapper-faqs');
