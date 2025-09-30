@@ -143,7 +143,113 @@ body {
   font-size: 0.875em;
 }
 
-/* ------woocommerce pagina de carrito Carnemart ------------------------------------------------------- */
+/*-------------------------------------- Nuevow 29 Sep ----------------------*/
+/*Quitar boton de ir a pagar*/
+.side__sidebar-carrito-pago{
+  display:none!important;
+}
+.side__sidebar-carrito-btn-ir{
+  border-radius:300px!important;
+}
+
+body.pagina-ofertas .woocommerce .products .product {
+    border: solid 1px #eeeeee!important;
+}
+.cm-ofertones-toolbar{
+  margin-bottom:25px;
+}
+
+.woocommerce .products .product {
+    
+  justify-content: flex-start;
+  overflow:hidden;
+}
+
+.quantity-wrapper{
+  margin-top: auto;
+}
+
+.bafar-tiers{
+    top: 5px;
+    position: absolute;
+    right: 5px;
+    padding:5px 10px;
+    background-color:#ffffff!important;
+    z-index:3;
+    border-radius:10px;
+  
+  .qty>div{
+    font-size:9px!important;
+    margin-top: -3px;
+  }
+}
+
+.bafar-tiers-table td.qty {
+    padding-top: 4px;
+}
+
+.bafar-tiers>summary:hover{
+  color: var(--color-principal)!important;
+}
+
+.bafar-tiers>summary{
+  font-family: var(--fuente-alterna);
+  text-align:right!important;
+  font-size: 14px !important;
+    padding-left: 20px;
+    background-position: 0px 5px;
+    background-repeat: no-repeat;
+    background-size: 15px;
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Capa_1' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 16 16'%3E%3C!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2) --%3E%3Cdefs%3E%3Cstyle%3E .st0 %7B fill: %230866fd; %7D %3C/style%3E%3C/defs%3E%3Cpath class='st0' d='M8,16c4.4,0,8-3.6,8-8S12.4,0,8,0,0,3.6,0,8s3.6,8,8,8M8.9,6.6l-1,4.7c0,.3,0,.5.3.5s.5,0,.7-.2v.4c-.4.3-1,.6-1.6.6s-1-.4-.8-1.3l.7-3.5c0-.3,0-.4-.3-.5h-.5c0,0,0-.5,0-.5l2.3-.3h0ZM8,5.5c-.6,0-1-.4-1-1s.4-1,1-1,1,.4,1,1-.4,1-1,1'/%3E%3C/svg%3E");
+}
+
+
+.locsoldout{
+  top: 0;
+  right: auto;
+  left: 0;
+  width:max-content;
+  text-transform:uppercase;
+  padding-left:10px;
+  padding-right:10px;
+  font-family: var(--fuente-alterna);
+}
+
+
+
+/*Página de Checkout*/
+#order_review_heading{
+  display:none;
+}
+#customer_details .col-1,
+#customer_details .col-2{
+  float:none!important;
+  width:100%!important;
+}
+
+form.woocommerce-checkout{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction:row;
+  justify-content: space-between;
+  border:solid 1px black;
+}
+form.woocommerce-checkout .woocommerce-NoticeGroup-updateOrderReview{
+  width:100%;
+}
+form.woocommerce-checkout #customer_details{
+  flex:1;
+  margin-right:15px;
+  border:solid 1px red;
+}
+
+form.woocommerce-checkout #order_review{
+  width:480px;
+}
+
+
+
+/* ------------------------------------woocommerce pagina de carrito Carnemart ------------------------------------------------------- */
 
 body.page-template-pagina-interna-con-titulo {
   h1.has-verde-color {
@@ -231,10 +337,6 @@ body.woocommerce-cart {
     border-radius: 300px !important;
     /* background-color: var(--color-secundario) !important; */
     color: var(--color-claro) !important;
-
-    &:hover {
-      /* background-color: var(--color-tercero) !important; */
-    }
   }
 
   .actions {
@@ -541,8 +643,7 @@ iframe.full-width-iframe {
   line-height: 1 !important;
   background-color: var(--color-principal) !important;
   color: var(--color-claro) !important;
-  ;
-  text-decoration: none !important !important;
+  text-decoration: none !important;
   padding: 10px 20px !important;
   border-radius: 300px !important;
 
@@ -597,12 +698,22 @@ body.woocommerce-account {
 }
 
 
+.woocommerce-checkout-review-order:before{
+  content:"Tu Pedido";
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-principal);
+}
+
+
+
 .woocommerce-checkout-review-order {
-  padding: 50px var(--padding-contenido) 20px var(--padding-contenido);
+  padding: 20px var(--padding-contenido) 20px var(--padding-contenido);
   border-radius: var(--border-normal);
-  background: #e3f7f4 !important;
+  background: #f4f8ff !important;
   margin-bottom: 20px;
   margin-top: 0;
+    position:relative;
 }
 
 h3#order_review_heading {
@@ -3142,7 +3253,7 @@ a.flotante-cta-whats:hover {
   color: #ffffff;
   font-size: 0.9rem;
   display: block;
-  width: 100%;
+  width: 90%;
   min-height: 40px;
 }
 
@@ -3354,7 +3465,7 @@ ul.sub-menu li.menu-item a.nav-link {
 }
 
 body.marquesina-activa.master-class-site {
-  padding: 190px 0 0 0;
+  padding: 160px 0 0 0;
 }
 
 .site__slider-lateral-y-cta-wrapper {
@@ -3503,10 +3614,10 @@ body.marquesina-activa.master-class-site {
 .add-to-cart {
   background-color: var(--color-secundario) !important;
   border: none !important;
-  padding: 10px 30px 10px 8px;
+  padding: 10px 30px 10px 30px!important;
   border-radius: 6px;
   color: var(--color-claro);
-  font-size: 12px;
+  font-size: 13px!important;
   background-size: 18px;
   background-position: 95% 50%;
   background-repeat: no-repeat;
@@ -7448,7 +7559,6 @@ img.slide-slick-marca_img {
 
   .bi {
     font-size: 25px;
-    stroke-width: ;
   }
 }
 
@@ -7689,7 +7799,7 @@ body.single-product {
     width: max-content !important;
   }
 
-  .cm-peso-tooltip {
+  .cm-peso-tooltip-1 {
     display: block;
     visibility: hidden;
     opacity: 0;
@@ -7830,7 +7940,7 @@ h1.area-encabezado-single__titulo {
     width: 100%;
   }
 
-  .gform-button {
+  .gform-button.button {
     height: 60px !important;
     border-radius: 0 300px 300px 0 !important;
     width: 100px;
@@ -7843,7 +7953,15 @@ h1.area-encabezado-single__titulo {
     padding-left: 10px;
     color: red !important;
   }
+
 }
+
+body.woocommerce-cart .banner_footer-box-form {
+    .button.gform-button {
+        border-radius: 0 300px 300px 0 !important;
+    }
+}
+
 
 /*------------------------------------------ Responsive ------------------------------*/
 @media screen and (max-width: 1180px) {
@@ -7991,6 +8109,10 @@ h1.area-encabezado-single__titulo {
 
   .wpcf7.js {
     width: 100%;
+  }
+
+  form.woocommerce-checkout #order_review {
+      width: 350px;
   }
 }
 
@@ -8474,6 +8596,20 @@ h1.area-encabezado-single__titulo {
 }
 
 @media screen and (max-width: 768px) {
+
+  form.woocommerce-checkout #customer_details{
+    width: 100%!important;
+  }
+  .woocommerce-checkout-review-order{
+    width: 100%!important;
+  }
+  form.woocommerce-checkout{
+    flex-direction: column;
+  }
+  form.woocommerce-checkout #order_review {
+    width: 100%;
+} 
+
   .row-listado-productos {
     flex-direction: column;
     gap: 20px;
@@ -8576,9 +8712,47 @@ h1.area-encabezado-single__titulo {
       min-width: 100%;
     }
   }
+
+    body.woocommerce-page table.cart .product-thumbnail{
+    display:block!important;
+    text-align:left!important;
+  }
+    body.woocommerce-page table.cart .product-thumbnail:before{
+    content:none!important;
+  }
+  
+  .woocommerce-cart table.cart img{
+    width:100px;
+  }
+  
+  .woocommerce-cart-form__contents {
+        .product-name strong{
+            display:block!important;
+            margin:5px 0!important;
+        }
+    }
+
+
 }
 
 /* 768 */
+
+@media screen and (min-width:768px){
+  tr.woocommerce-shipping-totals.shipping{
+  display: flex;
+    flex-direction: column;
+    width: 270%;
+    
+    th, td{
+      width:100%!important;
+    }
+  }
+  
+  tr.order-total th{
+    border:none!important;
+  }
+}
+
 
 @media screen and (max-width: 767px) {
   .woocommerce-cart-form__cart-item {
@@ -8593,6 +8767,14 @@ h1.area-encabezado-single__titulo {
       padding-top: 5px;
       font-size: 13px;
     }
+
+    .woocommerce-cart-form__cart-item {
+        .product-name a {          
+            font-size: 17px!important;
+        }
+    }
+
+
   }
 
   .woocommerce table.shop_table_responsive tr:nth-child(2n) td,
@@ -8834,6 +9016,10 @@ h1.area-encabezado-single__titulo {
 /* 767 */
 
 @media screen and (max-width: 680px) {
+  
+  .add-to-cart{
+    font-size:10px!important;
+  }
   .coupon {
     .input-text {
       width: 45% !important;
