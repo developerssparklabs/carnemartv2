@@ -232,7 +232,6 @@ form.woocommerce-checkout{
   flex-wrap: wrap;
   flex-direction:row;
   justify-content: space-between;
-  border:solid 1px black;
 }
 form.woocommerce-checkout .woocommerce-NoticeGroup-updateOrderReview{
   width:100%;
@@ -240,7 +239,6 @@ form.woocommerce-checkout .woocommerce-NoticeGroup-updateOrderReview{
 form.woocommerce-checkout #customer_details{
   flex:1;
   margin-right:15px;
-  border:solid 1px red;
 }
 
 form.woocommerce-checkout #order_review{
