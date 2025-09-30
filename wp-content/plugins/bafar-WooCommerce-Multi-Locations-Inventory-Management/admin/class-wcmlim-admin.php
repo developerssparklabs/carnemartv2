@@ -161,7 +161,7 @@ class Wcmlim_Admin
        // Add Validation to "Exclude all locations" settings - User should not able to exclude all locations -code end
 
     wp_enqueue_script('wp-color-picker');
-    wp_enqueue_script('wcmlim-fontawesome', "https://kit.fontawesome.com/82940a45e9.js", array('jquery'), $this->version, true);
+    // wp_enqueue_script('wcmlim-fontawesome', "https://kit.fontawesome.com/82940a45e9.js", array('jquery'), $this->version, true);
     wp_enqueue_script($this->plugin_name . 'preview', plugin_dir_url(__FILE__) . 'js/wcmlim-admin-preview-min.js', array('jquery'), $this->version . rand(), false);
     /* bulk assign location to users and products */
     wp_enqueue_script($this->plugin_name . '_set_bulk_defaultloc', plugin_dir_url(__FILE__) . 'js/set-bulk-default-loc-min.js', array('jquery'), $this->version . rand(), false);

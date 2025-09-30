@@ -124,7 +124,7 @@ wp_localize_script($this->plugin_name, 'multi_inventory', array(
 
 ));
 /* fontawesome */
-wp_enqueue_script('wcmlim-fontawesome', "https://kit.fontawesome.com/82940a45e9.js", array('jquery'), $this->version, true);
+//wp_enqueue_script('wcmlim-fontawesome', "https://kit.fontawesome.com/82940a45e9.js", array('jquery'), $this->version, true);
 $advanceListView = get_option('wcmlim_radio_loc_format');
 $optiontype_loc = get_option('wcmlim_select_or_dropdown');
 if ($advanceListView == "advanced_list_view" && $optiontype_loc == 'on') {
