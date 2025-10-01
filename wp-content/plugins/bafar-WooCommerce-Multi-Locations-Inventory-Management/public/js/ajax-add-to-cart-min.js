@@ -100,13 +100,13 @@
 
                         if ("1" == a)
                             Swal.fire({
-                                title: "Â¡Producto sin stock!",
-                                text: "Este producto no estÃ¡ disponible por el momento. Te invitamos a seguir explorando nuestro catÃ¡logo; seguramente encontrarÃ¡s una alternativa que se ajuste a tus necesidades.",
+                                title: "¡Producto sin stock!",
+                                text: "Este producto no está disponible por el momento. Te invitamos a seguir explorando nuestro catálogo; seguramente encontrarás una alternativa que se ajuste a tus necesidades.",
                                 icon: "warning",
                                 showCancelButton: !0,
                                 confirmButtonColor: "#3085d6",
                                 cancelButtonColor: "#d33",
-                                confirmButtonText: "Â¡SÃ­, actualizar carrito!"
+                                confirmButtonText: "¡Sí, actualizar carrito!"
                             }).then(t => {
                                 if (t.isConfirmed) {
                                     let { ajaxurl: a } = multi_inventory;
@@ -116,8 +116,8 @@
                                         data: { action: "wcmlim_empty_cart_content" },
                                         success(t) {
                                             Swal.fire({
-                                                title: "Â¡Carrito actualizado!",
-                                                text: "Los artÃ­culos de tu carrito han sido actualizados, por favor aÃ±ade el artÃ­culo de nuevo.",
+                                                title: "¡Carrito actualizado!",
+                                                text: "Los artículos de tu carrito han sido actualizados, por favor añade el artículo de nuevo.",
                                                 icon: "success"
                                             }).then(() => {
                                                 window.location.href = window.location.href
@@ -129,7 +129,7 @@
                         else if ("2" == a)
                             Swal.fire({
                                 title: "Producto no disponible",
-                                text: "El artÃ­culo no estÃ¡ disponible en esta ubicaciÃ³n, asegurese de seleccionar una tienda.",
+                                text: "El artículo no está disponible en esta ubicación, asegúrese de seleccionar una tienda.",
                                 icon: "warning"
                             }).then(() => {
                                 window.location.href = window.location.href
@@ -144,7 +144,7 @@
                             });
                         else if ('9' == a)
                             Swal.fire({
-                                title: "Cantidad no vÃ¡lida",
+                                title: "Cantidad no válida",
                                 text: "La cantidad que intentas agregar no coincide con los incrementos permitidos para este producto. Por favor verifica y ajusta la cantidad correcta.",
                                 icon: "warning",
                                 confirmButtonText: "Entendido",
@@ -152,7 +152,14 @@
                             }).then(() => {
                                 //window.location.href = window.location.href
                             });
-
+                        else if ('11' == a) 
+                            // Mensaje relacionado a que el producto no esta disponible para la compra
+                            Swal.fire({
+                                title: "Producto no disponible para la compra",
+                                text: "El artículo no está disponible para la compra en este momento. Por favor, revisa los detalles del producto o contacta al soporte para más información.",
+                            }).then(() => {
+                                window.location.href = window.location.href
+                            });
                         if (a.error && a.product_url) {
                             window.location = a.product_url;
                             return
