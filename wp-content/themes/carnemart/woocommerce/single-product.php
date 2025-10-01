@@ -20,7 +20,11 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-get_header('shop'); ?>
+get_header('shop'); 
+
+do_action('woocommerce_before_single_product');
+
+?>
 
 <?php
 /**
