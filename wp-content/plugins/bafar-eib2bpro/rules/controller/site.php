@@ -263,9 +263,9 @@ class Site extends \EIB2BPRO\Rules
         }
 
         if (apply_filters('b2bpro_enable_before_calculate_totals_count', false)) {
-            if (did_action('woocommerce_before_calculate_totals') >= intval(apply_filters('b2bpro_enable_before_calculate_totals_count', 2))) {
-                return;
-            }
+            // if (did_action('woocommerce_before_calculate_totals') >= intval(apply_filters('b2bpro_enable_before_calculate_totals_count', 2))) {
+            //     return;
+            // }
         }
 
         $prices = array($sale_price);

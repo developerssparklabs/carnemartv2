@@ -3804,7 +3804,12 @@ function obtener_configuracion_descuentos()
  * Fecha: 06/06/2025
  * ============================================================
  */
-add_action('woocommerce_before_calculate_totals', 'apply_dynamic_discounts_by_location', 20, 1);
+add_action(
+    'woocommerce_before_calculate_totals',
+    'apply_dynamic_discounts_by_location',
+    PHP_INT_MAX - 1,
+    1
+);
 require_once get_stylesheet_directory() . '/includes/woocommerce/checkout/before_calculate_totals.php';
 
 /**

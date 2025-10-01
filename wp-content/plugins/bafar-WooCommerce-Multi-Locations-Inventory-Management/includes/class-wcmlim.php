@@ -487,7 +487,7 @@ class Wcmlim
       $this->loader->add_filter('woocommerce_get_script_data', $plugin_public, 'wcmlim_get_wc_script_data', 10, 2);
       if ($enable_price == 'on') {
         // hook for modify product price as per location
-        $this->loader->add_action('woocommerce_before_calculate_totals', $plugin_public, 'wcmlim_add_custom_price');
+        // $this->loader->add_action('woocommerce_before_calculate_totals', $plugin_public, 'wcmlim_add_custom_price');
         $this->loader->add_filter('woocommerce_cart_item_price', $plugin_public, 'wcmlim_cart_item_price', 10, 3);
         $this->loader->add_filter('woocommerce_product_price_class', $plugin_public, 'wcmlim_woocommerce_price_class', 10, 2);
       }

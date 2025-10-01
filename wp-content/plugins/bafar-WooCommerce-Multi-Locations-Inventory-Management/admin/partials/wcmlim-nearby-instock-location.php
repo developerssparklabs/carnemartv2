@@ -30,7 +30,7 @@ class Wcmlim_Nearby_Instock_Location
 
     $checked = 'on';
     if ($checked == "on") {
-      add_action('woocommerce_before_calculate_totals', array($this, 'add_custom_price_nearby'), 100);
+      //add_action('woocommerce_before_calculate_totals', array($this, 'add_custom_price_nearby'), 100);
     }
   }
 

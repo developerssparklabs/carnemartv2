@@ -78,7 +78,7 @@ class Main
                     add_filter('woocommerce_cart_item_price', '\EIB2BPRO\B2b\Site\Offers::minicart_display', 10, 3);
                     add_filter('woocommerce_cart_item_thumbnail', '\EIB2BPRO\B2b\Site\Offers::cart_item_thumbnail', 10, 3);
                     add_filter('woocommerce_checkout_create_order_line_item', '\EIB2BPRO\B2b\Site\Offers::add_meta_to_order', 30, 4);
-                    add_action('woocommerce_before_calculate_totals', '\EIB2BPRO\B2b\Site\Offers::cart_calculate_totals');
+                    // add_action('woocommerce_before_calculate_totals', '\EIB2BPRO\B2b\Site\Offers::cart_calculate_totals');
                     add_action('woocommerce_after_cart_table', '\EIB2BPRO\B2b\Site\Offers::after_cart_table', 100);
                     add_filter('woocommerce_cart_item_visible', '\EIB2BPRO\B2b\Site\Offers::hide_offer_from_cart', 100, 3);
                     if (true === apply_filters('eib2bpro_offers_add_products_to_order', true)) {
