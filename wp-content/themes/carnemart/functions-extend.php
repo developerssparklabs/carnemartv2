@@ -1812,6 +1812,11 @@ function custom_pickup_fields()
         echo '<option value="">' . esc_html__('Selecciona el giro de la empresa', 'woocommerce') . '</option>';
         echo '</select>';
         echo '</p>';
+
+        echo '<p class="form-row form-row-wide" id="billing_company_field">';
+        echo '<label for="billing_company">' . __( "Nombre de la empresa", "woocommerce" ) . ' <span class="required">*</span></label>';
+        echo '<input type="text" class="input-text" name="billing_company" id="billing_company" placeholder="" value="" data-required="1" autocomplete="organization" required aria-required="true" aria-invalid="true">';
+        echo '</p>';
     }
 
     echo '</div>'; // #pickup_details
