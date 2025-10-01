@@ -69,6 +69,7 @@ if (!function_exists('anaquel_home')) {
                         z-index: 0;
                     "></div>
                 </div>';
+                return '';
         }
 
         // Cache key única por tienda y configuración
