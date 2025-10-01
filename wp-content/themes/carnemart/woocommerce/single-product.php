@@ -857,27 +857,43 @@ do_action('woocommerce_before_main_content');
 		const plusButton = document.querySelector('.quantity-plus');
 		const quantityInput = document.querySelector('#quantity-input');
 
-		// Obtenemos el paso y el mínimo desde los atributos del input
+		if (!minusButton || !plusButton || !quantityInput) {
+			return;
+		}
+
+		// Obtenemos el paso, el mínimo y el máximo desde los atributos del input
 		const step = parseFloat(quantityInput.getAttribute('step')) || 1;
 		const min = parseFloat(quantityInput.getAttribute('min')) || step;
+		const max = quantityInput.hasAttribute('max') ? parseFloat(quantityInput.getAttribute('max')) : null;
+		const decimals = (step.toString().split('.')[1] || '').length;
+
+		function formatValue(val) {
+			return decimals > 0 ? parseFloat(val).toFixed(decimals) : parseInt(val, 10);
+		}
 
 		minusButton.addEventListener('click', function () {
-			let currentValue = parseInt(quantityInput.value) || 1;
-			if (currentValue > min) {
-				quantityInput.value = currentValue - step;
-			}
+			let currentValue = parseFloat(quantityInput.value) || min;
+			let newValue = currentValue - step;
+			if (newValue < min) newValue = min;
+			quantityInput.value = formatValue(newValue);
+			quantityInput.dispatchEvent(new Event('change', { bubbles: true }));
 		});
 
 		plusButton.addEventListener('click', function () {
-			let currentValue = parseInt(quantityInput.value) || 1;
-			let maxValue = parseInt(quantityInput.max) || 999;
-			if (currentValue < maxValue) {
-				quantityInput.value = currentValue + step;
-			}
+			let currentValue = parseFloat(quantityInput.value) || min;
+			let newValue = currentValue + step;
+			if (max !== null && newValue > max) newValue = max;
+			quantityInput.value = formatValue(newValue);
+			quantityInput.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+
+		quantityInput.addEventListener('change', function () {
+			let value = parseFloat(quantityInput.value) || min;
+			if (value < min) value = min;
+			if (max !== null && value > max) value = max;
+			quantityInput.value = formatValue(value);
 		});
 	});
 </script>
-
-
 
 <?php get_footer('shop'); ?>
