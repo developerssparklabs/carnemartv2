@@ -726,3 +726,6 @@ add_action('wp_footer', function () {
     </script>
     <?php
 });
+
+// Volver a mostrar la caja nativa "Campos personalizados"
+add_filter('acf/settings/remove_wp_meta_box', '__return_false');
