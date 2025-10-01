@@ -113,11 +113,17 @@
         data: { action: "wcmlim_empty_cart_content", loc_id: r, product_id: c },
         success(t) {
           jQuery('#msgLoading').css('display', 'none');
-          Swal.fire({ title: l, text: i, icon: "success" }).then(() => {
-            alies_setcookies.setcookie("wcmlim_selected_location_termid", get_termID);
-            window.location.href = window.location.href;
-            jQuery('#msgLoading').css('display', 'flex');
-
+          Swal.fire({ 
+            title: l, 
+            text: i, 
+            icon: "success" 
+          }).then((result) => {
+            if (result.isConfirmed) {
+              alies_setcookies.setcookie("wcmlim_selected_location_termid", get_termID);
+              jQuery('#msgLoading').css('display', 'flex');
+              // Force page reload
+              window.location.reload(true);
+            }
           });
         },
       });
