@@ -104,7 +104,7 @@ class WebhookConeckta
                     $order->update_meta_data('metodo_entrega', '01'); // Uber
 
                     if ($response === false) {
-                        error_log('Error enviando pedido a Uber para el pedido: ' . $order->get_id());
+                       // error_log('Error enviando pedido a Uber para el pedido: ' . $order->get_id());
                     }
                 }
             } else {

@@ -38,7 +38,7 @@ class BafarPurchaseFlow
 
         $keys = OrderHelper::get_keys($location_id);
 
-        error_log("Keys: " . json_encode($keys), 3, _CARNEMART_CORE_PLUGIN_DIR . '/logs/logs_keys.log');
+        //error_log("Keys: " . json_encode($keys), 3, _CARNEMART_CORE_PLUGIN_DIR . '/logs/logs_keys.log');
 
         new ConektaHandler($keys['public'], $keys['private']);
     }
@@ -83,16 +83,16 @@ if (!file_exists($log_dir)) {
 }
 
 // Registrar logs de TODAS las peticiones HTTP entrantes
-add_action('init', function () use ($log_dir) {
-    $log_file = $log_dir . '/logs_http_requests.log';
-    $timestamp = date('Y-m-d H:i:s');
-    $method = $_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN';
-    $uri = $_SERVER['REQUEST_URI'] ?? 'UNKNOWN';
-    $headers = json_encode(getallheaders(), JSON_PRETTY_PRINT);
+// add_action('init', function () use ($log_dir) {
+//     $log_file = $log_dir . '/logs_http_requests.log';
+//     $timestamp = date('Y-m-d H:i:s');
+//     $method = $_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN';
+//     $uri = $_SERVER['REQUEST_URI'] ?? 'UNKNOWN';
+//     $headers = json_encode(getallheaders(), JSON_PRETTY_PRINT);
 
-    $entry = "[$timestamp] $method $uri\nHEADERS:\n$headers\n\n";
-    error_log($entry, 3, $log_file);
-});
+//     $entry = "[$timestamp] $method $uri\nHEADERS:\n$headers\n\n";
+//     error_log($entry, 3, $log_file);
+// });
 
 // Desactivar reducción automática de stock
 add_filter('woocommerce_payment_complete_reduce_order_stock', '__return_false');
@@ -111,12 +111,12 @@ add_action('init', function () use ($log_dir) {
 
     if ($shouldRun) {
         $entry = "[$timestamp] ✅ Se ejecutó BafarPurchaseFlow (desde página o header personalizado)\n";
-        error_log($entry, 3, $log_cond_file_executed);
+        //error_log($entry, 3, $log_cond_file_executed);
         BafarPurchaseFlow::getInstance();
     } else {
         $entry = "[$timestamp] 🔁 NO se ejecutó BafarPurchaseFlow\n";
         $entry .= "URI: " . ($_SERVER['REQUEST_URI'] ?? 'N/A') . "\n";
-        error_log($entry, 3, $log_cond_file);
+        //error_log($entry, 3, $log_cond_file);
     }
 });
 
@@ -128,7 +128,7 @@ add_action('rest_api_init', function () use ($log_dir) {
     // ✅ Verifica si es clearsales
     if (strpos($current_route, '/wp-json/clearsales/v1/status') !== false) {
         $entry = "[$timestamp] ✅ rest_api_init ejecutado - Registro de ruta ClearSales\n";
-        error_log($entry, 3, $log_file);
+        //error_log($entry, 3, $log_file);
 
         register_rest_route('clearsales/v1', '/status/', [
             'methods' => 'POST',
@@ -141,7 +141,7 @@ add_action('rest_api_init', function () use ($log_dir) {
     // ✅ Verifica si es conekta
     if (strpos($current_route, '/wp-json/conekta/v1/status') !== false) {
         $entry = "[$timestamp] ✅ rest_api_init ejecutado - Registro de ruta Conekta\n";
-        error_log($entry, 3, $log_file);
+        //error_log($entry, 3, $log_file);
 
         register_rest_route('conekta/v1', '/status/', [
             'methods' => 'POST',
@@ -153,5 +153,5 @@ add_action('rest_api_init', function () use ($log_dir) {
 
     // ⛔ No coincide con ninguna
     $entry = "[$timestamp] ⛔ rest_api_init ignorado - No coincide con clearsales/status ni con conekta/status\n";
-    error_log($entry, 3, $log_file);
+    //error_log($entry, 3, $log_file);
 });

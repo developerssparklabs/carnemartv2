@@ -32,7 +32,7 @@ class WebhookClearSales
         $logger = wc_get_logger();
         $data = (array) $request->get_json_params();
 
-        $this->log_request($data);
+        //$this->log_request($data);
         $logger->info('Webhook recibido', ['source' => self::LOG_SOURCE, 'data' => $data]);
 
         // Validación de payload
