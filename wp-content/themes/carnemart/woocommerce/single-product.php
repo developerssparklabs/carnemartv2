@@ -157,7 +157,8 @@ do_action('woocommerce_before_main_content');
 					// Verificar cookie de tienda
 					$term_id = sb_get_current_store_term_id();
 					if ($term_id) {
-						$stock_quantity = get_post_meta($product->get_id(), "wcmlim_stock_at_{$term_id}", true);
+						$stock_quantity = (float) get_post_meta($product->get_id(), "wcmlim_stock_at_{$term_id}", true);
+						$stock_quantity = $stock_quantity < 0 ? 0: $stock_quantity;
 						$stock_status = $product->get_stock_status();
 						if ($stock_status === 'instock') {
 							echo '<p class="product-stock in-stock"><strong>Stock:</strong> Disponible (' . esc_html($stock_quantity) . ' unidades)</p>';
@@ -379,83 +380,97 @@ do_action('woocommerce_before_main_content');
 								?>
 							<?php } ?>
 							<?php if ($product->is_in_stock()):
-
-								$term_id = sb_get_current_store_term_id();
-								if (!$term_id) {
-									echo '<div class="cm-store-required" style="
-										display: flex;
-										margin-top:10px;
-										background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-										color: white;
-										padding: 15px;
-										border-radius: 8px;
-										text-align: left;
-										font-weight: bold;
-										margin-bottom: 10px;
-										box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-									">
-										<i class="bi bi-geo-alt-fill" style="margin-right: 8px; font-size: 1.1em;"></i> 
-										<div>
-											Selecciona una tienda para ver el precio, disponibilidad y opciones de compra de este producto.
-										</div>
-									</div>';
+								if ($stock_quantity <= 0) {
+									 // SIN STOCK
+									echo '<div style="display:flex;align-items:flex-start;gap:10px;margin-top:12px;padding:12px 14px;border-radius:10px;background:linear-gradient(90deg,#FEF2F2,#FFF1F2);box-shadow:0 2px 6px rgba(0,0,0,.04);">';
+									echo '  <i class="bi bi-exclamation-octagon" style="font-size:18px;line-height:1;color:#DC2626;margin-top:2px;"></i>';
+									echo '  <div style="color:#991B1B">';
+									echo '    <div style="font-weight:700;">Producto agotado por ahora.</div>';
+									if ($backorders_allowed) {
+										echo '    <div style="font-weight:500;">Aún puedes pedirlo: lo apartamos y te avisamos en cuanto llegue.</div>';
+									} else {
+										echo '    <div style="font-weight:500;">Prueba otras sucursales o vuelve más tarde — reponemos con frecuencia.</div>';
+									}
+									echo '  </div>';
+									echo '</div>';
 								} else {
-									// === Paso y mínimo desde metas ===
-									$pid = $product->get_id();
-									$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
-									$min_meta = get_post_meta($pid, 'product_min', true); // opcional. Si no hay, usamos el step
-							
-									$step = is_numeric($step_meta) ? (float) $step_meta : 1;
-									$min = is_numeric($min_meta) ? (float) $min_meta : $step;
-
-									if ($step <= 0)
-										$step = 1;
-									if ($min <= 0)
-										$min = $step;
-
-									// Cantidad por defecto = mínimo
-									$default_qty = $min;
-
-									// Máximo recomendado (si manejas stock; quítalo si no lo necesitas)
-									$max_qty = $product->backorders_allowed() ? '' : $product->get_stock_quantity();
-
-									// Decimales para formatear el valor mostrado
-									$decimals = strpos((string) $step, '.') !== false ? strlen(substr(strrchr((string) $step, '.'), 1)) : 0;
-
-									?>
-										<form class="cart"
-											action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>"
-											method="post" enctype="multipart/form-data">
-
-											<div class="product-quantity" style="margin-top: 12px;">
-												<button type="button" class="quantity-btn quantity-minus"
-													aria-label="Disminuir">-</button>
-
-												<input type="number" 
-													id="quantity-input" 
-													class="quantity-input" 
-													name="quantity"
-													value="<?php echo esc_attr(wc_format_decimal($default_qty, $decimals)); ?>" 
-													step="<?php echo esc_attr($step); ?>" 
-													min="<?php echo esc_attr($min); ?>"
-													<?php if ($max_qty): ?>max="<?php echo esc_attr($max_qty); ?>"<?php endif; ?>
-													inputmode="decimal" 
-													pattern="[0-9]*[.,]?[0-9]*"
-													aria-label="<?php esc_attr_e('Cantidad'); ?>">
-
-												<button type="button" class="quantity-btn quantity-plus"
-													aria-label="Aumentar">+</button>
+									$term_id = sb_get_current_store_term_id();
+									if (!$term_id) {
+										echo '<div class="cm-store-required" style="
+											display: flex;
+											margin-top:10px;
+											background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+											color: white;
+											padding: 15px;
+											border-radius: 8px;
+											text-align: left;
+											font-weight: bold;
+											margin-bottom: 10px;
+											box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+										">
+											<i class="bi bi-geo-alt-fill" style="margin-right: 8px; font-size: 1.1em;"></i> 
+											<div>
+												Selecciona una tienda para ver el precio, disponibilidad y opciones de compra de este producto.
 											</div>
-
-											<!-- Necesario para que el POST agregue este producto -->
-											<input type="hidden" name="add-to-cart"
-												value="<?php echo esc_attr($product->get_id()); ?>">
-
-											<button type="submit" class="add-to-cart-button single_add_to_cart_button button">
-												Añadir al carrito <i class="bi bi-cart2"></i>
-											</button>
-										</form>
-									<?php
+										</div>';
+									} else {
+										// === Paso y mínimo desde metas ===
+										$pid = $product->get_id();
+										$step_meta = get_post_meta($pid, 'product_step', true); // p.ej. "0.5"
+										$min_meta = get_post_meta($pid, 'product_min', true); // opcional. Si no hay, usamos el step
+								
+										$step = is_numeric($step_meta) ? (float) $step_meta : 1;
+										$min = is_numeric($min_meta) ? (float) $min_meta : $step;
+	
+										if ($step <= 0)
+											$step = 1;
+										if ($min <= 0)
+											$min = $step;
+	
+										// Cantidad por defecto = mínimo
+										$default_qty = $min;
+	
+										// Máximo recomendado (si manejas stock; quítalo si no lo necesitas)
+										$max_qty = $product->backorders_allowed() ? '' : $product->get_stock_quantity();
+	
+										// Decimales para formatear el valor mostrado
+										$decimals = strpos((string) $step, '.') !== false ? strlen(substr(strrchr((string) $step, '.'), 1)) : 0;
+	
+										?>
+											<form class="cart"
+												action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>"
+												method="post" enctype="multipart/form-data">
+	
+												<div class="product-quantity" style="margin-top: 12px;">
+													<button type="button" class="quantity-btn quantity-minus"
+														aria-label="Disminuir">-</button>
+	
+													<input type="number" 
+														id="quantity-input" 
+														class="quantity-input" 
+														name="quantity"
+														value="<?php echo esc_attr(wc_format_decimal($default_qty, $decimals)); ?>" 
+														step="<?php echo esc_attr($step); ?>" 
+														min="<?php echo esc_attr($min); ?>"
+														<?php if ($max_qty): ?>max="<?php echo esc_attr($max_qty); ?>"<?php endif; ?>
+														inputmode="decimal" 
+														pattern="[0-9]*[.,]?[0-9]*"
+														aria-label="<?php esc_attr_e('Cantidad'); ?>">
+	
+													<button type="button" class="quantity-btn quantity-plus"
+														aria-label="Aumentar">+</button>
+												</div>
+	
+												<!-- Necesario para que el POST agregue este producto -->
+												<input type="hidden" name="add-to-cart"
+													value="<?php echo esc_attr($product->get_id()); ?>">
+	
+												<button type="submit" class="add-to-cart-button single_add_to_cart_button button">
+													Añadir al carrito <i class="bi bi-cart2"></i>
+												</button>
+											</form>
+										<?php
+									}
 								}
 								?>
 							<?php endif; ?>
