@@ -92,7 +92,7 @@
                         if ("4" == a)
                             return Swal.fire({
                                 title: "No disponible",
-                                text: `La cantidad disponible es ${l} en la ubicaciÃ³n ${n}`,
+                                text: `La cantidad disponible es ${l} en la ubicación ${n}`,
                                 icon: "warning"
                             }).then(() => {
                                 // window.location.href = window.location.href
