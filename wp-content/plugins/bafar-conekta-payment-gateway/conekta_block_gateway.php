@@ -46,11 +46,11 @@ class WC_Conekta_Gateway extends WC_Conekta_Plugin
 		$location_id = !empty($_COOKIE['wcmlim_selected_location_termid']) ? $_COOKIE['wcmlim_selected_location_termid'] : '';
         
         
-     
-         $location_apikey = get_term_meta($location_id, 'location_api_key', true);
+        error_log("location_id: " . $location_id);
+        $location_apikey = get_term_meta($location_id, 'location_api_key', true);
       
 
-  
+        error_log("conekta  apikey bafar.phgp" .  $location_apikey);
         if ( !empty($location_apikey) ) {
             $this->api_key = $location_apikey;
             $this->settings['cards_api_key'] = $location_apikey;
@@ -218,7 +218,7 @@ class WC_Conekta_Gateway extends WC_Conekta_Plugin
 			$this->api_key = $this->settings['cards_api_key'];
 		}
       //  //error_log("keikos si entra" .  $this->api_key);
-      error_log("api key  get_api_instance" . $this->api_key);
+       // error_log("api key  get_api_instance" . $this->api_key);
        return  new OrdersApi(null, Configuration::getDefaultConfiguration()->setAccessToken( $this->api_key));
     }
     /**
@@ -269,8 +269,8 @@ class WC_Conekta_Gateway extends WC_Conekta_Plugin
 
 
         //gestion
-        error_log("items ordden");
-        error_log(json_encode($rq));
+        // error_log("items ordden 1");
+        // error_log("Data::" . json_encode($rq));
 
         if (!empty($shipping_contact)) {
             $rq->setShippingContact(new CustomerShippingContacts($shipping_contact));
@@ -289,9 +289,9 @@ class WC_Conekta_Gateway extends WC_Conekta_Plugin
                 // Si el meta existe, lo actualizamos
                 $metaUpdate = update_post_meta($order->get_id(), 'conekta-order-id', $orderCreated->getId());
                 if ($metaUpdate) {
-                    error_log("Meta actualizado correctamente para el pedido con ID " . $order->get_id());
+                  //  error_log("Meta actualizado correctamente para el pedido con ID " . $order->get_id());
                 } else {
-                    error_log("Error al actualizar el meta para el pedido con ID " . $order->get_id());
+                    //error_log("Error al actualizar el meta para el pedido con ID " . $order->get_id());
                 }
             } else {
                 // Si no existe, lo creamos
@@ -306,44 +306,40 @@ class WC_Conekta_Gateway extends WC_Conekta_Plugin
                     if ( $location == $key) {
                         $location_name = $store->name;
                     }
-                }
-            
-                    
+                } 
 
                 // Si hay valores en las cookies, actualizar los metadatos de la orden
-                if (!empty($location_id)) {
-                    add_post_meta($order->get_id(), 'location_id', $location_id, true);
-                }
+                // if (!empty($location_id)) {
+                //     add_post_meta($order->get_id(), 'location_id', $location_id, true);
+                // }
 
-                    // Si hay valores en las cookies, actualizar los metadatos de la orden
-                if (!empty($centro)) {
-                    add_post_meta($order->get_id(), 'centro', $centro, true);
-                }
+                //     // Si hay valores en las cookies, actualizar los metadatos de la orden
+                // if (!empty($centro)) {
+                //     add_post_meta($order->get_id(), 'centro', $centro, true);
+                // }
 
-                 // Si hay valores en las cookies, actualizar los metadatos de la orden
-                if (!empty($location_name)) {
-                            add_post_meta($order->get_id(), 'location_name', $location_name, true);
-                }
+                //  // Si hay valores en las cookies, actualizar los metadatos de la orden
+                // if (!empty($location_name)) {
+                //             add_post_meta($order->get_id(), 'location_name', $location_name, true);
+                // }
 
-                if (!empty($location)) {
-                    add_post_meta($order->get_id(), 'location',  $location, true);
-                }
+                // if (!empty($location)) {
+                //     add_post_meta($order->get_id(), 'location',  $location, true);
+                // }
 
+                $order->update_meta_data('conekta-order-id', $orderCreated->getId());
 
-                $metaCreate = add_post_meta($order->get_id(), 'conekta-order-id', $orderCreated->getId(), true);
-                if ($metaCreate) {
-                    //error_log("Meta creado correctamente para el pedido con ID " . $order->get_id());
-                      // Comprobación y log de la actualización de meta
-                        //error_log("orden " . $order->get_id());
-                        //error_log("orden created " . $orderCreated->getId());
-                        //error_log("meta create" . $metaCreate);
-                } else {
-                    //error_log("Error al crear el meta para el pedido con ID " . $order->get_id());
-                }
+                // Si quieres guardar las cookies también como meta:
+                if (!empty($location_id))  { $order->update_meta_data('location_id',  $location_id); }
+                if (!empty($centro))       { $order->update_meta_data('centro',       $centro); }
+                if (!empty($location_name)){ $order->update_meta_data('location_name',$location_name); }
+                if (!empty($location))     { $order->update_meta_data('location',     $location); }
+
+                // ¡IMPORTANTE!
+                $order->save();
             }
 
-
-           // $orderStatus = $order->update_status('pending', __('Awaiting the conekta payment', 'woocommerce'));
+           $orderStatus = $order->update_status('pending', __('Awaiting the conekta payment', 'woocommerce'));
             //error_log("Estado del pedido actualizado a pendiente: " . print_r($orderStatus, true)); // Log para la actualización de estado
             
             //sparklabs s8k keikos
@@ -396,4 +392,3 @@ function woocommerce_gateway_conekta_woocommerce_block_support()
         );
     }
 }
-
