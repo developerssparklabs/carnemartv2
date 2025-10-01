@@ -690,13 +690,13 @@ add_filter('woocommerce_add_to_cart_validation', function ($passed, $product_id,
 
     if ($manage_stock == "yes") {
         if ($__stock_at_location <= 0) {
-            wc_add_notice("No hay suficiente stock en la tienda seleccionada.", "error");
+            wc_add_notice("No hay suficiente stock disponible para esta ubicación.", "error");
             return false;
         }
     }
 
     if ($quantity > $__stock_at_location) {
-        wc_add_notice("No hay suficiente stock en la tienda seleccionada.", "error");
+        wc_add_notice("No hay suficiente stock disponible para esta ubicación.", "error");
         return false;
     }
 

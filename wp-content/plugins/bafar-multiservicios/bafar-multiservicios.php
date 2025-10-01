@@ -1131,12 +1131,13 @@ YALO API
         }
         return $passed;
     }
-    add_filter(
-        "woocommerce_add_to_cart_validation",
-        "validar_stock_por_ubicacion",
-        10,
-        5
-    );
+    
+    // add_filter(
+    //     "woocommerce_add_to_cart_validation",
+    //     "validar_stock_por_ubicacion",
+    //     10,
+    //     5
+    // );
 
     // Función para mostrar el stock según la ubicación seleccionada después del precio
     function mostrar_stock_ubicacion_despues_precio()
