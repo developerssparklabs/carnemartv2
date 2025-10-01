@@ -1,4 +1,5 @@
 <!-- Button trigger modal -->
+<!-- 
 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalPermisos">
     Inicio
 </button>
@@ -14,8 +15,7 @@
 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalNoPermiso">
     No permiso
 </button>
-
-
+ -->
 
 <!-- Modal permisos de ubicación -->
 <div class="modal fade" id="modalPermisos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
