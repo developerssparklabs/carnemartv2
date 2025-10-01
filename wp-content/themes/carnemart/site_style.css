@@ -280,11 +280,15 @@ body.checkout dd.variation-Disponibilidad{
 .woocommerce-error{
   border:none!important;
 }
-.woocommerce-error a{
-  color:#ffffff!important;
-  font-weight:400!important;
-}
 
+.woocommerce-error li,
+.woocommerce-error li a,
+.woocommerce-error li strong {
+  pointer-events: none;
+  text-decoration: none !important; 
+  color:#ffffff!important;
+  font-weight:700!important;
+}
 
 
 /* ------------------------------------woocommerce pagina de carrito Carnemart ------------------------------------------------------- */

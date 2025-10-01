@@ -115,7 +115,7 @@ function html5blank_styles()
     wp_enqueue_style('html5blank');
     wp_register_style('allcss', get_template_directory_uri() . '/css/allcss.css', array(), '2.1.0', 'all');
     wp_enqueue_style('allcss');
-    wp_register_style('siteStyle', get_template_directory_uri() . '/site_style.css', array(), '2.2.0', 'all');
+    wp_register_style('siteStyle', get_template_directory_uri() . '/site_style.css', array(), '2.2.5', 'all');
     wp_enqueue_style('siteStyle');
 }
 
@@ -729,3 +729,18 @@ add_action('wp_footer', function () {
 
 // Volver a mostrar la caja nativa "Campos personalizados"
 add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+
+
+/**
+ * Limpiar notices antes de procesar el checkout
+ * (se ejecuta en cada clic a "Realizar pedido")
+ */
+add_action('woocommerce_checkout_process', function () {
+    // Vacía la cola actual de avisos
+    wc_clear_notices();
+
+    // Por si algún theme/plugin guardó notices directamente en la sesión
+    if (WC()->session) {
+        WC()->session->set('wc_notices', array());
+    }
+}, 0); // prioridad 0 para que ocurra ANTES de otros validadores

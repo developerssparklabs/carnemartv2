@@ -1,81 +1,85 @@
 <?php
-
-// Agregar mensajes de error personalizados para campos obligatorios
+/**
+ * Mensajes para campos requeridos (WooCommerce los muestra junto al input)
+ * — Todos en <strong>...</strong>
+ */
 add_filter('woocommerce_checkout_required_field_notice', function ($notice, $field_label, $field_key) {
     $mensajes = [
-        'billing_first_name' => 'Por favor, ingresa tu <strong>nombre</strong>.',
-        'billing_last_name' => 'Por favor, ingresa tus <strong>apellidos</strong>.',
-        'billing_address_1' => 'Por favor, escribe tu <strong>dirección</strong>.',
-        'billing_address_2' => 'Por favor, proporciona tu <strong>colonia</strong>.',
-        'billing_city' => 'Por favor, indica tu <strong>ciudad</strong>.',
-        'billing_postcode' => 'Por favor, proporciona tu <strong>código postal</strong>.',
-        'billing_phone' => 'Por favor, introduce tu <strong>número de teléfono</strong>.',
-        'billing_email' => 'Por favor, proporciona tu <strong>correo electrónico</strong>.',
+        'billing_first_name' => '<strong>Por favor, ingresa tu nombre.</strong>',
+        'billing_last_name'  => '<strong>Por favor, ingresa tus apellidos.</strong>',
+        'billing_address_1'  => '<strong>Por favor, escribe tu dirección.</strong>',
+        'billing_address_2'  => '<strong>Por favor, proporciona tu colonia.</strong>',
+        'billing_city'       => '<strong>Por favor, indica tu ciudad.</strong>',
+        'billing_postcode'   => '<strong>Por favor, proporciona tu código postal.</strong>',
+        'billing_phone'      => '<strong>Por favor, introduce tu número de teléfono.</strong>',
+        'billing_email'      => '<strong>Por favor, proporciona tu correo electrónico.</strong>',
     ];
-    return $mensajes[$field_key] ?? $notice;
+
+    // Si no está en nuestra lista, envolver el notice original en <strong>
+    return $mensajes[$field_key] ?? ('<strong>' . $notice . '</strong>');
 }, 10, 3);
 
-// Validaciones personalizadas de campos
-add_action('woocommerce_after_checkout_validation', 'custom_checkout_validations', 10, 2);
+/**
+ * Validaciones personalizadas (solo wc_add_notice), mensajes en <strong>...</strong>
+ */
+add_action('woocommerce_after_checkout_validation', function ($data) {
+    if (empty($_POST)) {
+        return;
+    }
 
-function custom_checkout_validations($data, $errors)
-{
-    if (!is_checkout()) return;
+    $post = wc_clean($_POST);
 
-    $post = $_POST;
+    // helper para añadir notices en negritas
+    $add = function (string $msg) {
+        wc_add_notice('<strong>' . $msg . '</strong>', 'error');
+    };
 
-    // No permitir números en nombre/apellidos
-    validate_no_numbers($post, $errors, [
-        'billing_first_name' => 'nombre',
-        'billing_last_name' => 'apellidos',
-    ]);
+    // 1) No permitir números en nombre/apellidos
+    if (!empty($post['billing_first_name']) && !preg_match('/^[\p{L}\s]+$/u', $post['billing_first_name'])) {
+        $add('El campo nombre solo debe contener letras y espacios.');
+    }
+    if (!empty($post['billing_last_name']) && !preg_match('/^[\p{L}\s]+$/u', $post['billing_last_name'])) {
+        $add('El campo apellidos solo debe contener letras y espacios.');
+    }
 
-    // Validar caracteres en ciertos campos, permitiendo tildes y ñ
-    validate_regex($post, $errors, [
-        'billing_company' => ['label' => 'Nombre de la empresa', 'regex' => '/^[\p{L}0-9\s\.,\-&]*$/u'],
-        'billing_address_1' => ['label' => 'Dirección de la calle', 'regex' => '/^[\p{L}0-9\s\.,\-]*$/u'],
-        'billing_address_2' => ['label' => 'Colonia', 'regex' => '/^[\p{L}0-9\s\.,\-]*$/u'],
-        'billing_city' => ['label' => 'Ciudad', 'regex' => '/^[\p{L}0-9\s\.,\-]*$/u'],
-    ]);
+    // 2) Validar caracteres en empresa/dirección/colonia/ciudad (tildes y ñ permitidas)
+    $regexCampos = [
+        'billing_company'   => ['label' => 'Nombre de la empresa',  'regex' => '/^[\p{L}0-9\s\.,\-&]*$/u'],
+        'billing_address_1' => ['label' => 'Dirección de la calle',  'regex' => '/^[\p{L}0-9\s\.,\-]*$/u'],
+        'billing_address_2' => ['label' => 'Colonia',                'regex' => '/^[\p{L}0-9\s\.,\-]*$/u'],
+        'billing_city'      => ['label' => 'Ciudad',                 'regex' => '/^[\p{L}0-9\s\.,\-]*$/u'],
+    ];
+    foreach ($regexCampos as $key => $info) {
+        if (!empty($post[$key]) && !preg_match($info['regex'], $post[$key])) {
+            $add('El campo ' . $info['label'] . ' contiene caracteres no permitidos.');
+        }
+    }
 
-    // Código postal
+    // 3) Código postal (solo dígitos 4–10)
     if (!empty($post['billing_postcode']) && !preg_match('/^\d{4,10}$/', $post['billing_postcode'])) {
-        $errors->add('billing_postcode', 'El <strong>código postal</strong> debe contener solo números.');
+        $add('El código postal debe contener solo números.');
     }
 
-    // Teléfono
+    // 4) Teléfono (solo dígitos 10–15)
     if (!empty($post['billing_phone']) && !preg_match('/^\d{10,15}$/', $post['billing_phone'])) {
-        $errors->add('billing_phone', 'El <strong>número de teléfono</strong> debe contener solo números.');
+        $add('El número de teléfono debe contener solo números (10 a 15 dígitos).');
     }
 
-    // Validar fecha y hora de recogida
-    $chosen_method = WC()->session->get('chosen_shipping_methods')[0] ?? '';
-    if (strpos($chosen_method, 'local_pickup:2') !== false) {
-        if (empty($post['pickup_date'])) {
-            $errors->add('pickup_date', 'Por favor, selecciona una <strong>fecha de recogida</strong>.');
-        }
-        if (empty($post['pickup_time'])) {
-            $errors->add('pickup_time', 'Por favor, selecciona una <strong>hora de recogida</strong>.');
-        }
-    }
-}
+    // 5) Fecha y hora de recogida (pick-up)
+    if (empty($post['pickup_date'])) {
+        $add('Por favor, selecciona una fecha de recogida.');
+    } else {
+        // Validar contra min/max si los envías como hidden o por POST
+        $min  = $post['pickup_date_min'] ?? ($_POST['pickup_date_min'] ?? null);
+        $max  = $post['pickup_date_max'] ?? ($_POST['pickup_date_max'] ?? null);
+        $date = $post['pickup_date'];
 
-// No permitir números en campos de texto
-function validate_no_numbers($post, $errors, $campos)
-{
-    foreach ($campos as $campo => $label) {
-        if (!empty($post[$campo]) && !preg_match('/^[\p{L}\s]+$/u', $post[$campo])) {
-            $errors->add($campo, "El campo <strong>$label</strong> solo debe contener letras y espacios.");
+        if (($min && $date < $min) || ($max && $date > $max)) {
+            $add('Por favor, elige una fecha dentro del rango permitido.');
         }
     }
-}
 
-// Validar patrón de caracteres personalizados
-function validate_regex($post, $errors, $campos)
-{
-    foreach ($campos as $campo => $info) {
-        if (!empty($post[$campo]) && !preg_match($info['regex'], $post[$campo])) {
-            $errors->add($campo, "El campo <strong>{$info['label']}</strong> contiene caracteres no permitidos.");
-        }
+    if (empty($post['pickup_time'])) {
+        $add('Por favor, selecciona una hora de recogida.');
     }
-}
+}, 10, 1);

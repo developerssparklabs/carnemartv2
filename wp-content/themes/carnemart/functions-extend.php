@@ -2769,11 +2769,11 @@ function custom_plugin_settings_page()
 /********Configuracion de URL API********/
 //actualiza el checkout forzado
 
-// Eliminar el mensaje de su posición actual
-remove_action('woocommerce_review_order_before_payment', 'wc_print_notices', 10);
+// // Eliminar el mensaje de su posición actual
+// remove_action('woocommerce_review_order_before_payment', 'wc_print_notices', 10);
 
-// Agregar el mensaje arriba del formulario de checkout
-add_action('woocommerce_before_checkout_form', 'wc_print_notices', 10);
+// // Agregar el mensaje arriba del formulario de checkout
+// add_action('woocommerce_before_checkout_form', 'wc_print_notices', 10);
 function custom_woocommerce_checkout_styles()
 {
     $custom_css = "
@@ -3100,7 +3100,7 @@ function enqueue_custom_checkout_js(): void
             'custom-js-script',
             get_stylesheet_directory_uri() . '/assets/js/woocommerce/checkout/validation-v8.js',
             array('jquery'),     // Dependencia
-            '1.0.0',             // Versión
+            '1.0.8',             // Versión
             true                 // Cargar en footer
         );
     }
