@@ -744,3 +744,84 @@ add_action('woocommerce_checkout_process', function () {
         WC()->session->set('wc_notices', array());
     }
 }, 0); // prioridad 0 para que ocurra ANTES de otros validadores
+
+/**
+ * Diagnóstico: por qué WooCommerce te saca del checkout.
+ * - Muestra mensajes solo a admins (para no confundir a clientes).
+ * - Registra todo con WC_Logger (WooCommerce > Estado > Registros).
+ */
+add_action('woocommerce_check_cart_items', function () {
+    $logger  = wc_get_logger();
+    $handle  = 'wc-diag-checkout';
+    $is_admin_view = current_user_can('manage_woocommerce');
+
+    $cart = WC()->cart;
+    if ( ! $cart || $cart->is_empty() ) {
+        $logger->info('Cart vacío o no disponible al entrar a checkout.', [
+            'source'      => $handle,
+            'user_id'     => get_current_user_id(),
+            'request_uri' => $_SERVER['REQUEST_URI'] ?? '',
+        ]);
+        return;
+    }
+
+    $logger->info('Chequeando items del carrito en checkout…', [
+        'source'      => $handle,
+        'user_id'     => get_current_user_id(),
+        'cart_hash'   => $cart->get_cart_hash(),
+        'request_uri' => $_SERVER['REQUEST_URI'] ?? '',
+    ]);
+
+    foreach ( $cart->get_cart() as $key => $item ) {
+        $p = $item['data'];
+        if ( ! $p || ! $p->exists() ) {
+            $msg = 'Producto inexistente en el carrito (product_id='. ($item['product_id'] ?? 'N/A') .', key='. $key .')';
+            $logger->warning($msg, ['source' => $handle]);
+            if ( $is_admin_view ) wc_add_notice('Diagnóstico: ' . esc_html($msg), 'error');
+            continue;
+        }
+
+        $qty   = (float) $item['quantity'];
+        $name  = $p->get_name() . ' (ID '. $p->get_id() .')';
+        $price = (float) $p->get_price('edit');
+
+        if ( ! $p->is_purchasable() ) {
+            $logger->warning("No purchasable: {$name}", ['source' => $handle]);
+            if ( $is_admin_view ) wc_add_notice('Diagnóstico: <strong>'. esc_html($name) .'</strong> no es comprable ahora.', 'error');
+        }
+
+        if ( ! $p->is_in_stock() && ! $p->backorders_allowed() ) {
+            $logger->warning("Sin stock y sin backorders: {$name}", ['source' => $handle]);
+            if ( $is_admin_view ) wc_add_notice('Diagnóstico: <strong>'. esc_html($name) .'</strong> está agotado.', 'error');
+        }
+
+        if ( $p->managing_stock() ) {
+            $stock = (float) $p->get_stock_quantity();
+            if ( $qty > $stock && ! $p->backorders_allowed() ) {
+                $logger->warning("Qty excede stock: {$name} qty={$qty} stock={$stock}", ['source' => $handle]);
+                if ( $is_admin_view ) wc_add_notice('Diagnóstico: <strong>'. esc_html($name) .'</strong> cantidad en carrito ('. $qty .') excede stock ('. $stock .').', 'error');
+            }
+        }
+
+        if ( ($price * $qty) < 0 ) {
+            $logger->error("Total negativo en línea: {$name} price={$price} qty={$qty}", ['source' => $handle]);
+            if ( $is_admin_view ) wc_add_notice('Diagnóstico: total negativo en <strong>'. esc_html($name) ."</strong>. Revisa descuentos/precios por tienda.", 'error');
+        }
+    }
+
+    // Métodos de envío
+    $chosen = WC()->session ? WC()->session->get('chosen_shipping_methods') : null;
+    if ( $cart->needs_shipping() && ( empty($chosen) || empty($chosen[0]) ) ) {
+        $logger->warning('Carrito requiere envío pero no hay método seleccionado/disponible.', [
+            'source' => $handle,
+            'chosen_shipping' => $chosen,
+        ]);
+        if ( $is_admin_view ) wc_add_notice('Diagnóstico: el carrito requiere envío pero no hay método seleccionado/disponible.', 'error');
+    }
+
+    // Totales globales
+    $logger->info('Totales del carrito', [
+        'source' => $handle,
+        'totals' => $cart->get_totals(),
+    ]);
+}, 99);
