@@ -89,7 +89,7 @@ function html5blank_header_scripts()
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
         wp_register_script('allscripts', get_template_directory_uri() . '/js/allscripts.js', array('jquery'), '2.1.0', true);
         wp_enqueue_script('allscripts');
-        wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '2.1.5', true);
+        wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '2.1.6', true);
         wp_enqueue_script('html5blankscripts');
     }
 }
