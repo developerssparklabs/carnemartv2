@@ -422,10 +422,7 @@
           });
 
 //AOG Mensajes con alerta y boton de cierre
-	  jQuery(".woocommerce-info").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
-	  jQuery( ".msgWooClose" ).on( "click", function() {
-	    jQuery(this).parent( ".woocommerce-info" ).fadeOut();
-	  });
+	  
 			
 	  jQuery(".woocommerce-message").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
 	  jQuery( ".msgWooClose" ).on( "click", function() {
