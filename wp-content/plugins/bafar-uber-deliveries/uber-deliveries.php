@@ -38,6 +38,7 @@ if (!class_exists('UD_Uber_Deliveries')) {
 			// Verificar si WooCommerce está activo
 			if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
 				self::ud_init_plugin_files();
+
 				// Filtrar las tarifas de envío
 				add_filter('woocommerce_package_rates', array(__CLASS__, 'filtrar_tarifas_envio'), 10, 2);
 
@@ -65,6 +66,12 @@ if (!class_exists('UD_Uber_Deliveries')) {
 		 */
 		public static function modificar_precio_flat_rate_personalizado($rates, $package)
 		{
+			$on_cart  = function_exists('is_cart') && is_cart();
+			$on_ck    = function_exists('is_checkout') && is_checkout();
+			if ( ! $on_cart && ! $on_ck ) {
+				return $rates;
+			}
+
 			// Logger
 			$logger = function_exists('wc_get_logger') ? wc_get_logger() : null;
 			$ctx = ['source' => 'uber-deliveries', 'fn' => __METHOD__];
@@ -116,6 +123,25 @@ if (!class_exists('UD_Uber_Deliveries')) {
 						$logger->debug('Uber seleccionado para este package', array_merge($ctx, [
 							'pkg_index' => $pkg_index
 						]));
+					}
+
+					// --- Destino & validaciones ---
+					$destination = (array) $package['destination'];
+					$street_address = $destination['address'] ?? '';
+					$city = $destination['city'] ?? '';
+					$state = $destination['state'] ?? '';
+					$postcode = $destination['postcode'] ?? '';
+					$country = $destination['country'] ?? '';
+					$customer_id = get_option('ri_customer_id');
+
+					if (empty($street_address) || empty($city) || empty($state) || empty($postcode) || empty($country) || empty($customer_id)) {
+						// Verificamos si estamos en el /cart
+						if (is_cart()) {
+							wc_clear_notices();
+							$rates['flat_rate:1']->cost = '';
+							// $rates['flat_rate:1']->label = __('u', 'woocommerce');
+							return $rates;
+						}
 					}
 
 					$precio_uber = self::ajustar_costo_envio_por_ciudad_v2($package);
@@ -171,7 +197,6 @@ if (!class_exists('UD_Uber_Deliveries')) {
 							]));
 						}
 					}
-
 				} else {
 					// No eligieron Uber: costo en 0 y limpiar flags para este package
 					$rates['flat_rate:1']->cost = 0;
@@ -205,6 +230,12 @@ if (!class_exists('UD_Uber_Deliveries')) {
 		 */
 		public static function ud_backend_validate_uber_session($data, $errors)
 		{
+			$on_cart  = function_exists('is_cart') && is_cart();
+			$on_ck    = function_exists('is_checkout') && is_checkout();
+			if ( ! $on_cart && ! $on_ck ) {
+				return;
+			}
+
 			// Logger
 			$logger = function_exists('wc_get_logger') ? wc_get_logger() : null;
 			$ctx = ['source' => 'uber-deliveries', 'fn' => __METHOD__];
@@ -453,19 +484,40 @@ if (!class_exists('UD_Uber_Deliveries')) {
 
 				if (empty($street_address) || empty($city) || empty($state) || empty($postcode) || empty($country) || empty($customer_id)) {
 					wc_clear_notices();
-					wc_add_notice('Por favor, proporciona toda la información de envío antes de continuar.', 'error');
-					if ($logger)
+					
+					// Check each field individually and add specific notices
+					if (empty($street_address)) {
+						wc_add_notice('Por favor ingresa la dirección de envío.', 'notice');
+					}
+					if (empty($city)) {
+						wc_add_notice('Por favor ingresa la ciudad de envío.', 'notice'); 
+					}
+					if (empty($state)) {
+						wc_add_notice('Por favor selecciona el estado de envío.', 'notice');
+					}
+					if (empty($postcode)) {
+						wc_add_notice('Por favor ingresa el código postal.', 'notice');
+					}
+					if (empty($country)) {
+						wc_add_notice('Por favor selecciona el país de envío.', 'notice');
+					}
+					if (empty($customer_id)) {
+						wc_add_notice('Error: ID de cliente no disponible.', 'notice');
+					}
+
+					if ($logger) {
 						$logger->warning('validation failed: missing fields', array_merge($ctx, [
 							'addr' => $mask("$street_address, $city, $state, $postcode, $country"),
 							'missing' => [
 								'street' => (int) empty($street_address),
-								'city' => (int) empty($city),
+								'city' => (int) empty($city), 
 								'state' => (int) empty($state),
 								'zip' => (int) empty($postcode),
 								'country' => (int) empty($country),
 								'cust_id' => (int) empty($customer_id),
 							],
 						]));
+					}
 					return 0;
 				}
 
@@ -2579,23 +2631,23 @@ HTML;
 	}
 }
 
-// Solo admins + nonce pueden disparar el test por URL
-add_action('init', function () {
-	if (!isset($_GET['test_uber_email']) || $_GET['test_uber_email'] !== '1') {
-		return;
-	}
+// // Solo admins + nonce pueden disparar el test por URL
+// add_action('init', function () {
+// 	if (!isset($_GET['test_uber_email']) || $_GET['test_uber_email'] !== '1') {
+// 		return;
+// 	}
 
-	// 1) Debe estar logueado y ser admin
-	if (!is_user_logged_in() || !current_user_can('manage_options')) {
-		wp_die('No autorizado.', '403 Forbidden', array('response' => 403));
-	}
+// 	// 1) Debe estar logueado y ser admin
+// 	if (!is_user_logged_in() || !current_user_can('manage_options')) {
+// 		wp_die('No autorizado.', '403 Forbidden', array('response' => 403));
+// 	}
 
-	// 2) Nonce obligatorio (añádelo a la URL con wp_nonce_url)
-	if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'test_uber_email')) {
-		wp_die('Nonce inválido.', '403 Forbidden', array('response' => 403));
-	}
+// 	// 2) Nonce obligatorio (añádelo a la URL con wp_nonce_url)
+// 	if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'test_uber_email')) {
+// 		wp_die('Nonce inválido.', '403 Forbidden', array('response' => 403));
+// 	}
 
-	// 3) Ejecuta el envío de prueba
-	$ok = cm_send_order_delivered_email('20denilson321@gmail.com');
-	wp_die($ok ? 'OK: email enviado.' : 'ERROR: wp_mail devolvió false.');
-});
+// 	// 3) Ejecuta el envío de prueba
+// 	$ok = cm_send_order_delivered_email('test@gmail.com');
+// 	wp_die($ok ? 'OK: email enviado.' : 'ERROR: wp_mail devolvió false.');
+// });
