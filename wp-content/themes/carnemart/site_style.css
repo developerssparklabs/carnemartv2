@@ -145,6 +145,84 @@ body {
 
 /*-------------------------------------- Nuevow 29 Sep ----------------------*/
 
+body.pagina-checkout .woocommerce-NoticeGroup-updateOrderReview,
+body.pagina-checkout  .woocommerce-NoticeGroup-checkout{
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  bottom: 10px;
+}
+
+body.pagina-pago-conekta .site__content-page{
+  min-height:80vh;
+}
+
+.conekta-msg.msg-claro{
+  background: linear-gradient(180deg, #ecf3ff 0%, #e7eefc 100%);
+    border: 1px solid #dbe6fb;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
+  
+  p{
+    padding:0;
+    margin:0;
+  }
+}
+
+#pagoConfirmacion{
+  background: linear-gradient(180deg, #ecf3ff 0%, #e7eefc 100%);
+    border: 1px solid #dbe6fb;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
+  
+  p{
+    padding:0;
+    margin:0;
+  }
+  
+  .columns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    padding-top: 25px;
+    font-size:14px!important;
+  }
+  .facturones  p{
+    margin:0;
+    text-align:right;
+  }
+  .facturones >div{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .checkout-success a{
+    display:inline-block;
+    padding:10px;
+    border-radius:10px;
+    background-color: var(--color-tercero);
+    border-color: var(--color-tercero);
+    color: var(--color-claro);
+    text-decoration:none!important;
+  }
+  
+  .facturones a{
+    display:inline-block;
+    padding:10px;
+    border-radius:10px;
+    background-color: var(--color-secundario);
+    border-color: var(--color-tercero);
+    color: var(--color-claro);
+    text-decoration:none!important;
+  }
+}
+
+
 /*Quitar boton de ir a pagar*/
 .side__sidebar-carrito-pago{
   display:none!important;
@@ -280,15 +358,11 @@ body.checkout dd.variation-Disponibilidad{
 .woocommerce-error{
   border:none!important;
 }
-
-.woocommerce-error li,
-.woocommerce-error li a,
-.woocommerce-error li strong {
-  pointer-events: none;
-  text-decoration: none !important; 
+.woocommerce-error a{
   color:#ffffff!important;
-  font-weight:700!important;
+  font-weight:400!important;
 }
+
 
 
 /* ------------------------------------woocommerce pagina de carrito Carnemart ------------------------------------------------------- */
@@ -552,6 +626,26 @@ iframe.full-width-iframe {
 
 
 /*----------------------------------Woocommerce de flujo compra--------------------------------------------*/
+
+.woocommerce-account .woocommerce-MyAccount-content {
+    width: 70%;
+    padding: 30px 15px !important;
+    border-radius: 10px;
+    background: #f4f8ff !important;
+}
+
+.woocommerce-MyAccount-navigation {
+    width:25%!important;
+    padding: 30px 15px !important;
+    border-radius: 10px;
+    background: #f4f8ff !important;
+    font-family: "Poppins", Sans-serif;
+}
+.woocommerce-MyAccount-navigation ul{
+  margin:0!important;
+  padding:0!important;
+}
+
 .woocommerce-MyAccount-navigation ul {
   list-style: none;
   display: flex;
@@ -563,22 +657,23 @@ iframe.full-width-iframe {
     line-height: 1;
     font-size: 16px;
     text-decoration: none;
-    background-color: var(--color-tercero);
-    color: var(--color-claro);
-    padding: 5px 15px;
-    border-radius: 300px;
+    background-color: #ffffff;
+    border: solid 1px #dbe6ff;
+    padding: 20px 15px;
+    border-radius: 8px;
+    text-decoration: none !important;
 
     &:hover {
-      background-color: var(--color-secundario) !important;
+      background-color: #e2fbe0!important;
     }
   }
 
   .is-active a {
-    background-color: var(--color-secundario) !important;
+    background-color: #e2fbe0!important;
   }
 
   .woocommerce-MyAccount-navigation-link--customer-logout a {
-    background-color: var(--color-cuarto) !important;
+    background-color: #ffcbd5!important;
   }
 }
 
@@ -3507,7 +3602,7 @@ ul.sub-menu li.menu-item a.nav-link {
 }
 
 body.marquesina-activa.master-class-site {
-  padding: 160px 0 0 0;
+  padding: 180px 0 0 0;
 }
 
 .site__slider-lateral-y-cta-wrapper {
@@ -8638,6 +8733,34 @@ body.woocommerce-cart .banner_footer-box-form {
 }
 
 @media screen and (max-width: 768px) {
+
+
+
+  .woocommerce-MyAccount-navigation{
+    width:100%!important;
+    overflow-x: hidden;
+    padding:10px!important;
+    margin-bottom:20px;
+  }
+  .woocommerce-MyAccount-navigation ul {
+    display: flex;
+    flex-direction: row;
+    overflow-x:scroll;
+     width: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE y Edge */
+  }
+    .woocommerce-MyAccount-navigation ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+  }
+  .woocommerce-MyAccount-navigation ul a{
+    font-size:14px!important;
+    width: max-content;
+  } 
+  
+  .woocommerce-account .woocommerce-MyAccount-content{
+    width:100px;
+  }
 
   form.woocommerce-checkout #customer_details{
     width: 100%!important;
