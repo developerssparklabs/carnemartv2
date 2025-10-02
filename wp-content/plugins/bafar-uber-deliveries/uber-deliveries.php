@@ -487,22 +487,22 @@ if (!class_exists('UD_Uber_Deliveries')) {
 					
 					// Check each field individually and add specific notices
 					if (empty($street_address)) {
-						wc_add_notice('Por favor ingresa la dirección de envío.', 'notice');
+						wc_add_notice('Por favor ingresa la dirección de envío.', 'warning');
 					}
 					if (empty($city)) {
-						wc_add_notice('Por favor ingresa la ciudad de envío.', 'notice'); 
+						wc_add_notice('Por favor ingresa la ciudad de envío.', 'warning'); 
 					}
 					if (empty($state)) {
-						wc_add_notice('Por favor selecciona el estado de envío.', 'notice');
+						wc_add_notice('Por favor selecciona el estado de envío.', 'warning');
 					}
 					if (empty($postcode)) {
-						wc_add_notice('Por favor ingresa el código postal.', 'notice');
+						wc_add_notice('Por favor ingresa el código postal.', 'warning');
 					}
 					if (empty($country)) {
-						wc_add_notice('Por favor selecciona el país de envío.', 'notice');
+						wc_add_notice('Por favor selecciona el país de envío.', 'warning');
 					}
 					if (empty($customer_id)) {
-						wc_add_notice('Error: ID de cliente no disponible.', 'notice');
+						wc_add_notice('Error: ID de cliente no disponible.', 'warning');
 					}
 
 					if ($logger) {
