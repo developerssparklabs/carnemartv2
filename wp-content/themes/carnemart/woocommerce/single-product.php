@@ -144,11 +144,11 @@ do_action('woocommerce_before_main_content');
 					?>
 
 					<?php
-					if (!$product->is_in_stock()) {
-						echo '<div class="msg-alerta-stock producto-agotado">';
-						echo '<i class="bi bi-ban-fill"></i></i> <span>¡Producto agotado!</span>';
-						echo '</div>';
-					}
+					// if (!$product->is_in_stock()) {
+					// 	echo '<div class="msg-alerta-stock producto-agotado">';
+					// 	echo '<i class="bi bi-ban-fill"></i></i> <span>¡Producto agotado!</span>';
+					// 	echo '</div>';
+					// }
 					?>
 				</div>
 
@@ -156,18 +156,43 @@ do_action('woocommerce_before_main_content');
 					<?php
 					// Verificar cookie de tienda
 					$term_id = sb_get_current_store_term_id();
+					$pid = $product->get_id();
+					$unit = get_post_meta($pid, 'ri_quantity_step_label', true);
 					if ($term_id) {
 						$stock_quantity = (float) get_post_meta($product->get_id(), "wcmlim_stock_at_{$term_id}", true);
 						$stock_quantity = $stock_quantity < 0 ? 0: $stock_quantity;
 						$stock_status = $product->get_stock_status();
 						if ($stock_status === 'instock') {
-							echo '<p class="product-stock in-stock"><strong>Stock:</strong> Disponible (' . esc_html($stock_quantity) . ' unidades)</p>';
+							echo '<p class="product-stock in-stock"><strong>Stock:</strong> Disponible (' . esc_html($stock_quantity) . ' ' . esc_html($unit) . ')</p>';
 						} elseif ($stock_status === 'onbackorder') {
 							echo '<p class="product-stock backorder"><strong>Stock:</strong> Disponible bajo pedido</p>';
 						} else {
-							echo '<p class="product-stock out-of-stock" style="display:none!important;"><strong>Stock:</strong> Agotado</p>';
+							echo '<div style="display:flex;align-items:flex-start;gap:10px;margin-top:12px;padding:12px 14px;border-radius:10px;background:linear-gradient(90deg,#FEF2F2,#FFF1F2);box-shadow:0 2px 6px rgba(0,0,0,.04);">';
+							echo '  <i class="bi bi-exclamation-octagon" style="font-size:18px;line-height:1;color:#DC2626;margin-top:2px;"></i>';
+							echo '  <div style="color:#991B1B">';
+							echo '    <div style="font-weight:700;">Producto agotado por ahora.</div>';
+							if ($backorders_allowed) {
+								echo '    <div style="font-weight:500;">Aún puedes pedirlo: lo apartamos y te avisamos en cuanto llegue.</div>';
+							} else {
+								echo '    <div style="font-weight:500;">Prueba otras sucursales o vuelve más tarde — reponemos con frecuencia.</div>';
+							}
+							echo '  </div>';
+							echo '</div>';
+						}
+						// Verificamos cuanto tenemos en el carrito
+						$cart_count = 0;
+						if ($stock_status === 'instock') {
+							foreach (WC()->cart->get_cart() as $cart_item) {
+								if ($cart_item['product_id'] === $product->get_id()) {
+									$cart_count += $cart_item['quantity'];
+								}
+							}
+							if ($cart_count > 0) {
+								echo '<p class="product-in-cart"><strong>En tu carrito:</strong> ' . esc_html($cart_count) . ' ' . esc_html($unit) . '</p>';
+							}
 						}
 					}
+					
 					?>
 				</div>
 
@@ -296,8 +321,7 @@ do_action('woocommerce_before_main_content');
 								<?php }
 
 							} else {
-								    $pid = $product->get_id();
-									$unit = get_post_meta($pid, 'ri_quantity_step_label', true);
+								    
 									$unit_txt = $unit ? ' <span class="por-label" style="color:#6c757d;font-size:15px;">por <b>' . esc_html($unit) . '</b></span>' : '';
 
 									$term_id = sb_get_current_store_term_id();
