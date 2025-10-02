@@ -3486,74 +3486,72 @@ function sparklabs_filtrar_busqueda_productos($query)
 }
 add_action('pre_get_posts', 'sparklabs_filtrar_busqueda_productos');
 
-add_action('pre_get_posts', 'ocultar_productos_precio_cero_en_tienda', 20);
-function ocultar_productos_precio_cero_en_tienda(\WP_Query $query)
-{
-    // 1) Solo front, query principal
-    if (is_admin() || !$query->is_main_query()) {
-        return;
-    }
+// add_action('pre_get_posts', 'ocultar_productos_precio_cero_en_tienda', 20);
+// function ocultar_productos_precio_cero_en_tienda(\WP_Query $query)
+// {
+//     // 1) Solo front, query principal
+//     if (is_admin() || !$query->is_main_query()) {
+//         return;
+//     }
 
-    // 2) Contextos donde aplicarlo
-    if (
-        !(is_shop()
-            || is_product_category()
-            || is_product_tag()
-            || is_search()
-            || is_post_type_archive('product')
-        )
-    ) {
-        return;
-    }
+//     // 2) Contextos donde aplicarlo
+//     if (
+//         !(is_shop()
+//             || is_product_category()
+//             || is_product_tag()
+//             || is_search()
+//             || is_post_type_archive('product')
+//         )
+//     ) {
+//         return;
+//     }
 
-    // 3) Recuperamos cookie de sucursal
-    $term_id = isset($_COOKIE['wcmlim_selected_location_termid'])
-        && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined'
-        ? intval($_COOKIE['wcmlim_selected_location_termid'])
-        : 0;
+//     // 3) Recuperamos cookie de sucursal
+//     $term_id = isset($_COOKIE['wcmlim_selected_location_termid'])
+//         && $_COOKIE['wcmlim_selected_location_termid'] !== 'undefined'
+//         ? intval($_COOKIE['wcmlim_selected_location_termid'])
+//         : 0;
 
-    // 4) Preparamos (o rescatamos) el meta_query
-    $meta_query = $query->get('meta_query', []);
-    // Le decimos que todas las condiciones sean AND
-    $meta_query['relation'] = 'AND';
+//     // 4) Preparamos (o rescatamos) el meta_query
+//     $meta_query = $query->get('meta_query', []);
+//     // Le decimos que todas las condiciones sean AND
+//     $meta_query['relation'] = 'AND';
 
-    // 5) Lógica de filtrado:
-    if ($term_id) {
-        // — Stock en tienda > 0
-        $meta_query[] = [
-            'key' => "wcmlim_stock_at_{$term_id}",
-            'value' => 0,
-            'compare' => '>',
-            'type' => 'NUMERIC',
-        ];
-        // — Precio regular en tienda > 0
-        $meta_query[] = [
-            'key' => "wcmlim_regular_price_at_{$term_id}",
-            'value' => 0,
-            'compare' => '>',
-            'type' => 'NUMERIC',
-        ];
-        $meta_query[] = [
-            'key' => '_regular_price',
-            'value' => 0,
-            'compare' => '>',
-            'type' => 'NUMERIC',
-        ];
-    }
-    // — Sin tienda: precio regular base > 0
-    $meta_query[] = [
-        'key' => '_regular_price',
-        'value' => 0,
-        'compare' => '>',
-        'type' => 'NUMERIC',
-    ];
-
-
-    // 6) Asignamos el meta_query modificado
-    $query->set('meta_query', $meta_query);
-}
+//     // 5) Lógica de filtrado:
+//     if ($term_id) {
+//         // — Stock en tienda > 0
+//         $meta_query[] = [
+//             'key' => "wcmlim_stock_at_{$term_id}",
+//             'value' => 0,
+//             'compare' => '>',
+//             'type' => 'NUMERIC',
+//         ];
+//         // — Precio regular en tienda > 0
+//         $meta_query[] = [
+//             'key' => "wcmlim_regular_price_at_{$term_id}",
+//             'value' => 0,
+//             'compare' => '>',
+//             'type' => 'NUMERIC',
+//         ];
+//         $meta_query[] = [
+//             'key' => '_regular_price',
+//             'value' => 0,
+//             'compare' => '>',
+//             'type' => 'NUMERIC',
+//         ];
+//     }
+//     // — Sin tienda: precio regular base > 0
+//     $meta_query[] = [
+//         'key' => '_regular_price',
+//         'value' => 0,
+//         'compare' => '>',
+//         'type' => 'NUMERIC',
+//     ];
 
 
+//     // 6) Asignamos el meta_query modificado
+//     $query->set('meta_query', $meta_query);
+// }
 
 function keikos_qty_decimal_script()
 {
