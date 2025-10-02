@@ -422,16 +422,20 @@
           });
 
 //AOG Mensajes con alerta y boton de cierre
-	jQuery(".woocommerce-message").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
-	jQuery( ".msgWooClose" ).on( "click", function() {
+	  jQuery(".woocommerce-info").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
+	  jQuery( ".msgWooClose" ).on( "click", function() {
+	    jQuery(this).parent( ".woocommerce-info" ).fadeOut();
+	  });
+			
+	  jQuery(".woocommerce-message").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
+	  jQuery( ".msgWooClose" ).on( "click", function() {
 		jQuery(this).parent( ".woocommerce-message" ).fadeOut();
-	});
+	  });	
 	
-	
-		jQuery(".woocommerce-error").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
-	jQuery( ".msgWooClose" ).on( "click", function() {
+	  jQuery(".woocommerce-error").prepend( "<span class='msgWooClose'><i class='bi bi-x-circle-fill'></i></span>" );
+	  jQuery( ".msgWooClose" ).on( "click", function() {
 		jQuery(this).parent( ".woocommerce-error" ).fadeOut();
-	});
+	  });
 	
 //AOG 28 de enero 
 	jQuery(document).on('ajaxComplete', function() {
