@@ -434,7 +434,7 @@ require_once('wp_bootstrap_navwalker.php');
 
 
 require_once get_template_directory() . '/includes/funcionalidad-sidebar-carrito.php'; //AOG 2 sep
-require_once get_template_directory() . '/includes/funcionalidad-taxonomias-categorias.php';
+//require_once get_template_directory() . '/includes/funcionalidad-taxonomias-categorias.php'; Se inhabilita CPT
 require_once get_template_directory() . '/includes/funcionalidades-tema.php';
 require_once get_template_directory() . '/includes/funcionalidad-tiendas.php';
 require_once get_template_directory() . '/includes/shortcode-blog.php';
