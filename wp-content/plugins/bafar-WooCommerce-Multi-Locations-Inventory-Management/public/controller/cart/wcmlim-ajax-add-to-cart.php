@@ -64,6 +64,26 @@ function cmt_is_yes($v)
     return in_array(strtolower((string) $v), ['1', 'yes', 'true', 'y', 'on'], true);
 }
 
+// Devuelve el cart_item_key del mismo producto (y misma ubicación), si existe.
+function cmt_find_cart_item_key($product_id, $location_term_id = null)
+{
+    if (!WC()->cart)
+        return null;
+    foreach (WC()->cart->get_cart() as $key => $item) {
+        $pid = $item['variation_id'] ? $item['variation_id'] : $item['product_id'];
+        if ((int) $pid !== (int) $product_id)
+            continue;
+
+        if (isset($location_term_id)) {
+            $item_loc = (int) ($item['select_location']['location_termId'] ?? 0);
+            if ($item_loc !== (int) $location_term_id)
+                continue;
+        }
+        return $key; // encontrado
+    }
+    return null;
+}
+
 /* ========= Entrada ========= */
 
 $product_id = apply_filters('woocommerce_add_to_cart_product_id', absint($_POST['product_id'] ?? 0));
@@ -100,14 +120,12 @@ $min_quantity = cmt_to_float(get_post_meta($product_id, 'min_quantity', true), 3
 if ($min_quantity <= 0)
     $min_quantity = 1.0;
 
-// qty final que habría en el carrito tras agregar
-$existing_qty = cmt_cart_qty_for_product($product_id);
-$total_qty = $existing_qty + $requested_qty;
-
+// qty final deseada (la que el usuario escribió). Ya NO sumamos lo existente.
+$desired_total = $requested_qty;
 $epsilon = 1e-5;
 
-// Validamos contra TOTAL (lo que quedará) pero agregamos REQUESTED
-if ($total_qty + $epsilon < $min_quantity || !cmt_is_multiple_of_step($total_qty, $product_step, $epsilon)) {
+// Validamos contra TOTAL (deseado), no contra suma
+if ($desired_total + $epsilon < $min_quantity || !cmt_is_multiple_of_step($desired_total, $product_step, $epsilon)) {
     echo '9';
     wp_die();
 }
@@ -184,23 +202,27 @@ if ($_isrspon === 'on') {
 
 /* ========= Agregar al carrito ========= */
 
+// ¿Ya existe la misma línea (mismo producto + misma ubicación)?
+$existing_key = cmt_find_cart_item_key($product_id, $effective_termid);
+
+if ($existing_key) {
+    // Simplemente fijamos la línea al total deseado (no sumamos)
+    $final_total = wc_stock_amount($desired_total);
+    WC()->cart->set_quantity($existing_key, $final_total, true);
+    WC_AJAX::get_refreshed_fragments();
+    wp_die();
+}
+
+// No existe: la creamos directamente con la cantidad TOTAL
 $added_key = WC()->cart->add_to_cart(
     $product_id,
-    $requested_qty,   // se agrega lo solicitado...
+    wc_stock_amount($desired_total),
     0,
     [],
     $_location_data
 );
 
 if ($added_key) {
-    // ...y de inmediato fijamos la línea al TOTAL deseado.
-    // wc_stock_amount normaliza la cantidad según reglas de Woo (admite decimales).
-    $final_total = wc_stock_amount($total_qty);
-
-    // true => recalcula totales y dispara hooks de actualización
-    WC()->cart->set_quantity($added_key, $final_total, true);
-
-    // Refresca mini-cart/fragments ya con la nueva cantidad total
     WC_AJAX::get_refreshed_fragments();
 }
 wp_die();
