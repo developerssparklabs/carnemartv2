@@ -642,12 +642,12 @@ add_filter('woocommerce_add_to_cart_validation', function ($passed, $product_id,
     }
 
     // Lee como float y fija defaults seguros
-    $product_step  = (float) get_post_meta($product_id, 'product_step', true);
-    $min_quantity  = (float) get_post_meta($product_id, 'min_quantity', true);
-    $quantity      = (float) $quantity;
+    $product_step = (float) get_post_meta($product_id, 'product_step', true);
+    $min_quantity = (float) get_post_meta($product_id, 'min_quantity', true);
+    $quantity = (float) $quantity;
 
-    $product_step  = $product_step > 0 ? $product_step : 1.0;
-    $min_quantity  = $min_quantity > 0 ? $min_quantity : 1.0;
+    $product_step = $product_step > 0 ? $product_step : 1.0;
+    $min_quantity = $min_quantity > 0 ? $min_quantity : 1.0;
 
     // Define la precisión permitida para la cantidad (nº de decimales)
     // Si usas cantidades con 2 decimales => 2; si permites 3, cambia a 3.
@@ -655,9 +655,9 @@ add_filter('woocommerce_add_to_cart_validation', function ($passed, $product_id,
     $scale = pow(10, $precision);
 
     // Escala a enteros para comparar/modear sin floats
-    $qty_i  = (int) round($quantity     * $scale);
+    $qty_i = (int) round($quantity * $scale);
     $step_i = (int) round($product_step * $scale);
-    $min_i  = (int) round($min_quantity * $scale);
+    $min_i = (int) round($min_quantity * $scale);
 
     // Seguridad extra: evita step 0 por redondeos
     $step_i = max($step_i, 1);
@@ -751,72 +751,78 @@ add_action('woocommerce_checkout_process', function () {
  * - Registra todo con WC_Logger (WooCommerce > Estado > Registros).
  */
 add_action('woocommerce_check_cart_items', function () {
-    $logger  = wc_get_logger();
-    $handle  = 'wc-diag-checkout';
+    $logger = wc_get_logger();
+    $handle = 'wc-diag-checkout';
     $is_admin_view = current_user_can('manage_woocommerce');
 
     $cart = WC()->cart;
-    if ( ! $cart || $cart->is_empty() ) {
+    if (!$cart || $cart->is_empty()) {
         $logger->info('Cart vacío o no disponible al entrar a checkout.', [
-            'source'      => $handle,
-            'user_id'     => get_current_user_id(),
+            'source' => $handle,
+            'user_id' => get_current_user_id(),
             'request_uri' => $_SERVER['REQUEST_URI'] ?? '',
         ]);
         return;
     }
 
     $logger->info('Chequeando items del carrito en checkout…', [
-        'source'      => $handle,
-        'user_id'     => get_current_user_id(),
-        'cart_hash'   => $cart->get_cart_hash(),
+        'source' => $handle,
+        'user_id' => get_current_user_id(),
+        'cart_hash' => $cart->get_cart_hash(),
         'request_uri' => $_SERVER['REQUEST_URI'] ?? '',
     ]);
 
-    foreach ( $cart->get_cart() as $key => $item ) {
+    foreach ($cart->get_cart() as $key => $item) {
         $p = $item['data'];
-        if ( ! $p || ! $p->exists() ) {
-            $msg = 'Producto inexistente en el carrito (product_id='. ($item['product_id'] ?? 'N/A') .', key='. $key .')';
+        if (!$p || !$p->exists()) {
+            $msg = 'Producto inexistente en el carrito (product_id=' . ($item['product_id'] ?? 'N/A') . ', key=' . $key . ')';
             $logger->warning($msg, ['source' => $handle]);
-            if ( $is_admin_view ) wc_add_notice('Diagnóstico: ' . esc_html($msg), 'error');
+            if ($is_admin_view)
+                wc_add_notice('Diagnóstico: ' . esc_html($msg), 'error');
             continue;
         }
 
-        $qty   = (float) $item['quantity'];
-        $name  = $p->get_name() . ' (ID '. $p->get_id() .')';
+        $qty = (float) $item['quantity'];
+        $name = $p->get_name() . ' (ID ' . $p->get_id() . ')';
         $price = (float) $p->get_price('edit');
 
-        if ( ! $p->is_purchasable() ) {
+        if (!$p->is_purchasable()) {
             $logger->warning("No purchasable: {$name}", ['source' => $handle]);
-            if ( $is_admin_view ) wc_add_notice('Diagnóstico: <strong>'. esc_html($name) .'</strong> no es comprable ahora.', 'error');
+            if ($is_admin_view)
+                wc_add_notice('Diagnóstico: <strong>' . esc_html($name) . '</strong> no es comprable ahora.', 'error');
         }
 
-        if ( ! $p->is_in_stock() && ! $p->backorders_allowed() ) {
+        if (!$p->is_in_stock() && !$p->backorders_allowed()) {
             $logger->warning("Sin stock y sin backorders: {$name}", ['source' => $handle]);
-            if ( $is_admin_view ) wc_add_notice('Diagnóstico: <strong>'. esc_html($name) .'</strong> está agotado.', 'error');
+            if ($is_admin_view)
+                wc_add_notice('Diagnóstico: <strong>' . esc_html($name) . '</strong> está agotado.', 'error');
         }
 
-        if ( $p->managing_stock() ) {
+        if ($p->managing_stock()) {
             $stock = (float) $p->get_stock_quantity();
-            if ( $qty > $stock && ! $p->backorders_allowed() ) {
+            if ($qty > $stock && !$p->backorders_allowed()) {
                 $logger->warning("Qty excede stock: {$name} qty={$qty} stock={$stock}", ['source' => $handle]);
-                if ( $is_admin_view ) wc_add_notice('Diagnóstico: <strong>'. esc_html($name) .'</strong> cantidad en carrito ('. $qty .') excede stock ('. $stock .').', 'error');
+                if ($is_admin_view)
+                    wc_add_notice('Diagnóstico: <strong>' . esc_html($name) . '</strong> cantidad en carrito (' . $qty . ') excede stock (' . $stock . ').', 'error');
             }
         }
 
-        if ( ($price * $qty) < 0 ) {
+        if (($price * $qty) < 0) {
             $logger->error("Total negativo en línea: {$name} price={$price} qty={$qty}", ['source' => $handle]);
-            if ( $is_admin_view ) wc_add_notice('Diagnóstico: total negativo en <strong>'. esc_html($name) ."</strong>. Revisa descuentos/precios por tienda.", 'error');
+            if ($is_admin_view)
+                wc_add_notice('Diagnóstico: total negativo en <strong>' . esc_html($name) . "</strong>. Revisa descuentos/precios por tienda.", 'error');
         }
     }
 
     // Métodos de envío
     $chosen = WC()->session ? WC()->session->get('chosen_shipping_methods') : null;
-    if ( $cart->needs_shipping() && ( empty($chosen) || empty($chosen[0]) ) ) {
+    if ($cart->needs_shipping() && (empty($chosen) || empty($chosen[0]))) {
         $logger->warning('Carrito requiere envío pero no hay método seleccionado/disponible.', [
             'source' => $handle,
             'chosen_shipping' => $chosen,
         ]);
-        if ( $is_admin_view ) wc_add_notice('Diagnóstico: el carrito requiere envío pero no hay método seleccionado/disponible.', 'error');
+        if ($is_admin_view)
+            wc_add_notice('Diagnóstico: el carrito requiere envío pero no hay método seleccionado/disponible.', 'error');
     }
 
     // Totales globales
@@ -825,3 +831,22 @@ add_action('woocommerce_check_cart_items', function () {
         'totals' => $cart->get_totals(),
     ]);
 }, 99);
+
+/**
+ * Valida cantidades al actualizar el carrito y bloquea cambios que no cumplan reglas, tambien mostramos mejor los errores, evitando confusion en la UI
+ * Autor: Denis Spark
+ */
+add_filter('woocommerce_update_cart_validation', function ($passed, $cart_item_key, $values, $quantity) {
+    $cart_item = WC()->cart->get_cart_item($cart_item_key);
+
+    $available = (int) ($cart_item['select_location']['location_qty'] ?? 0);
+    if ($available && $quantity > $available) {
+        // Clave: NO actualizar esta línea
+        return false;
+    }
+
+    return $passed;
+}, 10, 4);
+add_filter('woocommerce_update_cart_action_cart_updated', function ($cart_updated) {
+    return wc_notice_count('error') > 0 ? false : $cart_updated;
+}, PHP_INT_MAX);

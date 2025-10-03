@@ -600,14 +600,14 @@ class Wcmlim_Public
 
 				// Display error message
 				$error_message = sprintf(
-					__('Sorry, we do not have enough "%s" in stock to fulfill your order (%d available) for location %s. We apologize for any inconvenience caused.', 'wcmlim'),
+					__('Lo sentimos, no tenemos suficientes "%s" en stock para completar tu orden (%d disponible) para la ubicación %s. Disculpe las molestias ocasionadas.', 'wcmlim'),
 					$values['data']->get_name(), // Item name
 					$available_qty,
 					$cart_item['select_location']['location_name']
 				);
 				wc_clear_notices();
 				wc_add_notice($error_message, 'error');
-				$passed = false; // Set $passed to false to prevent updating the cart
+				$passed = false;
 			}
 
 			return $passed;
@@ -1740,7 +1740,7 @@ class Wcmlim_Public
 			$_product = wc_get_product($values['data']->get_id());
 			$stock_at_loc = get_post_meta($_product->get_id(), "wcmlim_stock_at_{$term_ids}", true);
 			if ($stock_at_loc < $values['quantity']) {
-				wc_add_notice(__('Stock at ' . $term->name . ' is less than quantity entered', 'woocommerce'), 'error');
+				wc_add_notice(__('El stock en ' . $term->name . ' es menor que la cantidad ingresada', 'woocommerce'), 'error');
 				remove_action('woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20);
 				$cart_updated = false;
 				break;
