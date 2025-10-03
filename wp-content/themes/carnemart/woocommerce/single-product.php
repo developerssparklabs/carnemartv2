@@ -322,7 +322,7 @@ do_action('woocommerce_before_main_content');
 
 							} else {
 								    
-									$unit_txt = $unit ? ' <span class="por-label" style="color:#6c757d;font-size:15px;">por <b>' . esc_html($unit) . '</b></span>' : '';
+									$unit_txt = $unit ? ' <span class="por-label" style="color:#6c757d;font-size:17px;">por <b>' . esc_html($unit) . '</b></span>' : '';
 
 									$term_id = sb_get_current_store_term_id();
 
