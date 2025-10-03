@@ -168,10 +168,24 @@ add_action('woocommerce_after_shop_loop_item', 'personalizar_botones_cantidad', 
 function personalizar_botones_cantidad()
 {
     global $product;
+    global $woocommerce;
+
     if ($product->is_type('simple')) {
         // Verificar si hay tienda seleccionada
         $slCookie = isset($_COOKIE['wcmlim_selected_location']) ? $_COOKIE['wcmlim_selected_location'] : "";
         $cookie_termId = isset($_COOKIE['wcmlim_selected_location_termid']) ? $_COOKIE['wcmlim_selected_location_termid'] : "";
+
+        $product_id = $product->get_id();
+        $quantity = 0;
+
+        // Obtenemos la cantidad en el carrito
+        foreach ($woocommerce->cart->get_cart() as $item => $items) {
+            $product_ids = $items['variation_id'] ? $items['variation_id'] : $items['product_id'];
+            if ($product_ids == $product_id) {
+                $quantity += $items['quantity'];
+            }
+        }
+
 
         // Si no hay cookie, retornamos vacio
         if (empty($cookie_termId)) {
@@ -209,7 +223,7 @@ function personalizar_botones_cantidad()
             $_product_backorder = $product->backorders_allowed();
             $_manage_stock_enabled = get_post_meta($_product_id, '_manage_stock', true);
             if ($_manage_stock_enabled == 'no') {
-                return '';
+                return '<p>No disponible</p>';
             }
         }
 
@@ -223,7 +237,7 @@ function personalizar_botones_cantidad()
 
         echo '<div class="quantity-wrapper">';
         echo '<button class="quantity-decrease">-</button>';
-        echo '<input type="number" class="quantity-input" value="' . esc_attr($min) . '" min="' . esc_attr($min) . '" step="' . esc_attr($step) . '" aria-label="Cantidad">';
+        echo '<input type="number" class="quantity-input" value="' . esc_attr($quantity > 0 ? $quantity : $min) . '" min="' . esc_attr($min) . '" step="' . esc_attr($step) . '" aria-label="Cantidad">';
         echo '<button class="quantity-increase">+</button>';
         echo '<button class="button product_type_simple add_to_cart_button wcmlim_ajax_add_to_cart add-to-cart"  style="color: #fff"
             data-cart-url="' . $_cart_url . '" 
