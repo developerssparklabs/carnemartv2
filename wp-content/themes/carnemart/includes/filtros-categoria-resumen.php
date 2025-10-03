@@ -11,9 +11,11 @@ if (is_shop()) {
 
 // Lee selección actual
 $read = function ($k) {
-  if (!isset($_GET[$k]) || $_GET[$k] === '') return [];
+  if (!isset($_GET[$k]) || $_GET[$k] === '')
+    return [];
   $v = $_GET[$k];
-  if (is_array($v)) return array_map('sanitize_title', $v);
+  if (is_array($v))
+    return array_map('sanitize_title', $v);
   return array_map('sanitize_title', array_filter(explode(',', $v)));
 };
 $cats = $read('categorias');
@@ -32,8 +34,10 @@ $remove_term = function ($param, $slug) use ($base_url) {
   $arr = isset($new[$param]) ? (is_array($new[$param]) ? $new[$param] : explode(',', $new[$param])) : [];
   $arr = array_map('sanitize_title', $arr);
   $arr = array_values(array_diff($arr, [$slug]));
-  if (empty($arr)) unset($new[$param]);
-  else $new[$param] = implode(',', $arr);
+  if (empty($arr))
+    unset($new[$param]);
+  else
+    $new[$param] = implode(',', $arr);
   unset($new['paged'], $new['page']);
   return esc_url(add_query_arg($new, $base_url));
 };
@@ -50,33 +54,62 @@ $remove_price = function () use ($base_url) {
   </div>
 
   <div class="af-body">
-    <div class="af-row">
-      <strong class="af-label">Categoría:</strong>
-      <div class="af-chips">
-        <?php if (!empty($cat_terms) && !is_wp_error($cat_terms)) : foreach ($cat_terms as $t): ?>
-            <a class="af-chip" href="<?php echo $remove_term('categorias', $t->slug); ?>">
+    <?php
+    // Oculta la fila de categorías solo si estamos en una categoría específica (no padre)
+    $is_cat_archive = false;
+    $qo = get_queried_object();
+    if ($qo instanceof WP_Term && $qo->taxonomy === 'product_cat') {
+      // Verificar si la categoría actual tiene hijos
+      $children = get_terms([
+        'taxonomy' => 'product_cat',
+        'parent' => $qo->term_id,
+        'hide_empty' => false
+      ]);
+      // Solo ocultar si NO es una categoría padre
+      $is_cat_archive = empty($children);
+    }
+    ?>
+    <?php if (!$is_cat_archive): ?>
+      <div class="af-row">
+        <strong class="af-label">Categoría:</strong>
+        <div class="af-chips">
+          <?php if (!empty($cat_terms) && !is_wp_error($cat_terms)):
+            foreach ($cat_terms as $t): ?>
+              <a class="af-chip" href="<?php echo $remove_term('categorias', $t->slug); ?>"></a>
               <?php echo esc_html($t->name); ?><span class="af-x">&times;</span>
-            </a>
-          <?php endforeach;
-        else: ?>
-          <span class="af-placeholder">Sin selección</span>
-        <?php endif; ?>
+              </a>
+            <?php endforeach;
+          else: ?>
+            <span class="af-placeholder">Sin selección</span>
+          <?php endif; ?>
+        </div>
       </div>
-    </div>
+    <?php endif; ?>
 
-    <div class="af-row">
-      <strong class="af-label">Giros:</strong>
-      <div class="af-chips">
-        <?php if (!empty($tag_terms) && !is_wp_error($tag_terms)) : foreach ($tag_terms as $t): ?>
-            <a class="af-chip af-chip--gray" href="<?php echo $remove_term('etiquetas', $t->slug); ?>">
-              <?php echo esc_html($t->name); ?><span class="af-x">&times;</span>
-            </a>
-          <?php endforeach;
-        else: ?>
-          <span class="af-placeholder">Sin selección</span>
-        <?php endif; ?>
+    <?php
+    // Oculta la fila de giros si estamos en una página de etiqueta y solo esa etiqueta está seleccionada
+    $is_tag_archive = false;
+    $qo = get_queried_object();
+    if ($qo instanceof WP_Term && $qo->taxonomy === 'product_tag') {
+      $is_tag_archive = true;
+    }
+    ?>
+    <?php if (!$is_tag_archive): ?>
+      <div class="af-row">
+        <strong class="af-label">Giros:</strong>
+        <div class="af-chips">
+          <?php if (!empty($tag_terms) && !is_wp_error($tag_terms)):
+            foreach ($tag_terms as $t): ?>
+              <a class="af-chip af-chip--gray" href="<?php echo $remove_term('etiquetas', $t->slug); ?>">
+                <?php echo esc_html($t->name); ?><span class="af-x">&times;</span>
+              </a>
+            <?php endforeach;
+          else: ?>
+            <span class="af-placeholder">Sin selección</span>
+          <?php endif; ?>
+        </div>
       </div>
-    </div>
+    <?php endif; ?>
 
     <div class="af-row">
       <strong class="af-label">Precio:</strong>
@@ -101,6 +134,4 @@ $remove_price = function () use ($base_url) {
       <i class="bi bi-arrow-clockwise"></i> Vaciar filtro
     </a>
   </div>
-
-
 </div>

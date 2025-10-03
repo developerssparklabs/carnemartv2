@@ -31,7 +31,7 @@ add_filter('nav_menu_link_attributes', 'add_additional_class_on_a', 1, 3);
 function agregar_etiqueta_agotado_en_cards()
 {
     global $product;
-    if ($product && ! $product->is_in_stock()) {
+    if ($product && !$product->is_in_stock()) {
         echo '<span class="badge agotado">Agotado</span>';
     }
 }
@@ -49,15 +49,16 @@ remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_l
 
 add_action('woocommerce_before_shop_loop_item_title', function () {
     global $product;
-    if (! $product) return;
+    if (!$product)
+        return;
 
-    $size  = 'woocommerce_thumbnail';
+    $size = 'woocommerce_thumbnail';
     $attrs = [
-        'class'    => 'wp-post-image',
-        'loading'  => 'lazy',
+        'class' => 'wp-post-image',
+        'loading' => 'lazy',
         'decoding' => 'async',
         // Ajusta a tu grid real (183px fue el target de Lighthouse)
-        'sizes'    => '(max-width:480px) 45vw, (max-width:768px) 30vw, 183px',
+        'sizes' => '(max-width:480px) 45vw, (max-width:768px) 30vw, 183px',
     ];
 
     if (has_post_thumbnail($product->get_id())) {
@@ -78,9 +79,9 @@ add_action('woocommerce_before_shop_loop_item_title', function () {
 // 4) (Recomendado) Asegura el tamaño del catálogo y que WC lo pida
 add_filter('woocommerce_get_image_size_thumbnail', function () {
     return [
-        'width'  => 366,  // 183*2 para pantallas 2x
+        'width' => 366,  // 183*2 para pantallas 2x
         'height' => 366,
-        'crop'   => 1,
+        'crop' => 1,
     ];
 }, 999);
 
@@ -113,7 +114,7 @@ function shortcode_listado_categorias()
 {
     global $post;
 
-    if (! $post || 'product' !== get_post_type($post)) {
+    if (!$post || 'product' !== get_post_type($post)) {
         return ''; // solo aplica en productos
     }
 
@@ -126,7 +127,7 @@ function shortcode_listado_categorias()
     ob_start(); ?>
     <p class="has-principal-color pb-0 mb-0"><strong>Producto de:</strong></p>
     <ul class="listado-categorias">
-        <?php foreach ($terms as $term) : ?>
+        <?php foreach ($terms as $term): ?>
             <li class="listado__item">
                 <a href="<?php echo esc_url(get_term_link($term)); ?>" class="listado__link">
                     <?php echo esc_html($term->name); ?>
@@ -134,7 +135,7 @@ function shortcode_listado_categorias()
             </li>
         <?php endforeach; ?>
     </ul>
-<?php
+    <?php
     return ob_get_clean();
 }
 add_shortcode('listado_categorias', 'shortcode_listado_categorias');
@@ -152,7 +153,7 @@ add_action('after_setup_theme', function () {
     // Añade nuestro wrapper con ambos dentro
     add_action('woocommerce_before_shop_loop', function () {
         // Opcional: limita solo a tienda/categoría/tag de producto
-        if (! (is_shop() || is_product_category() || is_product_tag())) {
+        if (!(is_shop() || is_product_category() || is_product_tag())) {
             // Si no estás en esos contextos, mejor no tocar nada
             return;
         }
@@ -166,7 +167,7 @@ add_action('after_setup_theme', function () {
         echo '</div>';
 
         // Esto imprime el <form class="woocommerce-ordering"> con el <select class="orderby">
-        woocommerce_catalog_ordering();
+        //woocommerce_catalog_ordering();
 
         echo '</div>';
     }, 25); // un punto medio entre 20 y 30 para que quede en el lugar esperado
@@ -178,7 +179,7 @@ function shortcode_listado_etiquetas()
 {
     global $post;
 
-    if (! $post || 'product' !== get_post_type($post)) {
+    if (!$post || 'product' !== get_post_type($post)) {
         return ''; // solo aplica en productos
     }
 
@@ -191,7 +192,7 @@ function shortcode_listado_etiquetas()
     ob_start(); ?>
     <p class="has-principal-color pb-0 mb-0"><strong>Giro de negocio:</strong></p>
     <ul class="listado-giros">
-        <?php foreach ($tags as $tag) : ?>
+        <?php foreach ($tags as $tag): ?>
             <li class="listado__item">
                 <a href="<?php echo esc_url(get_term_link($tag)); ?>" class="listado__link">
                     <?php echo esc_html($tag->name); ?>
@@ -199,7 +200,7 @@ function shortcode_listado_etiquetas()
             </li>
         <?php endforeach; ?>
     </ul>
-<?php
+    <?php
     return ob_get_clean();
 }
 add_shortcode('listado_etiquetas', 'shortcode_listado_etiquetas');
@@ -211,10 +212,12 @@ add_shortcode('listado_etiquetas', 'shortcode_listado_etiquetas');
 
 // functions.php
 add_action('woocommerce_cart_collaterals', function () {
-    if (! function_exists('get_field')) return;
+    if (!function_exists('get_field'))
+        return;
 
     $img = get_field('medios_pago_img', 'option');
-    if (empty($img) || empty($img['url'])) return;
+    if (empty($img) || empty($img['url']))
+        return;
 
     $alt = !empty($img['alt']) ? $img['alt'] : __('Medios de pago', 'your-textdomain');
 
