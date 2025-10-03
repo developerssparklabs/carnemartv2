@@ -576,44 +576,48 @@ class Wcmlim_Public
 
 	public function wc_qty_update_cart_validation($passed, $cart_item_key, $values, $quantity)
 	{
-		// Fetch location with quantity
+		// Fetch location from cart item instead of cookie
 		$cart_item = WC()->cart->get_cart_item($cart_item_key);
+
+		// Validar que exista location_termId en el item del carrito
+		if (!isset($cart_item['select_location']['location_termId'])) {
+			return $passed;
+		}
+
+		// Obtener el ID de la ubicación del item del carrito
+		$location_id = $cart_item['select_location']['location_termId'];
+		$location_name = $cart_item['select_location']['location_name'];
 
 		// Check if backorders are allowed for this product
 		$product_id = $values['data']->get_id();
-		$stz = 'wcmlim_allow_backorder_at_' . $cart_item['select_location']['location_termId'];
+		$stz = 'wcmlim_allow_backorder_at_' . $location_id;
 		$is_backorder_enabled = get_post_meta($product_id, $stz, true);
 
-		// If backorders are allowed, set product for this location to backorder
+		// Si los backorders están permitidos para esta ubicación, permitir la actualización
 		if ($is_backorder_enabled == 'yes') {
-			$location_id = $cart_item['select_location']['location_termId'];
-			$product = wc_get_product($product_id);
-			$product->set_stock_quantity(0);
-			$product->set_backorders('yes');
-			$product->save();
-			update_post_meta($product_id, '_backorders', 'yes');
-			return $passed;
-		} else {
-			if (isset($cart_item['select_location']['location_termId']) && $quantity > $cart_item['select_location']['location_qty']) {
-				// Calculate available quantity
-				$available_qty = $cart_item['select_location']['location_qty'];
-
-				// Display error message
-				$error_message = sprintf(
-					__('Lo sentimos, no tenemos suficientes "%s" en stock para completar tu orden (%d disponible) para la ubicación %s. Disculpe las molestias ocasionadas.', 'wcmlim'),
-					$values['data']->get_name(), // Item name
-					$available_qty,
-					$cart_item['select_location']['location_name']
-				);
-				wc_clear_notices();
-				wc_add_notice($error_message, 'error');
-				$passed = false;
-			}
-
 			return $passed;
 		}
-	}
 
+		// Obtener el stock disponible para esta ubicación específica
+		$available_qty = isset($cart_item['select_location']['location_qty']) ?
+			$cart_item['select_location']['location_qty'] : 0;
+
+		// Validar que haya suficiente stock
+		if ($quantity > $available_qty) {
+			// Mostrar mensaje de error con la ubicación correcta
+			$error_message = sprintf(
+				__('Lo sentimos, no tenemos suficientes "%s" en stock para completar tu orden (%d disponible) para la ubicación %s. Disculpe las molestias ocasionadas.', 'wcmlim'),
+				$values['data']->get_name(),
+				$available_qty,
+				$location_name
+			);
+			wc_clear_notices();
+			wc_add_notice($error_message, 'error');
+			return false;
+		}
+
+		return $passed;
+	}
 
 	/**
 	 * Add rewrite rule and tag to WP
