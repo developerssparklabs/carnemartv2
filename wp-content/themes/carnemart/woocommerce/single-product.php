@@ -187,8 +187,13 @@ do_action('woocommerce_before_main_content');
 									$cart_count += $cart_item['quantity'];
 								}
 							}
+							$unit_text = !empty($unit) ? ' ' . esc_html($unit) : '';
+
 							if ($cart_count > 0) {
-								echo '<p class="product-in-cart"><strong>En tu carrito:</strong> ' . esc_html($cart_count) . ' ' . esc_html($unit) . '</p>';
+								// echo '<p class="product-in-cart"><strong>En tu carrito:</strong> '
+								// . '<span id="price-single-product-cart">' . esc_html($cart_count) . '</span>'
+								// . $unit_text
+								// . '</p>';
 							}
 						}
 					}
@@ -473,7 +478,7 @@ do_action('woocommerce_before_main_content');
 														id="quantity-input" 
 														class="quantity-input" 
 														name="quantity"
-														value="<?php echo esc_attr(wc_format_decimal($default_qty, $decimals)); ?>" 
+														value="<?php echo esc_attr(wc_format_decimal($cart_count > 0 ? $cart_count : $step, $decimals)); ?>" 
 														step="<?php echo esc_attr($step); ?>" 
 														min="<?php echo esc_attr($min); ?>"
 														<?php if ($max_qty): ?>max="<?php echo esc_attr($max_qty); ?>"<?php endif; ?>
@@ -895,48 +900,180 @@ do_action('woocommerce_before_main_content');
 </style>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-		const minusButton = document.querySelector('.quantity-minus');
-		const plusButton = document.querySelector('.quantity-plus');
-		const quantityInput = document.querySelector('#quantity-input');
+(function () {
+  'use strict';
 
-		if (!minusButton || !plusButton || !quantityInput) {
-			return;
+	// ---- Helpers de parseo tolerante (claves como "50.00 (Precio regular)")
+	function toNumberLoose(x) {
+		if (typeof x === 'number' && Number.isFinite(x)) return x;
+
+		const s = String(x || '').trim();
+		// Busca el primer número (con punto o coma decimal)
+		const m = s.match(/-?\d+(?:[.,]\d+)?/);
+		if (!m) return NaN;
+
+		// Normaliza decimal a punto
+		const num = m[0].replace(',', '.');
+		const n = parseFloat(num);
+		return Number.isFinite(n) ? n : NaN;
+	}
+
+  /**
+   * =========================
+   *  Config / datos de PHP
+   * =========================
+   */
+  // Tiers recibidos del backend (clave: umbral, valor: precio)
+  const RAW_TIERS = <?php echo json_encode($tiers); ?> || {};
+  console.log('[tiers] RAW_TIERS:', RAW_TIERS);
+  
+  /**
+  * Normaliza y ordena los tiers por umbral ascendente.
+  * E.g. {"1.00 (Precio regular)": "109.90", "50.00 (Precio regular)": 108.9}
+  *   -> [{qty:1, price:109.9}, {qty:50, price:108.9}]
+  */
+  function normalizeTiers(obj) {
+	// Acepta objeto o array de pares
+	const entries = Array.isArray(obj) ? obj : Object.entries(obj);
+
+	const out = [];
+	for (const [rawQty, rawPrice] of entries) {
+		const qty   = toNumberLoose(rawQty);
+		const price = toNumberLoose(rawPrice);
+		if (Number.isFinite(qty) && Number.isFinite(price)) {
+		out.push({ qty, price });
 		}
+	}
+	out.sort((a, b) => a.qty - b.qty);
+	return out;
+  }
 
-		// Obtenemos el paso, el mínimo y el máximo desde los atributos del input
-		const step = parseFloat(quantityInput.getAttribute('step')) || 1;
-		const min = parseFloat(quantityInput.getAttribute('min')) || step;
-		const max = quantityInput.hasAttribute('max') ? parseFloat(quantityInput.getAttribute('max')) : null;
-		const decimals = (step.toString().split('.')[1] || '').length;
+  const TIERS = normalizeTiers(RAW_TIERS);
+  console.log('[tiers] TIERS normalizados:', TIERS);
+  /**
+   * =========================
+   *  Selectores cacheados
+   * =========================
+   */
+  const cartQtyEl   = document.getElementById('price-single-product-cart'); // cantidad ya en carrito (si existe)
+  const priceBDI    = document.querySelector('.product-price-sale .woocommerce-Price-amount.amount bdi');
+  const minusButton = document.querySelector('.quantity-minus');
+  const plusButton  = document.querySelector('.quantity-plus');
+  const qtyInput    = document.querySelector('#quantity-input');
 
-		function formatValue(val) {
-			return decimals > 0 ? parseFloat(val).toFixed(decimals) : parseInt(val, 10);
-		}
+  // Early return si no hay donde pintar el precio
+  if (!priceBDI) {
+    console.warn('[tiers] No encontré el <bdi> del precio');
+    return;
+  }
 
-		minusButton.addEventListener('click', function () {
-			let currentValue = parseFloat(quantityInput.value) || min;
-			let newValue = currentValue - step;
-			if (newValue < min) newValue = min;
-			quantityInput.value = formatValue(newValue);
-			quantityInput.dispatchEvent(new Event('change', { bubbles: true }));
-		});
+  /**
+   * =========================
+   *  Utilidades
+   * =========================
+   */
 
-		plusButton.addEventListener('click', function () {
-			let currentValue = parseFloat(quantityInput.value) || min;
-			let newValue = currentValue + step;
-			if (max !== null && newValue > max) newValue = max;
-			quantityInput.value = formatValue(newValue);
-			quantityInput.dispatchEvent(new Event('change', { bubbles: true }));
-		});
+  // Node de texto que contiene SOLO el número dentro del <bdi>
+  const numNode = [...priceBDI.childNodes].find(n => n.nodeType === Node.TEXT_NODE) || null;
 
-		quantityInput.addEventListener('change', function () {
-			let value = parseFloat(quantityInput.value) || min;
-			if (value < min) value = min;
-			if (max !== null && value > max) value = max;
-			quantityInput.value = formatValue(value);
-		});
-	});
+  /**
+   * Cambia el número manteniendo símbolo y markup del precio.
+   * Usa 2 decimales para estabilidad visual.
+   */
+  function setPrice(newNumber) {
+    if (!numNode) return;
+    const formatted = Number(newNumber).toFixed(2);
+    numNode.nodeValue = ' ' + formatted; // Woo suele dejar un espacio tras el símbolo
+    // Evento opcional por si otro JS necesita reaccionar
+    priceBDI.dispatchEvent(new CustomEvent('price:changed', { detail: { value: formatted } }));
+  }
+
+  /**
+   * Devuelve el precio de tier que corresponde al totalQty.
+   * Toma el mayor umbral <= totalQty. Si no hay match, retorna null.
+   */
+  function pickTierPrice(totalQty) {
+    if (!TIERS.length || !Number.isFinite(totalQty)) return null;
+    let picked = null;
+    for (let i = 0; i < TIERS.length; i++) {
+      if (totalQty >= TIERS[i].qty) picked = TIERS[i];
+      else break; // como están ordenados asc, podemos cortar
+    }
+    return picked ? picked.price : null;
+  }
+
+  /** Precio dinámico según cantidad total (carrito + seleccionada) */
+  function applyTierPrice() {
+    const inCart = Number(cartQtyEl?.textContent || 0) || 0;
+    const selected = Number(qtyInput?.value || 0) || 0;
+    const total = inCart + selected;
+	console.log('[tiers] Cantidad en carrito:', inCart, 'Seleccionada:', selected, 'Total:', total);
+    const tierPrice = pickTierPrice(total);
+	console.log('[tiers] Precio por tier para total', total, 'es:', tierPrice);
+    if (tierPrice !== null) setPrice(tierPrice);
+  }
+
+  /** Pequeño debounce para eventos ruidosos */
+  function debounce(fn, ms) {
+    let t;
+    return function (...args) {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, args), ms);
+    };
+  }
+
+  /**
+   * =========================
+   *  Inicialización
+   * =========================
+   */
+
+  // Si hay cantidad en carrito o en el input, aplica de entrada
+  applyTierPrice();
+
+  // Si no tenemos controles de cantidad, terminamos (precio se actualizó por qty en carrito si existía)
+  if (!qtyInput || !minusButton || !plusButton) return;
+
+  // Atributos del input de cantidad
+  const STEP     = Number(qtyInput.getAttribute('step')) || 1;
+  const MIN      = Number(qtyInput.getAttribute('min')) || STEP;
+  const MAX      = qtyInput.hasAttribute('max') ? Number(qtyInput.getAttribute('max')) : null;
+  const DECIMALS = (STEP.toString().split('.')[1] || '').length;
+
+  function clamp(val) {
+    let v = Number(val);
+    if (!Number.isFinite(v)) v = MIN;
+    if (v < MIN) v = MIN;
+    if (MAX !== null && v > MAX) v = MAX;
+    return v;
+  }
+
+  function format(val) {
+    return DECIMALS > 0 ? Number(val).toFixed(DECIMALS) : String(parseInt(val, 10));
+  }
+
+  // Handlers de +/-
+  minusButton.addEventListener('click', () => {
+    const current = clamp(Number(qtyInput.value) - STEP);
+    qtyInput.value = format(current);
+    qtyInput.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+
+  plusButton.addEventListener('click', () => {
+    const current = clamp(Number(qtyInput.value) + STEP);
+    qtyInput.value = format(current);
+    qtyInput.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+
+  // Normaliza entrada manual y aplica precio con debounce (mejora performance)
+  const onQtyChange = debounce(() => {
+    qtyInput.value = format(clamp(qtyInput.value));
+    applyTierPrice();
+  }, 80);
+
+  qtyInput.addEventListener('change', onQtyChange);
+  qtyInput.addEventListener('input',  onQtyChange);
+})();
 </script>
 
 <?php get_footer('shop'); ?>

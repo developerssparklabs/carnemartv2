@@ -850,3 +850,29 @@ add_filter('woocommerce_update_cart_validation', function ($passed, $cart_item_k
 add_filter('woocommerce_update_cart_action_cart_updated', function ($cart_updated) {
     return wc_notice_count('error') > 0 ? false : $cart_updated;
 }, PHP_INT_MAX);
+
+/**
+ * Tratar la cantidad del botón "Añadir al carrito" como "cantidad TOTAL deseada".
+ * Si ya existe el mismo item en el carrito, en lugar de sumar, se deja la cantidad EXACTA
+ * que el usuario puso en el input de la PDP.
+ */
+add_action('woocommerce_add_to_cart', function ($cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data) {
+    // Evita tocar en admin
+    if (is_admin() && !defined('DOING_AJAX'))
+        return;
+
+    // Cantidad que envió el formulario de la PDP (la TOTAL deseada)
+    if (!isset($_REQUEST['quantity']))
+        return;
+
+    // Normaliza como lo hace Woo (soporta decimales si tu producto lo permite)
+    $desired_total = wc_stock_amount(wc_clean(wp_unslash($_REQUEST['quantity'])));
+
+    // Seguridad básica
+    if ($desired_total <= 0)
+        return;
+
+    // Fija la cantidad de LA LÍNEA que se acaba de agregar/mergear a la cantidad total deseada
+    // Esto evita el comportamiento por defecto de "sumar" sobre lo que ya había.
+    WC()->cart->set_quantity($cart_item_key, $desired_total, true);
+}, 15, 6);

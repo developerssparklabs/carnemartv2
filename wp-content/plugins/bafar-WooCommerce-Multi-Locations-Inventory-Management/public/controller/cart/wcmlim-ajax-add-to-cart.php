@@ -17,24 +17,30 @@ global $woocommerce;
 /* ========= Helpers ========= */
 
 // Normaliza string a float (admite coma)
-function cmt_to_float($value, $decimals = 3) {
-    if ($value === null || $value === '') return 0.0;
+function cmt_to_float($value, $decimals = 3)
+{
+    if ($value === null || $value === '')
+        return 0.0;
     $v = is_string($value) ? str_replace(',', '.', $value) : $value;
     $v = wc_format_decimal($v, $decimals);
     return (float) $v;
 }
 
 // ¿qty es múltiplo de step? (con epsilon para floats)
-function cmt_is_multiple_of_step($qty, $step, $epsilon = 1e-5) {
-    if ($step <= 0) return true;
+function cmt_is_multiple_of_step($qty, $step, $epsilon = 1e-5)
+{
+    if ($step <= 0)
+        return true;
     $nearest = round($qty / $step) * $step;
     return abs($qty - $nearest) < $epsilon;
 }
 
 // Cantidad ya presente en carrito para ese producto/variación
-function cmt_cart_qty_for_product($product_id) {
+function cmt_cart_qty_for_product($product_id)
+{
     $qty = 0.0;
-    if (!WC()->cart) return 0.0;
+    if (!WC()->cart)
+        return 0.0;
     foreach (WC()->cart->get_cart() as $item) {
         $pid = $item['variation_id'] ? $item['variation_id'] : $item['product_id'];
         if ((int) $pid === (int) $product_id) {
@@ -45,15 +51,17 @@ function cmt_cart_qty_for_product($product_id) {
 }
 
 // Stock por ubicación: meta wcmlim_stock_at_{termId}
-function cmt_stock_at_location($product_id, $term_id) {
+function cmt_stock_at_location($product_id, $term_id)
+{
     $meta_key = "wcmlim_stock_at_{$term_id}";
     $raw = get_post_meta($product_id, $meta_key, true);
     return cmt_to_float($raw, 3);
 }
 
 // Normaliza truthy para manage_stock
-function cmt_is_yes($v) {
-    return in_array(strtolower((string)$v), ['1','yes','true','y','on'], true);
+function cmt_is_yes($v)
+{
+    return in_array(strtolower((string) $v), ['1', 'yes', 'true', 'y', 'on'], true);
 }
 
 /* ========= Entrada ========= */
@@ -64,50 +72,52 @@ if (!$product_id) {
 }
 
 $requested_qty_raw = $_POST['quantity'] ?? 1;
-$requested_qty     = cmt_to_float($requested_qty_raw, 3);  // lo que el usuario está agregando ahora
+$requested_qty = cmt_to_float($requested_qty_raw, 3);  // lo que el usuario está agregando ahora
 if ($requested_qty <= 0) {
     echo '9'; // cantidad inválida
     wp_die();
 }
 
 $product_location_termid = $_POST['product_location_termid'] ?? '';
-$product_location        = $_POST['product_location'] ?? '';
-$product_location_key    = (int)($_POST['product_location_key'] ?? 0);
-$product_location_qty    = (int)($_POST['product_location_qty'] ?? 0);
+$product_location = $_POST['product_location'] ?? '';
+$product_location_key = (int) ($_POST['product_location_key'] ?? 0);
+$product_location_qty = (int) ($_POST['product_location_qty'] ?? 0);
 
-$product_price                = cmt_to_float($_POST['product_price'] ?? '', 3);
-$product_location_regular     = cmt_to_float($_POST['product_location_regular_price'] ?? '', 3);
-$product_location_sale_raw    = $_POST['product_location_sale_price'] ?? 'undefined';
-$product_location_sale        = $product_location_sale_raw === 'undefined' ? null : cmt_to_float($product_location_sale_raw, 3);
+$product_price = cmt_to_float($_POST['product_price'] ?? '', 3);
+$product_location_regular = cmt_to_float($_POST['product_location_regular_price'] ?? '', 3);
+$product_location_sale_raw = $_POST['product_location_sale_price'] ?? 'undefined';
+$product_location_sale = $product_location_sale_raw === 'undefined' ? null : cmt_to_float($product_location_sale_raw, 3);
 
 $_isrspon = get_option('wcmlim_enable_price');
 
 /* ========= Step & mínimo ========= */
 
 $product_step = cmt_to_float(get_post_meta($product_id, 'product_step', true), 3);
-if ($product_step <= 0) $product_step = 1.0;
+if ($product_step <= 0)
+    $product_step = 1.0;
 
 $min_quantity = cmt_to_float(get_post_meta($product_id, 'min_quantity', true), 3);
-if ($min_quantity <= 0) $min_quantity = 1.0;
+if ($min_quantity <= 0)
+    $min_quantity = 1.0;
 
 // qty final que habría en el carrito tras agregar
 $existing_qty = cmt_cart_qty_for_product($product_id);
-$total_qty    = $existing_qty + $requested_qty;
+$total_qty = $existing_qty + $requested_qty;
 
 $epsilon = 1e-5;
 
 // Validamos contra TOTAL (lo que quedará) pero agregamos REQUESTED
-if ($total_qty + $epsilon < $min_quantity || ! cmt_is_multiple_of_step($total_qty, $product_step, $epsilon)) {
+if ($total_qty + $epsilon < $min_quantity || !cmt_is_multiple_of_step($total_qty, $product_step, $epsilon)) {
     echo '9';
     wp_die();
 }
 
 /* ========= Stock por ubicación ========= */
 $manage_stock_meta = get_post_meta($product_id, '_manage_stock', true);
-$manage_stock      = cmt_is_yes($manage_stock_meta) ? 'yes' : 'no';
+$manage_stock = cmt_is_yes($manage_stock_meta) ? 'yes' : 'no';
 
-$cookie_termid     = $_COOKIE['wcmlim_selected_location_termid'] ?? '';
-$effective_termid  = (int)($product_location_termid ?: $cookie_termid);
+$cookie_termid = $_COOKIE['wcmlim_selected_location_termid'] ?? '';
+$effective_termid = (int) ($product_location_termid ?: $cookie_termid);
 
 if ($manage_stock === 'yes' && empty($effective_termid)) {
     echo '3';
@@ -144,7 +154,7 @@ if (get_option('wcmlim_enable_specific_location') === 'on') {
 /* ========= Validación WC y estado producto ========= */
 
 $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $requested_qty);
-$product_status    = get_post_status($product_id);
+$product_status = get_post_status($product_id);
 
 if (!$passed_validation || 'publish' !== $product_status) {
     echo '11';
@@ -155,10 +165,10 @@ if (!$passed_validation || 'publish' !== $product_status) {
 
 $_location_data = [
     'select_location' => [
-        'location_name'   => $product_location,
-        'location_key'    => $product_location_key,
-        'location_qty'    => $product_location_qty,
-        'location_termId' => (int)$product_location_termid,
+        'location_name' => $product_location,
+        'location_key' => $product_location_key,
+        'location_qty' => $product_location_qty,
+        'location_termId' => (int) $product_location_termid,
     ],
 ];
 
@@ -174,10 +184,23 @@ if ($_isrspon === 'on') {
 
 /* ========= Agregar al carrito ========= */
 
-// ¡OJO! Agregamos **solo** lo solicitado, no el total.
-$added = WC()->cart->add_to_cart($product_id, $requested_qty, 0, [], $_location_data);
+$added_key = WC()->cart->add_to_cart(
+    $product_id,
+    $requested_qty,   // se agrega lo solicitado...
+    0,
+    [],
+    $_location_data
+);
 
-if ($added) {
+if ($added_key) {
+    // ...y de inmediato fijamos la línea al TOTAL deseado.
+    // wc_stock_amount normaliza la cantidad según reglas de Woo (admite decimales).
+    $final_total = wc_stock_amount($total_qty);
+
+    // true => recalcula totales y dispara hooks de actualización
+    WC()->cart->set_quantity($added_key, $final_total, true);
+
+    // Refresca mini-cart/fragments ya con la nueva cantidad total
     WC_AJAX::get_refreshed_fragments();
 }
 wp_die();
