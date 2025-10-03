@@ -431,7 +431,7 @@ class Wcmlim
         $this->loader->add_short_code('wcmlim_locations_switch', $plugin_public, 'woo_switch_content');
         $this->loader->add_action('wp_ajax_wcmlim_closest_location', $plugin_public, 'wcmlim_closest_location');
         $this->loader->add_action('wp_ajax_nopriv_wcmlim_closest_location', $plugin_public, 'wcmlim_closest_location');
-        $this->loader->add_action('woocommerce_product_query', $plugin_public, 'wcmlim_change_product_query');
+        //$this->loader->add_action('woocommerce_product_query', $plugin_public, 'wcmlim_change_product_query');
         // display an 'Out of Stock' label on archive pages
         $this->loader->add_action('woocommerce_before_shop_loop_item_title', $plugin_public, 'woocommerce_template_loop_stock', 10);
       }
@@ -542,7 +542,7 @@ class Wcmlim
       $this->loader->add_action('woocommerce_after_checkout_validation', $plugin_public, 'wcmlim_proceed_to_checkout');
 
       if ($shortShopAsLocation == 'on') {
-        $this->loader->add_action('woocommerce_product_query', $plugin_public, 'wcmlim_change_product_query');
+        // $this->loader->add_action('woocommerce_product_query', $plugin_public, 'wcmlim_change_product_query');
         // display an 'Out of Stock' label on archive pages
         $this->loader->add_action('woocommerce_before_shop_loop_item_title', $plugin_public, 'woocommerce_template_loop_stock', 10);
       }
@@ -616,7 +616,7 @@ class Wcmlim
       $isLimitLocation = get_option('wcmlim_clear_cart');
       ;
       if ($isLocationsGroup == "on" && $isLimitLocation == "on") {
-        //$this->loader->add_action('woocommerce_before_cart', $plugin_public, 'check_stock_for_location_group', 10, 1);
+        $this->loader->add_action('woocommerce_before_cart', $plugin_public, 'check_stock_for_location_group', 10, 1);
       }
     }
 
