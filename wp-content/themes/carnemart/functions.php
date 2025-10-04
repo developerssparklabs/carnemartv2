@@ -631,38 +631,32 @@ add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mime
 require_once get_stylesheet_directory() . '/functions-extend.php';
 
 add_filter('woocommerce_add_to_cart_validation', function ($passed, $product_id, $quantity, $variation_id = 0, $cart_item_data = []) {
-    global $woocommerce;
+    // --- 1) Configuración / saneo ---
     $manage_stock = get_post_meta($product_id, '_manage_stock', true);
+    $manage_stock = strtolower((string) $manage_stock) === 'yes';
 
-    foreach ($woocommerce->cart->get_cart() as $item => $items) {
-        $product_ids = $items['variation_id'] ? $items['variation_id'] : $items['product_id'];
-        if ($product_ids == $product_id) {
-            $quantity += $items['quantity'];
-        }
-    }
+    // La cantidad que llega EN EL SUBMIT es la TOTAL deseada (no un delta)
+    $desired_qty = (float) $quantity;
 
-    // Lee como float y fija defaults seguros
+    // step y mínimo (con defaults seguros)
     $product_step = (float) get_post_meta($product_id, 'product_step', true);
     $min_quantity = (float) get_post_meta($product_id, 'min_quantity', true);
-    $quantity = (float) $quantity;
-
     $product_step = $product_step > 0 ? $product_step : 1.0;
     $min_quantity = $min_quantity > 0 ? $min_quantity : 1.0;
 
-    // Define la precisión permitida para la cantidad (nº de decimales)
-    // Si usas cantidades con 2 decimales => 2; si permites 3, cambia a 3.
+    // Precisión (si trabajas con .5 o .125 sube a 3)
     $precision = 3;
     $scale = pow(10, $precision);
 
-    // Escala a enteros para comparar/modear sin floats
-    $qty_i = (int) round($quantity * $scale);
+    // Escala a enteros para evitar errores de float
+    $qty_i = (int) round($desired_qty * $scale);
     $step_i = (int) round($product_step * $scale);
     $min_i = (int) round($min_quantity * $scale);
+    $step_i = max($step_i, 1); // por seguridad
 
-    // Seguridad extra: evita step 0 por redondeos
-    $step_i = max($step_i, 1);
+    // --- 2) Validaciones de negocio (SOLO contra la cantidad total deseada) ---
 
-    // Validación
+    // a) Mínimo + múltiplos de step
     if ($qty_i < $min_i || ($qty_i % $step_i) !== 0) {
         wc_add_notice(
             sprintf(
@@ -675,32 +669,38 @@ add_filter('woocommerce_add_to_cart_validation', function ($passed, $product_id,
         return false;
     }
 
-    if ($manage_stock != "yes") {
+    // b) Producto con stock gestionado
+    if (!$manage_stock) {
         wc_add_notice('El producto no está disponible para la compra.', 'error');
         return false;
     }
 
-    $_location_termid = $_COOKIE['wcmlim_selected_location_termid'];
+    // c) Debe existir tienda seleccionada (misma que usarás en el add_to_cart)
+    $_location_termid = isset($_COOKIE['wcmlim_selected_location_termid'])
+        ? (int) $_COOKIE['wcmlim_selected_location_termid']
+        : 0;
+
     if (empty($_location_termid)) {
         wc_add_notice('Debe seleccionar una tienda para comprar.', 'error');
         return false;
     }
 
-    $__stock_at_location = get_post_meta($product_id, "wcmlim_stock_at_{$_location_termid}", true);
+    // d) Stock por ubicación (comparado contra la CANTIDAD TOTAL deseada)
+    $stock_at_location_raw = get_post_meta($product_id, "wcmlim_stock_at_{$_location_termid}", true);
+    $stock_at_location = (float) $stock_at_location_raw;
 
-    if ($manage_stock == "yes") {
-        if ($__stock_at_location <= 0) {
-            wc_add_notice("No hay suficiente stock disponible para esta ubicación.", "error");
-            return false;
-        }
-    }
-
-    if ($quantity > $__stock_at_location) {
+    if ($stock_at_location <= 0) {
         wc_add_notice("No hay suficiente stock disponible para esta ubicación.", "error");
         return false;
     }
 
-    return $passed;
+    if ($desired_qty > $stock_at_location) {
+        wc_add_notice("No hay suficiente stock disponible para esta ubicación.", "error");
+        return false;
+    }
+
+    // Si pasa todo, permitimos
+    return true;
 }, 10, 5);
 
 add_action('wp_footer', function () {
