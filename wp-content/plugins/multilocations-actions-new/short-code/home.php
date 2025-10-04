@@ -69,7 +69,7 @@ if (!function_exists('anaquel_home')) {
                         z-index: 0;
                     "></div>
                 </div>';
-                return '';
+            return '';
         }
 
         // Cache key única por tienda y configuración
@@ -107,11 +107,11 @@ if (!function_exists('anaquel_home')) {
                     'value' => 'instock',
                     'compare' => '=',
                 ],
-                // Excluir si product_step NO es entero <= 1 (filtro fino más abajo)
                 [
                     'key' => 'product_step',
-                    'value' => '.',
-                    'compare' => 'NOT LIKE',
+                    'value' => 0.1,
+                    'type' => 'DECIMAL(10,2)',
+                    'compare' => '>'
                 ],
             ],
         ];
