@@ -481,7 +481,7 @@ do_action('woocommerce_before_main_content');
 														value="<?php echo esc_attr(wc_format_decimal($cart_count > 0 ? $cart_count : $step, $decimals)); ?>" 
 														step="<?php echo esc_attr($step); ?>" 
 														min="<?php echo esc_attr($min); ?>"
-														<?php if ($max_qty): ?>max="<?php echo esc_attr($max_qty); ?>"<?php endif; ?>
+														<?php if ($stock_quantity): ?>max="<?php echo esc_attr($stock_quantity); ?>"<?php endif; ?>
 														inputmode="decimal" 
 														pattern="[0-9]*[.,]?[0-9]*"
 														aria-label="<?php esc_attr_e('Cantidad'); ?>">

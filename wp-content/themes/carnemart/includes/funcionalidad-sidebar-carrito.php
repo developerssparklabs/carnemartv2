@@ -186,6 +186,8 @@ function personalizar_botones_cantidad()
             }
         }
 
+        // Maximo de la tienda
+        $stock_quantity = (float) get_post_meta($product->get_id(), "wcmlim_stock_at_{$cookie_termId}", true);
 
         // Si no hay cookie, retornamos vacio
         if (empty($cookie_termId)) {
@@ -237,7 +239,7 @@ function personalizar_botones_cantidad()
 
         echo '<div class="quantity-wrapper">';
         echo '<button class="quantity-decrease">-</button>';
-        echo '<input type="number" class="quantity-input" value="' . esc_attr($quantity > 0 ? $quantity : $min) . '" min="' . esc_attr($min) . '" step="' . esc_attr($step) . '" aria-label="Cantidad">';
+        echo '<input type="number" class="quantity-input" max="' . esc_attr($stock_quantity) . '" value="' . esc_attr($quantity > 0 ? $quantity : $min) . '" min="' . esc_attr($min) . '" step="' . esc_attr($step) . '" aria-label="Cantidad">';
         echo '<button class="quantity-increase">+</button>';
         echo '<button class="button product_type_simple add_to_cart_button wcmlim_ajax_add_to_cart add-to-cart"  style="color: #fff"
             data-cart-url="' . $_cart_url . '" 
