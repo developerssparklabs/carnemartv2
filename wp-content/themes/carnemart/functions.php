@@ -113,9 +113,9 @@ function html5blank_styles()
 
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '2.1.0', 'all');
     wp_enqueue_style('html5blank');
-    wp_register_style('allcss', get_template_directory_uri() . '/css/allcss.css', array(), '2.1.0', 'all');
-    wp_enqueue_style('allcss');
-    wp_register_style('siteStyle', get_template_directory_uri() . '/site_style.css', array(), '2.2.6', 'all');
+    //wp_register_style('allcss', get_template_directory_uri() . '/css/allcss.css', array(), '2.1.0', 'all');
+    //wp_enqueue_style('allcss');
+    wp_register_style('siteStyle', get_template_directory_uri() . '/site_style.css', array(), '2.2.7', 'all');
     wp_enqueue_style('siteStyle');
 }
 
