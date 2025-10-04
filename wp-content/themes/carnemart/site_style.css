@@ -145,6 +145,77 @@ body {
 
 /*-------------------------------------- Nuevow 29 Sep ----------------------*/
 
+body.woocommerce-cart .wp-block-group{
+	margin-bottom:80px;
+}
+
+body.woocommerce-lost-password{
+	.row-header-page-interna h1{
+		text-align:center;
+	}
+}
+
+body.woocommerce-lost-password .woocommerce .woocommerce-ResetPassword.lost_reset_password{
+	background-color: #f4f8ff!important;
+    color: var(--color-principal)!important;
+}
+
+body.woocommerce-lost-password .woocommerce .button{
+	background-color: var(--color-tercero)!important;
+        border-color: var(--color-tercero)!important;
+        color: var(--color-claro)!important;
+}
+
+
+.woocommerce-error, .woocommerce-message {
+    text-align: left!important;
+    font-weight: 500!important;
+    padding: 15px 50px!important;
+		font-size:14px!important;
+}
+
+
+body.woocommerce-dashboard .woocommerce-info,
+body.woocommerce-edit-account .woocommerce-info{
+	max-width: 800px!important;
+	padding: 15px 30px!important;
+	background-color: var(--color-tercero)!important;
+	color:#ffffff!important;
+}
+
+.return-to-shop .button.wc-backward{
+	padding: 10px 30px !important;
+        border-radius: 300px !important;
+        background-color: var(--color-secundario) !important;
+        color: var(--color-claro) !important;
+}
+
+
+.woocommerce-orders-table__cell-order-actions{
+	a.woocommerce-button{
+		display:inline-block;
+		padding:4px 20px;
+		border-radius:300px;
+		background-color: var(--color-secundario)!important;
+		margin-left:5px;
+		color:#ffffff;
+		font-weight:400!important;
+		
+		&:hover{
+			background-color:#98f751!important;
+			color: var(--color-secundario)!important;
+		}
+			&.cancel{
+		background-color:#ff6f00!important;
+				
+				&:hover{
+					color:#000000!important;
+				}
+	}
+		
+	}
+}
+
 body.pagina-checkout .woocommerce-NoticeGroup-updateOrderReview,
 body.pagina-checkout  .woocommerce-NoticeGroup-checkout{
   position: fixed;
@@ -659,7 +730,8 @@ iframe.full-width-iframe {
     text-decoration: none;
     background-color: #ffffff;
     border: solid 1px #dbe6ff;
-    padding: 20px 15px;
+    padding:14px 15px;
+	width:100%!important;
     border-radius: 8px;
     text-decoration: none !important;
 
