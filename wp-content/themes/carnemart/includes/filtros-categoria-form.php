@@ -172,6 +172,7 @@ if (!function_exists('cm_master_product_ids_for_context')) {
       'relation' => 'AND',
       ['key' => '_stock_status', 'value' => 'instock', 'compare' => '='],
       ['key' => "wcmlim_stock_at_{$store}", 'value' => 0, 'type' => 'NUMERIC', 'compare' => '>'],
+      ['key' => 'product_step', 'value' => 0.1, 'type' => 'DECIMAL(10,2)', 'compare' => '>']
     ];
 
     $q = new WP_Query([
