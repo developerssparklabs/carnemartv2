@@ -722,6 +722,12 @@ add_action('wp_footer', function () {
                 tooltip.classList.remove('isActive');
                 console.log('sale');
             });
+
+            // Cuando se haga click tambien
+            trigger.addEventListener('click', function (e) {
+                e.preventDefault();
+                tooltip.classList.toggle('isActive');
+            });
         });
     </script>
     <?php

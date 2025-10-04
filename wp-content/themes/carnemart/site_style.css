@@ -9727,6 +9727,12 @@ body.woocommerce-cart .banner_footer-box-form {
       transform: translateY(20px);
       margin-left: 0 !important;
       width: 100%;
+
+      &.isActive {
+        visibility: visible !important;
+        opacity: 1 !important;
+        transition: all ease 0.5s;
+      }
     }
   }
 
