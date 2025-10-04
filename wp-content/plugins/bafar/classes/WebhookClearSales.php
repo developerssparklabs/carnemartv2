@@ -41,8 +41,48 @@ class WebhookClearSales
             return new WP_REST_Response(['message' => 'Datos inválidos.'], 400);
         }
 
-        $order_id = (int) $data['ID'];
+        $order_id = (string) $data['ID'];
         $newStatus = (string) $data['Status'];
+        $url = WP_ENVIRONMENT_TYPE == 'dev' ? 'https://lapastorastaging.mystagingwebsite.com/wp-json/clearsales/v1/status' : 'https://lapastora.mx/wp-json/clearsales/v1/status';
+
+        // Expresión Regular para asegurar: INICIA con 'LP-' y está SEGUIDO por SÓLO números
+        if (preg_match('/^LP-\d+$/', $order_id)) {
+            $logger->info("Enviando estado a La Pastora para orden {$order_id} con status {$newStatus}", ['source' => self::LOG_SOURCE]);
+            // 1. Crear el payload JSON
+            $post_data = [
+                'ID' => $order_id,
+                'Status' => $newStatus,
+                'Score' => '50.8000' // Valor predeterminado solicitado
+            ];
+
+            $json_payload = json_encode($post_data);
+
+            // 2. Realizar la solicitud POST con cURL
+            $ch = curl_init($url);
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json_payload);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($json_payload)
+            ]);
+
+            $response = curl_exec($ch);
+            $logger->info("Respuesta de La Pastora: " . ($response ?: 'Ninguna'), ['source' => self::LOG_SOURCE]);
+            // ********* Manejo de errores (mantengo el comentario según tu solicitud) *********
+            if (curl_errno($ch)) {
+                // Aquí se registraría un error de cURL si fuera necesario
+                $logger->error('Error de cURL: ' . curl_error($ch), ['source' => self::LOG_SOURCE]);
+            }
+
+            // 3. Cerrar la conexión cURL (aquí termina la lógica de la petición)
+            curl_close($ch);
+
+            $logger->info('Conexión cURL cerrada', ['source' => self::LOG_SOURCE]);
+
+            return new WP_REST_Response(['message' => 'Estado enviado a La Pastora.'], 200);
+        }
 
         // Lock por transiente para evitar carreras
         $lock_key = "cs_wh_lock_{$order_id}";
