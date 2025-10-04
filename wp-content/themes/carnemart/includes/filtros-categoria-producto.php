@@ -118,6 +118,22 @@ add_action('pre_get_posts', function (WP_Query $q) {
 
   // Siempre en stock
   $meta_query[] = ['key' => '_stock_status', 'value' => 'instock', 'compare' => '='];
+  $meta_query[] = ['key' => 'product_step', 'value' => 0.1, 'type' => 'DECIMAL(10,2)', 'compare' => '>'];
+  // $meta_query[] = [
+  //   'relation' => 'OR',
+  //   [
+  //     'key'     => 'product_step',
+  //     'value'   => 0.1,
+  //     'type'    => 'DECIMAL(10,2)',
+  //     'compare' => '>'
+  //   ],
+  //   [
+  //     'key'     => 'ri_quantity_step',
+  //     'value'   => 0.1,
+  //     'type'    => 'DECIMAL(10,2)',
+  //     'compare' => '>'
+  //   ]
+  // ];
 
   if ($store !== '') {
     // Filtrado por tienda
