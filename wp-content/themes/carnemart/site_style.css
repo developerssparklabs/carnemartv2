@@ -3331,13 +3331,13 @@ a.flotante-cta-whats:hover {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    min-width: 30px;
+    min-width: 22px;
     height: 22px;
     border-radius: 150px;
     background-color: var(--color-secundario);
     color: var(--color-claro);
     border: solid 1px var(--color-secundario);
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1;
     position: absolute;
     right: -13px;
@@ -9721,7 +9721,7 @@ body.woocommerce-cart .banner_footer-box-form {
   }
 
   body.single-product {
-    .cm-peso-tooltip {
+    .cm-peso-tooltip-1 {
       top: 50%;
       left: 0;
       transform: translateY(20px);

@@ -775,7 +775,7 @@ do_action('woocommerce_before_main_content');
 							<span id="showInfoPeso"><i
 									class="bi bi-info-circle-fill icon-con-tooltip has-azul-claro-color"></i></span>
 						</p>
-						<div class="cm-peso-tooltip">El peso de productos frescos, perecederos o porcionados puede
+						<div class="cm-peso-tooltip-1">El peso de productos frescos, perecederos o porcionados puede
 							legítimamente variar por la naturaleza del producto (corte, humedad, hueso, congelación,
 							etc.) y esto podría impactar en el precio final.</div>
 					</div>
